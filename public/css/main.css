@@ -1,0 +1,14 @@
+
+#mobile-demo {
+    overflow: visible;
+}
+
+/*Las opciones de los dropdown del sidenav se moveran a la deracha solo si el width es mayor a 500px*/
+@media only screen and (min-width: 500px) {
+    #drpGames2 {
+        margin-left: 100%;
+    }
+    #drpAccount2 {
+        margin-left: 100%;
+    }
+}

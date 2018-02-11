@@ -1,0 +1,32 @@
+#main {
+    margin: 10px !important;
+    background-color: darkgray;
+}
+
+#nextButton {
+    left: 90%;
+}
+
+ #prevButton, #nextButton  {
+    width: 10%;
+    height: 100%;
+    bottom: 0;
+    top: 45%;
+    position: absolute;
+}
+
+.large-chip {
+    width: 100%;
+    height: 100px;
+    overflow: auto;
+}
+
+.large-chip>img {
+    height: 100%;
+    width: auto;
+    border-radius: 0;
+}
+
+.large-chip>.chip {
+    margin-bottom: 0;
+}

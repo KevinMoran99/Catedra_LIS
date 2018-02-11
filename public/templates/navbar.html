@@ -1,0 +1,130 @@
+<!--menu en desktop-->
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.php" class="brand-logo">Sttom xD</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="dropdown-trigger" href="#!" data-target="drpGames1">Juegos<i class="material-icons left">keyboard_arrow_down</i></a></li>
+                <li><a href="support.php">Soporte Técnico</a></li>
+                <li><a href="about.php">Quiénes somos</a></li>
+                <li class="noLogin"><a class="modal-trigger" href="#modalSignIn">Iniciar sesión</a></li>
+                <li class="userLogged"><a class="dropdown-trigger" href="#!" data-target="drpAccount1">Cuenta<i class="material-icons left">keyboard_arrow_down</i></a></li>
+                <li class="userLogged"><a class="modal-trigger" href="#modalCart"><i class="material-icons">shopping_cart</i></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- menu en movil-->
+<ul id="mobile-demo" class="sidenav">
+    <li><a class="dropdown-trigger" href="#!" data-target="drpGames2">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li><a href="support.php">Soporte Técnico</a></li>
+    <li><a href="about.php">Quiénes somos</a></li>
+    <li class="noLogin"><a class="modal-trigger" href="#modalSignIn">Iniciar sesión</a></li> 
+    <li class="userLogged"><a class="dropdown-trigger" href="#!" data-target="drpAccount2">Cuenta<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li class="userLogged"><a class="modal-trigger" href="#modalCart"><i class="material-icons">shopping_cart</i></a></li>
+</ul>
+
+<!--Dropdowns (por cada uno, esta el de desktop y el movil)-->
+<!--Juegos-->
+<ul id="drpGames1" class="dropdown-content">
+    <li><a href="games.php">Opción 1</a></li>
+    <li><a href="games.php">Opción 2</a></li>
+</ul>
+<ul id="drpGames2" class="dropdown-content">
+    <li><a href="games.php">Opción 1</a></li>
+    <li><a href="games.php">Opción 2</a></li>
+</ul>
+<!--Cuenta-->
+<ul id="drpAccount1" class="dropdown-content">
+    <li><a href="userDetail.php">Detalles</a></li>
+    <li><a class="logout" href="#!">Cerrar sesión</a></li>
+</ul>
+<ul id="drpAccount2" class="dropdown-content">
+    <li><a href="userDetail.php">Detalles</a></li>
+    <li><a class="logout" href="#!">Cerrar sesión</a></li>
+</ul>
+
+
+
+
+
+
+<!--Modal de inicio de sesión-->
+<div id="modalSignIn" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmSignIn">
+                    <h3>Iniciar sesión</h3>
+                    <div class="input-field">
+                        <input id="signInUser" type="text" required>
+                        <label for="signInUser">Nombre de usuario</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="signInPass" type="password" required>
+                        <label for="signInPass">Contraseña</label>
+                    </div>
+                    <button type="submit" class="btn-flat waves-effect waves-green">Iniciar sesión</button>
+                </form>
+                <a href="#modalSignUp" class="modal-close modal-trigger">¿No tienes una cuenta?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal de registro-->
+<div id="modalSignUp" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                **Poner todos los campos, y, de ser necesario, trasladarlo a una pagina aparte en vez de un modal**
+                <form id="frmSignUp">
+                    <h3>Crear tu cuenta</h3>
+                    <div class="input-field">
+                        <input id="signUpUser" type="text" required>
+                        <label for="signUpUser">Nombre de usuario</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="signUpPass" type="password" required>
+                        <label for="signUpPass">Contraseña</label>
+                    </div>
+                    <button type="submit" class="btn-flat waves-effect waves-green">Registrarse</button>
+                </form>
+                <a href="#modalSignIn" class="modal-close modal-trigger">¿Ya tienes una cuenta?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal de carrito-->
+<div id="modalCart" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12 m10 offset-m1 center-align">
+                <i class="material-icons large">shopping_cart</i>
+                <h3>Carrito</h3>
+                <div>
+                    <div class="chip large-chip valign-wrapper">
+                        <img class="responsive-img" src="https://picsum.photos/320/240">
+                        <i class="close material-icons">close</i><br>
+                        <div>The Legend of Zelda: PC Edition</div>
+                        <div class="chip green white-text right">$19.99</div>
+                    </div>
+                    <div class="chip large-chip valign-wrapper">
+                        <img class="responsive-img" src="https://picsum.photos/320/240">
+                        <i class="close material-icons">close</i><br>
+                        <div>Super Mario Bros for PC</div>
+                        <div class="chip green white-text right">$9.99</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 right"><h4 class="right">Total: $100.00</h4></div>
+                    <div class="col s12 center"><a class="waves-effect waves-light btn">Realizar transacción</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
