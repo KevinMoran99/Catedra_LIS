@@ -1,0 +1,13 @@
+body {
+    background-color: darkgray;
+}
+
+.card {
+    margin-top: 30%;
+}
+
+@media only screen and (max-height: 400px) {
+    .card {
+        margin-top: 10%;
+    }
+}
