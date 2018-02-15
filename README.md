@@ -10,8 +10,8 @@
 # Modularidad en frontend
 Tanto en el sitio público como en el privado, hay una carpeta llamada templates. Ahí deberan ir todas las porciones de frontend que serán reutilizadas. Los archivos que tienen esas carpetas hasta ahora son:
 * sidenav.html: La maquetación del sidenav.
-* styles.html: Todas las tags <link> y otras tags que pertenezcan al <head>, que serán comunes para todas las páginas (Como por ejemplo el link al archivo de materialize).
-* scripts.html: Todas las tags <script> que serán comunes para todas las páginas.
+* styles.html: Todas las tags link y otras tags que pertenezcan al head, que serán comunes para todas las páginas (Como por ejemplo el link al archivo de materialize).
+* scripts.html: Todas las tags script que serán comunes para todas las páginas.
   
 Estos tres archivos deberan ser referenciados en todas las vistas por medio de <?php include 'ruta del archivo';?>
 
