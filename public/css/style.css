@@ -46,9 +46,50 @@
     background-position: center;
 }
 
-div.card h2,
-p {
-    margin: 0;
+.carousel-footer {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    width: 100%;
+}
+
+.card-image .card-title {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+
+/* label color */
+
+.input-field label {
+    color: #2196f3 !important;
+}
+
+
+/* label focus color */
+
+.input-field input[type=text]:focus+label {
+    color: #2196f3 !important;
+}
+
+
+/* label underline focus color */
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #2196f3 !important;
+    box-shadow: 0 1px 0 0 #2196f3 !important;
+}
+
+
+/* icon prefix focus color */
+
+.input-field .prefix.active {
+    color: #2196f3 !important;
+}
+
+i.material-icons {
+    vertical-align: middle;
 }
 
 

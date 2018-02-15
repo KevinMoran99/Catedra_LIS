@@ -7,6 +7,7 @@ $(document).ready(function() {
     setInterval(function() {
         $('.carousel').carousel('next');
     }, 5000);
+
 });
 
 $('#nextButton').find('i').click(function(e) {
