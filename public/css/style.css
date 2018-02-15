@@ -1,15 +1,19 @@
 /*div que contiene al slider*/
+
 #main {
     margin: 10px !important;
     background-color: darkgray;
 }
 
+
 /*Botones del slider*/
+
 #nextButton {
     left: 90%;
 }
 
-#prevButton, #nextButton  {
+#prevButton,
+#nextButton {
     width: 10%;
     height: 100%;
     bottom: 0;
@@ -19,6 +23,7 @@
 
 
 /*Overrideo de la clase chip, intentando hacerlo mas grande*/
+
 .large-chip {
     width: 100%;
     height: 100px;
@@ -34,3 +39,20 @@
 .large-chip>.chip {
     margin-bottom: 0;
 }
+
+.carousel-item {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+div.card h2,
+p {
+    margin: 0;
+}
+
+
+/*
+#game1-banner {
+    background-image: url(../img/nierBanner.jpg);
+}*/
