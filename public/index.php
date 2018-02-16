@@ -12,11 +12,10 @@
 <body>
 
     <?php //include 'templates/navbar.html';?>
-    <div class="container">
-        <?php include 'views/main.php';?>
+    <div class="container" id="container">
     </div>
 </body>
 <?php include 'templates/scripts.html';?>
-<script src="js/index.js"></script>
+
 
 </html>

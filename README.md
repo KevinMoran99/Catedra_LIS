@@ -7,6 +7,9 @@
 * Cosas extra: purple (#9c27b0)
 * Botones e input: blue (#2196f3)
 
+##Para llamar los archvos desde sidenav
+En el evento onclick agregar el metodo attach("nombre-vista-sinextension")
+
 # Modularidad en frontend
 Tanto en el sitio público como en el privado, hay una carpeta llamada templates. Ahí deberan ir todas las porciones de frontend que serán reutilizadas. Los archivos que tienen esas carpetas hasta ahora son:
 * sidenav.html: La maquetación del sidenav.
