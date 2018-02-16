@@ -1,10 +1,51 @@
 /*id del sidenav*/
-#mobile-demo {
+#menu, #menu.dropdown-content {
     overflow: visible;
+}
+
+#menu li {
+    border-bottom: 2px solid black;
+    border-radius: 3px;
+    box-shadow: 0px 1px;
+}
+
+#menu a {
+    font-size: 22px;
+}
+
+#menu-button {
+    right: auto;
+    bottom: auto;
+    padding: 10px;
+    border-bottom-right-radius: 5px;
+}
+
+#menu-logo {
+    margin-bottom: 0;
+}
+
+#menu-button, #menu-logo {
+    background: linear-gradient(mediumspringgreen, skyblue);
+}
+
+#menu-logo img {
+    padding-top: 10px;
+}
+
+#menu-logo h4 {
+    margin-top: 0;
+}
+
+#menu-store a {
+    background-color: steelblue;
+    color: white !important;
 }
 
 /*Las opciones de los dropdown del sidenav se moveran a la deracha solo si el width es mayor a 500px*/
 @media only screen and (min-width: 500px) {
+    #drpGames1 {
+        margin-left: 100%;
+    }
     #drpGames2 {
         margin-left: 100%;
     }

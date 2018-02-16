@@ -1,5 +1,5 @@
 <!--menu en desktop-->
-<div class="navbar-fixed">
+<!--<div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
             <a href="index.php" class="brand-logo">Sttom xD</a>
@@ -14,27 +14,44 @@
             </ul>
         </div>
     </nav>
+</div>-->
+
+<div id="menu-button" class="fixed-action-btn">
+    <a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 </div>
 
+
 <!-- menu en movil-->
-<ul id="mobile-demo" class="sidenav">
-    <li><a class="dropdown-trigger" href="#!" data-target="drpGames2">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
-    <li><a href="support.php">Soporte Técnico</a></li>
-    <li><a href="about.php">Quiénes somos</a></li>
-    <li class="noLogin"><a class="modal-trigger" href="#modalSignIn">Iniciar sesión</a></li> 
-    <li class="userLogged"><a class="dropdown-trigger" href="#!" data-target="drpAccount2">Cuenta<i class="material-icons right">keyboard_arrow_right</i></a></li>
-    <li class="userLogged"><a class="modal-trigger" href="#modalCart"><i class="material-icons">shopping_cart</i></a></li>
+<ul id="menu" class="sidenav">
+    <li>
+        <div id="menu-logo" class="row">
+            <div class="col s6 offset-s3"><img class="responsive-img" src="img/logo.png"> </div>
+            <div class="col s12"><h4 class="center-align">Sttom xD</h4></div>
+        </div>
+    </li>
+    <li id="menu-store" class="center-align"><a href="index.php">Tienda</a></li>
+    <li class="center-align"><a class="dropdown-trigger" href="#!" data-target="drpGames1">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li class="center-align"><a href="support.php">Soporte Técnico</a></li>
+    <li class="center-align"><a href="about.php">Quiénes somos</a></li>
+    <li class="noLogin center-align"><a class="modal-trigger" href="#modalSignIn">Iniciar sesión</a></li> 
+    <li class="userLogged center-align"><a class="dropdown-trigger" href="#!" data-target="drpAccount2">Cuenta<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li class="userLogged center-align"><a class="modal-trigger" href="#modalCart"><i class="material-icons">shopping_cart</i></a></li>
 </ul>
 
-<!--Dropdowns (por cada uno, esta el de desktop y el movil)-->
-<!--Juegos-->
+<!--Dropdowns-->
+<!--JuegosELJOVEEEER-->
 <ul id="drpGames1" class="dropdown-content">
-    <li><a href="games.php">Opción 1</a></li>
-    <li><a href="games.php">Opción 2</a></li>
+    <li><a href="games.php">Ofertas</a></li>
+    <li><a class="dropdown-trigger" href="#!" data-target="drpGames2"  data-hover="true">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>
 </ul>
 <ul id="drpGames2" class="dropdown-content">
-    <li><a href="games.php">Opción 1</a></li>
-    <li><a href="games.php">Opción 2</a></li>
+    <li><a href="games.php">Todos</a></li>
+    <li><a href="games.php">Plataforma</a></li>
+    <li><a href="games.php">Desarrollador</a></li>
+    <li><a href="games.php">Género</a></li>
+    <li><a href="games.php">Rating</a></li>
+    <li><a href="games.php">Clasificación</a></li>
+    <li><a href="games.php">Fecha de lanzamiento</a></li>
 </ul>
 <!--Cuenta-->
 <ul id="drpAccount1" class="dropdown-content">
