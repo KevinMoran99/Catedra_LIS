@@ -1,12 +1,18 @@
 $(document).ready( function () {
-    $('.dropdown-trigger').dropdown();
+    $('.dropdown-trigger').dropdown({
+        hover: true
+    });
     $('.sidenav').sidenav();
     $('.modal').modal();
     $('select').select();
-    $(".button-collapse").sidenav();
+    $('.button-collapse').sidenav();
     $('.userLogged').toggle();
     attach("main");
 });
+
+/*  $('.dropdown-content').on('click', function(event) {
+    event.stopPropagation();
+});*/
 
 //Código de login provisional
 $('form').submit( function (e) {

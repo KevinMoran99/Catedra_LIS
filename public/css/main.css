@@ -1,12 +1,12 @@
 /*id del sidenav*/
-#menu, #menu.dropdown-content {
+#menu, #drpGames1 {
     overflow: visible;
 }
 
 #menu li {
-    border-bottom: 2px solid black;
+    /*border-bottom: 2px solid black;*/
     border-radius: 3px;
-    box-shadow: 0px 1px;
+    /*box-shadow: 0px 1px;*/
 }
 
 #menu a {

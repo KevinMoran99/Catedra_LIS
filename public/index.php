@@ -11,7 +11,7 @@
 
 <body>
 
-    <?php //include 'templates/navbar.html';?>
+    <?php include 'templates/sidenav.html';?>
     <div class="container" id="container">
     </div>
 </body>

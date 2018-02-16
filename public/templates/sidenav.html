@@ -31,27 +31,33 @@
     </li>
     <li id="menu-store" class="center-align"><a href="index.php">Tienda</a></li>
     <li class="center-align"><a class="dropdown-trigger" href="#!" data-target="drpGames1">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
-    <li class="center-align"><a href="support.php">Soporte Técnico</a></li>
-    <li class="center-align"><a href="about.php">Quiénes somos</a></li>
+    <li class="center-align"><a href="#!" onclick="attach('support')">Soporte Técnico</a></li>
+    <li class="center-align"><a href="#!" onclick="attach('about')">Quiénes somos</a></li>
     <li class="noLogin center-align"><a class="modal-trigger" href="#modalSignIn">Iniciar sesión</a></li> 
-    <li class="userLogged center-align"><a class="dropdown-trigger" href="#!" data-target="drpAccount2">Cuenta<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li class="userLogged center-align"><a class="dropdown-trigger" href="#!" onclick="attach('userDetail')" data-target="drpAccount2">Cuenta<i class="material-icons right">keyboard_arrow_right</i></a></li>
     <li class="userLogged center-align"><a class="modal-trigger" href="#modalCart"><i class="material-icons">shopping_cart</i></a></li>
+    <!--<li class="center-align">
+        <div class="collection">
+            <a href="#!" class="collection-item active">Alvin</a>
+            <a href="#!" class="collection-item">Alvin</a>
+        </div>
+    </li>-->
 </ul>
 
 <!--Dropdowns-->
-<!--JuegosELJOVEEEER-->
+<!--Juegos  -->
 <ul id="drpGames1" class="dropdown-content">
-    <li><a href="games.php">Ofertas</a></li>
-    <li><a class="dropdown-trigger" href="#!" data-target="drpGames2"  data-hover="true">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li><a href="#!" onclick="attach('games')">Ofertas</a></li>
+    <li><a id="kk" class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>
 </ul>
 <ul id="drpGames2" class="dropdown-content">
-    <li><a href="games.php">Todos</a></li>
-    <li><a href="games.php">Plataforma</a></li>
-    <li><a href="games.php">Desarrollador</a></li>
-    <li><a href="games.php">Género</a></li>
-    <li><a href="games.php">Rating</a></li>
-    <li><a href="games.php">Clasificación</a></li>
-    <li><a href="games.php">Fecha de lanzamiento</a></li>
+    <li><a href="#!" onclick="attach('games')">Todos</a></li>
+    <li><a href="#!" onclick="attach('games')">Plataforma</a></li>
+    <li><a href="#!" onclick="attach('games')">Desarrollador</a></li>
+    <li><a href="#!" onclick="attach('games')">Género</a></li>
+    <li><a href="#!" onclick="attach('games')">Rating</a></li>
+    <li><a href="#!" onclick="attach('games')">Clasificación</a></li>
+    <li><a href="#!" onclick="attach('games')">Fecha de lanzamiento</a></li>
 </ul>
 <!--Cuenta-->
 <ul id="drpAccount1" class="dropdown-content">
