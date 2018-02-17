@@ -17,8 +17,8 @@
         case "support":
             include("../views/support.php");
         break;
-        case "userDetail":
-            include("../views/userDetail.php");
+        case "cart":
+            include("../views/cart.php");
         break;
     }
 ?>

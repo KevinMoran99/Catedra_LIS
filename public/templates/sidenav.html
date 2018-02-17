@@ -29,58 +29,71 @@
             <div class="col s12"><h4 class="center-align">Sttom xD</h4></div>
         </div>
     </li>
-    <li id="menu-store" class="center-align"><a href="index.php">Tienda</a></li>
-    <li class="center-align"><a class="dropdown-trigger" href="#!" data-target="drpGames1">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
-    <li class="center-align"><a href="#!" onclick="attach('support')">Soporte Técnico</a></li>
-    <li class="center-align"><a href="#!" onclick="attach('about')">Quiénes somos</a></li>
-    <li class="noLogin center-align"><a class="modal-trigger" href="#modalSignIn">Iniciar sesión</a></li> 
-    <li class="userLogged center-align"><a class="dropdown-trigger" href="#!" onclick="attach('userDetail')" data-target="drpAccount2">Cuenta<i class="material-icons right">keyboard_arrow_right</i></a></li>
-    <li class="userLogged center-align"><a class="modal-trigger" href="#modalCart"><i class="material-icons">shopping_cart</i></a></li>
-    <!--<li class="center-align">
-        <div class="collection">
-            <a href="#!" class="collection-item active">Alvin</a>
-            <a href="#!" class="collection-item">Alvin</a>
+    <div id="menu-items">
+    <li class="menu-item center-align selected-item"><a href="#!" onclick="attach('main')">Tienda</a></li>
+    <li id="menu-games" class="menu-item center-align menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames1">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li class="menu-item center-align"><a href="#!" onclick="attach('support')">Soporte Técnico</a></li>
+    <li class="menu-item center-align"><a href="#!" onclick="attach('about')">Quiénes somos</a></li>
+    <li class="menu-item center-align"><!--<a class="modal-trigger" href="#modalCart">--><a href="#!" onclick="attach('cart')">
+        <div class="row">
+            <div class="col s3"><i class="material-icons">shopping_cart</i></div><div class="col s6">Carrito</div>
         </div>
-    </li>-->
+    </a></li>
+    </div>
+    <footer class="page-footer white">
+        <div id="menu-login" class="container">
+            <div class="center-align row">
+                <div id="login-collection" class="collection col s10 offset-s1">
+                    <a href="#modalSignIn" class="collection-item active modal-trigger indigo lighten-2">Iniciar sesión</a>
+                    <a href="#modalSignUp" class="collection-item modal-trigger indigo-text lighten-2">Registrarse</a>
+                </div>
+            </div>
+        </div>
+        <li id="menu-user" class="center-align"><a class="dropdown-trigger" href="#!" data-target="drpAccount"><i class="material-icons left">account_circle</i>Mi perfil<i class="material-icons right">keyboard_arrow_right</i></a></li>
+        <div class="footer-copyright">
+            <div class="container center-align  black-text">
+                © 2018 Copyright
+            </div>
+        </div>
+    </footer>
 </ul>
 
 <!--Dropdowns-->
 <!--Juegos  -->
 <ul id="drpGames1" class="dropdown-content">
-    <li><a href="#!" onclick="attach('games')">Ofertas</a></li>
-    <li><a id="kk" class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
+    <li class="menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>
 </ul>
 <ul id="drpGames2" class="dropdown-content">
-    <li><a href="#!" onclick="attach('games')">Todos</a></li>
-    <li><a href="#!" onclick="attach('games')">Plataforma</a></li>
-    <li><a href="#!" onclick="attach('games')">Desarrollador</a></li>
-    <li><a href="#!" onclick="attach('games')">Género</a></li>
-    <li><a href="#!" onclick="attach('games')">Rating</a></li>
-    <li><a href="#!" onclick="attach('games')">Clasificación</a></li>
-    <li><a href="#!" onclick="attach('games')">Fecha de lanzamiento</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Todos</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Plataforma</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Desarrollador</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Género</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Rating</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Clasificación</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Fecha de lanzamiento</a></li>
 </ul>
-<!--Cuenta-->
-<ul id="drpAccount1" class="dropdown-content">
-    <li><a href="userDetail.php">Detalles</a></li>
-    <li><a class="logout" href="#!">Cerrar sesión</a></li>
+<ul id="drpAccount" class="dropdown-content">
+    <li><a class="modal-trigger" href="#modalUser">Editar información</a></li>
+    <li><a href="/Catedra_LIS/public/">Cerrar sesión</a></li>
 </ul>
-<ul id="drpAccount2" class="dropdown-content">
-    <li><a href="userDetail.php">Detalles</a></li>
-    <li><a class="logout" href="#!">Cerrar sesión</a></li>
-</ul>
-
-
-
 
 
 
 <!--Modal de inicio de sesión-->
 <div id="modalSignIn" class="modal">
     <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="img/logo.png"> 
+            </div>
+            <div class="col m10 s9">
+                <h3 class="">Inicio de sesión</h3>
+            </div>
+        </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmSignIn">
-                    <h3>Iniciar sesión</h3>
                     <div class="input-field">
                         <input id="signInUser" type="text" required>
                         <label for="signInUser">Nombre de usuario</label>
@@ -89,7 +102,10 @@
                         <input id="signInPass" type="password" required>
                         <label for="signInPass">Contraseña</label>
                     </div>
-                    <button type="submit" class="btn-flat waves-effect waves-green">Iniciar sesión</button>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
                 </form>
                 <a href="#modalSignUp" class="modal-close modal-trigger">¿No tienes una cuenta?</a>
             </div>
@@ -100,11 +116,21 @@
 <!--Modal de registro-->
 <div id="modalSignUp" class="modal">
     <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="img/logo.png"> 
+            </div>
+            <div class="col m10 s9">
+                <h3 class="">Regístrate</h3>
+            </div>
+        </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                **Poner todos los campos, y, de ser necesario, trasladarlo a una pagina aparte en vez de un modal**
                 <form id="frmSignUp">
-                    <h3>Crear tu cuenta</h3>
+                    <div class="input-field">
+                        <input id="signUpEmail" type="email" required>
+                        <label for="signUpEmail">Correo electrónico</label>
+                    </div>
                     <div class="input-field">
                         <input id="signUpUser" type="text" required>
                         <label for="signUpUser">Nombre de usuario</label>
@@ -113,9 +139,52 @@
                         <input id="signUpPass" type="password" required>
                         <label for="signUpPass">Contraseña</label>
                     </div>
-                    <button type="submit" class="btn-flat waves-effect waves-green">Registrarse</button>
+                    <div class="input-field">
+                        <input id="signUpConfirm" type="password" required>
+                        <label for="signUpConfirm">Repetir contraseña</label>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Registrar</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
                 </form>
                 <a href="#modalSignIn" class="modal-close modal-trigger">¿Ya tienes una cuenta?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal de edición de información de usuario-->
+<div id="modalUser" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="img/logo.png"> 
+            </div>
+            <div class="col m10 s9">
+                <h3 class="">Editar información</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmUser">
+                    <div class="input-field">
+                        <input id="userName" type="text" required>
+                        <label for="userName">Nombre de usuario</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="userPass" type="password" required>
+                        <label for="userPass">Contraseña</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="userConfirm" type="password" required>
+                        <label for="userConfirm">Repetir contraseña</label>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Guardar cambios</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -6,7 +6,6 @@
 
     <?php include 'templates/styles.html';?>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>

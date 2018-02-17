@@ -6,7 +6,7 @@ $(document).ready( function () {
     $('.modal').modal();
     $('select').select();
     $('.button-collapse').sidenav();
-    $('.userLogged').toggle();
+    $('#menu-user').hide();
     attach("main");
 });
 
@@ -14,12 +14,31 @@ $(document).ready( function () {
     event.stopPropagation();
 });*/
 
+//Cambia el color del item seleccionado del sidenav
+$(".menu-item").click(function (event) {
+    $(".menu-item").removeClass("selected-item");
+    $(".menu-item").find("li").removeClass("selected-item");
+
+    var triggerer = $(event.target)
+
+    //Si se hace click sobre un li que redirige a games, debe color solamente el li padre
+    if (triggerer.parents("li").hasClass("menu-trigger")) {
+        if(triggerer.parents("li").hasClass("item-game")) {
+            $("#menu-games").addClass("selected-item");
+        }
+    }
+    //Si se hace click en cualquier otro li, ocurre el comportamiento normal
+    else {
+        triggerer.parents("li").addClass("selected-item");
+    }
+});
+
 //Código de login provisional
 $('form').submit( function (e) {
     e.preventDefault();
-    //Reemplazamos link de Iniciar Sesion por el de Cuenta y el Carrito de compras
-    $('.noLogin').toggle();
-    $('.userLogged').toggle();
+    //Reemplazamos link de Iniciar Sesion por el de Cuenta 
+    $('#menu-login').toggle();
+    $('#menu-user').toggle();
 });
 
 $('.logout').click( function () {
@@ -51,31 +70,11 @@ $('#prevButton').find('i').click(function(e) {
 
 function attach(id){
     $( "#container" ).empty();
-    switch (id){
-        case "main":
-            url = id;
-        break;
-        case "games":
-            url=id;
-        break;
-        case "about":
-            url=id;
-        break;
-        case "gameDetail":
-            url=id;
-        break;
-        case "support":
-            url=id;
-        break;
-        case "userDetail":
-            url=id;
-        break;
-    }
     
     $.ajax({
         method: "POST",
         url: "backend/AjaxControl.php",
-        data: "control="+url,
+        data: "control="+id,
         success: function(html) {
            $("#container").append(html);
            startCarousel();

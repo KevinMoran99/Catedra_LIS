@@ -1,3 +1,8 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+}
+
 /*id del sidenav*/
 #menu, #drpGames1 {
     overflow: visible;
@@ -24,8 +29,16 @@
     margin-bottom: 0;
 }
 
-#menu-button, #menu-logo {
+#menu-button, #menu-logo, .modal-header {
     background: linear-gradient(mediumspringgreen, skyblue);
+}
+
+.modal-header {
+    padding: 10px;
+}
+
+.modal-submit {
+    margin-left: 5px;
 }
 
 #menu-logo img {
@@ -36,9 +49,44 @@
     margin-top: 0;
 }
 
-#menu-store a {
+.selected-item, #menu-user {
     background-color: steelblue;
+}
+
+.selected-item>a, #menu-user>a {
     color: white !important;
+}
+
+/*Permite hacer scroll cuando el footer del sidenav cubre lo demas*/
+#menu-items {
+    max-height: calc(100% - 360px);
+    overflow-y: auto;
+}
+
+#menu-items .row {
+    margin-bottom: 0;
+}
+
+/*Configuración de footer de sidenav*/
+footer.page-footer {
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+}
+
+#login-collection {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+footer .row {
+    margin-bottom: 5px;
+}
+
+.modal-content {
+    padding: 0 !important;
 }
 
 /*Las opciones de los dropdown del sidenav se moveran a la deracha solo si el width es mayor a 500px*/
@@ -49,7 +97,7 @@
     #drpGames2 {
         margin-left: 100%;
     }
-    #drpAccount2 {
+    #drpAccount {
         margin-left: 100%;
     }
 }

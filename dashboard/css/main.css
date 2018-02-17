@@ -4,24 +4,30 @@
     padding: 10px;
 }
 
-/*Esta clase se le da al item del sidenav que este seleccionado*/
-.highlited {
-    background-color: darkgray;
-    color: white;
-    -webkit-transition: background-color 0.5s ease;
-    -moz-transition: background-color 0.5s ease;
-    transition: background-color 0.5s ease;
+#menu-logo {
+    background: linear-gradient(mediumspringgreen, skyblue);
+    margin-bottom: 0;
 }
 
-/*sidebar*/
-#slide-out {
-    top: 64px;
+#menu-logo img {
+    padding-top: 10px;
 }
+
+#menu-logo h4 {
+    margin-top: 0;
+}
+
+/*Esta clase se le da al item del sidenav que este seleccionado*/
+.selected-item {
+    background-color: steelblue;
+}
+
+.selected-item>a {
+    color: white !important;
+}
+
 
 @media only screen and (max-width: 992px) {
-    #slide-out {
-        top: 0;
-    }
     .wrapper {
         margin-left: 0;
     }

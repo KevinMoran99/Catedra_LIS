@@ -18,4 +18,4 @@ Tanto en el sitio público como en el privado, hay una carpeta llamada templates
   
 Estos tres archivos deberan ser referenciados en todas las vistas por medio de \<?php include 'ruta del archivo';?>
 
-Además, existen los archivos css/main.css y js/main.js, en los cuales deberán ser incluidos respectivamente todos los estilos y scripts que serán comunes para todas las páginas, como la inicialización de componentes de materialize. (Estos archivos ya van incluidos en las templates).
+Además, existen los archivos css/index.css y js/index.js, en los cuales deberán ser incluidos respectivamente todos los estilos y scripts que serán comunes para todas las páginas, como la inicialización de componentes de materialize. (Estos archivos ya van incluidos en las templates).
