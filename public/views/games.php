@@ -6,7 +6,7 @@
      echo '<div class="col s6 m3 l3">
              <div class="card">
                  <div class="card-image">
-                     <img src="img/example.png">
+                     <img src="../web/img/example.png">
                      <span class="card-title">Nombre Juego</span>
                  </div>
              </div>
