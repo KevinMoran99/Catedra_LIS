@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <div class="col s12 m6 l4" id="game-description">
+    <div class="col s12 m6 l4 game-description">
 
         <div class="info">
             <h5>Descripcion</h5>
@@ -33,7 +33,6 @@
             <h5>Disponible para: </h5>
             <ul>
                 <li>*Cualquier cosa que no tenga kevin</li>
-                <li>*Cualquier cosa que no tenga kevin x2</li>
             </ul>
         </div>
     </div>
@@ -55,3 +54,6 @@
     </div>
 </div>
 <h5 class="center blue white-text info">Requisitos del sistema</h5>
+<p class="game-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor,
+        vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo
+        diam venenatis nunc, a </p>
