@@ -46,6 +46,11 @@ $('.logout').click( function () {
 });
 
 
+//Al dar aceptar en el modal de términos y condiciones
+$('#termsAgree').click( function () {
+    $('#signUpTerms').attr('checked', 'checked'); 
+});
+
 function attach(id){
     $( "#container" ).empty();
     

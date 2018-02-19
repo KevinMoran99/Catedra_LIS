@@ -1,0 +1,30 @@
+.container {
+    max-width: 100%;
+}
+
+.divider {
+    margin-bottom: 10px !important;
+}
+
+#logo {
+    background: linear-gradient(mediumspringgreen, skyblue);
+}
+
+#logo img {
+    max-height: 300px;
+}
+
+.contact {
+    margin-bottom: 10px;
+}
+
+.contact h4{
+    display: inline;
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 390px) {
+    .truncate {
+        display: block !important;
+    }
+}

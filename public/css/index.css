@@ -49,7 +49,7 @@
     margin-top: 0;
 }
 
-.selected-item, #menu-user {
+.selected-item, #menu-user, .navbar-fixed>nav {
     background-color: steelblue;
 }
 
@@ -87,6 +87,19 @@ footer .row {
 
 .modal-content {
     padding: 0 !important;
+}
+
+.navbar-fixed {
+    z-index: 996;
+}
+
+.justify-align {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#terms li {
+    margin-bottom: 10px;
 }
 
 /*Las opciones de los dropdown del sidenav se moveran a la deracha solo si el width es mayor a 500px*/

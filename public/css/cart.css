@@ -1,0 +1,35 @@
+
+.container {
+    max-width: 100%;
+}
+
+/*Items del carrito de compras*/
+
+
+.card img {
+    max-height: 100%;
+}
+
+#card-total {
+    background-color: steelblue;
+    color: white;
+}
+
+button {
+    margin: 5px;
+}
+
+button a {
+    color: white;
+}
+
+/*El boton de vaciar tenia un margen raro*/
+.red {
+    margin-left: -5px !important;
+}
+
+@media only screen and (min-width: 500px) {
+    .cart-card {
+        max-height: 300px;
+    }  
+}

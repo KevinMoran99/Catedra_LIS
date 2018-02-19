@@ -143,6 +143,13 @@
                         <input id="signUpConfirm" type="password" required>
                         <label for="signUpConfirm">Repetir contraseña</label>
                     </div>
+                    <label>
+                        <input type="checkbox" id="signUpTerms" required/>
+                        <span>Acepto los términos y condiciones</span>
+                    </label>
+                    <div class="input-field">
+                        <a href="#modalTerms" class="modal-trigger">Ver términos y condiciones</a>
+                    </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Registrar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
@@ -151,6 +158,116 @@
                 <a href="#modalSignIn" class="modal-close modal-trigger">¿Ya tienes una cuenta?</a>
             </div>
         </div>
+    </div>
+</div>
+
+<!--Modal de registro-->
+<div id="modalTerms" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="../web/img/logo.png"> 
+            </div>
+            <div class="col m10 s9">
+                <h3 class="">Términos y condiciones</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 justify-align">
+                <ol id="terms"> 
+                    <li>El presente Aviso Legal (en adelante, el "Aviso Legal") establece los Términos y Condiciones 
+                        respecto al uso de las páginas de Internet, (las "Páginas") que STTOM pone a disposición de 
+                        usted.
+                    </li> 
+                    <li>
+                        Las publicaciones digitales de STTOM tienen por objeto facilitar a sus Clientes y al público en 
+                        general, el acceso a los servicios y productos STTOM, así como a la información relativa a 
+                        dichos servicios, productos, equipos, tarifas, promociones, y cualquier otra información 
+                        relacionada (En adelante los "Servicios y Productos").
+                    </li> 
+                    <li>La utilización de las páginas le atribuye a Ud. la condición de usuario de las Páginas (en 
+                        adelante, el "Usuario") e implica la aceptación plena y sin reservas de todas y cada una de las 
+                        disposiciones incluidas en este Aviso Legal en la versión publicada por STTOM en el momento 
+                        mismo en que el usuario acceda a las páginas. En consecuencia, el usuario debe leer el presente 
+                        Aviso Legal en cada una de las ocasiones en que utilice las páginas, ya que puede sufrir 
+                        modificaciones.
+                    </li> 
+                    <li>La utilización de las páginas se encuentra sometida, además de este Aviso Legal, a todos los 
+                        avisos, reglamentos de uso e instrucciones, que sean puestos en conocimiento del Usuario por 
+                        STTOM a través de las páginas. 
+                    </li> 
+                    <li>
+                        STTOM se reserva el derecho a modificar el Aviso Legal en cualquier tiempo y sin previa 
+                        notificación. Dichas modificaciones serán efectivas a partir del momento en que queden disponibles 
+                        al público en las páginas. El usuario se considera enterado y obligado por los cambios al Aviso Legal
+                        desde el momento en que ingrese a las páginas. El uso o acceso a las páginas por parte del usuario 
+                        constituirá la aceptación y acuerdo a los cambios del Aviso Legal.
+                    </li> 
+                    <li>STTOM procurará que la información contenida en sus páginas sea correcta y esté actualizada al 
+                        momento de ser incluida en las mismas. Sin embargo, es posible que existan errores o imprecisiones 
+                        involuntarias. 
+                    </li> 
+                    <li>
+                        STTOM podrá en cualquier momento negar, suspender o dar por terminado el acceso o el uso del 
+                        usuario a las páginas, a cualquier Servicio y Producto, o cualquier parte de los mismos, a sola 
+                        discreción de STTOM, sin necesidad de previo aviso, sin limitación alguna, y por cualquier razón. 
+                    </li> 
+                    <li>
+                        Para conveniencia del Usuario, las páginas pueden proporcionar enlaces ("Links") a otros sitios o 
+                        páginas de Internet de terceros, cuyo contenido o información no es revisado por STTOM. Salvo 
+                        cuando se establezca expresamente lo contrario, cualquier página o sitio enlazado con nuestras 
+                        páginas es independiente de STTOM, por lo que STTOM no tiene control sobre tales productos, 
+                        servicios, materiales o cualquier otra información contenida en o disponible a través de las Páginas 
+                        o sitios de dichos terceros, ni se entenderá que STTOM recomienda dichos productos o servicios de 
+                        terceros que tengan un Link a nuestras Páginas. El acceso a cualquier página o sitio enlazado a 
+                        nuestras páginas es bajo riesgo del usuario.
+                    </li> 
+                    <li>
+                        Algunos Servicios y Productos puestos a disposición del Usuario a través de las páginas podrán requerir
+                        de claves o contraseñas ("Passwords"), a fin de verificar la identidad del usuario. El usuario está de 
+                        acuerdo en que cualquier operación correctamente identificada con dichos Passwords será consideradas 
+                        como válidamente realizadas por el usuario. Por lo anterior, el usuario será el único responsable de 
+                        mantener la confidencialidad de dichos Passwords, sin importar si éstos fueron proporcionados por 
+                        STTOM o seleccionados por el usuario directamente.
+                    </li> 
+                    <li>
+                        STTOM es titular de todos los derechos sobre el software de las publicaciones digitales, así como de 
+                        los derechos de propiedad industrial e intelectual referidos a los contenidos que en ellas se incluyan, 
+                        a excepción de los derechos sobre productos y servicios que no son propiedad de STTOM, cuyas marcas 
+                        están registradas a favor de sus respectivos titulares, y como tal son reconocidas por STTOM. Ningún 
+                        material de las publicaciones digitales podrá ser reproducido, copiado modificado, distribuido, 
+                        transmitido, vendido, utilizado o publicado por el usuario sin el previo consentimiento por escrito de 
+                        STTOM. 
+                    </li> 
+                    <li>
+                        STTOM respetará escrupulosamente la confidencialidad de los datos de carácter personal aportados por 
+                        los visitantes a las publicaciones digitales, mediante la observancia de su Aviso de Privacidad y de la 
+                        normatividad aplicable vigente, de tal manera que STTOM no entregará información personal del usuario 
+                        a terceros, a menos que sea requerido para entregar un producto o prestar un servicio solicitado por el 
+                        usuario. Ver Aviso de Privacidad.
+                    </li> 
+                    <li>
+                        Cualquier información enviada por los usuarios y que sea recibida en las páginas, tal como comentarios, 
+                        sugerencias o ideas, se considerará cedida a STTOM a título gratuito, y el usuario que la envíe acepta 
+                        implícitamente que no tiene carácter de confidencial. Le sugerimos que NO ENVÍE información que no pueda 
+                        ser tratada de esta forma. STTOM tendrá el derecho de utilizar cualquier información enviada para los 
+                        fines que juzgue convenientes.
+                    </li> 
+                    <li>
+                        Queda terminantemente prohibido el mal uso y el uso no autorizado de las páginas, incluyendo sin limitar, 
+                        el acceso no autorizado a los sistemas de STTOM, el mal uso de claves o contraseñas ("Passwords"), o de 
+                        cualquier información contenida en las Páginas. STTOM se reserva el derecho de suspender o negar el 
+                        acceso a sus páginas a las personas que hagan un mal uso de la información o de los Servicios y Productos 
+                        contenidos en las mismas; sin perjuicio del derecho de STTOM del ejercicio de las acciones civiles, 
+                        administrativas o penales a que hubiere lugar, de conformidad con las leyes de la materia. 
+                    </li> 
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+        <a id="termsAgree" href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar términos y condiciones</a>
     </div>
 </div>
 
@@ -190,8 +307,10 @@
     </div>
 </div>
 
+
+
 <!--Modal de carrito-->
-<div id="modalCart" class="modal">
+<!--<div id="modalCart" class="modal">
     <div class="modal-content">
         <div class="row">
             <div class="col s12 m10 offset-m1 center-align">
@@ -218,5 +337,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
