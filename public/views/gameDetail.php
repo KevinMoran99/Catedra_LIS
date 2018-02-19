@@ -1,16 +1,15 @@
 <link rel="stylesheet" href="css/gameDetail.css">
 <div class="navbar-fixed">
-    <nav class="left-align">
+    <nav class="center-align">
         <h5>Kevin no lo ha jugado</h5>
     </nav>
 </div>
 <div class="row" id="gameDetailHeader">
     <div class="gameBackground"></div>
     <div class="col s12 m6 l4">
-        <div class="card">
-            <div class="row">
-                <img class="center" class="col push-s2" src="../web/img/example2.png" id="gameCover" />
-            </div>
+
+        <div class="row">
+            <img class="center" class="col push-s2" src="../web/img/example2.png" id="gameCover" />
         </div>
         <div class="row">
             <div class="center col s12">
@@ -26,7 +25,7 @@
 
     <div class="col s12 m6 l4" id="game-description">
 
-        <div id="info">
+        <div class="info">
             <h5>Descripcion</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor,
                 vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo
@@ -55,4 +54,4 @@
         </div>
     </div>
 </div>
-<hr>
+<h5 class="center blue white-text info">Requisitos del sistema</h5>
