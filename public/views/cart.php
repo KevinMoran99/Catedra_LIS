@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="css/cart.css">
-
+<!--vista de carro de compras de -->
 <div class="navbar-fixed">
     <nav class="center-align">
         <h5>Carrito de compras</h5>
@@ -79,7 +79,9 @@
     <div class="col s10 offset-s1">
         <div id="card-total" class="card ">
             <div class="card-content">
-                <div class="row"><h5 class="right">Total estimado: $100.00</h5></div>
+                <div class="row">
+                    <h5 class="right">Total estimado: $100.00</h5>
+                </div>
                 <div class="row">
                     <button class="col s12 l3 btn waves-effect right">Realizar transacción</button>
                     <button class="col s12 l3 btn waves-effect blue right"><a href="/Catedra_LIS/public">Seguir buscando</a></button>

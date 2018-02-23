@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/gameDetail.css">
+<!--vista de rating -->
 <div class="navbar-fixed">
     <nav class="center-align">
         <h5>Kevin no lo ha jugado</h5>

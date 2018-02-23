@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="css/support.css">
-
+<!--vista de faq -->
 <div class="navbar-fixed">
     <nav class="center-align">
         <h5>Soporte Técnico</h5>
@@ -8,8 +8,7 @@
 
 <div class="row">
     <div class="col m10 offset-m1 card">
-        <h5 class="center-align">En esta sección encontrara los inconvenientes mas comunes entre usuarios, puede ayudarnos a expandir 
-        esta lista contactándonos en la sección de "Quiénes somos?."</h5>
+        <h5 class="center-align">En esta sección encontrara los inconvenientes mas comunes entre usuarios, puede ayudarnos a expandir esta lista contactándonos en la sección de "Quiénes somos?."</h5>
 
         <ul class="collapsible popout">
             <li>
@@ -65,4 +64,3 @@
 </div>
 
 <script src="js/support.js"></script>
-    
