@@ -38,7 +38,27 @@
                                 <tbody>
                                     <tr>
                                         <td style="visibility: hidden; display:none;">1</td>
-                                        <td>Usuario x</td>
+                                        <td>oscarmendez</td>
+                                        <td>someone@example.com</td>
+                                        <td>
+                                            <a href="#nuevoUsuario" onclick="" class="edit modal-trigger">
+                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="visibility: hidden; display:none;">2</td>
+                                        <td>kevinmoran</td>
+                                        <td>someone@example.com</td>
+                                        <td>
+                                            <a href="#nuevoUsuario" onclick="" class="edit modal-trigger">
+                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="visibility: hidden; display:none;">3</td>
+                                        <td>raulalvarado</td>
                                         <td>someone@example.com</td>
                                         <td>
                                             <a href="#nuevoUsuario" onclick="" class="edit modal-trigger">
@@ -74,7 +94,7 @@
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmSignIn">
+                <form id="frmregUser">
                 <div class="input-field">
                         <input id="registerMail" type="text" required>
                         <label for="registerMail">Correo electronico</label>
@@ -86,6 +106,10 @@
                     <div class="input-field">
                         <input id="registerPass" type="password" required>
                         <label for="registerPass">Contraseña</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="registerPassRepeat" type="password" required>
+                        <label for="registerPassRepeat">Repetir contraseña</label>
                     </div>
                     <div class="row">
                     <h6 class="center">Seleccione el estado del usuario:</h6>

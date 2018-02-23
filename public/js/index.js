@@ -64,7 +64,6 @@ function attach(id) {
         data: "control=" + id,
         success: function(html) {
             $("#container").append(html);
-            startCarousel();
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
     });
