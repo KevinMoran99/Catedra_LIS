@@ -15,6 +15,19 @@
         </div>
     </nav>
 </div>-->
+<div class="navbar-fixed">
+    <nav class="center-align">
+        <h5 id="nav-title">Fecha de lanzamiento</h5>
+        <div id="filter-container" class="input-field">
+            <select id="filter">
+              <option value="" disabled selected>Todos</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+        </div>
+    </nav>
+</div>
 
 <div id="menu-button" class="fixed-action-btn">
     <a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -61,10 +74,18 @@
 <!--Dropdowns-->
 <!--Juegos  -->
 <ul id="drpGames1" class="dropdown-content">
+    <li class="item-game"><a href="#!" onclick="attach('games')">Todos</a></li>
     <li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
-    <li class="menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Por plataforma</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Por desarrollador</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Por género</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Por rating</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Por clasificación</a></li>
+    <li class="item-game"><a href="#!" onclick="attach('games')">Por lanzamiento</a>
+    <!--<li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
+    <li class="menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>-->
 </ul>
-<ul id="drpGames2" class="dropdown-content">
+<!--<ul id="drpGames2" class="dropdown-content">
     <li class="item-game"><a href="#!" onclick="attach('games')">Todos</a></li>
     <li class="item-game"><a href="#!" onclick="attach('games')">Plataforma</a></li>
     <li class="item-game"><a href="#!" onclick="attach('games')">Desarrollador</a></li>
@@ -72,7 +93,7 @@
     <li class="item-game"><a href="#!" onclick="attach('games')">Rating</a></li>
     <li class="item-game"><a href="#!" onclick="attach('games')">Clasificación</a></li>
     <li class="item-game"><a href="#!" onclick="attach('games')">Fecha de lanzamiento</a></li>
-</ul>
+</ul>-->
 <ul id="drpAccount" class="dropdown-content">
     <li><a class="modal-trigger" href="#modalUser">Editar información</a></li>
     <li><a href="/Catedra_LIS/public/">Cerrar sesión</a></li>

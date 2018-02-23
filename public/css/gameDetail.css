@@ -21,6 +21,9 @@
     text-align: center;
 }
 
+
+/*se establece la imagen blur del detalle de juego*/
+
 .gameBackground {
     background-image: url('../../web/img/zeldaBanner.jpg');
     background-repeat: no-repeat;

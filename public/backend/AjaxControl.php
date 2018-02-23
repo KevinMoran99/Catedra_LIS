@@ -1,6 +1,6 @@
 <?php
     $control =$_POST['control'];
-
+    //retornamos la vista seleccionada 
     switch ($control){
         case "main":
           include("../views/main.php");

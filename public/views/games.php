@@ -1,3 +1,11 @@
+<link rel="stylesheet" href="css/games.css">
+
+<div class="navbar-fixed">
+    <nav class="center-align">
+        <h5></h5>
+    </nav>
+</div>
+ 
  <!--Feed-->
 
  <div class="row">

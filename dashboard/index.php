@@ -16,5 +16,4 @@
         
     </body>
     <?php include 'templates/scripts.html';?>
-    <script src="js/index.js"></script>
 </html>

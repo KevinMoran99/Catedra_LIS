@@ -1,3 +1,4 @@
-$(document).ready( function () {
+$(document).ready(function() {
+    /* se inicializan elementos*/
     $('.collapsible').collapsible();
 });
