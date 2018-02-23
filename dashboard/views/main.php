@@ -1,7 +1,7 @@
 
 <div class="navbar-fixed">
-    <nav class="center-align">
-        <h5 id="nav-title">Fecha de lanzamiento</h5>
+    <nav>
+        <h5 id="nav-title">Todos los juegos:</h5>
         <div id="filter-container" class="input-field">
             <select id="filter" class="js-example-basic-single">
               <option value="" disabled selected>Todos</option>
@@ -34,3 +34,5 @@
         <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#MODALDEAÑADIR"><i class="material-icons">add</i></a>
     </div>
 </div>
+
+<script src="js/main.js"></script>

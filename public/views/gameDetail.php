@@ -1,10 +1,5 @@
 <link rel="stylesheet" href="css/gameDetail.css">
 <!--vista de detalle de juegos -->
-<div class="navbar-fixed">
-    <nav class="center-align">
-        <h5>Kevin no lo ha jugado</h5>
-    </nav>
-</div>
 <div class="row" id="gameDetailHeader">
     <div class="gameBackground"></div>
     <div class="col s12 m6 l4">

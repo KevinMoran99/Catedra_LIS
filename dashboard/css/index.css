@@ -1,6 +1,13 @@
 /*En esta clase se deberá wrappear todo el contenido de la página*/
-.wrapper {
+.wrapper, .navbar-fixed {
     margin-left: 300px;
+}
+
+nav {
+    padding-left: 20px;
+}
+
+.wrapper {
     padding: 10px;
 }
 
@@ -23,6 +30,8 @@
 
 #drpGames1 {
     overflow-y: auto;
+    right: 0px;
+    top: 0px;
 }
 
 .card-image .card-title {
@@ -31,7 +40,7 @@
 }
 
 /*Esta clase se le da al item del sidenav que este seleccionado*/
-.selected-item {
+.selected-item, nav {
     background-color: steelblue;
 }
 
@@ -78,11 +87,24 @@ nav label {
     .wrapper {
         margin-left: 0;
     }
+    .navbar-fixed {
+        margin-left: 0;
+    }
 }
 
 /*Las opciones de los dropdown del sidenav se moveran a la deracha solo si el width es mayor a 500px*/
 @media only screen and (min-width: 500px) {
     #drpGames1 {
         margin-left: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    #nav-title {
+        display: none;
+    }
+    #filter-container {
+        width: 80% !important;
     }
 }

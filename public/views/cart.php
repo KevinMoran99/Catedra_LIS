@@ -1,11 +1,7 @@
 <link rel="stylesheet" href="css/cart.css">
 <!--vista de carro de compras de -->
-<div class="navbar-fixed">
-    <nav class="center-align">
-        <h5>Carrito de compras</h5>
-    </nav>
-</div>
 
+<!--Esto se muestra cuando se vacía el carrito-->
 <div id="emptyCart" class="row">
     <div class="col s12 m10 offset-m1 center-align">
         <div class="card">
@@ -17,6 +13,7 @@
     </div>
 </div>
 
+<!--Lista de objetos en carrito-->
 <div id="cartList">
     <div class="row cartItem">
         <div class="col s10 offset-s1">
@@ -74,7 +71,7 @@
     </div>
 </div>
 
-
+<!--Controles-->
 <div class="row">
     <div class="col s10 offset-s1">
         <div id="card-total" class="card ">

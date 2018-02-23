@@ -13,6 +13,7 @@ $(".delBtn").click( function(event) {
     $(event.target).parents(".row").remove();
 });
 
+//Vaciar carrito
 function emptyCart () {
     $("#cartList").empty();
     $("#emptyCart").show();

@@ -1,10 +1,5 @@
 <link rel="stylesheet" href="css/support.css">
 <!--vista de faq -->
-<div class="navbar-fixed">
-    <nav class="center-align">
-        <h5>Soporte Técnico</h5>
-    </nav>
-</div>
 
 <div class="row">
     <div class="col m10 offset-m1 card">
