@@ -3,4 +3,6 @@ $(document).ready(function() {
     var instance = M.FormSelect.init(elem);
     $('.datepicker').datepicker();
     $('.tooltipped').tooltip();
+
+    $('.modal').modal();
 });
