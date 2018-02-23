@@ -100,12 +100,20 @@
                     <h6 class="center">Seleccione el estado del genero:</h6>
                     <div class="input-field col s6 push-s1">
                         <div class="col s12 m6 push-m5">
-                            <input type="radio" id="addActiveUsr" name="state" checked />
-                            <label for="addActiveUsr">Activo</label>
+                        <p>
+                            <label>
+                                <input name="state" type="radio" checked />
+                                <span>Activo</span>
+                            </label>
+                        </p>
                         </div>
                         <div class="col s12 m6 push-m4">
-                            <input type="radio" id="addInactiveUsr" name="state" />
-                            <label for="addInactiveUsr">Inactivo</label>
+                        <p>
+                            <label>
+                                <input name="state" type="radio" checked />
+                                <span>Inactivo</span>
+                            </label>
+                        </p>
                         </div>
                     </div>
                 </div>

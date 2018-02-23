@@ -1,3 +1,4 @@
+<script src="js/select.js"></script>
 <div class="navbar-fixed">
     <nav>
         <h5 id="nav-title">Todos los juegos:</h5>
@@ -48,7 +49,7 @@
                 <form id="frmRegJg">
                     <div class="file-field input-field">
                         <div class="btn">
-                            <span>File</span>
+                            <span>Imagen</span>
                             <input type="file">
                         </div>
                         <div class="file-path-wrapper">
@@ -58,6 +59,38 @@
                     <div class="input-field">
                         <input id="registerUser" type="text" required>
                         <label for="registerUser">Nombre de juego</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea class="materialize-textarea" id="registerUser" type="text" required></textarea>
+                        <label for="registerUser">Descripcion</label>
+                    </div>
+                    <div class="input-field">
+                        <select>
+                        <option value="" disabled selected>Clasificacion</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select>
+                        <option value="" disabled selected>Genero</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select>
+                        <option value="" disabled selected>Plataforma</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select>
+                        <option value="" disabled selected>Publicador</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input id="registerUser" type="text" required>
+                        <label for="registerUser">Precio</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="registerUser" type="text" required>
+                        <label for="registerUser">Descuento</label>
                     </div>
 
                     <div class="row">
