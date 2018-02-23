@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="css/gameDetail.css">
 <!--vista de detalle de juegos -->
+
+<!--header con todos los datos-->
 <div class="row" id="gameDetailHeader">
     <div class="gameBackground"></div>
     <div class="col s12 m6 l4">
@@ -51,5 +53,7 @@
         </div>
     </div>
 </div>
+
+<!--resto de informacion-->
 <h5 class="center blue white-text info">Requisitos del sistema</h5>
 <p class="game-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor, vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo diam venenatis nunc, a </p>
