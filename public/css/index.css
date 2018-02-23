@@ -4,8 +4,12 @@
 }
 
 /*id del sidenav*/
-#menu, #drpGames1 {
+#menu {
     overflow: visible;
+}
+
+#drpGames1 {
+    overflow-y: auto;
 }
 
 #menu li {
@@ -102,6 +106,40 @@ footer .row {
     margin-bottom: 10px;
 }
 
+nav *{
+    display: inline-flex;
+}
+
+nav label {
+    top: -40px !important;
+}
+
+/*Modiando select2*/
+#filter-container {
+    width: 30% !important;
+}
+
+#filter-container span{
+    width: 100%;
+    text-align: left;
+}
+
+.select2-dropdown {
+    top: -60px;
+}
+
+.selection {
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+/*Ocultando flechita del select2 que me cae mal*/
+.select2-selection__arrow {
+    top: 12px !important;
+    width: 20px !important;
+}
+
 /*Las opciones de los dropdown del sidenav se moveran a la deracha solo si el width es mayor a 500px*/
 @media only screen and (min-width: 500px) {
     #drpGames1 {
@@ -112,5 +150,14 @@ footer .row {
     }
     #drpAccount {
         margin-left: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #nav-title {
+        display: none;
+    }
+    #filter-container {
+        width: 80% !important;
     }
 }
