@@ -1,6 +1,6 @@
 <?php
     $control =$_POST['control'];
-
+    //retornamos la vista seleccionada 
     switch ($control){
         case "main":
           include("../views/main.php");
@@ -19,6 +19,9 @@
         break;
         case "cart":
             include("../views/cart.php");
+        break;
+        case "rating":
+            include("../views/rating.php");
         break;
     }
 ?>

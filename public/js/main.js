@@ -1,3 +1,4 @@
+/*inicializa el carousel de la pagina principal*/
 function startCarousel() {
     $('.carousel.carousel-slider').carousel({ fullWidth: true });
     $('#game1-banner').css("background-image", "url('../web/img/nierBanner.jpg')");

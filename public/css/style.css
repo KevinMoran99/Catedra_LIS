@@ -76,6 +76,11 @@
 
 /* label underline focus color */
 
+input[type=text]:focus+label {
+    border-bottom: 1px solid #2196f3 !important;
+    box-shadow: 0 1px 0 0 #2196f3 !important;
+}
+
 .input-field input[type=text]:focus {
     border-bottom: 1px solid #2196f3 !important;
     box-shadow: 0 1px 0 0 #2196f3 !important;
