@@ -15,11 +15,15 @@
         </div>
     </nav>
 </div>-->
+<div id="menu-button" class="fixed-action-btn">
+    <a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+</div>
+
 <div class="navbar-fixed">
     <nav class="center-align">
-        <h5 id="nav-title">Fecha de lanzamiento</h5>
+        <h5 id="nav-title">Sttom xD</h5>
         <div id="filter-container" class="input-field">
-            <select id="filter">
+            <select id="filter" class="js-example-basic-single">
               <option value="" disabled selected>Todos</option>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
@@ -29,9 +33,7 @@
     </nav>
 </div>
 
-<div id="menu-button" class="fixed-action-btn">
-    <a href="#" data-target="menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-</div>
+
 
 
 <!-- menu en movil-->
@@ -45,9 +47,9 @@
     <div id="menu-items">
     <li class="menu-item center-align selected-item"><a href="#" onclick="location.reload();">Tienda</a></li>
     <li id="menu-games" class="menu-item center-align menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames1">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
-    <li class="menu-item center-align"><a href="#!" onclick="attach('support')">Soporte Técnico</a></li>
-    <li class="menu-item center-align"><a href="#!" onclick="attach('about')">Quiénes somos</a></li>
-    <li class="menu-item center-align"><!--<a class="modal-trigger" href="#modalCart">--><a href="#!" onclick="attach('cart')">
+    <li id="menu-support" class="menu-item center-align"><a href="#!" onclick="attach('support')">Soporte Técnico</a></li>
+    <li id="menu-about" class="menu-item center-align"><a href="#!" onclick="attach('about')">Quiénes somos</a></li>
+    <li id="menu-cart" class="menu-item center-align"><!--<a class="modal-trigger" href="#modalCart">--><a href="#!" onclick="attach('cart')">
         <div class="row">
             <div class="col s3"><i class="material-icons">shopping_cart</i></div><div class="col s6">Carrito</div>
         </div>
@@ -74,14 +76,14 @@
 <!--Dropdowns-->
 <!--Juegos  -->
 <ul id="drpGames1" class="dropdown-content">
-    <li class="item-game"><a href="#!" onclick="attach('games')">Todos</a></li>
-    <li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
-    <li class="item-game"><a href="#!" onclick="attach('games')">Por plataforma</a></li>
-    <li class="item-game"><a href="#!" onclick="attach('games')">Por desarrollador</a></li>
-    <li class="item-game"><a href="#!" onclick="attach('games')">Por género</a></li>
-    <li class="item-game"><a href="#!" onclick="attach('games')">Por rating</a></li>
-    <li class="item-game"><a href="#!" onclick="attach('games')">Por clasificación</a></li>
-    <li class="item-game"><a href="#!" onclick="attach('games')">Por lanzamiento</a>
+    <li id="game-all" class="item-game"><a href="#!" onclick="attach('games')">Todos</a></li>
+    <li id="game-offer" class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
+    <li id="game-platform" class="item-game"><a href="#!" onclick="attach('games')">Por plataforma</a></li>
+    <li id="game-publisher" class="item-game"><a href="#!" onclick="attach('games')">Por publicador</a></li>
+    <li id="game-genre" class="item-game"><a href="#!" onclick="attach('games')">Por género</a></li>
+    <li id="game-rating" class="item-game"><a href="#!" onclick="attach('games')">Por rating</a></li>
+    <li id="game-esrb" class="item-game"><a href="#!" onclick="attach('games')">Por clasificación</a></li>
+    <li id="game-date" class="item-game"><a href="#!" onclick="attach('games')">Por lanzamiento</a>
     <!--<li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
     <li class="menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>-->
 </ul>

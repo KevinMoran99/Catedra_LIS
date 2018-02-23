@@ -1,10 +1,5 @@
 <link rel="stylesheet" href="css/gameDetail.css">
 <!--vista de rating -->
-<div class="navbar-fixed">
-    <nav class="center-align">
-        <h5>Kevin no lo ha jugado</h5>
-    </nav>
-</div>
 <!--header-->
 <div class="row" id="gameDetailHeader">
     <div class="gameBackground"></div>
@@ -28,7 +23,7 @@
         <div class="info card">
             <h5>Filtrar por rating</h5>
             <div class="input-field col s12 white-text">
-                <select>
+                <select id="select-rating">
                     <option value="1">Excelente</option>
                     <option value="2">Bueno</option>
                     <option value="3">Malo</option>

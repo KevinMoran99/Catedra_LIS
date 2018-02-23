@@ -1,13 +1,9 @@
 <link rel="stylesheet" href="css/about.css">
 <!--vista de acerca de -->
-<div class="navbar-fixed">
-    <nav class="center-align">
-        <h5>Quiénes somos</h5>
-    </nav>
-</div>
 
 <div class="row">
     <div class="col s10 offset-s1 card">
+        <!--Encabezado-->
         <div id="logo" class="row center-align">
             <div class="col s6 offset-s3"><img class="responsive-img" src="../web/img/logo.png"> </div>
             <div class="col s12">
@@ -18,6 +14,7 @@
             </div>
         </div>
 
+        <!--Historia-->
         <div class="row justify-align">
             <div class="col s12">
                 <h4>Historia:</h4>
@@ -32,6 +29,8 @@
             </div>
         </div>
 
+
+        <!--Mision, vision y valores-->
         <div class="row">
             <div class="col s12">
                 <h4>Ideales</h4>
@@ -71,6 +70,7 @@
             <div class="divider"></div>
         </div>
 
+        <!--Integrantes-->
         <div class="row">
             <div class="col s12">
                 <h4>El equipo:</h4>
@@ -94,6 +94,7 @@
 
         </div>
 
+        <!--Medios de contacto e información-->
         <div class="row">
             <div class="col s12">
                 <h4>Contáctenos:</h4>

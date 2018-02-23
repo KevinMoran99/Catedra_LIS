@@ -1,6 +1,6 @@
 <div class="navbar-fixed">
-    <nav class="center-align">
-        <h5 id="nav-title">Fecha de lanzamiento</h5>
+    <nav>
+        <h5 id="nav-title">Todos los juegos:</h5>
         <div id="filter-container" class="input-field">
             <select id="filter" class="js-example-basic-single">
                 <option value="" disabled selected>Todos</option>
@@ -92,3 +92,4 @@
 </div>
 
 <script src="js/user.js"></script>
+<script src="js/main.js"></script>
