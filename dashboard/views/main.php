@@ -1,4 +1,4 @@
-<script src="js/select.js"></script>
+
 <!--vista principal-->
 
 <!--navbar-->
@@ -69,22 +69,22 @@
                         <label for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
-                        <select>
+                        <select class="form-select">
                         <option value="" disabled selected>Clasificacion</option>
                         </select>
                     </div>
                     <div class="input-field">
-                        <select>
+                        <select class="form-select">
                         <option value="" disabled selected>Genero</option>
                         </select>
                     </div>
                     <div class="input-field">
-                        <select>
+                        <select class="form-select">
                         <option value="" disabled selected>Plataforma</option>
                         </select>
                     </div>
                     <div class="input-field">
-                        <select>
+                        <select class="form-select">
                         <option value="" disabled selected>Publicador</option>
                         </select>
                     </div>
@@ -129,4 +129,5 @@
 </div>
 
 <script src="js/user.js"></script>
+<script src="js/select.js"></script>
 <script src="js/main.js"></script>
