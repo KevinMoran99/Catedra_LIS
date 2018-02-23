@@ -34,7 +34,10 @@
             <ul>
                 <li>*Cualquier cosa que no tenga kevin</li>
             </ul>
+            <h5>Fecha lanzamiento 03/03/2017</h5>
         </div>
+        
+        
     </div>
 
     <div class="col s12 m6 l4">
@@ -46,7 +49,7 @@
             <i class="medium material-icons rate-star tooltipped" id="muy-bueno" data-tooltip="Muy bueno" data-position="bottom" data-delay="50">star</i>
             <i class="medium material-icons rate-star tooltipped" id="excelente" data-tooltip="Excelente" data-position="bottom" data-delay="50">star</i>
         </div>
-        <a class="col s12 center">Ver todos los rating</a>
+        <a class="col s12 center" onclick="attach('rating');">Ver todos los rating</a>
         <div class="row">
             <button class="btn col s12 white black-text">$0.00</button>
             <button class="btn col s12 blue">Al carrito</button>

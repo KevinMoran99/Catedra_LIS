@@ -1,10 +1,11 @@
-$(document).ready( function () {
+$(document).ready(function() {
     $('.dropdown-trigger').dropdown({
         hover: true
     });
     $('.sidenav').sidenav();
     $('.modal').modal();
-    $('select').select();
+    var elem = document.querySelector('select');
+    var instance = M.FormSelect.init(elem);
     $('.button-collapse').sidenav();
     $('#menu-user').hide();
     attach("main");
@@ -15,7 +16,7 @@ $(document).ready( function () {
 });*/
 
 //Cambia el color del item seleccionado del sidenav
-$(".menu-item").click(function (event) {
+$(".menu-item").click(function(event) {
     $(".menu-item").removeClass("selected-item");
     $(".menu-item").find("li").removeClass("selected-item");
 
@@ -23,7 +24,7 @@ $(".menu-item").click(function (event) {
 
     //Si se hace click sobre un li que redirige a games, debe color solamente el li padre
     if (triggerer.parents("li").hasClass("menu-trigger")) {
-        if(triggerer.parents("li").hasClass("item-game")) {
+        if (triggerer.parents("li").hasClass("item-game")) {
             $("#menu-games").addClass("selected-item");
         }
     }
@@ -34,35 +35,35 @@ $(".menu-item").click(function (event) {
 });
 
 //Código de login provisional
-$('form').submit( function (e) {
+$('form').submit(function(e) {
     e.preventDefault();
     //Reemplazamos link de Iniciar Sesion por el de Cuenta 
     $('#menu-login').toggle();
     $('#menu-user').toggle();
 });
 
-$('.logout').click( function () {
+$('.logout').click(function() {
     location.reload();
 });
 
 
 //Al dar aceptar en el modal de términos y condiciones
-$('#termsAgree').click( function () {
-    $('#signUpTerms').attr('checked', 'checked'); 
+$('#termsAgree').click(function() {
+    $('#signUpTerms').attr('checked', 'checked');
 });
 
-function attach(id){
-    $( "#container" ).empty();
-    
+function attach(id) {
+    $("#container").empty();
+
     $.ajax({
         method: "POST",
         url: "backend/AjaxControl.php",
-        data: "control="+id,
+        data: "control=" + id,
         success: function(html) {
-           $("#container").append(html);
-           startCarousel();
-           //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
+            $("#container").append(html);
+            startCarousel();
+            //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
-     });
-    
+    });
+
 }

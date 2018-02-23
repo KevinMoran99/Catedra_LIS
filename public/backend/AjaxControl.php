@@ -20,5 +20,8 @@
         case "cart":
             include("../views/cart.php");
         break;
+        case "rating":
+            include("../views/rating.php");
+        break;
     }
 ?>
