@@ -26,5 +26,11 @@
         case "user":
             include("../views/user.php");
         break;
+        case "spec":
+            include("../views/spec.php");
+        break;
+        case "typeSpec":
+            include("../views/typeSpec.php");
+        break;
     }
 ?>
