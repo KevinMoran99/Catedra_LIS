@@ -1,6 +1,6 @@
 <?php
     $control =$_POST['control'];
-
+    /*enviando la vista dependiendo de la ruta solicitada*/
     switch ($control){
         case "main":
           include("../views/main.php");

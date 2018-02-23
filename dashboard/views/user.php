@@ -1,3 +1,4 @@
+<!--vista de usuarios-->
 <div class="wrapper">
     <div class="row search-box">
         <!--Añadir filtro para usuario-->
@@ -11,7 +12,7 @@
             </div>
         </div>
     </div>
-
+    <!--visualizar datos-->
     <div id="tabla-datos">
         <div class="row">
             <div class="divtab col s12 m10 offset-m1  black-text">
@@ -77,8 +78,7 @@
     </div>
 
     <div class="fixed-action-btn horizontal click-to-toggle">
-        <a href="#nuevoUsuario" class="btn-floating btn-large light-blue darken-2 waves-effect waves-light modal-trigger" data-position="left"
-            data-delay="50" data-tooltip="Agregar usuario">
+        <a href="#nuevoUsuario" class="btn-floating btn-large light-blue darken-2 waves-effect waves-light modal-trigger" data-position="left" data-delay="50" data-tooltip="Agregar usuario">
             <i class="material-icons">person_add</i>
         </a>
     </div>
@@ -95,7 +95,7 @@
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmregUser">
-                <div class="input-field">
+                    <div class="input-field">
                         <input id="registerMail" type="text" required>
                         <label for="registerMail">Correo electronico</label>
                     </div>
@@ -112,26 +112,26 @@
                         <label for="registerPassRepeat">Repetir contraseña</label>
                     </div>
                     <div class="row">
-                    <h6 class="center">Seleccione el estado del usuario:</h6>
-                    <div class="input-field col s6 push-s1">
-                        <div class="col s12 m6 push-m5">
-                        <p>
-                            <label>
+                        <h6 class="center">Seleccione el estado del usuario:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
                                 <input name="state" type="radio" checked />
                                 <span>Activo</span>
                             </label>
-                        </p>
-                        </div>
-                        <div class="col s12 m6 push-m4">
-                        <p>
-                            <label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
                                 <input name="state" type="radio" checked />
                                 <span>Inactivo</span>
                             </label>
-                        </p>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
@@ -142,6 +142,4 @@
     </div>
 </div>
 
-    <script src="js/user.js"></script>
-
-        
+<script src="js/user.js"></script>

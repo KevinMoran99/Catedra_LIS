@@ -1,4 +1,7 @@
 <script src="js/select.js"></script>
+<!--vista principal-->
+
+<!--navbar-->
 <div class="navbar-fixed">
     <nav>
         <h5 id="nav-title">Todos los juegos:</h5>
@@ -37,6 +40,7 @@
     </div>
 </div>
 
+<!--modal agregar nuevo juego-->
 <div id="nuevoJuego" class="modal">
     <div class="modal-content">
         <div class="modal-header row blue white-text">
@@ -96,24 +100,24 @@
                     <div class="row">
                         <h6 class="center">Seleccione el estado del juego:</h6>
                         <div class="input-field col s6 push-s1">
-                        <div class="col s12 m6 push-m5">
-                        <p>
-                            <label>
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
                                 <input name="state" type="radio" checked />
                                 <span>Activo</span>
                             </label>
-                        </p>
-                        </div>
-                        <div class="col s12 m6 push-m4">
-                        <p>
-                            <label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
                                 <input name="state" type="radio" checked />
                                 <span>Inactivo</span>
                             </label>
-                        </p>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>

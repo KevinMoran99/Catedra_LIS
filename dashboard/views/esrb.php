@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-
+    <!--tabla de visualizacion de datos-->
     <div id="tabla-datos">
         <div class="row">
             <div class="divtab col s12 m10 offset-m1  black-text">
@@ -73,8 +73,7 @@
     </div>
 
     <div class="fixed-action-btn horizontal click-to-toggle">
-        <a href="#nuevaClasificacion" class="btn-floating btn-large light-blue darken-2 waves-effect waves-light modal-trigger" data-position="left"
-            data-delay="50">
+        <a href="#nuevaClasificacion" class="btn-floating btn-large light-blue darken-2 waves-effect waves-light modal-trigger" data-position="left" data-delay="50">
             <i class="material-icons">add</i>
         </a>
     </div>
@@ -95,28 +94,28 @@
                         <input id="registerUser" type="text" required>
                         <label for="registerUser">Nombre de clasificacion</label>
                     </div>
-                    
+
                     <div class="row">
-                    <h6 class="center">Seleccione el estado del clasificacion:</h6>
-                    <div class="input-field col s6 push-s1">
-                        <div class="col s12 m6 push-m5">
-                        <p>
-                            <label>
+                        <h6 class="center">Seleccione el estado del clasificacion:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
                                 <input name="state" type="radio" checked />
                                 <span>Activo</span>
                             </label>
-                        </p>
-                        </div>
-                        <div class="col s12 m6 push-m4">
-                        <p>
-                            <label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
                                 <input name="state" type="radio" checked />
                                 <span>Inactivo</span>
                             </label>
-                        </p>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
@@ -127,7 +126,4 @@
     </div>
 </div>
 
-    <script src="js/user.js"></script>
-
-        
-        
+<script src="js/user.js"></script>

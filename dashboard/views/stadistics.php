@@ -1,4 +1,4 @@
-
+<!--vista de estadisticas-->
 <div class="wrapper">
     <h4>Estadísticas</h4>
     <!--Gráficas de demostración-->

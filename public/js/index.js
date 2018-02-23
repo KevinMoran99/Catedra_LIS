@@ -16,7 +16,7 @@ $(document).ready(function() {
 });*/
 
 //Cambia el color del item seleccionado del sidenav
-$(".menu-item").click(function (event) {
+$(".menu-item").click(function(event) {
 
     var triggerer = $(event.target)
     var parent = triggerer.parents("li");
@@ -25,7 +25,7 @@ $(".menu-item").click(function (event) {
 
     //Si se hace click sobre un li que redirige a games, debe color solamente el li padre
     if (parent.hasClass("menu-trigger")) {
-        if(parent.hasClass("item-game")) {
+        if (parent.hasClass("item-game")) {
             $(".menu-item").removeClass("selected-item");
             $(".menu-item").find("li").removeClass("selected-item");
             $("#menu-games").addClass("selected-item");
@@ -42,44 +42,34 @@ $(".menu-item").click(function (event) {
     if (parent.is("#menu-support")) {
         title.html("Soporte Técnico");
         filter.hide();
-    }
-    else if (parent.is("#menu-about")) {
+    } else if (parent.is("#menu-about")) {
         title.html("Quiénes somos");
         filter.hide();
-    }
-    else if (parent.is("#menu-cart")) {
+    } else if (parent.is("#menu-cart")) {
         title.html("Carrito de compras");
         filter.hide();
-    }
-    else if (parent.is("#game-all")) {
+    } else if (parent.is("#game-all")) {
         title.html("Todos los juegos:");
         filter.show();
-    }
-    else if (parent.is("#game-offer")) {
+    } else if (parent.is("#game-offer")) {
         title.html("Ofertas:");
         filter.show();
-    }
-    else if (parent.is("#game-platform")) {
+    } else if (parent.is("#game-platform")) {
         title.html("Buscar por plataforma:");
         filter.show();
-    }
-    else if (parent.is("#game-publisher")) {
+    } else if (parent.is("#game-publisher")) {
         title.html("Buscar por publicador:");
         filter.show();
-    }
-    else if (parent.is("#game-genre")) {
+    } else if (parent.is("#game-genre")) {
         title.html("Buscar por género:");
         filter.show();
-    }
-    else if (parent.is("#game-rating")) {
+    } else if (parent.is("#game-rating")) {
         title.html("Buscar por ratings:");
         filter.show();
-    }
-    else if (parent.is("#game-esrb")) {
+    } else if (parent.is("#game-esrb")) {
         title.html("Buscar por clasificación:");
         filter.show();
-    }
-    else if (parent.is("#game-date")) {
+    } else if (parent.is("#game-date")) {
         title.html("Buscar por fecha de lanzamiento:");
         filter.show();
     }
@@ -112,6 +102,9 @@ function attach(id) {
         data: "control=" + id,
         success: function(html) {
             $("#container").append(html);
+            if (id == "main") {
+                startCarousel();
+            }
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
     });

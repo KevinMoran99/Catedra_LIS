@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Listado de juegos</title>
-
+        <!--estilos necesarios-->
         <?php include 'templates/styles.html';?>
     </head>
     <body>
@@ -15,5 +15,6 @@
         
         
     </body>
+    <!--script necesarios-->
     <?php include 'templates/scripts.html';?>
 </html>
