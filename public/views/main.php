@@ -37,4 +37,4 @@
     </form>
 </div>
 <?php include '../views/games.php';?>
-<script src="js/mains.js"></script>
+<script src="js/main.js"></script>
