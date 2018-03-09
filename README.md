@@ -19,3 +19,29 @@ Tanto en el sitio público como en el privado, hay una carpeta llamada templates
 Estos tres archivos deberan ser referenciados en todas las vistas por medio de \<?php include 'ruta del archivo';?>
 
 Además, existen los archivos css/index.css y js/index.js, en los cuales deberán ser incluidos respectivamente todos los estilos y scripts que serán comunes para todas las páginas, como la inicialización de componentes de materialize. (Estos archivos ya van incluidos en las templates).
+
+
+##Querys
+
+La clase conexion se ubica bajo app/models/Connection.class.php
+Los metodos que contienen son:
+* select({query},{parametros de query})
+* selectOne({query},{parametros de query})
+* insertOrUpdate({query},{parametros})
+
+Las query deben adimitir parametros, por ejemplo
+
+"SELECT * FROM users WHERE id=?"
+
+Y los parametros deben ser enviados en un array
+$params = array($id)
+
+##Classpaths
+Ahora las cosas funcionan bajo namespaces de Composer para poder acceder a las clases
+de una manera mas limpia y bonita, dichos namespace estan dentro del archivo Composer.JSON
+al agregar una nueva ruta debera correrse el comando 
+>composer dump-autoload
+
+Eso recreara los namespace y los pondra disponibles para su uso, ademas en toda clase debe hacerse
+referencia a el autoload.php (ver modelo de accion)
+
