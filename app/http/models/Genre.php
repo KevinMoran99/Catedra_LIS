@@ -83,13 +83,24 @@ class Genre implements Interfaces\ModelInterface
     public function getAll(){
         $query ="SELECT * FROM genres";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $genre = new Action();
+            $genre->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $genre);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM genres WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $genre = Model\Connection::selectOne($query,$params);
+        $this->setId($genre['id']);
+        $this->setName($genre['name']);
+        $this->setState($genre['state']);
     }
 
     public function insert(){

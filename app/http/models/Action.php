@@ -83,13 +83,24 @@ class Action implements Interfaces\ModelInterface
     public function getAll(){
         $query ="SELECT * FROM actions";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $action = new Action();
+            $action->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $action);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM actions WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $action = Model\Connection::selectOne($query,$params);
+        $this->setId($action['id']);
+        $this->setName($action['name']);
+        $this->setState($action['state']);
     }
 
     public function insert(){
@@ -109,7 +120,15 @@ class Action implements Interfaces\ModelInterface
                  "SELECT * FROM actions WHERE name LIKE @param " .
                  "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
         $params = array($param);
-        return Model\Connection::select($query, $params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $action = new Action();
+            $action->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $action);
+        }
+        return $result;
     }
 
 }
