@@ -15,7 +15,8 @@
     {
       "Http\\Models\\" : "app/http/models",
       "Http\\Models\\Interfaces\\" : "app/http/models/interfaces",
-      "Http\\Controllers\\" : "app/http/controllers"
+      "Http\\Controllers\\" : "app/http/controllers",
+      "Http\\Helpers\\" : "app/http/helpers"
     }
   }
 }
