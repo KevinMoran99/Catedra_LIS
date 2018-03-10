@@ -6,8 +6,8 @@
  * Time: 10:46 PM
  */
 
-namespace Http\Models\interfaces;
-require ("../../../vendor/autoload.php");
+namespace Http\Models\Interfaces;
+require ("../../../../vendor/autoload.php");
 
 interface ModelInterface
 {
