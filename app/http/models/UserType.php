@@ -91,7 +91,10 @@ class UserType implements Interfaces\ModelInterface
     public function getById() {
         $query ="SELECT * FROM user_types WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $userType = Model\Connection::selectOne($query,$params);
+        $this->setId($userType['id']);
+        $this->setName($userType['name']);
+        $this->setState($userType['state']);
     }
 
     public function insert(){

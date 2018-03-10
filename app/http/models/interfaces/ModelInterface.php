@@ -7,7 +7,6 @@
  */
 
 namespace Http\Models\Interfaces;
-require ("../../../../vendor/autoload.php");
 
 interface ModelInterface
 {

@@ -142,13 +142,29 @@ class User implements Interfaces\ModelInterface
         $params = array(null);
         return Model\Connection::select($query,$params);
     }
-
+    /*
+     * User constructor.
+     * @param $id
+     * @param $alias
+     * @param $email
+     * @param $pass
+     * @param $userType
+     * @param $state
+     */
     public function getById()
     {
         $query ="SELECT * FROM users WHERE id = ?";
         $params = array($this->getId());
         $user = Model\Connection::selectOne($query,$params);
-        return $user;
+        $this->setId($user['id']);
+        $this->setAlias($user['alias']);
+        $this->setEmail($user['email']);
+        $this->setPass($user['pass']);
+            $parent = new UserType();
+            $parent->setId($user['user_type_id']);
+            $parent->getById();
+        $this->setUserType($parent);
+        $this->setState($user['state']);
     }
 
     public function insert()
