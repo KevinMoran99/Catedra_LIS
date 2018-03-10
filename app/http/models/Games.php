@@ -9,8 +9,9 @@
 namespace Http\Models;
 require ("../../../vendor/autoload.php");
 use Http\Models as Model;
+use Http\Models\Interfaces as Interfaces;
 
-class Games implements Model\interfaces\ModelInterface
+class Games implements Interfaces\ModelInterface
 {
     private $id;
     private $name;

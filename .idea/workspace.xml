@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41e10026-0857-48eb-bc5f-59647601e5e0" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/Catedra_LIS.iml" afterPath="$PROJECT_DIR$/.idea/Catedra_LIS.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/http/models/interfaces/ModelInterface.php" afterPath="$PROJECT_DIR$/app/http/models/interfaces/ModelInterface.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Action.php" afterPath="$PROJECT_DIR$/app/http/models/Action.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Esrb.php" afterPath="$PROJECT_DIR$/app/http/models/Esrb.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Faqs.php" afterPath="$PROJECT_DIR$/app/http/models/Faqs.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Games.php" afterPath="$PROJECT_DIR$/app/http/models/Games.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Genre.php" afterPath="$PROJECT_DIR$/app/http/models/Genre.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Picture.php" afterPath="$PROJECT_DIR$/app/http/models/Picture.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Platform.php" afterPath="$PROJECT_DIR$/app/http/models/Platform.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Publisher.php" afterPath="$PROJECT_DIR$/app/http/models/Publisher.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/Specs.php" afterPath="$PROJECT_DIR$/app/http/models/Specs.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/StorePages.php" afterPath="$PROJECT_DIR$/app/http/models/StorePages.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/TypeSpec.php" afterPath="$PROJECT_DIR$/app/http/models/TypeSpec.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/User.php" afterPath="$PROJECT_DIR$/app/http/models/User.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/models/UserType.php" afterPath="$PROJECT_DIR$/app/http/models/UserType.php" />
       <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,16 +68,16 @@
       <file leaf-file-name="Action.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/http/models/Action.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+            <state relative-caret-position="85">
+              <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="11" selection-end-column="41" />
               <folding>
-                <marker date="1520659953624" expanded="true" signature="1299:1320" ph="SELECT * FRO... actions" />
-                <marker date="1520659953624" expanded="true" signature="1467:1501" ph="SELECT * FRO... actions" />
-                <marker date="1520659953624" expanded="true" signature="1659:1703" ph="INSERT INTO actions... " />
-                <marker date="1520659953624" expanded="true" signature="1885:1929" ph="UPDATE actions... " />
-                <marker date="1520659953624" expanded="true" signature="2134:2159" ph="SET @param =... " />
-                <marker date="1520659953624" expanded="true" signature="2188:2232" ph="SELECT * FRO... actions" />
-                <marker date="1520659953624" expanded="true" signature="2188:2344" ph="SELECT * FRO... actions" />
+                <marker date="1520701899231" expanded="true" signature="1335:1356" ph="SELECT * FRO... actions" />
+                <marker date="1520701899231" expanded="true" signature="1503:1537" ph="SELECT * FRO... actions" />
+                <marker date="1520701899231" expanded="true" signature="1695:1739" ph="INSERT INTO actions... " />
+                <marker date="1520701899231" expanded="true" signature="1921:1965" ph="UPDATE actions... " />
+                <marker date="1520701899231" expanded="true" signature="2170:2195" ph="SET @param =... " />
+                <marker date="1520701899231" expanded="true" signature="2224:2268" ph="SELECT * FRO... actions" />
+                <marker date="1520701899231" expanded="true" signature="2224:2380" ph="SELECT * FRO... actions" />
               </folding>
             </state>
           </provider>
@@ -115,21 +119,21 @@
         <option value="$PROJECT_DIR$/app/dashboard/backend/AjaxControl.php" />
         <option value="$PROJECT_DIR$/app/dashboard/views/esrb.php" />
         <option value="$PROJECT_DIR$/app/http/models/interfaces/model.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Action.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Esrb.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Genre.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Platform.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Publisher.php" />
-        <option value="$PROJECT_DIR$/app/http/models/TypeSpec.php" />
-        <option value="$PROJECT_DIR$/app/http/models/UserType.php" />
-        <option value="$PROJECT_DIR$/app/http/models/User.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Specs.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Games.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Picture.php" />
-        <option value="$PROJECT_DIR$/app/http/models/StorePages.php" />
-        <option value="$PROJECT_DIR$/app/http/models/Faqs.php" />
         <option value="$PROJECT_DIR$/app/http/models/interfaces/ModelInterface.php" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/http/models/Action.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Esrb.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Faqs.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Games.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Genre.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Picture.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Platform.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Publisher.php" />
+        <option value="$PROJECT_DIR$/app/http/models/Specs.php" />
+        <option value="$PROJECT_DIR$/app/http/models/StorePages.php" />
+        <option value="$PROJECT_DIR$/app/http/models/TypeSpec.php" />
+        <option value="$PROJECT_DIR$/app/http/models/User.php" />
+        <option value="$PROJECT_DIR$/app/http/models/UserType.php" />
       </list>
     </option>
   </component>
@@ -142,7 +146,11 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="29" />
     <option name="width" value="1366" />
@@ -277,7 +285,7 @@
       <workItem from="1520610557112" duration="167000" />
       <workItem from="1520611285567" duration="16758000" />
       <workItem from="1520648957235" duration="12295000" />
-      <workItem from="1520701016084" duration="524000" />
+      <workItem from="1520701016084" duration="1079000" />
     </task>
     <task id="LOCAL-00001" summary="Conexion a base de datos, reformato de carpetas, namespaces&#10;&#10;-Leer README.md">
       <created>1520632513021</created>
@@ -290,7 +298,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29744000" />
+    <option name="totallyTimeSpent" value="30299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -429,6 +437,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -436,6 +445,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -484,130 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Esrb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="106" column="50" lean-forward="false" selection-start-line="106" selection-start-column="50" selection-end-line="106" selection-end-column="50" />
-          <folding>
-            <marker date="1520659953734" expanded="true" signature="1295:1314" ph="SELECT * FRO... esrbs" />
-            <marker date="1520659953734" expanded="true" signature="1461:1493" ph="SELECT * FRO... esrbs" />
-            <marker date="1520659953734" expanded="true" signature="1651:1693" ph="INSERT INTO esrbs... " />
-            <marker date="1520659953734" expanded="true" signature="1875:1917" ph="UPDATE esrbs... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Genre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="107" column="57" lean-forward="false" selection-start-line="107" selection-start-column="57" selection-end-line="107" selection-end-column="57" />
-          <folding>
-            <marker date="1520659953385" expanded="true" signature="1296:1316" ph="SELECT * FRO... genres" />
-            <marker date="1520659953385" expanded="true" signature="1463:1496" ph="SELECT * FRO... genres" />
-            <marker date="1520659953385" expanded="true" signature="1654:1697" ph="INSERT INTO genres... " />
-            <marker date="1520659953385" expanded="true" signature="1879:1922" ph="UPDATE genres... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Platform.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="107" column="56" lean-forward="false" selection-start-line="107" selection-start-column="56" selection-end-line="107" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Publisher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="107" column="61" lean-forward="false" selection-start-line="107" selection-start-column="61" selection-end-line="107" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/TypeSpec.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="107" column="61" lean-forward="false" selection-start-line="107" selection-start-column="61" selection-end-line="107" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/UserType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="109" column="61" lean-forward="false" selection-start-line="109" selection-start-column="61" selection-end-line="109" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Audit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Specs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="133" column="1" lean-forward="true" selection-start-line="133" selection-start-column="1" selection-end-line="133" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Picture.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="122" column="21" lean-forward="false" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/StorePages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="164" column="43" lean-forward="false" selection-start-line="164" selection-start-column="43" selection-end-line="164" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Faqs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="150" column="5" lean-forward="true" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
-          <folding>
-            <marker date="1520662448616" expanded="true" signature="2030:2048" ph="SELECT * FRO... faqs" />
-            <marker date="1520662448616" expanded="true" signature="2195:2226" ph="SELECT * FRO... faqs" />
-            <marker date="1520662448616" expanded="true" signature="2384:2456" ph="INSERT INTO faqs... " />
-            <marker date="1520662448616" expanded="true" signature="2685:2757" ph="UPDATE faqs... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Games.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="224" column="8" lean-forward="true" selection-start-line="224" selection-start-column="8" selection-end-line="224" selection-end-column="43" />
-          <folding>
-            <marker date="1520661558332" expanded="true" signature="3301:3320" ph="SELECT * FRO... games" />
-            <marker date="1520661558332" expanded="true" signature="3471:3503" ph="SELECT * FRO... games" />
-            <marker date="1520661558332" expanded="true" signature="3666:3787" ph="INSERT INTO games... " />
-            <marker date="1520661558332" expanded="true" signature="4094:4208" ph="UPDATE users... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="137" column="4" lean-forward="false" selection-start-line="137" selection-start-column="4" selection-end-line="173" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Connection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -624,18 +510,197 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Audit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Esrb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+          <folding>
+            <element signature="e#155#180#0#PHP" expanded="true" />
+            <marker date="1520701974031" expanded="true" signature="1331:1350" ph="SELECT * FRO... esrbs" />
+            <marker date="1520701974031" expanded="true" signature="1497:1529" ph="SELECT * FRO... esrbs" />
+            <marker date="1520701974031" expanded="true" signature="1687:1729" ph="INSERT INTO esrbs... " />
+            <marker date="1520701974031" expanded="true" signature="1911:1953" ph="UPDATE esrbs... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Faqs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <marker date="1520702104840" expanded="true" signature="2066:2084" ph="SELECT * FRO... faqs" />
+            <marker date="1520702104840" expanded="true" signature="2231:2262" ph="SELECT * FRO... faqs" />
+            <marker date="1520702104840" expanded="true" signature="2420:2492" ph="INSERT INTO faqs... " />
+            <marker date="1520702104840" expanded="true" signature="2721:2793" ph="UPDATE faqs... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Games.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding>
+            <element signature="e#155#180#0#PHP" expanded="true" />
+            <marker date="1520702105777" expanded="true" signature="3337:3356" ph="SELECT * FRO... games" />
+            <marker date="1520702105777" expanded="true" signature="3507:3539" ph="SELECT * FRO... games" />
+            <marker date="1520702105777" expanded="true" signature="3702:3823" ph="INSERT INTO games... " />
+            <marker date="1520702105777" expanded="true" signature="4130:4244" ph="UPDATE users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Genre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#155#180#0#PHP" expanded="true" />
+            <marker date="1520702105424" expanded="true" signature="1332:1352" ph="SELECT * FRO... genres" />
+            <marker date="1520702105424" expanded="true" signature="1499:1532" ph="SELECT * FRO... genres" />
+            <marker date="1520702105424" expanded="true" signature="1690:1733" ph="INSERT INTO genres... " />
+            <marker date="1520702105424" expanded="true" signature="1915:1958" ph="UPDATE genres... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Picture.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#156#181#0#PHP" expanded="true" />
+            <marker date="1520702105056" expanded="true" signature="1817:1852" ph="SELECT * FRO... pictures" />
+            <marker date="1520702105056" expanded="true" signature="2010:2079" ph="INSERT INTO pictures... " />
+            <marker date="1520702105056" expanded="true" signature="2290:2359" ph="UPDATE pictures... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Platform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <marker date="1520702105593" expanded="true" signature="1239:1262" ph="SELECT * FRO... platforms" />
+            <marker date="1520702105593" expanded="true" signature="1393:1407" ph="SELECT * FRO... implements" />
+            <marker date="1520702105593" expanded="true" signature="1393:1429" ph="SELECT * FRO... actions" />
+            <marker date="1520702105593" expanded="true" signature="1571:1617" ph="INSERT INTO platforms... " />
+            <marker date="1520702105593" expanded="true" signature="1783:1829" ph="UPDATE platforms... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Publisher.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <marker date="1520702105539" expanded="true" signature="1336:1360" ph="SELECT * FRO... publishers" />
+            <marker date="1520702105539" expanded="true" signature="1507:1544" ph="SELECT * FRO... publishers" />
+            <marker date="1520702105539" expanded="true" signature="1702:1749" ph="INSERT INTO publishers... " />
+            <marker date="1520702105539" expanded="true" signature="1931:1978" ph="UPDATE publishers... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/Specs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+          <folding>
+            <element signature="e#155#180#0#PHP" expanded="true" />
+            <marker date="1520702105355" expanded="true" signature="1682:1701" ph="SELECT * FRO... specs" />
+            <marker date="1520702105355" expanded="true" signature="1848:1880" ph="SELECT * FRO... specs" />
+            <marker date="1520702105355" expanded="true" signature="2038:2095" ph="INSERT INTO specs... " />
+            <marker date="1520702105355" expanded="true" signature="2298:2355" ph="UPDATE specs... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/StorePages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <marker date="1520702105477" expanded="true" signature="2392:2417" ph="SELECT * FRO... store_pages" />
+            <marker date="1520702105477" expanded="true" signature="2564:2602" ph="SELECT * FRO... store_pages" />
+            <marker date="1520702105477" expanded="true" signature="2760:2847" ph="INSERT INTO store_pages... " />
+            <marker date="1520702105477" expanded="true" signature="3094:3181" ph="UPDATE store_pages... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/TypeSpec.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding>
+            <element signature="e#155#180#0#PHP" expanded="true" />
+            <marker date="1520702105155" expanded="true" signature="1335:1359" ph="SELECT * FRO... type_specs" />
+            <marker date="1520702105155" expanded="true" signature="1506:1543" ph="SELECT * FRO... type_specs" />
+            <marker date="1520702105155" expanded="true" signature="1701:1748" ph="INSERT INTO type_specs... " />
+            <marker date="1520702105155" expanded="true" signature="1930:1977" ph="UPDATE type_specs... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#155#180#0#PHP" expanded="true" />
+            <marker date="1520702104978" expanded="true" signature="2286:2305" ph="SELECT * FRO... users" />
+            <marker date="1520702104978" expanded="true" signature="2456:2488" ph="SELECT * FRO... users" />
+            <marker date="1520702104978" expanded="true" signature="2651:2728" ph="INSERT INTO users... " />
+            <marker date="1520702104978" expanded="true" signature="2972:3045" ph="UPDATE users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/models/UserType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <marker date="1520702105677" expanded="true" signature="1337:1361" ph="SELECT * FRO... user_types" />
+            <marker date="1520702105677" expanded="true" signature="1508:1545" ph="SELECT * FRO... user_types" />
+            <marker date="1520702105677" expanded="true" signature="1703:1750" ph="INSERT INTO user_types... " />
+            <marker date="1520702105677" expanded="true" signature="1932:1979" ph="UPDATE user_types... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/http/models/Action.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        <state relative-caret-position="85">
+          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="11" selection-end-column="41" />
           <folding>
-            <marker date="1520659953624" expanded="true" signature="1299:1320" ph="SELECT * FRO... actions" />
-            <marker date="1520659953624" expanded="true" signature="1467:1501" ph="SELECT * FRO... actions" />
-            <marker date="1520659953624" expanded="true" signature="1659:1703" ph="INSERT INTO actions... " />
-            <marker date="1520659953624" expanded="true" signature="1885:1929" ph="UPDATE actions... " />
-            <marker date="1520659953624" expanded="true" signature="2134:2159" ph="SET @param =... " />
-            <marker date="1520659953624" expanded="true" signature="2188:2232" ph="SELECT * FRO... actions" />
-            <marker date="1520659953624" expanded="true" signature="2188:2344" ph="SELECT * FRO... actions" />
+            <marker date="1520701899231" expanded="true" signature="1335:1356" ph="SELECT * FRO... actions" />
+            <marker date="1520701899231" expanded="true" signature="1503:1537" ph="SELECT * FRO... actions" />
+            <marker date="1520701899231" expanded="true" signature="1695:1739" ph="INSERT INTO actions... " />
+            <marker date="1520701899231" expanded="true" signature="1921:1965" ph="UPDATE actions... " />
+            <marker date="1520701899231" expanded="true" signature="2170:2195" ph="SET @param =... " />
+            <marker date="1520701899231" expanded="true" signature="2224:2268" ph="SELECT * FRO... actions" />
+            <marker date="1520701899231" expanded="true" signature="2224:2380" ph="SELECT * FRO... actions" />
           </folding>
         </state>
       </provider>
