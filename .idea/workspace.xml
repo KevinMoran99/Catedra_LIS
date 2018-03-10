@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41e10026-0857-48eb-bc5f-59647601e5e0" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/http/helpers/Validator.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/http/helpers/Paginate.php" afterPath="$PROJECT_DIR$/app/http/helpers/Paginate.php" />
-      <change beforePath="$PROJECT_DIR$/app/http/models/Action.php" afterPath="$PROJECT_DIR$/app/http/models/Action.php" />
-      <change beforePath="$PROJECT_DIR$/app/http/models/Connection.php" afterPath="$PROJECT_DIR$/app/http/models/Connection.php" />
-      <change beforePath="$PROJECT_DIR$/app/http/models/interfaces/ModelInterface.php" afterPath="$PROJECT_DIR$/app/http/models/interfaces/ModelInterface.php" />
-      <change beforePath="$PROJECT_DIR$/app/public/backend/AjaxControl.php" afterPath="$PROJECT_DIR$/app/public/backend/AjaxControl.php" />
-      <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,7 +29,52 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="esrb.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/dashboard/views/esrb.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="824">
+              <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="genre.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/dashboard/views/genre.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="30" column="52" lean-forward="false" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Validator.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/http/helpers/Validator.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1564">
+              <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+              <folding>
+                <element signature="e#6#87#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Paginate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/http/helpers/Paginate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="8" selection-end-column="23" />
+              <folding>
+                <element signature="e#6#87#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -89,6 +129,7 @@
         <option value="$PROJECT_DIR$/app/public/index.php" />
         <option value="$PROJECT_DIR$/app/public/backend/AjaxControl.php" />
         <option value="$PROJECT_DIR$/app/http/helpers/Paginate.php" />
+        <option value="$PROJECT_DIR$/app/http/helpers/Validator.php" />
       </list>
     </option>
   </component>
@@ -158,33 +199,6 @@
             <path>
               <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
               <item name="Catedra_LIS" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Catedra_LIS" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Catedra_LIS" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="backend" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Catedra_LIS" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Catedra_LIS" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
@@ -196,13 +210,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/coffeecode" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="SearchEverywhereHistoryKey" value="termi&#9;ACTION&#9;ActivateTerminalToolWindow&#10;term&#9;ACTION&#9;ActivateTerminalToolWindow&#10;datas&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/Catedra_LIS/.idea/dataSources.xml" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Catedra_LIS\app\http\helpers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/http" />
       <recent name="$PROJECT_DIR$/app/http/models" />
@@ -240,7 +257,7 @@
       <workItem from="1520648957235" duration="12295000" />
       <workItem from="1520701016084" duration="1079000" />
       <workItem from="1520708539627" duration="4109000" />
-      <workItem from="1520715779408" duration="4894000" />
+      <workItem from="1520715779408" duration="5862000" />
     </task>
     <task id="LOCAL-00001" summary="Conexion a base de datos, reformato de carpetas, namespaces&#10;&#10;-Leer README.md">
       <created>1520632513021</created>
@@ -249,16 +266,23 @@
       <option name="project" value="LOCAL" />
       <updated>1520632513022</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Agregada clase de paginacion">
+      <created>1520720715211</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1520720715211</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39302000" />
+    <option name="totallyTimeSpent" value="40270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24597365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24597365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -310,31 +334,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Conexion a base de datos, reformato de carpetas, namespaces&#10;&#10;-Leer README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Conexion a base de datos, reformato de carpetas, namespaces&#10;&#10;-Leer README.md" />
+    <MESSAGE value="Agregada clase de paginacion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregada clase de paginacion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/http/helpers/Paginate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/models/Genre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#155#180#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/public/backend/AjaxControl.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -356,8 +363,8 @@
         <state relative-caret-position="1292">
           <caret line="82" column="10" lean-forward="false" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
           <folding>
-            <element signature="e#6#86#0#PHP" expanded="true" />
-            <element signature="e#161#186#0#PHP" expanded="true" />
+            <element signature="e#6#86#0#PHP" expanded="false" />
+            <element signature="e#161#186#0#PHP" expanded="false" />
             <marker date="1520720451565" expanded="true" signature="1336:1357" ph="SELECT * FRO... actions" />
             <marker date="1520720451565" expanded="true" signature="1504:1538" ph="SELECT * FRO... actions" />
             <marker date="1520720451565" expanded="true" signature="1696:1740" ph="INSERT INTO actions... " />
@@ -371,8 +378,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#6#86#0#PHP" expanded="true" />
-            <element signature="e#161#186#0#PHP" expanded="true" />
+            <element signature="e#6#86#0#PHP" expanded="false" />
+            <element signature="e#161#186#0#PHP" expanded="false" />
             <marker date="1520720451565" expanded="true" signature="1336:1357" ph="SELECT * FRO... actions" />
             <marker date="1520720451565" expanded="true" signature="1504:1538" ph="SELECT * FRO... actions" />
             <marker date="1520720451565" expanded="true" signature="1696:1740" ph="INSERT INTO actions... " />
@@ -466,13 +473,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/dashboard/views/esrb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/http/models/Faqs.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -548,7 +548,7 @@
         <state relative-caret-position="102">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#155#180#0#PHP" expanded="true" />
+            <element signature="e#155#180#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -613,14 +613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/helpers/Paginate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -647,7 +639,7 @@
         <state relative-caret-position="-459">
           <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding>
-            <element signature="e#29#38#0#PHP" expanded="true" />
+            <element signature="e#29#38#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -657,8 +649,8 @@
         <state relative-caret-position="-510">
           <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
           <folding>
-            <element signature="e#6#86#0#PHP" expanded="true" />
-            <element signature="e#161#186#0#PHP" expanded="true" />
+            <element signature="e#6#86#0#PHP" expanded="false" />
+            <element signature="e#161#186#0#PHP" expanded="false" />
             <marker date="1520720451565" expanded="true" signature="1336:1357" ph="SELECT * FRO... actions" />
             <marker date="1520720451565" expanded="true" signature="1504:1538" ph="SELECT * FRO... actions" />
             <marker date="1520720451565" expanded="true" signature="1696:1740" ph="INSERT INTO actions... " />
@@ -672,7 +664,43 @@
         <state relative-caret-position="153">
           <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
           <folding>
-            <element signature="e#6#88#0#PHP" expanded="true" />
+            <element signature="e#6#88#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/dashboard/views/esrb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="824">
+          <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/dashboard/views/genre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="30" column="52" lean-forward="false" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/helpers/Paginate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/helpers/Validator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1564">
+          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="e#6#87#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
