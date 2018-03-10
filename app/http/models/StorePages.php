@@ -29,7 +29,7 @@ class StorePages implements Interfaces\ModelInterface
      * @param $price
      * @param $discount
      */
-    public function __construct($id, $game, $releaseDate, $visible, $price, $discount)
+    public function init($id, $game, $releaseDate, $visible, $price, $discount)
     {
         $this->id = $id;
         $this->game = $game;

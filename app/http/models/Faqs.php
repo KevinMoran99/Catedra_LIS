@@ -27,7 +27,7 @@ class Faqs implements Interfaces\ModelInterface
      * @param $storePage
      * @param $state
      */
-    public function __construct($id, $title, $description, $storePage, $state)
+    public function init($id, $title, $description, $storePage, $state)
     {
         $this->id = $id;
         $this->title = $title;

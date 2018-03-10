@@ -35,7 +35,7 @@ class Games implements Interfaces\ModelInterface
      * @param $platform
      * @param $state
      */
-    public function __construct($id, $name, $cover, $description, $esrb, $publisher, $genre, $platform, $state)
+    public function init($id, $name, $cover, $description, $esrb, $publisher, $genre, $platform, $state)
     {
         $this->id = $id;
         $this->name = $name;

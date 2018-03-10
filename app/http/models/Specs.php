@@ -25,7 +25,7 @@ class Specs implements Interfaces\ModelInterface
      * @param $typeSpec
      * @param int $state
      */
-    public function __construct($id, $name, $typeSpec, $state)
+    public function init($id, $name, $typeSpec, $state)
     {
         $this->id = $id;
         $this->name = $name;
