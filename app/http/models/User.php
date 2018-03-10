@@ -29,7 +29,7 @@ class User implements Interfaces\ModelInterface
      * @param $userType
      * @param $state
      */
-    public function __construct($id, $alias, $email, $pass, $userType, $state)
+    public function init($id, $alias, $email, $pass, $userType, $state)
     {
         $this->id = $id;
         $this->alias = $alias;
@@ -147,7 +147,8 @@ class User implements Interfaces\ModelInterface
     {
         $query ="SELECT * FROM users WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $user = Model\Connection::selectOne($query,$params);
+        return $user;
     }
 
     public function insert()

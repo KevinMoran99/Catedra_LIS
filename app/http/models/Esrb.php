@@ -23,7 +23,7 @@ class Esrb implements Interfaces\ModelInterface
      * @param $name
      * @param int $state
      */
-    public function __construct($id, $name, $state)
+    public function init($id, $name, $state)
     {
         $this->id = $id;
         $this->name = $name;

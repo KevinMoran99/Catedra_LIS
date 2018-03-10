@@ -25,7 +25,7 @@ class Picture implements Interfaces\ModelInterface
      * @param $pictureUrl
      * @param $pictureType
      */
-    public function __construct($id, $game, $pictureUrl, $pictureType)
+    public function init($id, $game, $pictureUrl, $pictureType)
     {
         $this->id = $id;
         $this->game = $game;
