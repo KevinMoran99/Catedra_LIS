@@ -1,4 +1,5 @@
 <?php
+
     $control =$_POST['control'];
     //retornamos la vista seleccionada 
     switch ($control){
@@ -24,4 +25,6 @@
             include("../views/rating.php");
         break;
     }
-?>
+
+    ?>
+

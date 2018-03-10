@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Http\Models;
 use \PDO;
 use \PDOException;
@@ -13,7 +13,7 @@ class Connection{
     private static function connect(){
         $server="localhost";
         $user = "root";
-        $pass="";
+        $pass="fedora98";
         $database="stoam";
         try{
             self::$connection = new PDO("mysql:host=$server; dbname=$database; charset=utf8",$user,$pass);

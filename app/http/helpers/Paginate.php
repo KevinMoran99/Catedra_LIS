@@ -28,16 +28,17 @@ class Paginate
     }
 
     public function linksNumber(){
-        return ceil($this->items/$this->items_per_page);
+        return ceil(sizeof($this->items)/$this->items_per_page);
     }
 
     public function getData(){
-        $min = ($this->current_page - 1)*10;
+        $min = ($this->current_page - 1)*$this->items_per_page;
         $data=array();
 
-        for($i=0;$i<10;$i++){
-            $min+=1;
+        for($i=0;$i<$this->items_per_page;$i++){
+
             array_push($data,$this->items[$min]);
+            $min+=1;
         }
         return $data;
     }
