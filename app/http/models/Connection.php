@@ -36,7 +36,7 @@ class Connection{
         return self::$statement->fetchAll();
     }
 
-    public static function selectOne($query,$values){
+    public static function selectOne($query, $values){
         self::connect();
         self::$statement = self::$connection->prepare($query);
         self::$statement->execute($values);

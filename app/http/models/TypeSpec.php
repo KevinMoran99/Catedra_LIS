@@ -1,16 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: ara
- * Date: 3/9/18
- * Time: 11:52 a.m.
+ * User: kevin
+ * Date: 9/3/2018
+ * Time: 10:33 PM
  */
 
 namespace Http\Models;
 require ("../../../vendor/autoload.php");
 use Http\Models as Model;
 
-class Action implements Model\interfaces\ModelInterface
+class TypeSpec implements Model\interfaces\ModelInterface
 {
     private $id;
     private $name;
@@ -76,39 +76,38 @@ class Action implements Model\interfaces\ModelInterface
     {
         $this->state = $state;
     }
-    
+
     //query methods
 
     public function getAll(){
-        $query ="SELECT * FROM actions";
+        $query ="SELECT * FROM type_specs";
         $params = array(null);
         return Model\Connection::select($query,$params);
     }
 
     public function getById() {
-        $query ="SELECT * FROM actions WHERE id = ?";
+        $query ="SELECT * FROM type_specs WHERE id = ?";
         $params = array($this->getId());
         return Model\Connection::selectOne($query,$params);
     }
 
     public function insert(){
-        $query ="INSERT INTO actions (name,state) VALUES(?,?)";
+        $query ="INSERT INTO type_specs (name,state) VALUES(?,?)";
         $params= array($this->getName(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update(){
-        $query ="UPDATE actions SET name=?,state=? WHERE id=?";
+        $query ="UPDATE type_specs SET name=?,state=? WHERE id=?";
         $params= array($this->getName(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function search($param) {
         $query = "SET @param = CONCAT('%',?,'%'); " .
-                 "SELECT * FROM actions WHERE name LIKE @param " .
-                 "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
+            "SELECT * FROM type_specs WHERE name LIKE @param " .
+            "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
         $params = array($param);
         return Model\Connection::select($query, $params);
     }
-
 }
