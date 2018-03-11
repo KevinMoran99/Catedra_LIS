@@ -17,6 +17,8 @@
 </div>
 
 <div class="wrapper">
+
+
     <div class="row">
         <?php
             $url = "attach('gameDetail');";

@@ -81,15 +81,26 @@ class Platform implements Interfaces\ModelInterface
     //query methods
 
     public function getAll(){
-    $query ="SELECT * FROM platforms";
-    $params = array(null);
-    return Model\Connection::select($query,$params);
+        $query ="SELECT * FROM platforms";
+        $params = array(null);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $platform = new Platform();
+            $platform->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $platform);
+        }
+        return $result;
 }
 
     public function getById() {
-    $query ="SELECT * FROM platforms WHERE id = ?";
-    $params = array($this->getId());
-    return Model\Connection::selectOne($query,$params);
+        $query ="SELECT * FROM platforms WHERE id = ?";
+        $params = array($this->getId());
+        $platform = Model\Connection::selectOne($query,$params);
+        $this->setId($platform['id']);
+        $this->setName($platform['name']);
+        $this->setState($platform['state']);
 }
 
     public function insert(){

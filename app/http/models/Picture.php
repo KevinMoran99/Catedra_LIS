@@ -100,12 +100,34 @@ class Picture implements Interfaces\ModelInterface
 
     public function getAll(){
         //Innecesario
+        return null;
     }
 
     public function getById() {
         $query ="SELECT * FROM pictures WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $picture = Model\Connection::selectOne($query,$params);
+        $this->setId($picture['id']);
+            $pGame = new Game();
+            $pGame->setId($picture['game_id']);
+            $pGame->getById();
+        $this->setGame($pGame);
+        $this->setPictureUrl($picture['picture_url']);
+        $this->setPictureType($picture['picture_type']);
+    }
+
+    public function getByGame($pGame) {
+        $query ="SELECT * FROM pictures WHERE game_id = ?";
+        $params = array($pGame->getId());
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $action = new Picture();
+            $action->init($line["id"], $pGame, $line["picture_url"], $line["picture_type"]);
+            array_push($result, $action);
+        }
+        return $result;
     }
 
     public function insert(){

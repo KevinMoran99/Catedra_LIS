@@ -11,7 +11,7 @@ require ("../../../vendor/autoload.php");
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class StorePages implements Interfaces\ModelInterface
+class StorePage implements Interfaces\ModelInterface
 {
     private $id;
     private $game;
@@ -21,7 +21,7 @@ class StorePages implements Interfaces\ModelInterface
     private $discount;
 
     /**
-     * StorePages constructor.
+     * StorePage constructor.
      * @param $id
      * @param $game
      * @param $releaseDate

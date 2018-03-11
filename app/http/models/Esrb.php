@@ -83,13 +83,24 @@ class Esrb implements Interfaces\ModelInterface
     public function getAll(){
         $query ="SELECT * FROM esrbs";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $esrb = new Esrb();
+            $esrb->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $esrb);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM esrbs WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $esrb = Model\Connection::selectOne($query,$params);
+        $this->setId($esrb['id']);
+        $this->setName($esrb['name']);
+        $this->setState($esrb['state']);
     }
 
     public function insert(){

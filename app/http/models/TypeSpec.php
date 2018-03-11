@@ -83,13 +83,24 @@ class TypeSpec implements Interfaces\ModelInterface
     public function getAll(){
         $query ="SELECT * FROM type_specs";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $typeSpec = new TypeSpec();
+            $typeSpec->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $typeSpec);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM type_specs WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $typeSpec = Model\Connection::selectOne($query,$params);
+        $this->setId($typeSpec['id']);
+        $this->setName($typeSpec['name']);
+        $this->setState($typeSpec['state']);
     }
 
     public function insert(){

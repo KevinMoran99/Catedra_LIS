@@ -140,17 +140,23 @@ class User implements Interfaces\ModelInterface
     {
         $query ="SELECT * FROM users";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pUserType = new UserType();
+            $pUserType->setId($line['user_type_id']);
+            $pUserType->getById();
+
+            //Registro
+            $user = new User();
+            $user->init($line["id"], $line["alias"], $line["email"], $line["pass"], $pUserType, $line["state"]);
+            array_push($result, $user);
+        }
+        return $result;
     }
-    /*
-     * User constructor.
-     * @param $id
-     * @param $alias
-     * @param $email
-     * @param $pass
-     * @param $userType
-     * @param $state
-     */
+
     public function getById()
     {
         $query ="SELECT * FROM users WHERE id = ?";
@@ -160,24 +166,24 @@ class User implements Interfaces\ModelInterface
         $this->setAlias($user['alias']);
         $this->setEmail($user['email']);
         $this->setPass($user['pass']);
-            $parent = new UserType();
-            $parent->setId($user['user_type_id']);
-            $parent->getById();
-        $this->setUserType($parent);
+            $pUserType = new UserType();
+            $pUserType->setId($user['user_type_id']);
+            $pUserType->getById();
+        $this->setUserType($pUserType);
         $this->setState($user['state']);
     }
 
     public function insert()
     {
         $query ="INSERT INTO users (alias, email, pass, user_type_id, state) VALUES(?,?,?,?,?)";
-        $params= array($this->getAlias(),$this->getEmail(),$this->getPass(),$this->getUserType(),$this->getState());
+        $params= array($this->getAlias(),$this->getEmail(),$this->getPass(),$this->getUserType()->getId(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update()
     {
         $query ="UPDATE users SET alias=?,email=?,pass=?,user_type_id=?,state=? WHERE id=?";
-        $params= array($this->getAlias(),$this->getEmail(),$this->getPass(),$this->getUserType(),$this->getState(),$this->getId());
+        $params= array($this->getAlias(),$this->getEmail(),$this->getPass(),$this->getUserType()->getId(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 

@@ -11,7 +11,7 @@ require ("../../../vendor/autoload.php");
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Games implements Interfaces\ModelInterface
+class Game implements Interfaces\ModelInterface
 {
     private $id;
     private $name;
@@ -23,8 +23,10 @@ class Games implements Interfaces\ModelInterface
     private $platform;
     private $state;
 
+    private $pictures;
+
     /**
-     * Games constructor.
+     * Game constructor.
      * @param $id
      * @param $name
      * @param $cover
@@ -192,31 +194,103 @@ class Games implements Interfaces\ModelInterface
         $this->state = $state;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * @param mixed $pictures
+     */
+    public function setPictures($pictures)
+    {
+        $this->pictures = $pictures;
+    }
+
+
+
     public function getAll()
     {
         $query ="SELECT * FROM games";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pEsrb = (new Esrb());
+            $pEsrb->setId($line["esrb_id"]);
+            $pEsrb->getById();
+            $pPublisher = new Publisher();
+            $pPublisher->setId($line["publisher_id"]);
+            $pPublisher->getById();
+            $pGenre = new Genre();
+            $pGenre->setId($line["genre_id"]);
+            $pGenre->getById();
+            $pPlatform = new Platform();
+            $pPlatform->setId($line["platform_id"]);
+            $pPlatform->getById();
+
+            //Registro
+            $game = (new Game());
+            $game->init($line["id"], $line["name"], $line["cover"], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+
+            //Hijos
+            $cPictures = (new Picture())->getByGame($game);
+
+            $game->setPictures($cPictures);
+
+            array_push($result, $game);
+        }
+        return $result;
     }
 
     public function getById()
     {
         $query ="SELECT * FROM games WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $game = Model\Connection::selectOne($query,$params);
+        $this->setId($game['id']);
+        $this->setName($game['name']);
+        $this->setCover($game['cover']);
+        $this->setDescription($game['description']);
+            $pEsrb = new Esrb();
+            $pEsrb->setId($game["esrb_id"]);
+            $pEsrb->getById();
+        $this->setEsrb($pEsrb);
+            $pPublisher = new Publisher();
+            $pPublisher->setId($game["publisher_id"]);
+            $pPublisher->getById();
+        $this->setPublisher($pPublisher);
+            $pGenre = new Genre();
+            $pGenre->setId($game["genre_id"]);
+            $pGenre->getById();
+        $this->setGenre($pGenre);
+            $pPlatform = new Platform();
+            $pPlatform->setId($game["platform_id"]);
+            $pPlatform->getById();
+        $this->setPlatform($pPlatform);
+        $this->setState($game['state']);
+            $cPictures = (new Picture())->getByGame($this);
+        $this->setPictures($cPictures);
     }
 
     public function insert()
     {
         $query ="INSERT INTO games (name, cover, description, esrb_id, publisher_id, genre_id, platform_id, state) VALUES(?,?,?,?,?,?,?,?)";
-        $params= array($this->getName(),$this->getCover(),$this->getDescription(),$this->getEsrb(),$this->getPublisher(),$this->getGenre(),$this->getPlatform(),$this->getState());
+        $params= array($this->getName(),$this->getCover(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
+                        $this->getGenre()->getId(),$this->getPlatform()->getId(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update()
     {
         $query ="UPDATE games SET name=?,cover=?,description=?,esrb_id=?,publisher_id=?,genre_id=?,platform_id=?,state=? WHERE id=?";
-        $params= array($this->getName(),$this->getCover(),$this->getDescription(),$this->getEsrb(),$this->getPublisher(),$this->getGenre(),$this->getPlatform(),$this->getState(),$this->getId());
+        $params= array($this->getName(),$this->getCover(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
+                        $this->getGenre()->getId(),$this->getPlatform()->getId(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 

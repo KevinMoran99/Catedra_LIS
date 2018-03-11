@@ -7,7 +7,7 @@
  */
 
 namespace Http\Models;
-//include_once ("../../../vendor/autoload.php");
+include_once ("../../../vendor/autoload.php");
 
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
