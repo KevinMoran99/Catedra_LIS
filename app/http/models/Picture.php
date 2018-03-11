@@ -144,5 +144,6 @@ class Picture implements Interfaces\ModelInterface
 
     public function search($param) {
         //Innecesario
+        return null;
     }
 }

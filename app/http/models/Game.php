@@ -297,6 +297,45 @@ class Game implements Interfaces\ModelInterface
 
     public function search($param)
     {
-        // TODO: Implement search() method.
+        $query = "SELECT g.*  FROM games g INNER JOIN esrbs e ON g.esrb_id = e.id 
+	              INNER JOIN publishers pu ON g.publisher_id = pu.id INNER JOIN genres ge ON g.genre_id = ge.id 
+	              INNER JOIN platforms pl ON g.platform_id = pl.id
+	              WHERE g.name LIKE CONCAT('%',?,'%') OR g.description LIKE CONCAT('%',?,'%') 
+	              OR e.name LIKE CONCAT('%',?,'%') OR pu.name LIKE CONCAT('%',?,'%') 
+	              OR ge.name LIKE CONCAT('%',?,'%') OR pl.name LIKE CONCAT('%',?,'%')
+                  OR g.state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param, $param, $param, $param, $param, $param, $param, $param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pEsrb = (new Esrb());
+            $pEsrb->setId($line["esrb_id"]);
+            $pEsrb->getById();
+            $pPublisher = new Publisher();
+            $pPublisher->setId($line["publisher_id"]);
+            $pPublisher->getById();
+            $pGenre = new Genre();
+            $pGenre->setId($line["genre_id"]);
+            $pGenre->getById();
+            $pPlatform = new Platform();
+            $pPlatform->setId($line["platform_id"]);
+            $pPlatform->getById();
+
+            //Registro
+            $game = (new Game());
+            $game->init($line["id"], $line["name"], $line["cover"], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+
+            //Hijos
+            $cPictures = (new Picture())->getByGame($game);
+
+            $game->setPictures($cPictures);
+
+            array_push($result, $game);
+        }
+        return $result;
+
     }
+
 }

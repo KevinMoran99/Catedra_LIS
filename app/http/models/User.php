@@ -189,11 +189,24 @@ class User implements Interfaces\ModelInterface
 
     public function search($param)
     {
-        $query = "SET @param = CONCAT('%','','%');" .
-                 "SELECT u.*, t.name FROM users u INNER JOIN user_types t ON u.user_type_id = t.id " .
-                 "WHERE u.alias LIKE @param OR u.email LIKE @param OR t.name LIKE @param " .
-                 "OR u.state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-        $params = array($param);
-        return Model\Connection::select($query, $params);
+        $query = "SELECT u.* FROM users u INNER JOIN user_types t ON u.user_type_id = t.id " .
+                 "WHERE u.alias LIKE CONCAT('%',?,'%') OR u.email LIKE CONCAT('%',?,'%') OR t.name LIKE CONCAT('%',?,'%') " .
+                 "OR u.state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param,$param,$param,$param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pUserType = new UserType();
+            $pUserType->setId($line['user_type_id']);
+            $pUserType->getById();
+
+            //Registro
+            $user = new User();
+            $user->init($line["id"], $line["alias"], $line["email"], $line["pass"], $pUserType, $line["state"]);
+            array_push($result, $user);
+        }
+        return $result;
     }
 }

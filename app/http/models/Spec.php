@@ -146,11 +146,24 @@ class Spec implements Interfaces\ModelInterface
     }
 
     public function search($param) {
-        $query = "SET @param = CONCAT('%',?,'%'); " .
-                 "SELECT s.*, t.name FROM specs s INNER JOIN type_specs t ON s.type_spec_id = t.id " .
-				 "WHERE s.name LIKE @param OR t.name LIKE @param " .
-                 "OR s.state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-        $params = array($param);
-        return Model\Connection::select($query, $params);
+        $query = "SELECT s.* FROM specs s INNER JOIN type_specs t ON s.type_spec_id = t.id " .
+				 "WHERE s.name LIKE CONCAT('%',?,'%') OR t.name LIKE CONCAT('%',?,'%') " .
+                 "OR s.state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param,$param,$param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //padres
+            $pTypeSpec = new TypeSpec();
+            $pTypeSpec->setId($line["type_spec_id"]);
+            $pTypeSpec->getById();
+
+            //registro
+            $spec = new Spec();
+            $spec->init($line["id"], $line["name"], $pTypeSpec, $line["state"]);
+            array_push($result, $spec);
+        }
+        return $result;
     }
 }

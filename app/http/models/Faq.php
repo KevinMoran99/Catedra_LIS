@@ -165,10 +165,22 @@ class Faq implements Interfaces\ModelInterface
     }
 
     public function search($param) {
-        $query = "SET @param = CONCAT('%','act','%'); " .
-                 "SELECT * FROM faqs WHERE title LIKE @param OR description LIKE @param " .
-                 "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-        $params = array($param);
-        return Model\Connection::select($query, $params);
+        $query = "SELECT * FROM faqs WHERE title LIKE CONCAT('%',?,'%') OR description LIKE CONCAT('%',?,'%') " .
+                 "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param,$param,$param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pUser = new User();
+            $pUser->setId($line["user_id"]);
+            $pUser->getById();
+
+            $faq = new Faq();
+            $faq->init($line["id"], $line["title"], $line["description"], $pUser, $line["state"]);
+            array_push($result, $faq);
+        }
+        return $result;
     }
 }

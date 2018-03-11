@@ -116,10 +116,17 @@ class TypeSpec implements Interfaces\ModelInterface
     }
 
     public function search($param) {
-        $query = "SET @param = CONCAT('%',?,'%'); " .
-            "SELECT * FROM type_specs WHERE name LIKE @param " .
-            "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-        $params = array($param);
-        return Model\Connection::select($query, $params);
+        $query = "SELECT * FROM type_specs WHERE name LIKE CONCAT('%',?,'%') " .
+                 "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param,$param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $typeSpec = new TypeSpec();
+            $typeSpec->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $typeSpec);
+        }
+        return $result;
     }
 }
