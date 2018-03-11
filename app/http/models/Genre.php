@@ -7,7 +7,6 @@
  */
 
 namespace Http\Models;
-require ("../../../vendor/autoload.php");
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
@@ -87,7 +86,7 @@ class Genre implements Interfaces\ModelInterface
         $result = [];
         //Recorriendo resultados
         foreach(Model\Connection::select($query,$params) as $line) {
-            $genre = new Action();
+            $genre = new Genre();
             $genre->init($line["id"], $line["name"], $line["state"]);
             array_push($result, $genre);
         }

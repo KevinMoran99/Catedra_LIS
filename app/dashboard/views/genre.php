@@ -1,4 +1,10 @@
-<div class="wrapper">
+<?php
+//declarando namespace a utilizar
+use Http\Controllers as Control;
+use Http\Helpers as Helper;
+?>
+
+<div id="genre"class="wrapper">
     <div class="row search-box">
         <!--Añadir filtro para generos-->
         <div class="col s12 m6 offset-m3">
@@ -36,35 +42,37 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">1</td>
-                                        <td>FPS</td>
-                                        <td>
-                                            <a href="#nuevoGenero" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">2</td>
-                                        <td>Beat'em up</td>
-                                        <td>
-                                            <a href="#nuevoGenero" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">3</td>
-                                        <td>Puzzle</td>
-                                        <td>
-                                            <a href="#nuevoGenero" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                        //mostrando los datos solicitados en base al paginate
+                                        $current_page = $page;
+                                        $genres = new Control\GenreController();
+                                        $paginate = new Helper\Paginate($genres->getAllGenres(),$current_page);
+                                        foreach ($paginate->getData() as $row){
+                                            echo "
+                                                <tr>
+                                                    <td style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
+                                                    <td>".$row->getName()."</td>
+                                                    <td>
+                                                        <a href=\"#nuevoGenero\" onclick=\"\" class=\"edit modal-trigger\">
+                                                             <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
+                                                         </a>
+                                                     </td>
+                                                </tr>
+                                            
+                                            ";
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
+                            <br>
+                            <?php
+                            //generando los links de paginacion
+                            echo "<div class='row'>";
+                            for($i=1;$i<=$paginate->linksNumber();$i++){
+                                echo"<a class='col s1 red-text' onclick=\"attach('genre' ,$i)\">$i</a>";
+                            }
+                            echo "</div>"
+                            ?>
                         </div>
                     </div>
                 </div>

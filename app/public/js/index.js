@@ -93,16 +93,16 @@ $('#termsAgree').click(function() {
     $('#signUpTerms').attr('checked', 'checked');
 });
 
-function attach(id) {
+function attach(id,page) {
     $("#container").empty();
 
     $.ajax({
         method: "POST",
-        url: "backend/AjaxControl.php",
-        data: "control=" + id,
+        url: "../routing/PublicRouting.php",
+        data: "control=" + id+"&current="+page,
         success: function(html) {
             $("#container").append(html);
-            if (id == "main") {
+            if (id === "main") {
                 startCarousel();
             }
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);

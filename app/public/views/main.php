@@ -36,4 +36,4 @@
         </div>
     </form>
 </div>
-<?php include '../views/games.php';?>
+<?php include 'games.php';?>

@@ -9,6 +9,7 @@
           include("../views/esrb.php");
         break;
         case "genre":
+            $page = $_POST["current"];
             include("../views/genre.php");
         break;
         case "platform":

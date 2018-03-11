@@ -11,13 +11,12 @@ namespace Http\Helpers;
 
 class Paginate
 {
-    private $items_per_page = 10;
+    private $items_per_page = 2;
     private $items = null;
     private $current_page = 1;
 
     /**
      * Paginate constructor.
-     * @param int $items_per_page
      * @param null $items
      * @param null $current_page
      */
@@ -36,9 +35,10 @@ class Paginate
         $data=array();
 
         for($i=0;$i<$this->items_per_page;$i++){
-
-            array_push($data,$this->items[$min]);
-            $min+=1;
+            if($min < sizeof($this->items)) {
+                array_push($data, $this->items[$min]);
+                $min += 1;
+            }
         }
         return $data;
     }

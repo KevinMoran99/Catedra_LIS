@@ -7,7 +7,7 @@
 * Cosas extra: purple (#9c27b0)
 * Botones e input: blue (#2196f3)
 
-##Para llamar los archvos desde sidenav
+## Para llamar los archvos desde sidenav
 En el evento onclick agregar el metodo attach("nombre-vista-sinextension")
 
 # Modularidad en frontend
@@ -21,7 +21,7 @@ Estos tres archivos deberan ser referenciados en todas las vistas por medio de \
 Además, existen los archivos css/index.css y js/index.js, en los cuales deberán ser incluidos respectivamente todos los estilos y scripts que serán comunes para todas las páginas, como la inicialización de componentes de materialize. (Estos archivos ya van incluidos en las templates).
 
 
-##Querys
+## Querys
 
 La clase conexion se ubica bajo app/models/Connection.class.php
 Los metodos que contienen son:
@@ -36,7 +36,7 @@ Las query deben adimitir parametros, por ejemplo
 Y los parametros deben ser enviados en un array
 $params = array($id)
 
-##Classpaths
+## Classpaths
 Ahora las cosas funcionan bajo namespaces de Composer para poder acceder a las clases
 de una manera mas limpia y bonita, dichos namespace estan dentro del archivo Composer.JSON
 al agregar una nueva ruta debera correrse el comando 
@@ -44,4 +44,6 @@ al agregar una nueva ruta debera correrse el comando
 
 Eso recreara los namespace y los pondra disponibles para su uso, ademas en toda clase debe hacerse
 referencia a el autoload.php (ver modelo de accion)
-
+ 
+# Instanciar la clase autoload.php SOLO PARA TESTEO
+La clase ya se encuentra instanciada por defecto en el Routing de cada vista

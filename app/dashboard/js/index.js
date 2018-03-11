@@ -47,13 +47,13 @@ $(".menu-item").click(function (event) {
     
 });
 
-function attach(id){
+function attach(id,page){
     $( "#container" ).empty();
-    
+    console.log(page);
     $.ajax({
         method: "POST",
-        url: "backend/AjaxControl.php",
-        data: "control="+id,
+        url: "../routing/DashboardRouting.php",
+        data: "control="+id+"&current="+page,
         success: function(html) {
            $("#container").append(html);
            //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
