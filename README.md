@@ -10,7 +10,7 @@
 ## Para llamar los archvos desde sidenav
 En el evento onclick agregar el metodo attach("nombre-vista-sinextension")
 
-# Modularidad en frontend
+## Modularidad en frontend
 Tanto en el sitio público como en el privado, hay una carpeta llamada templates. Ahí deberan ir todas las porciones de frontend que serán reutilizadas. Los archivos que tienen esas carpetas hasta ahora son:
 * sidenav.html: La maquetación del sidenav.
 * styles.html: Todas las tags link y otras tags que pertenezcan al head, que serán comunes para todas las páginas (Como por ejemplo el link al archivo de materialize).
@@ -44,6 +44,37 @@ al agregar una nueva ruta debera correrse el comando
 
 Eso recreara los namespace y los pondra disponibles para su uso, ademas en toda clase debe hacerse
 referencia a el autoload.php (ver modelo de accion)
+
+## Métodos comunes de los modelos
+
+Para usar cualquier método de un modelo, lo primero será hacer una instancia sin parámetros del modelo (ej. new Action()). Todos los atributos de los modelos tienen sus respectivos getters y setters.
+- getAll: Devuelve un array que contiene todos los registros de la tabla a la que corresponda el modelo
+- init: Es equivalente a un constructor que toma como parámetros todos los atributos del modelo. Sirve para setear todos los atributos del modelo de una vez. Ej.:
+  ```php
+  $action = new Action(); 
+  $action->init(1, "Guardar catálogo", 1);
+  ```
+- getById: Requiere que previamente se le halla seteado un id con setId(). Una vez llamado, el objeto se convertirá en un objeto correspondiente al id que se le seteó previamente. Ej.:
+  ```php
+  $action = new Action(); 
+  $action->setId(1);
+  $action->getById(); //Ahora $action contiene los datos del registro con el id 1
+  ```
+- insert: Requiere que previamente se le halla seteado todos los atributos al objeto (menos el id, no se tomará en cuenta). Hace el insert en la base de datos con los atributos que tenga el objeto. Ej.:
+  ```php
+  $action = new Action(); 
+  $action->init(1, "Guardar catálogo", 1); //El id no influye
+  $action->insert(); //Registro guardado
+  ```
+- update: Requiere que previamente se le halla seteado todos los atributos al objeto. Hace el update en la base de datos con los atributos que tenga el objeto, sobre el id especificado. Ej.:
+  ```php
+  $action = new Action(); 
+  $action->init(1, "Modificar catálogo", 0); 
+  $action->update(); //Registro modificado
+  ```
+- search: Devuelve un array que contiene todos los registros de la tabla a la que corresponda el modelo, filtrados por el valor especificado, el cual se pasa como parámetro y es evaluado por todos los campos de la tabla a los que se les pueda aplicar filtros.
+  ```php
+  $action = new Action(); 
+  $array = $action->search("catálogo"); //Devolvería un array con todos los registros en los que se encuentre la palabra 'catálogo'
+  ```
  
-# Instanciar la clase autoload.php SOLO PARA TESTEO
-La clase ya se encuentra instanciada por defecto en el Routing de cada vista

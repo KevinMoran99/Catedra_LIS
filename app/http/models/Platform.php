@@ -81,15 +81,26 @@ class Platform implements Interfaces\ModelInterface
     //query methods
 
     public function getAll(){
-    $query ="SELECT * FROM platforms";
-    $params = array(null);
-    return Model\Connection::select($query,$params);
+        $query ="SELECT * FROM platforms";
+        $params = array(null);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $platform = new Platform();
+            $platform->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $platform);
+        }
+        return $result;
 }
 
     public function getById() {
-    $query ="SELECT * FROM platforms WHERE id = ?";
-    $params = array($this->getId());
-    return Model\Connection::selectOne($query,$params);
+        $query ="SELECT * FROM platforms WHERE id = ?";
+        $params = array($this->getId());
+        $platform = Model\Connection::selectOne($query,$params);
+        $this->setId($platform['id']);
+        $this->setName($platform['name']);
+        $this->setState($platform['state']);
 }
 
     public function insert(){
@@ -105,11 +116,18 @@ class Platform implements Interfaces\ModelInterface
 }
 
     public function search($param) {
-    $query = "SET @param = CONCAT('%',?,'%'); " .
-        "SELECT * FROM platforms WHERE name LIKE @param " .
-        "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-    $params = array($param);
-    return Model\Connection::select($query, $params);
+        $query = "SELECT * FROM platforms WHERE name LIKE CONCAT('%',?,'%') " .
+            "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+    $params = array($param, $param, $param);
+    //Array de objetos devueltos
+    $result = [];
+    //Recorriendo resultados
+    foreach(Model\Connection::select($query,$params) as $line) {
+        $platform = new Platform();
+        $platform->init($line["id"], $line["name"], $line["state"]);
+        array_push($result, $platform);
+    }
+    return $result;
 }
 
 }

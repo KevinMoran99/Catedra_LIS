@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Specs implements Interfaces\ModelInterface
+class Spec implements Interfaces\ModelInterface
 {
     private $id;
     private $name;
@@ -19,7 +19,7 @@ class Specs implements Interfaces\ModelInterface
     private $state=1;
 
     /**
-     * Specs constructor.
+     * Spec constructor.
      * @param $id
      * @param $name
      * @param $typeSpec
@@ -103,33 +103,67 @@ class Specs implements Interfaces\ModelInterface
     public function getAll(){
         $query ="SELECT * FROM specs";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //padres
+            $pTypeSpec = new TypeSpec();
+            $pTypeSpec->setId($line["type_spec_id"]);
+            $pTypeSpec->getById();
+
+            //registro
+            $spec = new Spec();
+            $spec->init($line["id"], $line["name"], $pTypeSpec, $line["state"]);
+            array_push($result, $spec);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM specs WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $spec = Model\Connection::selectOne($query,$params);
+        $this->setId($spec['id']);
+        $this->setName($spec['name']);
+            $pTypeSpec = new TypeSpec();
+            $pTypeSpec->setId($spec["type_spec_id"]);
+            $pTypeSpec->getById();
+        $this->setTypeSpec($pTypeSpec);
+        $this->setState($spec['state']);
     }
 
     public function insert(){
         $query ="INSERT INTO specs (name,type_spec_id,state) VALUES(?,?,?)";
-        $params= array($this->getName(),$this->getTypeSpec(),$this->getState());
+        $params= array($this->getName(),$this->getTypeSpec()->getId(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update(){
         $query ="UPDATE specs SET name=?,type_spec_id=?,state=? WHERE id=?";
-        $params= array($this->getName(),$this->getTypeSpec(),$this->getState(),$this->getId());
+        $params= array($this->getName(),$this->getTypeSpec()->getId(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function search($param) {
-        $query = "SET @param = CONCAT('%',?,'%'); " .
-                 "SELECT s.*, t.name FROM specs s INNER JOIN type_specs t ON s.type_spec_id = t.id " .
-				 "WHERE s.name LIKE @param OR t.name LIKE @param " .
-                 "OR s.state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-        $params = array($param);
-        return Model\Connection::select($query, $params);
+        $query = "SELECT s.* FROM specs s INNER JOIN type_specs t ON s.type_spec_id = t.id " .
+				 "WHERE s.name LIKE CONCAT('%',?,'%') OR t.name LIKE CONCAT('%',?,'%') " .
+                 "OR s.state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param,$param,$param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //padres
+            $pTypeSpec = new TypeSpec();
+            $pTypeSpec->setId($line["type_spec_id"]);
+            $pTypeSpec->getById();
+
+            //registro
+            $spec = new Spec();
+            $spec->init($line["id"], $line["name"], $pTypeSpec, $line["state"]);
+            array_push($result, $spec);
+        }
+        return $result;
     }
 }

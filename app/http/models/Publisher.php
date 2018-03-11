@@ -83,13 +83,24 @@ class Publisher implements Interfaces\ModelInterface
     public function getAll(){
         $query ="SELECT * FROM publishers";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $publisher = new Publisher();
+            $publisher->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $publisher);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM publishers WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $publisher = Model\Connection::selectOne($query,$params);
+        $this->setId($publisher['id']);
+        $this->setName($publisher['name']);
+        $this->setState($publisher['state']);
     }
 
     public function insert(){
@@ -105,10 +116,17 @@ class Publisher implements Interfaces\ModelInterface
     }
 
     public function search($param) {
-        $query = "SET @param = CONCAT('%',?,'%'); " .
-            "SELECT * FROM publishers WHERE name LIKE @param " .
-            "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-        $params = array($param);
-        return Model\Connection::select($query, $params);
+        $query = "SELECT * FROM publishers WHERE name LIKE CONCAT('%',?,'%') " .
+                 "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param,$param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $publisher = new Publisher();
+            $publisher->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $publisher);
+        }
+        return $result;
     }
 }

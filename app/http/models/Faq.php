@@ -11,16 +11,16 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Faqs implements Interfaces\ModelInterface
+class Faq implements Interfaces\ModelInterface
 {
     private $id;
     private $title;
     private $description;
-    private $storePage;
+    private $user;
     private $state;
 
     /**
-     * Faqs constructor.
+     * Faq constructor.
      * @param $id
      * @param $title
      * @param $description
@@ -32,7 +32,7 @@ class Faqs implements Interfaces\ModelInterface
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
-        $this->storePage = $storePage;
+        $this->user = $storePage;
         $this->state = $state;
     }
 
@@ -87,17 +87,17 @@ class Faqs implements Interfaces\ModelInterface
     /**
      * @return mixed
      */
-    public function getStorePage()
+    public function getUser()
     {
-        return $this->storePage;
+        return $this->user;
     }
 
     /**
-     * @param mixed $storePage
+     * @param mixed $user
      */
-    public function setStorePage($storePage)
+    public function setUser($user)
     {
-        $this->storePage = $storePage;
+        $this->user = $user;
     }
 
     /**
@@ -122,32 +122,65 @@ class Faqs implements Interfaces\ModelInterface
     public function getAll(){
         $query ="SELECT * FROM faqs";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pUser = new User();
+            $pUser->setId($line["user_id"]);
+            $pUser->getById();
+
+            $faq = new Faq();
+            $faq->init($line["id"], $line["title"], $line["description"], $pUser, $line["state"]);
+            array_push($result, $faq);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM faqs WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $faq = Model\Connection::selectOne($query,$params);
+        $this->setId($faq['id']);
+        $this->setTitle($faq['title']);
+        $this->setDescription($faq['description']);
+            $pUser = new User();
+            $pUser->setId($faq["user_id"]);
+            $pUser->getById();
+        $this->setUser($pUser);
+        $this->setState($faq["state"]);
     }
 
     public function insert(){
         $query ="INSERT INTO faqs (title,description,store_page_id,state) VALUES(?,?,?,?)";
-        $params= array($this->getTitle(),$this->getDescription(),$this->getStorePage(),$this->getState());
+        $params= array($this->getTitle(),$this->getDescription(),$this->getUser()->getId(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update(){
         $query ="UPDATE faqs SET title=?,description=?,store_page_id=?,state=? WHERE id=?";
-        $params= array($this->getTitle(),$this->getDescription(),$this->getStorePage(),$this->getState(),$this->getId());
+        $params= array($this->getTitle(),$this->getDescription(),$this->getUser()->getId(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function search($param) {
-        $query = "SET @param = CONCAT('%','act','%'); " .
-                 "SELECT * FROM faqs WHERE title LIKE @param OR description LIKE @param " .
-                 "OR state = (CASE WHEN 'activo' LIKE @param THEN 1 WHEN 'inactivo' LIKE @param THEN 0 END)";
-        $params = array($param);
-        return Model\Connection::select($query, $params);
+        $query = "SELECT * FROM faqs WHERE title LIKE CONCAT('%',?,'%') OR description LIKE CONCAT('%',?,'%') " .
+                 "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+        $params = array($param,$param,$param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pUser = new User();
+            $pUser->setId($line["user_id"]);
+            $pUser->getById();
+
+            $faq = new Faq();
+            $faq->init($line["id"], $line["title"], $line["description"], $pUser, $line["state"]);
+            array_push($result, $faq);
+        }
+        return $result;
     }
 }

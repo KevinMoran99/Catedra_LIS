@@ -13,7 +13,7 @@ class Connection{
     private static function connect(){
         $server="localhost";
         $user = "root";
-        $pass="fedora98";
+        $pass="";
         $database="stoam";
         try{
             self::$connection = new PDO("mysql:host=$server; dbname=$database; charset=utf8",$user,$pass);
@@ -49,7 +49,7 @@ class Connection{
         self::$statement = self::$connection->prepare($query);
         $state = self::$statement->execute($values);
         self::$id = self::$connection->lastInsertId();
-        self::desconnect();
+        self::disconnect();
         return $state;
     }
 
