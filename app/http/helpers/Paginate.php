@@ -11,7 +11,7 @@ namespace Http\Helpers;
 
 class Paginate
 {
-    private $items_per_page = 2;
+    private $items_per_page = 5;
     private $items = null;
     private $current_page = 1;
 

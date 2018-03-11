@@ -50,10 +50,10 @@ use Http\Helpers as Helper;
                                         foreach ($paginate->getData() as $row){
                                             echo "
                                                 <tr>
-                                                    <td style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
+                                                    <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
                                                     <td>".$row->getName()."</td>
                                                     <td>
-                                                        <a href=\"#nuevoGenero\" onclick=\"\" class=\"edit modal-trigger\">
+                                                        <a  onclick=\"\" class=\"edit modal-trigger\">
                                                              <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
                                                          </a>
                                                      </td>
@@ -98,10 +98,10 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmRegEsrb">
+                <form id="frmGenero">
                     <div class="input-field">
-                        <input id="registerUser" type="text" required>
-                        <label for="registerUser">Nombre de genero</label>
+                        <input id="genreName" name="name" type="text" required>
+                        <label for="genreName">Nombre de genero</label>
                     </div>
 
                     <div class="row">
@@ -110,23 +110,23 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" value="1" type="radio" checked />
                                 <span>Activo</span>
-                            </label>
+                                    </label>
                                 </p>
                             </div>
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" type="radio" value="0" />
                                 <span>Inactivo</span>
-                            </label>
+                                    </label>
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
+                        <button type="submit" class="modal-x btn waves-effect right">Ingresar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
@@ -135,4 +135,51 @@ use Http\Helpers as Helper;
     </div>
 </div>
 
-<script src="js/user.js"></script>
+
+<div id="actualizarGenero" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Actualizar genero</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmGenero">
+                    <div class="input-field">
+                        <input id="genreNameU" name="name" type="text" required>
+                        <label for="genreNameU" class="active">Nombre de genero</label>
+                    </div>
+
+                    <div class="row">
+                        <h6 class="center">Seleccione el estado del genero:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                        <input id="genreStateA" name="state" value="1" type="radio" checked />
+                                        <span>Activo</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                        <input id="genreStateI" name="state" type="radio" value="0" />
+                                        <span>Inactivo</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-x btn waves-effect right">Ingresar</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/genre.js"></script>

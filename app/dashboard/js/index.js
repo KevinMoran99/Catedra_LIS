@@ -59,5 +59,4 @@ function attach(id,page){
            //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
      });
-    
 }
