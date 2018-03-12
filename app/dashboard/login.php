@@ -15,14 +15,14 @@
                     <form id="frmSignIn">
                         <h3>Iniciar sesión</h3>
                         <div class="input-field">
-                            <input id="signInUser" type="text" required>
+                            <input id="signInUser" name="name" type="text" required>
                             <label for="signInUser">Nombre de usuario</label>
                         </div>
                         <div class="input-field">
-                            <input id="signInPass" type="password" required>
+                            <input id="signInPass" name="pass" type="password" required>
                             <label for="signInPass">Contraseña</label>
                         </div>
-                        <button class="btn-flat waves-effect waves-green"><a href="index.php">Iniciar sesión</a></button>
+                        <button class="btn-flat waves-effect waves-green">Iniciar sesión</button>
                     </form>
                 </div>
             </div>
@@ -31,4 +31,6 @@
         
     </body>
     <?php include 'templates/scripts.html';?>
+
+    <script src="js/login.js"></script>
 </html>

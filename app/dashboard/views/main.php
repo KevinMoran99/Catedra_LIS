@@ -17,7 +17,14 @@
 </div>
 
 <div class="wrapper">
-
+    <?php
+        include("../http/models/Genre.php");
+        $genre = new Http\Models\Genre();
+        foreach ($genre->search("cascasa") as $a) {
+            echo $a->getId() . "<br>";
+            echo $a->getName() . "<br><br>";
+        }
+    ?>
 
     <div class="row">
         <?php

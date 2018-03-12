@@ -14,8 +14,13 @@ $( "#frmGenero" ).submit(function( event ) {
         },
         url: "../http/controllers/GenreController.php",
         success: function(result) {
-            $('#nuevoGenero').modal('close');
-            attach("genre",1);
+            var output = result.split("|");
+            if (output[0] == "Éxito") {
+                $('#nuevoGenero').modal('close');
+                attach("genre", 1);
+            }
+            console.log(result);
+            swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
         }
     });
 });

@@ -13,10 +13,11 @@ class Connection{
     private static function connect(){
         $server="localhost";
         $user = "root";
-        $pass="fedora98";
+        $pass="";
         $database="stoam";
         try{
             self::$connection = new PDO("mysql:host=$server; dbname=$database; charset=utf8",$user,$pass);
+            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(PDOException $ex){
             print($ex->getCode());
         }
@@ -45,12 +46,17 @@ class Connection{
     }
 
     public static function insertOrUpdate($query, $values){
-        self::connect();
-        self::$statement = self::$connection->prepare($query);
-        $state = self::$statement->execute($values);
-        self::$id = self::$connection->lastInsertId();
-        self::disconnect();
-        return $state;
+        try {
+            self::connect();
+            self::$statement = self::$connection->prepare($query);
+            $state = self::$statement->execute($values);
+            self::$id = self::$connection->lastInsertId();
+            self::disconnect();
+            return $state;
+        }
+        catch (PDOException $error) {
+            return $error->errorInfo[1];
+        }
     }
 
     public static function getLastRowId(){
