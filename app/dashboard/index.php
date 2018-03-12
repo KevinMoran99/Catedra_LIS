@@ -6,7 +6,16 @@
         <?php include 'templates/styles.html';?>
     </head>
     <body>
-        
+
+        <!--Autenticación-->
+        <?php
+            if (!session_id()) session_start();
+            if (!$_SESSION['user']){
+                header("Location:login.php");
+                die();
+            }
+        ?>
+
         <!--menu-->
         <?php include 'templates/sidenav.html';?>
         

@@ -47,6 +47,20 @@ $(".menu-item").click(function (event) {
     
 });
 
+$("#logout").click(function (e) {
+   $.ajax({
+       method: 'POST',
+       data: {
+           "method" : "logout"
+       },
+       url: "../http/controllers/UserController.php",
+       success: function (result) {
+           console.log(result);
+           window.location.replace("login.php");
+       }
+   });
+});
+
 function attach(id,page){
     $( "#container" ).empty();
     console.log(page);

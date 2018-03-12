@@ -212,7 +212,7 @@ class User implements Interfaces\ModelInterface
 
     //Verifica si existe un usuario [con estado activo] con el alias o email especificado
     public function checkName () {
-        $query ="SELECT * FROM users WHERE alias = ? OR email = ? AND state = 1";
+        $query ="SELECT * FROM users WHERE (alias = ? OR email = ?) AND state = 1";
         $params = array($this->getAlias(), $this->getAlias());
         $user = Model\Connection::selectOne($query,$params);
         if ($user)
@@ -223,7 +223,7 @@ class User implements Interfaces\ModelInterface
 
     //Verifica que la contraseña sea valida y hace login
     public function login () {
-        $query ="SELECT * FROM users WHERE alias = ? OR email = ? AND pass = ?";
+        $query ="SELECT * FROM users WHERE (alias = ? OR email = ?) AND pass = ?";
         $params = array($this->getAlias(), $this->getAlias(), $this->getPass());
         $user = Model\Connection::selectOne($query,$params);
         if ($user) {
@@ -236,10 +236,6 @@ class User implements Interfaces\ModelInterface
                 $pUserType->getById();
             $this->setUserType($pUserType);
             $this->setState($user['state']);
-
-            //Inicializando variables de sesion
-            session_start();
-            $_SESSION["user"] = $this;
 
             return true;
         }

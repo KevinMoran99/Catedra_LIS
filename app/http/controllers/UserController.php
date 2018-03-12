@@ -20,11 +20,14 @@ class UserController
         $user->setPass($pass);
         if ($user->checkName()) {
             if ($user->login()) {
-                $user = $_SESSION["user"];
-                if ($user->getType() == 1)
-                    Helper\Component::showMessage(3, "admin");
+                //Inicializando variables de sesion
+                session_start();
+                $_SESSION["user"] = $user;
+
+                if ($user->getUserType()->getId() == 1)
+                    Helper\Component::showMessage(1, "admin");
                 else
-                    Helper\Component::showMessage(3, "cliente");
+                    Helper\Component::showMessage(1, "cliente");
             }
             else
                 Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");
@@ -32,6 +35,11 @@ class UserController
         else
             Helper\Component::showMessage(3, "No existe ningún usuario con el alias o email especificado.");
 
+    }
+
+    public function logout() {
+        session_start();
+        session_destroy();
     }
 }
 
@@ -44,6 +52,9 @@ if(isset($_POST["method"])){
             $params = array();
             parse_str($data, $params);
             (new UserController())->login($params['name'], $params['pass']);
+        }
+        else if ($_POST["method"] == "logout") {
+            (new UserController())->logout();
         }
     }
     catch (\Exception $error) {
