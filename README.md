@@ -77,4 +77,6 @@ Para usar cualquier método de un modelo, lo primero será hacer una instancia s
   $action = new Action(); 
   $array = $action->search("catálogo"); //Devolvería un array con todos los registros en los que se encuentre la palabra 'catálogo'
   ```
+## Variable de sesión
+Al iniciar sesión, un objeto User correspondiente al usuario logeado es guardado en $_SESSION["user"]. Se puede acceder a sus atributos como con cualquier otro objeto User. Solo hay que tener en cuenta que para usarlo, siempre hay que llamar al método session_start() en la clase en la que se usará, para reanudar la sesión hecha. Si no se hace eso, al intentar interactuar con las cosas relativas a la sesión, el servidor se comportará como si no hubiera sesión iniciada.
  
