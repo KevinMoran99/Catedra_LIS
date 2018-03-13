@@ -42,6 +42,7 @@ use Http\Helpers as Helper;
                                 </thead>
 
                                 <tbody>
+                                <!-- INICIO DEL PAGINATE -->
                                     <?php
                                         //mostrando los datos solicitados en base al paginate
                                         $current_page = $page;
@@ -62,9 +63,12 @@ use Http\Helpers as Helper;
                                             ";
                                         }
                                     ?>
+                                <!--FIN DE PAGINATE-->
                                 </tbody>
                             </table>
                             <br>
+
+                            <!--INICIO DE ENLACES DE PAGINATE-->
                             <?php
                             //generando los links de paginacion
                             echo "<div class='row'>";
@@ -73,6 +77,7 @@ use Http\Helpers as Helper;
                             }
                             echo "</div>"
                             ?>
+                            <!--FIN DE ENLACES DE PAGINATE-->
                         </div>
                     </div>
                 </div>
@@ -145,7 +150,8 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmGenero">
+                <form id="frmGeneroUpdate">
+                    <input type="hidden" name="id" id="genreId">
                     <div class="input-field">
                         <input id="genreNameU" name="name" type="text" required>
                         <label for="genreNameU" class="active">Nombre de genero</label>

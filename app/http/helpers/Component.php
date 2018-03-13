@@ -66,6 +66,7 @@ class Component
             case Component::$INFO:
                 $title = "Aviso";
                 $icon = "info";
+                break;
         }
 
         echo $title . "|" . $text . "|" . $icon;
