@@ -9,12 +9,11 @@ use Http\Helpers as Helper;
         <!--Añadir filtro para generos-->
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
-                <form action="" method="GET" id="form-filtro">
-                    <div class="input-field">
-                        <input id="icon_prefix" type="text" class="validate filtro" name="filtro" placeholder="Buscar genero">
-                    </div>
-                </form>
+                <div class="input-field">
+                    <input id="genre-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar genero">
+                </div>
             </div>
+            <button class="btn light-blue darken-2" id="revert">Revertir</button>
         </div>
     </div>
 
@@ -41,7 +40,7 @@ use Http\Helpers as Helper;
                                     </tr>
                                 </thead>
 
-                                <tbody>
+                                <tbody id="allGenres">
                                 <!-- INICIO DEL PAGINATE -->
                                     <?php
                                         //mostrando los datos solicitados en base al paginate
@@ -54,7 +53,7 @@ use Http\Helpers as Helper;
                                                     <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
                                                     <td>".$row->getName()."</td>
                                                     <td>
-                                                        <a  onclick=\"\" class=\"edit modal-trigger\">
+                                                        <a  href='#actualizarGenero' class=\"edit modal-trigger\">
                                                              <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
                                                          </a>
                                                      </td>
@@ -67,16 +66,17 @@ use Http\Helpers as Helper;
                                 </tbody>
                             </table>
                             <br>
-
-                            <!--INICIO DE ENLACES DE PAGINATE-->
-                            <?php
-                            //generando los links de paginacion
-                            echo "<div class='row'>";
-                            for($i=1;$i<=$paginate->linksNumber();$i++){
-                                echo"<a class='col s1 red-text' onclick=\"attach('genre' ,$i)\">$i</a>";
-                            }
-                            echo "</div>"
-                            ?>
+                            <div id="genreLinks">
+                                <!--INICIO DE ENLACES DE PAGINATE-->
+                                <?php
+                                //generando los links de paginacion
+                                echo "<div class='row'>";
+                                for($i=1;$i<=$paginate->linksNumber();$i++){
+                                    echo"<a class='col s1 red-text' onclick=\"attach('genre' ,$i)\">$i</a>";
+                                }
+                                echo "</div>"
+                                ?>
+                            </div>
                             <!--FIN DE ENLACES DE PAGINATE-->
                         </div>
                     </div>

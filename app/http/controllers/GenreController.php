@@ -105,6 +105,30 @@ class GenreController
             Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
         }
     }
+
+    public function searchGenre($name,$ajax){
+        //nuevo objeto de generos
+        $genre = new Model\Genre();
+        $data = $genre->search($name);
+        //si es una request ajax retorna un json con los datos
+        if($ajax) {
+            $array = [];
+            $json = null;
+            for($i = 0;$i<sizeof($data);$i++){
+                $tmp = array(
+                    'id' => $data[$i]->getId(),
+                    'name' => $data[$i]->getName(),
+                    'state' => $data[$i]->getState()
+                );
+                array_push($array,$tmp);
+            }
+            $json = json_encode($array);
+            echo $json;
+        }else{
+            //si no es ajax, retorna un objeto
+            return $data;
+        }
+    }
 }
 
 //Fuera de la clase handleamos las request y las enviamos a su respectivo metodo
@@ -139,6 +163,11 @@ try {
             parse_str($data, $params);
             //actualizamos el registro con los datos del array
             (new GenreController())->updateGenre($params['id'],$params['name'],$params['state']);
+        }
+
+        if($_POST["method"] == "searchGenre"){
+            $data = $_POST["param"];
+            (new GenreController())->searchGenre($data,true);
         }
     }
 }

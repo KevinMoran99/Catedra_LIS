@@ -58,7 +58,10 @@ $( "#frmGeneroUpdate" ).submit(function( event ) {
     });
 });
 
-$(".editar").click(function () {
+
+/*SE SUSTITUYO METODO ANTERIOR POR ESTE PARA SOPORTAR LOS ELEMENTOS AGREGADOS DE MANERA DINAMICA*/
+$("table").on('click', ".edit", function () {
+    console.log("entra");
     //obtenemos el id (OJO AGREGAR CLASE ID A TODOS LOS CAMPOS DE LAS TABLAS QUE ALMACENAN EL ID)
    var id = $(this).closest("tr").find(".id").text();
    console.log(id);
@@ -89,4 +92,50 @@ $(".editar").click(function () {
             $("#actualizarGenero").modal('open');
         }
     });
+});
+
+/*METODO PARA BUSCAR*/
+$("#genre-search").keypress( function (e) {
+    //validacion para verificar si presiono enter
+    if(e.which==13){
+
+        //inicializando ajax
+        $.ajax({
+            method: "POST",
+            //seteando metodo a utilizar en controlador y seteando la data
+            data: {
+                "param": $("#genre-search").val(),
+                "method":"searchGenre"
+            },
+            //url (?
+            url: "../http/controllers/GenreController.php",
+            success: function(result) {
+                //limpiando cuerpo de tabla
+                $("#allGenres").empty();
+                //limpiando los links de paginacion
+                $("#genreLinks").empty();
+                //parseando resultado a json
+                var $data = jQuery.parseJSON(result);
+
+                //generando un row por registro
+                for(var i=0;i<$data.length;i++){
+                    console.log($data[i].name);
+                    $("#allGenres").append("<tr>" +
+                        "<td  class='id' style=\"visibility: hidden; display:none;\">"+$data[i].id+"</td>" +
+                        "<td>"+$data[i].name+"</td>" +
+                        "<td>" +
+                        "<a href='#actualizarGenero' class='edit modal-trigger'>" +
+                        "<i class='material-icons tooltipped editar' data-position='left' data-delay='50' data-tooltip='Editar'>mode_edit</i>" +
+                        "</a>" +
+                        "</td>");
+                }
+            }
+        });
+    }
+});
+
+$("#revert").click(function () {
+    $("#allGenres").empty();
+    $("#genreLinks").empty();
+    attach("genre", 1);
 });
