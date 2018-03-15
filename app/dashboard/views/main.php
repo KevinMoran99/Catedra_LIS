@@ -36,7 +36,7 @@ use Http\Helpers as Helper;
             <div class="card">
                 <div class="card-image">
                     <img src="../web/img/example.png">
-                    <span class="card-title">Nombre Juego</span>
+                    <span class="card-title">"Nombre Juego"</span>
                 </div>
             </div>
         </a>
@@ -79,10 +79,20 @@ use Http\Helpers as Helper;
                             <span>Caratula</span>
                             <input type="file">
                         </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="file-field input-field">
                         <div class="btn">
-                            <span>Screeshot 1</span>
+                            <span>Screenshot1</span>
                             <input type="file">
                         </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="file-field input-field">
                         <div class="btn">
                             <span>Screenshot2</span>
                             <input type="file">
