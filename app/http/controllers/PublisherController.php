@@ -139,37 +139,22 @@ try {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addPublisher") {
-            //obtenemos la data
-            $data = $_POST["publisher"];
-            //creamos un array el cual llenaremos con la data
-            $params = array();
-            //filleamos el array
-            parse_str($data, $params);
             //creamos un nuevo registro con los datos del array
-            (new PublisherController())->addPublisher($params['name'], $params['state']);
+            (new PublisherController())->addPublisher($_POST['name'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getPublisher") {
-            //obtenemos el id proporcionado
-            $id = $_POST["id"];
             //obtenemos el registro
-            (new PublisherController())->getPublisher($id, true);
+            (new PublisherController())->getPublisher($_POST["id"], true);
         }
 
         if($_POST["method"] == "updatePublisher"){
-            //obtenemos la data
-            $data = $_POST["publisher"];
-            //creamos un array el cual llenaremos con la data
-            $params = array();
-            //llenamos el array
-            parse_str($data, $params);
             //actualizamos el registro con los datos del array
-            (new PublisherController())->updatePublisher($params['id'],$params['name'],$params['state']);
+            (new PublisherController())->updatePublisher($_POST['id'],$_POST['name'],$_POST['state']);
         }
 
         if($_POST["method"] == "searchPublisher"){
-            $data = $_POST["param"];
-            (new PublisherController())->searchPublisher($data,true);
+            (new PublisherController())->searchPublisher($_POST["param"],true);
         }
     }
 }
