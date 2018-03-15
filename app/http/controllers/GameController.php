@@ -146,7 +146,7 @@ try {
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addGame") {
             //creamos un nuevo registro con los datos del array
-            (new GameController())->addGame($_POST['name'], $_POST['state']);
+            (new GameController())->addGame($_POST['name'],$_POST['cover'],$_POST['description'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getGame") {
@@ -156,7 +156,7 @@ try {
 
         if($_POST["method"] == "updateGame"){
             //actualizamos el registro
-            (new GameController())->updateGame($_POST['id'],$_POST['name'],$_POST['state']);
+            (new GameController())->updateGame($_POST['id'],$_POST['name'],$_POST['cover'],$_POST['description'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
         }
 
         if($_POST["method"] == "searchGame"){
