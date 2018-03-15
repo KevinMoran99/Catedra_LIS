@@ -59,7 +59,7 @@ use Http\Helpers as Helper;
                                                     <td> 
                                                         <label>
                                                             <input type=\"checkbox\" disabled ".$checked." />
-                                                            <span>Estado</span>
+                                                            <span></span>
                                                          </label>
                                                     </td>
                                                     <td>
