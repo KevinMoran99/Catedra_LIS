@@ -83,7 +83,7 @@ Class GameController
         $validateError="";
 
         //si no es alfanumerico setear flag a verdadero y agregar mensaje
-        if(!$validator->validateImage($cover,1,$notyetdefined,256,320)){
+        if(!$validator->validateImage($cover,1,$nosequees,256,320)){
             $validateError = "Error al modificar la imagen";
             $flag = true;
         }
