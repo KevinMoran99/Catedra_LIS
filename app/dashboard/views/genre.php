@@ -10,7 +10,7 @@ use Http\Helpers as Helper;
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
                 <div class="input-field">
-                    <input id="genre-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar genero">
+                    <input id="genre-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por nombre o estado">
                 </div>
             </div>
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
@@ -36,6 +36,7 @@ use Http\Helpers as Helper;
                                     <tr class="table-users">
                                         <th style="visibility: hidden; display:none;">ID</th>
                                         <th>Nombre de genero</th>
+                                        <th>Estado</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
@@ -48,10 +49,20 @@ use Http\Helpers as Helper;
                                         $genres = new Control\GenreController();
                                         $paginate = new Helper\Paginate($genres->getAllGenres(),$current_page);
                                         foreach ($paginate->getData() as $row){
+                                            $checked = "";
+                                            if($row->getState()==1){
+                                                $checked = "checked";
+                                            }
                                             echo "
                                                 <tr>
                                                     <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
                                                     <td>".$row->getName()."</td>
+                                                    <td> 
+                                                        <label>
+                                                            <input type=\"checkbox\" disabled ".$checked." />
+                                                            <span></span>
+                                                         </label>
+                                                    </td>
                                                     <td>
                                                         <a  href='#actualizarGenero' class=\"edit modal-trigger\">
                                                              <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
@@ -105,7 +116,7 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmGenero">
                     <div class="input-field">
-                        <input id="genreName" name="name" type="text" required>
+                        <input id="genreName" name="name" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
                         <label for="genreName">Nombre de genero</label>
                     </div>
 
@@ -153,7 +164,7 @@ use Http\Helpers as Helper;
                 <form id="frmGeneroUpdate">
                     <input type="hidden" name="id" id="genreId">
                     <div class="input-field">
-                        <input id="genreNameU" name="name" type="text" required>
+                        <input id="genreNameU" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
                         <label for="genreNameU" class="active">Nombre de genero</label>
                     </div>
 

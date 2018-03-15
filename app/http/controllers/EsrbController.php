@@ -139,37 +139,22 @@ try {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addEsrb") {
-            //obtenemos la data
-            $data = $_POST["esrb"];
-            //creamos un array el cual llenaremos con la data
-            $params = array();
-            //filleamos el array
-            parse_str($data, $params);
             //creamos un nuevo registro con los datos del array
-            (new EsrbController())->addEsrb($params['name'], $params['state']);
+            (new EsrbController())->addEsrb($_POST['name'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getEsrb") {
-            //obtenemos el id proporcionado
-            $id = $_POST["id"];
             //obtenemos el registro
-            (new EsrbController())->getEsrb($id, true);
+            (new EsrbController())->getEsrb($_POST["id"], true);
         }
 
         if($_POST["method"] == "updateEsrb"){
-            //obtenemos la data
-            $data = $_POST["esrb"];
-            //creamos un array el cual llenaremos con la data
-            $params = array();
-            //llenamos el array
-            parse_str($data, $params);
             //actualizamos el registro con los datos del array
-            (new EsrbController())->updateEsrb($params['id'],$params['name'],$params['state']);
+            (new EsrbController())->updateEsrb($_POST['id'],$_POST['name'],$_POST['state']);
         }
 
         if($_POST["method"] == "searchEsrb"){
-            $data = $_POST["param"];
-            (new EsrbController())->searchEsrb($data,true);
+            (new EsrbController())->searchEsrb($_POST["param"],true);
         }
     }
 }

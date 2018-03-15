@@ -6,15 +6,15 @@ $(document).ready(function() {
 //AJAX DE AGREGAR REGISTRO
 $( "#frmRegEsrb" ).submit(function( event ) {
     event.preventDefault();
-    console.log($(this).serialize());
+    var formData = new FormData(this);
+    formData.append("method",'addEsrb');
     //inicializando ajax
     $.ajax({
         method: "POST",
         //seteando metodo a utilizar en controlador y seteando la data
-        data: {
-            "esrb": $(this).serialize(),
-            "method":"addEsrb"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         //url (?
         url: "../http/controllers/EsrbController.php",
         success: function(result) {
@@ -35,14 +35,14 @@ $( "#frmRegEsrb" ).submit(function( event ) {
 //AJAX DE ACTUALIZAR REGISTRO
 $( "#frmUpdateRegEsrb" ).submit(function( event ) {
     event.preventDefault();
-    console.log($(this).serialize());
+    var formData = new FormData(this);
+    formData.append("method",'updateEsrb');
     $.ajax({
         method: "POST",
         //seteamos el metodo a utilizar en el controlador y la data
-        data: {
-            "esrb": $(this).serialize(),
-            "method":"updateEsrb"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         url: "../http/controllers/EsrbController.php",
         success: function(result) {
             var output = result.split("|");
@@ -64,14 +64,15 @@ $("table").on('click', ".edit", function () {
     console.log("entra");
     //obtenemos el id (OJO AGREGAR CLASE ID A TODOS LOS CAMPOS DE LAS TABLAS QUE ALMACENAN EL ID)
     var id = $(this).closest("tr").find(".id").text();
-    console.log(id);
+    var formData = new FormData();
+    formData.append("method",'getEsrb');
+    formData.append("id",id.toString());
     $.ajax({
         method: "POST",
         //seteando id y metodo a utilizar en el controlador
-        data: {
-            "id": id,
-            "method":"getEsrb"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         url: "../http/controllers/EsrbController.php",
         success: function(result) {
             //parseamos el resultado a json
@@ -98,15 +99,16 @@ $("table").on('click', ".edit", function () {
 $("#esrb-search").keypress( function (e) {
     //validacion para verificar si presiono enter
     if(e.which==13){
-
+        var formData = new FormData();
+        formData.append("method",'searchEsrb');
+        formData.append("param", $(this).val().toString());
         //inicializando ajax
         $.ajax({
             method: "POST",
             //seteando metodo a utilizar en controlador y seteando la data
-            data: {
-                "param": $("#esrb-search").val(),
-                "method":"searchEsrb"
-            },
+            data: formData,
+            contentType: false,
+            processData: false,
             //url (?
             url: "../http/controllers/EsrbController.php",
             success: function(result) {
@@ -119,10 +121,20 @@ $("#esrb-search").keypress( function (e) {
 
                 //generando un row por registro
                 for(var i=0;i<$data.length;i++){
+                    var checked ="";
+                    if($data[i].state ==1){
+                        checked="checked";
+                    }
                     console.log($data[i].name);
                     $("#allEsrb").append("<tr>" +
                         "<td  class='id' style=\"visibility: hidden; display:none;\">"+$data[i].id+"</td>" +
                         "<td>"+$data[i].name+"</td>" +
+                        "<td>"+
+                        "<label>" +
+                        "<input type=\"checkbox\" disabled "+checked+" />" +
+                        "<span></span>\n" +
+                        "</label>"+
+                        "</td>"+
                         "<td>" +
                         "<a href='#actualizarGenero' class='edit modal-trigger'>" +
                         "<i class='material-icons tooltipped editar' data-position='left' data-delay='50' data-tooltip='Editar'>mode_edit</i>" +

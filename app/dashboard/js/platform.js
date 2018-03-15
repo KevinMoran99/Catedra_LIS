@@ -6,15 +6,15 @@ $(document).ready(function() {
 //AJAX DE AGREGAR REGISTRO
 $( "#frmPlatform" ).submit(function( event ) {
     event.preventDefault();
-    console.log($(this).serialize());
+    var formData = new FormData(this);
+    formData.append("method",'addPlatform');
     //inicializando ajax
     $.ajax({
         method: "POST",
         //seteando metodo a utilizar en controlador y seteando la data
-        data: {
-            "platform": $(this).serialize(),
-            "method":"addPlatform"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         //url (?
         url: "../http/controllers/PlatformController.php",
         success: function(result) {
@@ -35,14 +35,14 @@ $( "#frmPlatform" ).submit(function( event ) {
 //AJAX DE ACTUALIZAR REGISTRO
 $( "#frmUpdatePlatform" ).submit(function( event ) {
     event.preventDefault();
-    console.log($(this).serialize());
+    var formData = new FormData(this);
+    formData.append("method",'updatePlatform');
     $.ajax({
         method: "POST",
         //seteamos el metodo a utilizar en el controlador y la data
-        data: {
-            "platform": $(this).serialize(),
-            "method":"updatePlatform"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         url: "../http/controllers/PlatformController.php",
         success: function(result) {
             var output = result.split("|");
@@ -64,14 +64,15 @@ $("table").on('click', ".edit", function () {
     console.log("entra");
     //obtenemos el id (OJO AGREGAR CLASE ID A TODOS LOS CAMPOS DE LAS TABLAS QUE ALMACENAN EL ID)
     var id = $(this).closest("tr").find(".id").text();
-    console.log(id);
+    var formData = new FormData();
+    formData.append("method",'getPlatform');
+    formData.append("id",id.toString());
     $.ajax({
         method: "POST",
         //seteando id y metodo a utilizar en el controlador
-        data: {
-            "id": id,
-            "method":"getPlatform"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         url: "../http/controllers/PlatformController.php",
         success: function(result) {
             //parseamos el resultado a json
@@ -97,16 +98,18 @@ $("table").on('click', ".edit", function () {
 /*METODO PARA BUSCAR*/
 $("#platform-search").keypress( function (e) {
     //validacion para verificar si presiono enter
-    if(e.which==13){
 
+    if(e.which==13){
+        var formData = new FormData();
+        formData.append("method",'searchPlatform');
+        formData.append("param",$(this).val().toString());
         //inicializando ajax
         $.ajax({
             method: "POST",
             //seteando metodo a utilizar en controlador y seteando la data
-            data: {
-                "param": $("#platform-search").val(),
-                "method":"searchPlatform"
-            },
+            data: formData,
+            contentType: false,
+            processData: false,
             //url (?
             url: "../http/controllers/PlatformController.php",
             success: function(result) {
@@ -120,10 +123,20 @@ $("#platform-search").keypress( function (e) {
 
                 //generando un row por registro
                 for(var i=0;i<$data.length;i++){
+                    var checked ="";
+                    if($data[i].state ==1){
+                        checked="checked";
+                    }
                     console.log($data[i].name);
                     $("#allPlatforms").append("<tr>" +
                         "<td  class='id' style=\"visibility: hidden; display:none;\">"+$data[i].id+"</td>" +
                         "<td>"+$data[i].name+"</td>" +
+                        "<td>"+
+                        "<label>" +
+                        "<input type=\"checkbox\" disabled "+checked+" />" +
+                        "<span></span>\n" +
+                        "</label>"+
+                        "</td>"+
                         "<td>" +
                         "<a href='#actualizarPlataforma' class='edit modal-trigger'>" +
                         "<i class='material-icons tooltipped editar' data-position='left' data-delay='50' data-tooltip='Editar'>mode_edit</i>" +
