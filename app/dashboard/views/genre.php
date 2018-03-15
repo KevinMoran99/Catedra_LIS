@@ -115,8 +115,8 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                <input name="state" value="1" type="radio" checked />
-                                <span>Activo</span>
+                                        <input name="state" value="1" type="radio" checked />
+                                        <span>Activo</span>
                                     </label>
                                 </p>
                             </div>

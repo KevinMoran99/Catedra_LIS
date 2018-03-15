@@ -212,9 +212,11 @@ class Game implements Interfaces\ModelInterface
 
 
 
-    public function getAll()
-    {
-        $query ="SELECT * FROM games";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM games WHERE state = 1";
+        else
+            $query ="SELECT * FROM games";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

@@ -83,6 +83,12 @@ nav label {
     width: 20px !important;
 }
 
+/*Arreglando el layout de los select2 ubicados en forms*/
+.formSelect + .select2-container {
+    margin-left: 0;
+    width: 100% !important;
+}
+
 @media only screen and (max-width: 992px) {
     .wrapper {
         margin-left: 0;

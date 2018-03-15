@@ -138,7 +138,7 @@ class StorePage implements Interfaces\ModelInterface
 
 
 
-    public function getAll(){
+    public function getAll($active = false){
         $query ="SELECT * FROM store_pages";
         $params = array(null);
         return Model\Connection::select($query,$params);

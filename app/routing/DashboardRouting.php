@@ -34,16 +34,18 @@ switch ($control){
         include("../dashboard/views/stadistics.php");
         break;
     case "support":
-
+        $page = $_POST["current"];
         include("../dashboard/views/support.php");
         break;
     case "user":
         include("../dashboard/views/user.php");
         break;
     case "spec":
+        $page = $_POST["current"];
         include("../dashboard/views/spec.php");
         break;
     case "typeSpec":
+        $page = $_POST["current"];
         include("../dashboard/views/typeSpec.php");
         break;
 }

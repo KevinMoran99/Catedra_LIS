@@ -79,8 +79,11 @@ class Genre implements Interfaces\ModelInterface
 
     //query methods
 
-    public function getAll(){
-        $query ="SELECT * FROM genres";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM genres WHERE state = 1";
+        else
+            $query ="SELECT * FROM genres";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

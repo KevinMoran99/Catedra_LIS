@@ -24,15 +24,15 @@ class Faq implements Interfaces\ModelInterface
      * @param $id
      * @param $title
      * @param $description
-     * @param $storePage
+     * @param $user
      * @param $state
      */
-    public function init($id, $title, $description, $storePage, $state)
+    public function init($id, $title, $description, $user, $state)
     {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
-        $this->user = $storePage;
+        $this->user = $user;
         $this->state = $state;
     }
 
@@ -119,8 +119,11 @@ class Faq implements Interfaces\ModelInterface
 
 
 
-    public function getAll(){
-        $query ="SELECT * FROM faqs";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM faqs WHERE state = 1";
+        else
+            $query ="SELECT * FROM faqs";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];
@@ -153,14 +156,14 @@ class Faq implements Interfaces\ModelInterface
     }
 
     public function insert(){
-        $query ="INSERT INTO faqs (title,description,store_page_id,state) VALUES(?,?,?,?)";
+        $query ="INSERT INTO faqs (title,description,user_id,state) VALUES(?,?,?,?)";
         $params= array($this->getTitle(),$this->getDescription(),$this->getUser()->getId(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update(){
-        $query ="UPDATE faqs SET title=?,description=?,store_page_id=?,state=? WHERE id=?";
-        $params= array($this->getTitle(),$this->getDescription(),$this->getUser()->getId(),$this->getState(),$this->getId());
+        $query ="UPDATE faqs SET title=?,description=?,state=? WHERE id=?";
+        $params= array($this->getTitle(),$this->getDescription(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 

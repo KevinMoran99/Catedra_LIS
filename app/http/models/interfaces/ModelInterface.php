@@ -10,7 +10,7 @@ namespace Http\Models\Interfaces;
 
 interface ModelInterface
 {
-    public function getAll();
+    public function getAll($active = false);
     public function getById();
     public function insert();
     public function update();
