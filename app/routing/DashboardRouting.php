@@ -7,6 +7,7 @@
  */
 include_once ("../../vendor/autoload.php");
 $control =$_POST['control'];
+$page = 1;
 /*enviando la vista dependiendo de la ruta solicitada*/
 switch ($control){
     case "main":
