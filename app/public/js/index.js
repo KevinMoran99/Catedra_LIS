@@ -5,7 +5,6 @@ $(document).ready(function() {
     var elem = document.querySelector('select');
     //var instance = M.FormSelect.init(elem);
     $('.button-collapse').sidenav();
-    $('#menu-user').hide();
     $('#filter-container').hide();
     $('.js-example-basic-single').select2();
     attach("main");
@@ -76,16 +75,45 @@ $(".menu-item").click(function(event) {
 });
 
 //Código de login provisional
-$('form').submit(function(e) {
+$('#frmSignIn').submit(function(e) {
     e.preventDefault();
-    //Reemplazamos link de Iniciar Sesion por el de Cuenta 
-    $('#menu-login').toggle();
-    $('#menu-user').toggle();
+    var formData = new FormData(this);
+    formData.append("method","login");
+    $.ajax({
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        url: "../http/controllers/UserController.php",
+        success: function (result) {
+            var output = result.split("|");
+            if (output[0] == "Éxito") {
+                if (output[1] == "admin")
+                    window.location.replace("../dashboard/index.php");
+                else
+                    window.location.replace("index.php");
+            }
+            else
+                swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+        }
+    });
 });
 
-$('.logout').click(function() {
-    location.reload();
+$('#logout').click(function() {
+    var formData = new FormData();
+    formData.append("method","logout");
+    $.ajax({
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        url: "../http/controllers/UserController.php",
+        success: function (result) {
+            window.location.reload();
+        }
+    });
 });
+
 
 
 //Al dar aceptar en el modal de términos y condiciones

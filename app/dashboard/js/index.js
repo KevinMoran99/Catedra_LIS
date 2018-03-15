@@ -48,11 +48,13 @@ $(".menu-item").click(function (event) {
 });
 
 $("#logout").click(function (e) {
+    var formData = new FormData();
+    formData.append("method","logout");
    $.ajax({
        method: 'POST',
-       data: {
-           "method" : "logout"
-       },
+       data: formData,
+       contentType: false,
+       processData: false,
        url: "../http/controllers/UserController.php",
        success: function (result) {
            console.log(result);

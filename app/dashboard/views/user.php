@@ -1,15 +1,20 @@
+<?php
+//declarando namespace a utilizar
+use Http\Controllers as Control;
+use Http\Helpers as Helper;
+?>
+
 <!--vista de usuarios-->
 <div class="wrapper">
     <div class="row search-box">
         <!--Añadir filtro para usuario-->
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
-                <form action="" method="GET" id="form-filtro">
-                    <div class="input-field">
-                        <input id="icon_prefix" type="text" class="validate filtro" name="filtro" placeholder="Buscar usuario">
-                    </div>
-                </form>
+                <div class="input-field">
+                    <input id="user-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar usuario">
+                </div>
             </div>
+            <button class="btn light-blue darken-2" id="revert">Revertir</button>
         </div>
     </div>
     <!--visualizar datos-->
@@ -32,43 +37,62 @@
                                         <th style="visibility: hidden; display:none;">ID</th>
                                         <th>Nombre de usuario</th>
                                         <th>Correo electronico</th>
+                                        <th>Tipo</th>
+                                        <th>Estado</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">1</td>
-                                        <td>oscarmendez</td>
-                                        <td>someone@example.com</td>
-                                        <td>
-                                            <a href="#nuevoUsuario" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">2</td>
-                                        <td>kevinmoran</td>
-                                        <td>someone@example.com</td>
-                                        <td>
-                                            <a href="#nuevoUsuario" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">3</td>
-                                        <td>raulalvarado</td>
-                                        <td>someone@example.com</td>
-                                        <td>
-                                            <a href="#nuevoUsuario" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tbody id="allUsers">
+                                <!-- INICIO DEL PAGINATE -->
+                                <?php
+                                    //mostrando los datos solicitados en base al paginate
+                                    $current_page = $page;
+                                    $user = new Control\UserController();
+                                    $paginate = new Helper\Paginate($user->getAllUsers(),$current_page);
+                                    foreach ($paginate->getData() as $row){
+                                        $checked = "";
+                                        if($row->getState()==1){
+                                            $checked = "checked";
+                                        }
+                                        echo "
+                                                        <tr>
+                                                            <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
+                                                            <td>".$row->getAlias()."</td>
+                                                            <td>".$row->getEmail()."</td>
+                                                            <td>".$row->getUserType()->getName()."</td>
+                                                            <td>
+                                                                <label>
+                                                                    <input type=\"checkbox\" disabled ".$checked.">
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <a  href='#actualizarUsuario' class=\"edit modal-trigger\">
+                                                                     <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
+                                                                 </a>
+                                                             </td>
+                                                        </tr>
+                                                    
+                                                    ";
+                                    }
+                                ?>
+                                <!--FIN DE PAGINATE-->
                                 </tbody>
                             </table>
+                            <br>
+                            <div id="userLinks">
+                                <!--INICIO DE ENLACES DE PAGINATE-->
+                                <?php
+                                //generando los links de paginacion
+                                echo "<div class='row'>";
+                                for($i=1;$i<=$paginate->linksNumber();$i++){
+                                    echo"<a class='col s1 red-text' onclick=\"attach('user' ,$i)\">$i</a>";
+                                }
+                                echo "</div>"
+                                ?>
+                            </div>
+                            <!--FIN DE ENLACES DE PAGINATE-->
                         </div>
                     </div>
                 </div>
@@ -93,23 +117,34 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmregUser">
+            <div class="col s12 m8 offset-m2">
+                <form id="frmUser">
                     <div class="input-field">
-                        <input id="registerMail" type="text" required>
-                        <label for="registerMail">Correo electronico</label>
+                        <input id="userAlias" name="alias" type="text" required>
+                        <label for="userAlias">Nombre de usuario</label>
                     </div>
                     <div class="input-field">
-                        <input id="registerUser" type="text" required>
-                        <label for="registerUser">Nombre de usuario</label>
+                        <input id="userEmail" name="email" type="text" required>
+                        <label for="userEmail">Correo electronico</label>
                     </div>
                     <div class="input-field">
-                        <input id="registerPass" type="password" required>
-                        <label for="registerPass">Contraseña</label>
+                        <input id="userPass" name="pass" type="password" required>
+                        <label for="userPass">Contraseña</label>
                     </div>
                     <div class="input-field">
-                        <input id="registerPassRepeat" type="password" required>
-                        <label for="registerPassRepeat">Repetir contraseña</label>
+                        <input id="userPassConfirm" name="passConfirm" type="password" required>
+                        <label for="userPassConfirm">Repetir contraseña</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="userType" class="formSelect" name="userType" required>
+                            <option value="" selected="true" disabled="disabled">Tipo de usuario</option>
+                            <?php
+                            $typeSpecs = new Control\UserTypeController();
+                            foreach ($typeSpecs->getAllActiveUserTypes() as $type) {
+                                echo "<option value=".$type->getId().">".$type->getName()."</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="row">
                         <h6 class="center">Seleccione el estado del usuario:</h6>
@@ -117,7 +152,7 @@
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" type="radio" value="1" checked />
                                 <span>Activo</span>
                             </label>
                                 </p>
@@ -125,7 +160,7 @@
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" type="radio" value="0"/>
                                 <span>Inactivo</span>
                             </label>
                                 </p>
@@ -142,4 +177,76 @@
     </div>
 </div>
 
+
+<!--Modal de actualización de usuarios-->
+<div id="actualizarUsuario" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Actualizar usuario</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <form id="frmUserUpdate">
+                    <input type="hidden" name="id" id="userId">
+                    <div class="input-field">
+                        <input id="userAliasU" name="alias" type="text" required>
+                        <label id="userAliasLabelU" for="userAliasU">Nombre de usuario</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="userEmailU" name="email" type="text" required>
+                        <label id="userEmailLabelU" for="userEmailU">Correo electronico</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="userPassU" name="pass" type="password">
+                        <label for="userPassU">Contraseña</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="userPassConfirmU" name="passConfirm" type="password">
+                        <label for="userPassConfirmU">Repetir contraseña</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="userTypeU" class="formSelect" name="userType" required>
+                            <option value="" selected="true" disabled="disabled">Tipo de usuario</option>
+                            <?php
+                            $typeSpecs = new Control\UserTypeController();
+                            foreach ($typeSpecs->getAllActiveUserTypes() as $type) {
+                                echo "<option value=".$type->getId().">".$type->getName()."</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <h6 class="center">Seleccione el estado del usuario:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                        <input id="userStateA" name="state" type="radio" value="1" checked />
+                                        <span>Activo</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                        <input id="userStateI" name="state" type="radio" value="0"/>
+                                        <span>Inactivo</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/select.js"></script>
 <script src="js/user.js"></script>

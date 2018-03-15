@@ -15,7 +15,7 @@
                     <form id="frmSignIn">
                         <h3>Iniciar sesión</h3>
                         <div class="input-field">
-                            <input id="signInUser" name="name" type="text" required>
+                            <input id="signInUser" name="alias" type="text" required>
                             <label for="signInUser">Nombre de usuario</label>
                         </div>
                         <div class="input-field">

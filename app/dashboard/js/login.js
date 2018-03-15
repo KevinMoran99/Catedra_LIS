@@ -1,12 +1,13 @@
 $('#frmSignIn').submit(function (e) {
     e.preventDefault();
 
+    var formData = new FormData(this);
+    formData.append("method","login");
     $.ajax({
         method: 'POST',
-        data: {
-            "input" : $(this).serialize(),
-            "method" : "login"
-        },
+        data: formData,
+        contentType: false,
+        processData: false,
         url: "../http/controllers/UserController.php",
         success: function (result) {
             var output = result.split("|");
