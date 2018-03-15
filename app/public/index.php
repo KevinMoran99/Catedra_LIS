@@ -10,7 +10,7 @@
 
 <body>
 
-    <?php include 'templates/sidenav.html';?>
+    <?php include 'templates/sidenav.php';?>
     <div class="container" id="container">
     </div>
 </body>

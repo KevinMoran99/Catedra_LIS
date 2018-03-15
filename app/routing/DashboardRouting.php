@@ -38,6 +38,7 @@ switch ($control){
         include("../dashboard/views/support.php");
         break;
     case "user":
+        $page = $_POST["current"];
         include("../dashboard/views/user.php");
         break;
     case "spec":

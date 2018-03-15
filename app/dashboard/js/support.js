@@ -143,7 +143,7 @@ $("#faq-search").keypress( function (e) {
                         "</label>" +
                         "</td>" +
                         "<td>" +
-                        "<a href='#actualizarTipoSpec' class='edit modal-trigger'>" +
+                        "<a href='#actualizarFaq' class='edit modal-trigger'>" +
                         "<i class='material-icons tooltipped editar' data-position='left' data-delay='50' data-tooltip='Editar'>mode_edit</i>" +
                         "</a>" +
                         "</td>");

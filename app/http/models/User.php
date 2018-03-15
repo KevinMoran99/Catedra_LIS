@@ -9,6 +9,7 @@
 namespace Http\Models;
 //require ("../../../vendor/autoload.php");
 use Http\Models as Model;
+use Http\Helpers as Helper;
 use Http\Models\Interfaces as Interfaces;
 
 class User implements Interfaces\ModelInterface
@@ -225,10 +226,16 @@ class User implements Interfaces\ModelInterface
 
     //Verifica que la contraseña sea valida y hace login
     public function login () {
-        $query ="SELECT * FROM users WHERE (alias = ? OR email = ?) AND pass = ?";
-        $params = array($this->getAlias(), $this->getAlias(), $this->getPass());
+        //Obteniendo contraseña para comparar
+        $query ="SELECT * FROM users WHERE (alias = ? OR email = ?) AND state = 1";
+        $params = array($this->getAlias(), $this->getAlias());
         $user = Model\Connection::selectOne($query,$params);
-        if ($user) {
+        //Desencriptando contraseña
+        $pass = Helper\Encryptor::decrypt($user['pass'], true);
+
+        //Comparando con la contraseña proporcionada
+        if ($pass == $this->getPass()) {
+            //Si las contraseñas concuerdan, se hace el login
             $this->setId($user['id']);
             $this->setAlias($user['alias']);
             $this->setEmail($user['email']);

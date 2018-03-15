@@ -36,7 +36,7 @@
 
 
 
-<!-- menu en movil-->
+<!-- menu -->
 <ul id="menu" class="sidenav">
     <li>
         <div id="menu-logo" class="row">
@@ -56,15 +56,37 @@
     </a></li>
     </div>
     <footer class="page-footer white">
-        <div id="menu-login" class="container">
-            <div class="center-align row">
-                <div id="login-collection" class="collection col s10 offset-s1">
-                    <a href="#modalSignIn" class="collection-item active modal-trigger indigo lighten-2">Iniciar sesión</a>
-                    <a href="#modalSignUp" class="collection-item modal-trigger indigo-text lighten-2">Registrarse</a>
+        <?php
+            //Autenticacion
+            include_once ("../../vendor/autoload.php");
+            if (!session_id()) session_start();
+            if (!isset($_SESSION['user'])) {
+                ?>
+                <div id="menu-login" class="container">
+                    <div class="center-align row">
+                        <div id="login-collection" class="collection col s10 offset-s1">
+                            <a href="#modalSignIn" class="collection-item active modal-trigger indigo lighten-2">Iniciar
+                                sesión</a>
+                            <a href="#modalSignUp" class="collection-item modal-trigger indigo-text lighten-2">Registrarse</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <li id="menu-user" class="center-align"><a class="dropdown-trigger" href="#!" data-target="drpAccount"><i class="material-icons left">account_circle</i>Mi perfil<i class="material-icons right">keyboard_arrow_right</i></a></li>
+                <?php
+            }
+            else {
+                ?>
+                <li id="menu-user" class="center-align"><a class="dropdown-trigger" href="#!"
+                                                           data-target="drpAccount"><i class="material-icons left">account_circle</i>Mi
+                        perfil<i class="material-icons right">keyboard_arrow_right</i></a></li>
+                <?php
+
+                //Si es un admin, se redirige a dashboard
+                if ($_SESSION['user']->getUserType()->getId() == 1) {
+                    header("Location:../dashboard/index.php");
+                    die();
+                }
+            }
+        ?>
         <div class="footer-copyright">
             <div class="container center-align  black-text">
                 © 2018 Copyright
@@ -98,7 +120,7 @@
 </ul>-->
 <ul id="drpAccount" class="dropdown-content">
     <li><a class="modal-trigger" href="#modalUser">Editar información</a></li>
-    <li><a href="/Catedra_LIS/public/">Cerrar sesión</a></li>
+    <li><a id="logout" href="#">Cerrar sesión</a></li>
 </ul>
 
 
@@ -118,11 +140,11 @@
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmSignIn">
                     <div class="input-field">
-                        <input id="signInUser" type="text" required>
+                        <input id="signInUser" name="alias" type="text" required>
                         <label for="signInUser">Nombre de usuario</label>
                     </div>
                     <div class="input-field">
-                        <input id="signInPass" type="password" required>
+                        <input id="signInPass" name="pass" type="password" required>
                         <label for="signInPass">Contraseña</label>
                     </div>
                     <div class="row">

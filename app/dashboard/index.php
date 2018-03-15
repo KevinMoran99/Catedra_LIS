@@ -9,8 +9,13 @@
 
         <!--Autenticación-->
         <?php
+            include_once ("../../vendor/autoload.php");
             if (!session_id()) session_start();
-            if (!$_SESSION['user']){
+            if (!isset($_SESSION['user'])){
+                header("Location:login.php");
+                die();
+            }
+            if ($_SESSION['user']->getUserType()->getId() != 1) {
                 header("Location:login.php");
                 die();
             }
