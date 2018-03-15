@@ -120,19 +120,19 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2">
                 <form id="frmUser">
                     <div class="input-field">
-                        <input id="userAlias" name="alias" type="text" required>
+                        <input id="userAlias" name="alias" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
                         <label for="userAlias">Nombre de usuario</label>
                     </div>
                     <div class="input-field">
-                        <input id="userEmail" name="email" type="text" required>
+                        <input id="userEmail" name="email" type="email" required>
                         <label for="userEmail">Correo electronico</label>
                     </div>
                     <div class="input-field">
-                        <input id="userPass" name="pass" type="password" required>
+                        <input id="userPass" name="pass" type="password" min="6" max="50" required>
                         <label for="userPass">Contraseña</label>
                     </div>
                     <div class="input-field">
-                        <input id="userPassConfirm" name="passConfirm" type="password" required>
+                        <input id="userPassConfirm" name="passConfirm" type="password" min="6" max="50" required>
                         <label for="userPassConfirm">Repetir contraseña</label>
                     </div>
                     <div class="input-field">
@@ -169,7 +169,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -191,19 +191,19 @@ use Http\Helpers as Helper;
                 <form id="frmUserUpdate">
                     <input type="hidden" name="id" id="userId">
                     <div class="input-field">
-                        <input id="userAliasU" name="alias" type="text" required>
+                        <input id="userAliasU" name="alias" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
                         <label id="userAliasLabelU" for="userAliasU">Nombre de usuario</label>
                     </div>
                     <div class="input-field">
-                        <input id="userEmailU" name="email" type="text" required>
+                        <input id="userEmailU" name="email" type="email" required>
                         <label id="userEmailLabelU" for="userEmailU">Correo electronico</label>
                     </div>
                     <div class="input-field">
-                        <input id="userPassU" name="pass" type="password">
+                        <input id="userPassU" name="pass" min="6" max="50" type="password">
                         <label for="userPassU">Contraseña</label>
                     </div>
                     <div class="input-field">
-                        <input id="userPassConfirmU" name="passConfirm" type="password">
+                        <input id="userPassConfirmU" name="passConfirm" min="6" max="50" type="password">
                         <label for="userPassConfirmU">Repetir contraseña</label>
                     </div>
                     <div class="input-field">
@@ -240,7 +240,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>

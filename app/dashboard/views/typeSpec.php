@@ -116,7 +116,7 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmTipoSpec">
                     <div class="input-field">
-                        <input id="typeSpecName" name="name" type="text" required>
+                        <input id="typeSpecName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
                         <label for="typeSpecName">Nombre de Tipo</label>
                     </div>
 
@@ -143,7 +143,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -165,7 +165,7 @@ use Http\Helpers as Helper;
                 <form id="frmTipoSpecUpdate">
                     <input type="hidden" name="id" id="typeSpecId">
                     <div class="input-field">
-                        <input id="typeSpecNameU" name="name" type="text" required>
+                        <input id="typeSpecNameU" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
                         <label id="typeSpecNameLabelU" for="typeSpecNameU">Nombre de Tipo</label>
                     </div>
 
@@ -192,7 +192,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>

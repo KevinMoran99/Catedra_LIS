@@ -40,7 +40,7 @@ class SpecController
         $validateError= "";
         //si no es alfanumerico, setear el flag a true y agregar mensaje de error
         if(!$validator->validateText($name,3,50)){
-            $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre de la especificación";
+            $validateError = "Solo se permiten números, letras y signos de puntuación en el nombre de la especificación";
             $flag = true;
         }
         //si no se ha seteado tipo de spec, setear le flag a true y agregar mensaje de error
