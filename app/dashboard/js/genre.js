@@ -126,9 +126,19 @@ $("#genre-search").keypress( function (e) {
                 //generando un row por registro
                 for(var i=0;i<$data.length;i++){
                     console.log($data[i].name);
+                    var checked ="";
+                    if($data[i].state ==1){
+                        checked="checked";
+                    }
                     $("#allGenres").append("<tr>" +
                         "<td  class='id' style=\"visibility: hidden; display:none;\">"+$data[i].id+"</td>" +
                         "<td>"+$data[i].name+"</td>" +
+                        "<td>"+
+                        "<label>" +
+                        "<input type=\"checkbox\" disabled "+checked+" />" +
+                        "<span></span>\n" +
+                        "</label>"+
+                        "</td>"+
                         "<td>" +
                         "<a href='#actualizarGenero' class='edit modal-trigger'>" +
                         "<i class='material-icons tooltipped editar' data-position='left' data-delay='50' data-tooltip='Editar'>mode_edit</i>" +
