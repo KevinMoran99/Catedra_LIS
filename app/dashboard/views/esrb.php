@@ -1,14 +1,17 @@
+<?php
+//declarando namespace a utilizar
+use Http\Controllers as Control;
+use Http\Helpers as Helper;
+?>
 
 <div class="wrapper">
     <div class="row search-box">
         <!--Añadir filtro para clasificaciones-->
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
-                <form action="" method="GET" id="form-filtro">
                     <div class="input-field">
-                        <input id="icon_prefix" type="text" class="validate filtro" name="filtro" placeholder="Buscar clasificacion">
+                        <input id="esrb-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar clasificacion">
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -35,36 +38,43 @@
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">1</td>
-                                        <td>Mature</td>
-                                        <td>
-                                            <a href="#nuevaClasificacion" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">2</td>
-                                        <td>Teen</td>
-                                        <td>
-                                            <a href="#nuevaClasificacion" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">3</td>
-                                        <td>Everyone</td>
-                                        <td>
-                                            <a href="#nuevaClasificacion" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tbody id="allEsrb">
+                                <!-- INICIO DEL PAGINATE -->
+                                <?php
+                                //mostrando los datos solicitados en base al paginate
+                                $current_page = $page;
+                                $esrb = new Control\EsrbController();
+                                $paginate = new Helper\Paginate($esrb->getAllEsrb(),$current_page);
+                                foreach ($paginate->getData() as $row){
+                                    echo "
+                                                <tr>
+                                                    <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
+                                                    <td>".$row->getName()."</td>
+                                                    <td>
+                                                        <a  href='#actualizarClasificacion' class=\"edit modal-trigger\">
+                                                             <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
+                                                         </a>
+                                                     </td>
+                                                </tr>
+                                            
+                                            ";
+                                }
+                                ?>
+                                <!--FIN DE PAGINATE-->
                                 </tbody>
                             </table>
+                            <br>
+                            <div id="esrbLinks">
+                                <!--INICIO DE ENLACES DE PAGINATE-->
+                                <?php
+                                //generando los links de paginacion
+                                echo "<div class='row'>";
+                                for($i=1;$i<=$paginate->linksNumber();$i++){
+                                    echo"<a class='col s1 red-text' onclick=\"attach('esrb' ,$i)\">$i</a>";
+                                }
+                                echo "</div>"
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,8 +102,8 @@
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmRegEsrb">
                     <div class="input-field">
-                        <input id="registerUser" type="text" required>
-                        <label for="registerUser">Nombre de clasificacion</label>
+                        <input id="nombreClasificacion" name="name" type="text" required>
+                        <label for="nombreClasificacion">Nombre de clasificacion</label>
                     </div>
 
                     <div class="row">
@@ -102,7 +112,7 @@
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" value="1" type="radio" checked />
                                 <span>Activo</span>
                             </label>
                                 </p>
@@ -110,7 +120,7 @@
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" value="0" type="radio" checked />
                                 <span>Inactivo</span>
                             </label>
                                 </p>
@@ -127,4 +137,53 @@
     </div>
 </div>
 
-<script src="js/user.js"></script>
+
+<!--Actualizar Esrb-->
+<div id="actualizarClasificacion" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Actualizar clasificacion</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmUpdateRegEsrb">
+                    <input type="hidden" name="id" id="esrbId">
+                    <div class="input-field">
+                        <input id="esrbUName" name="name" type="text" required>
+                        <label for="esrbUName" class="active">Nombre de clasificacion</label>
+                    </div>
+
+                    <div class="row">
+                        <h6 class="center">Seleccione el estado del clasificacion:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                        <input name="state" id="esrbStateA" value="1" type="radio" checked />
+                                        <span>Activo</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                        <input name="state" id="esrbStateI" value="0" type="radio" checked />
+                                        <span>Inactivo</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/esrb.js"></script>
