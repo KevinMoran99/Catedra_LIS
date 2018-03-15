@@ -137,37 +137,22 @@ try {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addGenre") {
-            //obtenemos la data
-            $data = $_POST["genre"];
-            //creamos un array el cual llenaremos con la data
-            $params = array();
-            //filleamos el array
-            parse_str($data, $params);
             //creamos un nuevo registro con los datos del array
-            (new GenreController())->addGenre($params['name'], $params['state']);
+            (new GenreController())->addGenre($_POST['name'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getGenre") {
-            //obtenemos el id proporcionado
-            $id = $_POST["id"];
             //obtenemos el registro
-            (new GenreController())->getGenre($id, true);
+            (new GenreController())->getGenre($_POST["id"], true);
         }
 
         if($_POST["method"] == "updateGenre"){
-            //obtenemos la data
-            $data = $_POST["genre"];
-            //creamos un array el cual llenaremos con la data
-            $params = array();
-            //llenamos el array
-            parse_str($data, $params);
-            //actualizamos el registro con los datos del array
-            (new GenreController())->updateGenre($params['id'],$params['name'],$params['state']);
+            //actualizamos el registro
+            (new GenreController())->updateGenre($_POST['id'],$_POST['name'],$_POST['state']);
         }
 
         if($_POST["method"] == "searchGenre"){
-            $data = $_POST["param"];
-            (new GenreController())->searchGenre($data,true);
+            (new GenreController())->searchGenre($_POST["param"],true);
         }
     }
 }
