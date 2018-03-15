@@ -10,7 +10,7 @@ use Http\Helpers as Helper;
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
                     <div class="input-field">
-                        <input id="publisher-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar publicador">
+                        <input id="publisher-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por nombre o estado">
                     </div>
             </div>
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
@@ -35,6 +35,7 @@ use Http\Helpers as Helper;
                                     <tr class="table-users">
                                         <th style="visibility: hidden; display:none;">ID</th>
                                         <th>Nombre de Publicador</th>
+                                        <th>Estado</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
@@ -47,10 +48,20 @@ use Http\Helpers as Helper;
                                 $publishers = new Control\PublisherController();
                                 $paginate = new Helper\Paginate($publishers->getAllPublishers(),$current_page);
                                 foreach ($paginate->getData() as $row){
+                                    $checked = "";
+                                    if($row->getState()==1){
+                                        $checked = "checked";
+                                    }
                                     echo "
                                                 <tr>
                                                     <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
                                                     <td>".$row->getName()."</td>
+                                                    <td> 
+                                                        <label>
+                                                            <input type=\"checkbox\" disabled ".$checked." />
+                                                            <span>Estado</span>
+                                                         </label>
+                                                    </td>
                                                     <td>
                                                         <a  href='#actualizarPublicador' class=\"edit modal-trigger\">
                                                              <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
@@ -104,7 +115,7 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmPublisher">
                     <div class="input-field">
-                        <input id="publisherName" name="name" type="text" required>
+                        <input id="publisherName" name="name" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
                         <label for="registerUser">Nombre de publicador</label>
                     </div>
 
@@ -154,7 +165,7 @@ use Http\Helpers as Helper;
                 <form id="frmUpdatePublisher">
                     <input type="hidden" class="id" id="publisherId" name="id">
                     <div class="input-field">
-                        <input id="publisherUName" name="name" type="text" required>
+                        <input id="publisherUName" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
                         <label for="publisherUName" class="active">Nombre de publicador</label>
                     </div>
 
