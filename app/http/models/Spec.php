@@ -100,8 +100,11 @@ class Spec implements Interfaces\ModelInterface
 
     //query methods
 
-    public function getAll(){
-        $query ="SELECT * FROM specs";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM specs WHERE state = 1";
+        else
+            $query ="SELECT * FROM specs";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

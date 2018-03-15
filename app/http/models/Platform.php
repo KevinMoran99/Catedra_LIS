@@ -80,8 +80,11 @@ class Platform implements Interfaces\ModelInterface
 
     //query methods
 
-    public function getAll(){
-        $query ="SELECT * FROM platforms";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM platforms WHERE state = 1";
+        else
+            $query ="SELECT * FROM platforms";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

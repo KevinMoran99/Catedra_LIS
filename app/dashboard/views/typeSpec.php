@@ -1,15 +1,20 @@
+<?php
+//declarando namespace a utilizar
+use Http\Controllers as Control;
+use Http\Helpers as Helper;
+?>
+
 <!--vista de tipo de spec-->
 <div class="wrapper">
     <div class="row search-box">
         <!--Añadir filtro para Tipos de especificaciones-->
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
-                <form action="" method="GET" id="form-filtro">
-                    <div class="input-field">
-                        <input id="icon_prefix" type="text" class="validate filtro" name="filtro" placeholder="Buscar Tipo de especificacion">
-                    </div>
-                </form>
+                <div class="input-field">
+                    <input id="typeSpec-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar Tipo de especificacion">
+                </div>
             </div>
+            <button class="btn light-blue darken-2" id="revert">Revertir</button>
         </div>
     </div>
     <!--visualizar datos-->
@@ -31,31 +36,59 @@
                                     <tr class="table-users">
                                         <th style="visibility: hidden; display:none;">ID</th>
                                         <th>Nombre de Tipo</th>
+                                        <th>Estado</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">1</td>
-                                        <td>GPU</td>
-                                        <td>
-                                            <a href="#nuevoTipoSpec" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="visibility: hidden; display:none;">2</td>
-                                        <td>CPU</td>
-                                        <td>
-                                            <a href="#nuevoTipoSpec" onclick="" class="edit modal-trigger">
-                                                <i class="material-icons tooltipped editar" data-position="left" data-delay="50">mode_edit</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tbody id="allTypeSpecs">
+                                    <!-- INICIO DEL PAGINATE -->
+                                    <?php
+                                    //mostrando los datos solicitados en base al paginate
+                                    $current_page = $page;
+                                    $typeSpec = new Control\TypeSpecController();
+                                    $paginate = new Helper\Paginate($typeSpec->getAllTypeSpecs(),$current_page);
+                                    foreach ($paginate->getData() as $row){
+                                        $checked = "";
+                                        if($row->getState()==1){
+                                            $checked = "checked";
+                                        }
+                                        echo "
+                                            <tr>
+                                                <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
+                                                <td>".$row->getName()."</td>
+                                                <td>
+                                                    <label>
+                                                        <input type=\"checkbox\" disabled ".$checked.">
+                                                        <span></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <a  href='#actualizarTipoSpec' class=\"edit modal-trigger\">
+                                                         <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
+                                                     </a>
+                                                 </td>
+                                            </tr>
+                                                
+                                                ";
+                                    }
+                                    ?>
+                                    <!--FIN DE PAGINATE-->
                                 </tbody>
                             </table>
+                            <br>
+                            <div id="typeSpecLinks">
+                                <!--INICIO DE ENLACES DE PAGINATE-->
+                                <?php
+                                //generando los links de paginacion
+                                echo "<div class='row'>";
+                                for($i=1;$i<=$paginate->linksNumber();$i++){
+                                    echo"<a class='col s1 red-text' onclick=\"attach('typeSpec' ,$i)\">$i</a>";
+                                }
+                                echo "</div>"
+                                ?>
+                            </div>
+                            <!--FIN DE ENLACES DE PAGINATE-->
                         </div>
                     </div>
                 </div>
@@ -81,10 +114,10 @@
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmRegEsrb">
+                <form id="frmTipoSpec">
                     <div class="input-field">
-                        <input id="registerUser" type="text" required>
-                        <label for="registerUser">Nombre de Tipo</label>
+                        <input id="typeSpecName" name="name" type="text" required>
+                        <label for="typeSpecName">Nombre de Tipo</label>
                     </div>
 
                     <div class="row">
@@ -93,7 +126,7 @@
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" type="radio" value="1" checked />
                                 <span>Activo</span>
                             </label>
                                 </p>
@@ -101,7 +134,7 @@
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" type="radio" value="0"/>
                                 <span>Inactivo</span>
                             </label>
                                 </p>
@@ -118,4 +151,53 @@
     </div>
 </div>
 
-<script src="js/user.js"></script>
+
+<!--Modal de actualizacion de clasificaciones-->
+<div id="actualizarTipoSpec" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Actualizar Tipo de especificacion</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmTipoSpecUpdate">
+                    <input type="hidden" name="id" id="typeSpecId">
+                    <div class="input-field">
+                        <input id="typeSpecNameU" name="name" type="text" required>
+                        <label id="typeSpecNameLabelU" for="typeSpecNameU">Nombre de Tipo</label>
+                    </div>
+
+                    <div class="row">
+                        <h6 class="center">Seleccione el estado del Tipo:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                        <input id="typeSpecStateA" name="state" type="radio" value="1" checked />
+                                        <span>Activo</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                        <input id="typeSpecStateI" name="state" type="radio" value="0" />
+                                        <span>Inactivo</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/typeSpec.js"></script>

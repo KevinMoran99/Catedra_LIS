@@ -82,8 +82,11 @@ class UserType implements Interfaces\ModelInterface
 
     //Query methods
 
-    public function getAll() {
-        $query ="SELECT * FROM user_types";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM user_types WHERE state = 1";
+        else
+            $query ="SELECT * FROM user_types";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

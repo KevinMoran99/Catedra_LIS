@@ -80,8 +80,11 @@ class TypeSpec implements Interfaces\ModelInterface
 
     //query methods
 
-    public function getAll(){
-        $query ="SELECT * FROM type_specs";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM type_specs WHERE state = 1";
+        else
+            $query ="SELECT * FROM type_specs";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

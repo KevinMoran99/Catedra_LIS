@@ -80,8 +80,11 @@ class Esrb implements Interfaces\ModelInterface
 
     //query methods
 
-    public function getAll(){
-        $query ="SELECT * FROM esrbs";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM esrbs WHERE state = 1";
+        else
+            $query ="SELECT * FROM esrbs";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

@@ -10,9 +10,10 @@ use Http\Helpers as Helper;
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
                     <div class="input-field">
-                        <input id="esrb-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar clasificacion">
+                        <input id="esrb-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por nombre o estado">
                     </div>
             </div>
+            <button class="btn light-blue darken-2" id="revert">Revertir</button>
         </div>
     </div>
     <!--tabla de visualizacion de datos-->
@@ -34,6 +35,7 @@ use Http\Helpers as Helper;
                                     <tr class="table-users">
                                         <th style="visibility: hidden; display:none;">ID</th>
                                         <th>Nombre de clasificacion</th>
+                                        <th>Estado</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
@@ -45,11 +47,22 @@ use Http\Helpers as Helper;
                                 $current_page = $page;
                                 $esrb = new Control\EsrbController();
                                 $paginate = new Helper\Paginate($esrb->getAllEsrb(),$current_page);
+
                                 foreach ($paginate->getData() as $row){
+                                    $checked = "";
+                                    if($row->getState()==1){
+                                        $checked = "checked";
+                                    }
                                     echo "
                                                 <tr>
                                                     <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
                                                     <td>".$row->getName()."</td>
+                                                    <td> 
+                                                        <label>
+                                                            <input type=\"checkbox\" disabled ".$checked." />
+                                                            <span></span>
+                                                         </label>
+                                                    </td>
                                                     <td>
                                                         <a  href='#actualizarClasificacion' class=\"edit modal-trigger\">
                                                              <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
@@ -102,7 +115,7 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmRegEsrb">
                     <div class="input-field">
-                        <input id="nombreClasificacion" name="name" type="text" required>
+                        <input id="nombreClasificacion" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" required>
                         <label for="nombreClasificacion">Nombre de clasificacion</label>
                     </div>
 
@@ -151,7 +164,7 @@ use Http\Helpers as Helper;
                 <form id="frmUpdateRegEsrb">
                     <input type="hidden" name="id" id="esrbId">
                     <div class="input-field">
-                        <input id="esrbUName" name="name" type="text" required>
+                        <input id="esrbUName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" required>
                         <label for="esrbUName" class="active">Nombre de clasificacion</label>
                     </div>
 

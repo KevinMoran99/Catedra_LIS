@@ -98,7 +98,7 @@ class Picture implements Interfaces\ModelInterface
     }
 
 
-    public function getAll(){
+    public function getAll($active = false){
         //Innecesario
         return null;
     }

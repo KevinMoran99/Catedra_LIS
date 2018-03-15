@@ -10,7 +10,7 @@ use Http\Helpers as Helper;
         <div class="col s12 m6 offset-m3">
             <div class="card-search-box hoverable white">
                     <div class="input-field">
-                        <input id="platform-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar plataforma">
+                        <input id="platform-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por nombre o estado">
                     </div>
             </div>
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
@@ -35,6 +35,7 @@ use Http\Helpers as Helper;
                                     <tr class="table-users">
                                         <th style="visibility: hidden; display:none;">ID</th>
                                         <th>Nombre de plataforma</th>
+                                        <th>Estado</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
@@ -47,10 +48,20 @@ use Http\Helpers as Helper;
                                 $platforms = new Control\PlatformController();
                                 $paginate = new Helper\Paginate($platforms->getAllPlatforms(),$current_page);
                                 foreach ($paginate->getData() as $row){
+                                    $checked = "";
+                                    if($row->getState()==1){
+                                        $checked = "checked";
+                                    }
                                     echo "
                                                 <tr>
                                                     <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
                                                     <td>".$row->getName()."</td>
+                                                    <td> 
+                                                        <label>
+                                                            <input type=\"checkbox\" disabled ".$checked." />
+                                                            <span></span>
+                                                         </label>
+                                                    </td>
                                                     <td>
                                                         <a  href='#actualizarPlataforma' class=\"edit modal-trigger\">
                                                              <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
@@ -104,7 +115,7 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmPlatform">
                     <div class="input-field">
-                        <input id="platformName" name="name" type="text" required>
+                        <input id="platformName" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
                         <label for="platformName">Nombre de plataforma</label>
                     </div>
 
@@ -155,7 +166,7 @@ use Http\Helpers as Helper;
                 <form id="frmUpdatePlatform">
                     <input type="hidden" name="id" id="platformId">
                     <div class="input-field">
-                        <input id="platformUName" name="name" type="text" required>
+                        <input id="platformUName" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
                         <label for="platformUName" class="active">Nombre de plataforma</label>
                     </div>
 

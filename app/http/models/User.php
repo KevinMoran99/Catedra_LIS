@@ -136,9 +136,11 @@ class User implements Interfaces\ModelInterface
     }
 
 
-    public function getAll()
-    {
-        $query ="SELECT * FROM users";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM users WHERE state = 1";
+        else
+            $query ="SELECT * FROM users";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

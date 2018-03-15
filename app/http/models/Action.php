@@ -81,8 +81,11 @@ class Action implements Interfaces\ModelInterface
     
     //query methods
 
-    public function getAll(){
-        $query ="SELECT * FROM actions";
+    public function getAll($active = false){
+        if ($active)
+            $query ="SELECT * FROM actions WHERE state = 1";
+        else
+            $query ="SELECT * FROM actions";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];
