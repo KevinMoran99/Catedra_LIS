@@ -83,26 +83,8 @@ use Http\Helpers as Helper;
                             <input class="file-path validate" type="text">
                         </div>
                     </div>
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Screenshot1</span>
-                            <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
-                    </div>
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>Screenshot2</span>
-                            <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
-                    </div>
                     <div class="input-field">
-                        <input id="registerUser" type="text" required>
+                        <input id="gameName" type="text" required>
                         <label for="registerUser">Nombre de juego</label>
                     </div>
                     <div class="input-field">
@@ -110,23 +92,47 @@ use Http\Helpers as Helper;
                         <label for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
-                        <select class="form-select">
-                        <option value="" disabled selected>Clasificacion</option>
+                        <select id="EsrbSelect" class="form-select" name="selectEsrb" required>
+                        <option value="" disabled="disabled" selected="true">Clasificacion</option>
+                        <?php
+                                $esrbs = new Control\EsrbController();
+                                foreach ($esrbs->getAllEsrb() as $esrb) {
+                                    echo "<option value=".$esrb->getId().">".$esrb->getName()."</option>";
+                                }
+                                ?>
+                        </select>
+                    </div>
+                    <div  class="input-field">
+                        <select id="genreSelect" class="form-select" name="selectGnr" required>
+                        <option value="" disabled="disabled" selected="true">Genero</option>
+                        <?php
+                                $genres = new Control\GenreController();
+                                foreach ($genres->getAllGenres() as $genre) {
+                                    echo "<option value=".$genre->getId().">".$genre->getName()."</option>";
+                                }
+                                ?>
                         </select>
                     </div>
                     <div class="input-field">
-                        <select class="form-select">
-                        <option value="" disabled selected>Genero</option>
+                        <select id="platformSelect" class="form-select" name="selectPltf" required>
+                        <option value="" disabled="disabled" selected="true">Plataforma</option>
+                        <?php
+                                $platforms = new Control\PlatformController();
+                                foreach ($platforms->getAllPlatforms() as $platform) {
+                                    echo "<option value=".$platform->getId().">".$platform->getName()."</option>";
+                                }
+                                ?>
                         </select>
                     </div>
                     <div class="input-field">
-                        <select class="form-select">
-                        <option value="" disabled selected>Plataforma</option>
-                        </select>
-                    </div>
-                    <div class="input-field">
-                        <select class="form-select">
-                        <option value="" disabled selected>Publicador</option>
+                        <select id="publisherSelect" class="form-select" name="selectPbls" required>
+                        <option value="" disabled="disabled" selected="true">Publicador</option>
+                        <?php
+                                $publishers = new Control\PublisherController();
+                                foreach ($publishers->getAllPublishers() as $publisher) {
+                                    echo "<option value=".$publisher->getId().">".$publisher->getName()."</option>";
+                                }
+                                ?>
                         </select>
                     </div>
 
