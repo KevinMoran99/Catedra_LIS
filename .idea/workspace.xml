@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="41e10026-0857-48eb-bc5f-59647601e5e0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/js/genre.js" afterPath="$PROJECT_DIR$/app/dashboard/js/genre.js" />
-      <change beforePath="$PROJECT_DIR$/app/http/controllers/GenreController.php" afterPath="$PROJECT_DIR$/app/http/controllers/GenreController.php" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/js/esrb.js" afterPath="$PROJECT_DIR$/app/dashboard/js/esrb.js" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/views/esrb.php" afterPath="$PROJECT_DIR$/app/dashboard/views/esrb.php" />
+      <change beforePath="$PROJECT_DIR$/app/http/controllers/EsrbController.php" afterPath="$PROJECT_DIR$/app/http/controllers/EsrbController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,27 +49,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="esrb.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="esrb.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/dashboard/views/esrb.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-238">
-              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+            <state relative-caret-position="99">
+              <caret line="171" column="98" lean-forward="false" selection-start-line="171" selection-start-column="98" selection-end-line="171" selection-end-column="98" />
               <folding>
                 <element signature="e#40#72#0#PHP" expanded="true" />
-                <marker date="1521085605274" expanded="true" signature="2380:3111" ph="..." />
-                <marker date="1521085605274" expanded="false" signature="2457:2490" ph="..." />
-                <marker date="1521085605274" expanded="true" signature="2652:3057" ph="..." />
-                <marker date="1521085605274" expanded="true" signature="2774:2998" ph="..." />
+                <marker date="1521093683845" expanded="true" signature="2380:3111" ph="..." />
+                <marker date="1521093683845" expanded="false" signature="2457:2490" ph="..." />
+                <marker date="1521093683845" expanded="true" signature="2652:3057" ph="..." />
+                <marker date="1521093683845" expanded="true" signature="2774:2998" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="genre.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="genre.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/dashboard/js/genre.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1858">
-              <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+            <state relative-caret-position="133">
+              <caret line="113" column="12" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="114" selection-end-column="31" />
               <folding>
                 <marker date="1521092373317" expanded="true" signature="4584:4617" ph="..." />
                 <marker date="1521092373317" expanded="true" signature="4584:4618" ph="..." />
@@ -108,7 +109,7 @@
       <file leaf-file-name="GenreController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/http/controllers/GenreController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
+            <state relative-caret-position="385">
               <caret line="153" column="46" lean-forward="false" selection-start-line="153" selection-start-column="46" selection-end-line="153" selection-end-column="46" />
               <folding>
                 <element signature="e#6#86#0#PHP" expanded="true" />
@@ -131,10 +132,10 @@
       <file leaf-file-name="esrb.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/dashboard/js/esrb.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="85" column="30" lean-forward="false" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="30" />
+            <state relative-caret-position="-156">
+              <caret line="110" column="31" lean-forward="false" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
               <folding>
-                <marker date="1521088803142" expanded="true" signature="4307:4340" ph="..." />
+                <marker date="1521093645928" expanded="true" signature="4564:4597" ph="..." />
               </folding>
             </state>
           </provider>
@@ -155,8 +156,8 @@
       <file leaf-file-name="EsrbController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/http/controllers/EsrbController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="155" column="53" lean-forward="false" selection-start-line="155" selection-start-column="49" selection-end-line="155" selection-end-column="53" />
+            <state relative-caret-position="198">
+              <caret line="147" column="50" lean-forward="false" selection-start-line="147" selection-start-column="44" selection-end-line="147" selection-end-column="50" />
               <folding>
                 <element signature="e#141#166#0#PHP" expanded="true" />
               </folding>
@@ -232,11 +233,11 @@
         <option value="$PROJECT_DIR$/app/dashboard/js/platform.js" />
         <option value="$PROJECT_DIR$/app/http/controllers/PlatformController.php" />
         <option value="$PROJECT_DIR$/app/http/models/Connection.php" />
-        <option value="$PROJECT_DIR$/app/dashboard/js/esrb.js" />
-        <option value="$PROJECT_DIR$/app/dashboard/views/esrb.php" />
-        <option value="$PROJECT_DIR$/app/http/controllers/EsrbController.php" />
         <option value="$PROJECT_DIR$/app/dashboard/js/genre.js" />
         <option value="$PROJECT_DIR$/app/http/controllers/GenreController.php" />
+        <option value="$PROJECT_DIR$/app/http/controllers/EsrbController.php" />
+        <option value="$PROJECT_DIR$/app/dashboard/js/esrb.js" />
+        <option value="$PROJECT_DIR$/app/dashboard/views/esrb.php" />
       </list>
     </option>
   </component>
@@ -302,6 +303,19 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Catedra_LIS" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="http" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Catedra_LIS" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="http" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Catedra_LIS" type="b2602c69:ProjectViewProjectNode" />
@@ -409,16 +423,23 @@
       <option name="project" value="LOCAL" />
       <updated>1521059898014</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update Genres&#10;&#10;-Aplicado dataform">
+      <created>1521092831371</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1521092831372</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85968000" />
+    <option name="totallyTimeSpent" value="86916000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19062027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19062027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -485,7 +506,8 @@
     <MESSAGE value="Update genres&#10;&#10;-Ya es posible ver datos paginados de generos&#10;-Ya es posible agregar nuevos generos&#10;-Ya es posible obtener genero especifico" />
     <MESSAGE value="Update genres&#10;&#10;-CRUD TERMINADO" />
     <MESSAGE value="Update publishers&#10;&#10;-SCRUD terminado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update publishers&#10;&#10;-SCRUD terminado" />
+    <MESSAGE value="Update Genres&#10;&#10;-Aplicado dataform" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Genres&#10;&#10;-Aplicado dataform" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -826,43 +848,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/dashboard/js/esrb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="85" column="30" lean-forward="false" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="30" />
-          <folding>
-            <marker date="1521088803142" expanded="true" signature="4307:4340" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/dashboard/views/esrb.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding>
-            <element signature="e#40#72#0#PHP" expanded="true" />
-            <marker date="1521085605274" expanded="true" signature="2380:3111" ph="..." />
-            <marker date="1521085605274" expanded="false" signature="2457:2490" ph="..." />
-            <marker date="1521085605274" expanded="true" signature="2652:3057" ph="..." />
-            <marker date="1521085605274" expanded="true" signature="2774:2998" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/http/controllers/EsrbController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="155" column="53" lean-forward="false" selection-start-line="155" selection-start-column="49" selection-end-line="155" selection-end-column="53" />
-          <folding>
-            <element signature="e#141#166#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/http/controllers/GenreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
+        <state relative-caret-position="385">
           <caret line="153" column="46" lean-forward="false" selection-start-line="153" selection-start-column="46" selection-end-line="153" selection-end-column="46" />
           <folding>
             <element signature="e#6#86#0#PHP" expanded="true" />
@@ -871,13 +859,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/http/controllers/EsrbController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="147" column="50" lean-forward="false" selection-start-line="147" selection-start-column="44" selection-end-line="147" selection-end-column="50" />
+          <folding>
+            <element signature="e#141#166#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/dashboard/js/genre.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1858">
-          <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+        <state relative-caret-position="133">
+          <caret line="113" column="12" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="114" selection-end-column="31" />
           <folding>
             <marker date="1521092373317" expanded="true" signature="4584:4617" ph="..." />
             <marker date="1521092373317" expanded="true" signature="4584:4618" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/dashboard/js/esrb.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-156">
+          <caret line="110" column="31" lean-forward="false" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+          <folding>
+            <marker date="1521093645928" expanded="true" signature="4564:4597" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/dashboard/views/esrb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="171" column="98" lean-forward="false" selection-start-line="171" selection-start-column="98" selection-end-line="171" selection-end-column="98" />
+          <folding>
+            <element signature="e#40#72#0#PHP" expanded="true" />
+            <marker date="1521093683845" expanded="true" signature="2380:3111" ph="..." />
+            <marker date="1521093683845" expanded="false" signature="2457:2490" ph="..." />
+            <marker date="1521093683845" expanded="true" signature="2652:3057" ph="..." />
+            <marker date="1521093683845" expanded="true" signature="2774:2998" ph="..." />
           </folding>
         </state>
       </provider>

@@ -169,7 +169,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                        <input name="state" id="esrbStateI" value="0" type="radio" checked />
+                                        <input name="state" id="esrbStateI" value="0" type="radio" />
                                         <span>Inactivo</span>
                                     </label>
                                 </p>
