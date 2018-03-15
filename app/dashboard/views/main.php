@@ -1,4 +1,8 @@
-
+<?php
+//declarando namespace a utilizar
+use Http\Controllers as Control;
+use Http\Helpers as Helper;
+?>
 <!--vista principal-->
 
 <!--navbar-->
@@ -19,21 +23,39 @@
 <div class="wrapper">
 
     <div class="row">
-        <?php
-            $url = "attach('gameDetail');";
-            for($i = 0; $i<=10; $i++){
-                echo '<div class="col s6 m3 l3">
-                        <a class="modal-trigger" href="#nuevoJuego">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="../web/img/example.png">
-                                    <span class="card-title">Nombre Juego</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>';
-            } ?>
+    <!--INICIO DEL PAGINATE -->
+    <?php
+    //mostrando los datos solicitados en base al paginate
+    $current_page = $page;
+    $games = new Control\GameController();
+    $paginate = new Helper\Paginate($games->getAllGames(),$current_page);
+    foreach ($paginate->getData() as $row){
+        
+        echo '<div class="col s6 m3 l3">
+        <a class="modal-trigger" href="#nuevoJuego">
+            <div class="card">
+                <div class="card-image">
+                    <img src="../web/img/example.png">
+                    <span class="card-title">"Nombre Juego"</span>
+                </div>
+            </div>
+        </a>
+    </div>';
+    }
+    ?>
     </div>
+    <br>
+    <div id="gameLinks">
+        <!--INICIO DE ENLACES DE PAGINATE-->
+        <?php
+        //generando los links de paginacion
+        echo "<div class='row'>";
+        for($i=1;$i<=$paginate->linksNumber();$i++){
+            echo"<a class='col s1 red-text' onclick=\"attach('game' ,$i)\">$i</a>";
+        }
+        echo "</div>"
+        ?>
+        </div>
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#nuevoJuego">
             <i class="material-icons">add</i>
@@ -54,7 +76,25 @@
                 <form id="frmRegJg">
                     <div class="file-field input-field">
                         <div class="btn">
-                            <span>Imagen</span>
+                            <span>Caratula</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Screenshot1</span>
+                            <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Screenshot2</span>
                             <input type="file">
                         </div>
                         <div class="file-path-wrapper">
@@ -88,14 +128,6 @@
                         <select class="form-select">
                         <option value="" disabled selected>Publicador</option>
                         </select>
-                    </div>
-                    <div class="input-field">
-                        <input id="registerUser" type="text" required>
-                        <label for="registerUser">Precio</label>
-                    </div>
-                    <div class="input-field">
-                        <input id="registerUser" type="text" required>
-                        <label for="registerUser">Descuento</label>
                     </div>
 
                     <div class="row">

@@ -11,7 +11,7 @@ namespace Http\Helpers;
 
 class Paginate
 {
-    private $items_per_page = 5;
+    private $items_per_page = 12;
     private $items = null;
     private $current_page = 1;
 
@@ -23,7 +23,11 @@ class Paginate
     public function __construct($items, $current_page)
     {
         $this->items = $items;
-        $this->current_page = $current_page;
+        if(is_numeric($current_page)){
+            $this->current_page = $current_page;
+        }else{
+            $this->current_page = 1;
+        }
     }
 
     public function linksNumber(){
