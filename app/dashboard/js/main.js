@@ -105,6 +105,7 @@ $(".edit").on('click', function () {
             //seteamos los datos en la vista
             $("#gameNameU").val($data.name);
             $("#gameDesc").val($data.description);
+            M.textareaAutoResize($("#gameDesc"));
 
             $("#EsrbSelectU").val($data.esrb);
             $("#EsrbSelectU").select2();

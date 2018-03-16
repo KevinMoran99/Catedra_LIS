@@ -10,7 +10,7 @@ use Http\Helpers as Helper;
     <nav>
         <h5 id="nav-title">Todos los juegos:</h5>
         <div id="filter-container" class="input-field">
-            <select id="filter" class="js-example-basic-single">
+            <select id="game-filter">
                 <option value="" disabled selected>Todos</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
@@ -73,7 +73,7 @@ use Http\Helpers as Helper;
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m8 offset-m2 center-align">
+            <div class="col s12 m8 offset-m2">
                 <form id="frmRegJg" enctype="multipart/form-data">
                 <input type="hidden" name="id" id="specId">
                     <div class="file-field input-field">
@@ -178,7 +178,7 @@ use Http\Helpers as Helper;
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m8 offset-m2 center-align">
+            <div class="col s12 m8 offset-m2">
                 <form id="frmActJg" enctype="multipart/form-data">
                     <div class="file-field input-field">
                         <div class="btn">
