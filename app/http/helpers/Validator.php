@@ -10,10 +10,14 @@ namespace Http\Helpers;
 class Validator{
 	private $imageName = null;
 	private $imageError = null;
+	private $finalUrl = null;
 
 	public function getImageName(){
 		return $this->imageName;
 	}
+	public function finalUrl(){
+	    return $this->finalUrl;
+    }
 	public function getImageError(){
 		switch($this->imageError){
 			case 1:
@@ -64,6 +68,7 @@ class Validator{
 					$url = $path.$image;
 					if(move_uploaded_file($file['tmp_name'], $url)){
 						$this->imageName = $image;
+						$this->finalUrl = $url;
 						return true;
 					}else{
 						$this->imageError = 1;

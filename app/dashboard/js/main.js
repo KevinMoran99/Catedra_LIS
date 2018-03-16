@@ -28,7 +28,7 @@ $( "#frmRegJg" ).submit(function( event ) {
                 //si la operacion fue un exito, cerramos el modal
                 $('#nuevoJuego').modal('close');
                 //refrescamos la pagina
-                attach("game", 1);
+                attach("main", 1);
             }
             console.log(result);
             swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})

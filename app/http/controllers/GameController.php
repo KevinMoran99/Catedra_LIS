@@ -18,22 +18,32 @@ Class GameController
         //variables de validacion
         $flag = false;
         $validateError= "";
-
+        $url=null;
         //validamos si la imagen
-        if(!$validator->validateImage($cover,false,"../web/img/",256,320)){
-            $validateError = "Error";
+        if(!$validator->validateImage($cover,false,"../../web/img/",256,320)){
+            $validateError = $validator->getImageError();
             $flag=true;
+        }else{
+            $url = $validator->finalUrl();
         }
 
         //validamos
         if(!$flag) {
             $game->setName($name);
-            $game->setCover($cover);
+            $game->setCover($url);
             $game->setDescription($description);
-            $game->setEsrb($esrb);
-            $game->setPublisher($publisher);
-            $game->setGenre($genre);
-            $game->setPlaform($platform);
+            $esrbM = new Model\Esrb();
+            $esrbM->setId($esrb);
+            $game->setEsrb($esrbM);
+            $publisherM = new Model\Publisher();
+            $publisherM->setId($publisher);
+            $game->setPublisher($publisherM);
+            $genreM=new Model\Genre();
+            $genreM->setId($genre);
+            $game->setGenre($genreM);
+            $platformM= new Model\Platform();
+            $platformM->setId($platform);
+            $game->setPlatform($platformM);
             $game->setState($state);
             $response = $game->insert();
 

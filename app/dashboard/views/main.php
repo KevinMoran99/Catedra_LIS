@@ -35,7 +35,7 @@ use Http\Helpers as Helper;
         <a class="modal-trigger" href="#actualizarJuego">
             <div class="card">
                 <div class="card-image">
-                    <img src="../web/img/example.png">
+                    <img src="'.substr($row->getCover(),3).'">
                     <span class="card-title">'.$row->getName().'</span>
                     <span class="id" style="visibility: hidden; display:none;">'.$row->getId().'</span>
                 </div>
@@ -152,7 +152,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked values="0" />
+                                <input name="state" type="radio" value="0" />
                                 <span>Inactivo</span>
                             </label>
                                 </p>
