@@ -104,11 +104,6 @@ Class GameController
         $validateError="";
         $url=null;
 
-<<<<<<< HEAD
-        //si no es alfanumerico setear flag a verdadero y agregar mensaje
-        if(!$validator->validateImage($cover,false,"../../web/img",500,500)){
-            $validateError = "Error al modificar la imagen";
-=======
         //Validando imagen, si hay una
         if (!empty($cover)) {
             if (!$validator->validateImage($cover, false, "../../web/img/", 256, 320)) {
@@ -125,7 +120,6 @@ Class GameController
         }
         if(!$validator->validateText($description,3,500)){
             $validateError = "Solo se permiten numeros, letras y signos de puntuación en la descripción";
->>>>>>> 6129c9ab5970705f2e47dbb1d494a7db5984789a
             $flag = true;
         }
 
