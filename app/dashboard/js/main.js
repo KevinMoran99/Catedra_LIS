@@ -1,6 +1,8 @@
 $(document).ready(function () {
     $('.modal').modal();
-    //Inicializando select2
+    $('.formSelect').each(function(index, element) {
+        $(this).select2();
+    });
    $('.js-example-basic-single').select2();
 });
 

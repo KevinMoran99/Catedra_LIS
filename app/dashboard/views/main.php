@@ -273,6 +273,5 @@ use Http\Helpers as Helper;
     </div>
 </div>
 
-<script src="js/user.js"></script>
 <script src="js/select.js"></script>
 <script src="js/main.js"></script>
