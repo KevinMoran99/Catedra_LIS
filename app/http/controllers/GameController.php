@@ -20,7 +20,7 @@ Class GameController
         $validateError= "";
 
         //validamos si la imagen
-        if(!$validator->validateImage($cover,1,$notyetdefined,256,320)){
+        if(!$validator->validateImage($cover,false,"../web/img/",256,320)){
             $validateError = "Error";
             $flag=true;
         }
@@ -30,6 +30,7 @@ Class GameController
             $game->setName($name);
             $game->setCover($cover);
             $game->setDescription($description);
+            $game->setEsrb($esrb);
             $game->setPublisher($publisher);
             $game->setGenre($genre);
             $game->setPlaform($platform);
@@ -61,10 +62,11 @@ Class GameController
                 'name' => $game->getName(),
                 'cover' => $game->getCover(),
                 'description' => $game->getDescription(),
+                'esrb' => $game->getEsrb(),
                 'publisher' => $game->getPublisher(),
-                'genre' => $game->getGame(),
+                'genre' => $game->getGenre(),
                 'platform' => $game->getPlatform(),
-                'state' => $genre->getState()
+                'state' => $game->getState()
             ));
             echo $json;
         }else{
@@ -74,7 +76,7 @@ Class GameController
     }
 
     //ACTUALIZAR REGISTRO
-    public function updateGame($name, $cover, $description, $esrb, $publisher, $genre, $platform, $state){
+    public function updateGame($id,$name, $cover, $description, $esrb, $publisher, $genre, $platform, $state){
         //objetos de validacion y genero
         $validator = new Helper\Validator();
         $game = new Model\Game();
@@ -83,7 +85,7 @@ Class GameController
         $validateError="";
 
         //si no es alfanumerico setear flag a verdadero y agregar mensaje
-        if(!$validator->validateImage($cover,false,$nosequees,256,320)){
+        if(!$validator->validateImage($cover,false,"../../web/img",256,320)){
             $validateError = "Error al modificar la imagen";
             $flag = true;
         }
@@ -93,6 +95,7 @@ Class GameController
             $game->setName($name);
             $game->setCover($cover);
             $game->setDescription($description);
+            $game->setEsrb($esrb);
             $game->setPublisher($publisher);
             $game->setGenre($genre);
             $game->setPlaform($platform);
@@ -111,7 +114,7 @@ Class GameController
 
     public function searchGame($name,$ajax){
         //nuevo objeto de generos
-        $game = new Model\Genre();
+        $game = new Model\Game();
         $data = $game->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
@@ -122,10 +125,10 @@ Class GameController
                     'id' => $data[$i]->getId(),
                     'name' => $data[$i]->getName(),
                     'cover' => $data[$i]->getCover(),
-                    'description' => $data[$i]->getDescription(),
-                    'publisher' => $data[$i]->getPublisher(),
-                    'genre' => $data[$i]->getGenre(),
-                    'platform' => $data[$i]->getPlatform(),
+                    'esrb' => $data[$i]->getEsrb()->getName(),
+                    'publisher' => $data[$i]->getPublisher()->getName(),
+                    'genre' => $data[$i]->getGenre()->getName(),
+                    'platform' => $data[$i]->getPlatform()->getName(),
                     'state' => $data[$i]->getState()
                 );
                 array_push($array,$tmp);
@@ -146,7 +149,7 @@ try {
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addGame") {
             //creamos un nuevo registro con los datos del array
-            (new GameController())->addGame($_POST['name'],$_POST['cover'],$_POST['description'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
+            (new GameController())->addGame($_POST['name'],$_POST['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getGame") {
@@ -156,7 +159,7 @@ try {
 
         if($_POST["method"] == "updateGame"){
             //actualizamos el registro
-            (new GameController())->updateGame($_POST['id'],$_POST['name'],$_POST['cover'],$_POST['description'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
+            (new GameController())->updateGame($_POST['id'],$_POST['name'],$_POST['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
         }
 
         if($_POST["method"] == "searchGame"){

@@ -32,11 +32,12 @@ use Http\Helpers as Helper;
     foreach ($paginate->getData() as $row){
         
         echo '<div class="col s6 m3 l3">
-        <a class="modal-trigger" href="#nuevoJuego">
+        <a class="modal-trigger" href="#actualizarJuego">
             <div class="card">
                 <div class="card-image">
                     <img src="../web/img/example.png">
                     <span class="card-title">'.$row->getName().'</span>
+                    <span class="id" style="visibility: hidden; display:none;">'.$row->getId().'</span>
                 </div>
             </div>
         </a>
@@ -73,7 +74,112 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmRegJg">
+                <form id="frmRegJg" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="specId">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Caratula</span>
+                            <input name="cover" id="image"  type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input name="cover" class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <input name="name" id="gameName" type="text" required>
+                        <label for="registerUser">Nombre de juego</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea name="description" class="materialize-textarea" id="registerUser" type="text" required></textarea>
+                        <label for="registerUser">Descripcion</label>
+                    </div>
+                    <div class="input-field">
+                        <select name="esrb" id="EsrbSelect" class="form-select" name="selectEsrb" required>
+                        <option value="" disabled="disabled" selected="true">Clasificacion</option>
+                        <?php
+                                $esrbs = new Control\EsrbController();
+                                foreach ($esrbs->getAllEsrb() as $esrb) {
+                                    echo "<option value=".$esrb->getId().">".$esrb->getName()."</option>";
+                                }
+                                ?>
+                        </select>
+                    </div>
+                    <div  class="input-field">
+                        <select name="genre" id="genreSelect" class="form-select" name="selectGnr" required>
+                        <option value="" disabled="disabled" selected="true">Genero</option>
+                        <?php
+                                $genres = new Control\GenreController();
+                                foreach ($genres->getAllGenres() as $genre) {
+                                    echo "<option value=".$genre->getId().">".$genre->getName()."</option>";
+                                }
+                                ?>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select name="platform" id="platformSelect" class="form-select" name="selectPltf" required>
+                        <option value="" disabled="disabled" selected="true">Plataforma</option>
+                        <?php
+                                $platforms = new Control\PlatformController();
+                                foreach ($platforms->getAllPlatforms() as $platform) {
+                                    echo "<option value=".$platform->getId().">".$platform->getName()."</option>";
+                                }
+                                ?>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select name="publisher" id="publisherSelect" class="form-select" name="selectPbls" required>
+                        <option value="" disabled="disabled" selected="true">Publicador</option>
+                        <?php
+                                $publishers = new Control\PublisherController();
+                                foreach ($publishers->getAllPublishers() as $publisher) {
+                                    echo "<option value=".$publisher->getId().">".$publisher->getName()."</option>";
+                                }
+                                ?>
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <h6 class="center">Seleccione el estado del juego:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                <input name="state" type="radio" checked value="1" />
+                                <span>Activo</span>
+                            </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                <input name="state" type="radio" checked values="0" />
+                                <span>Inactivo</span>
+                            </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
+                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal de actualizar juego-->
+<div id="actualizarJuego" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Actualizar juego</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmActJg" enctype="multipart/form-data">
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Caratula</span>
@@ -142,7 +248,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" type="radio" checked value="1" />
                                 <span>Activo</span>
                             </label>
                                 </p>
@@ -150,7 +256,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked />
+                                <input name="state" type="radio" checked values="0" />
                                 <span>Inactivo</span>
                             </label>
                                 </p>
