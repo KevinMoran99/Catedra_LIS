@@ -94,7 +94,7 @@ use Http\Helpers as Helper;
                         <label for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
-                        <select name="esrb" id="EsrbSelect" class="form-select" name="selectEsrb" required>
+                        <select name="esrb" id="EsrbSelect" class="formSelect" name="selectEsrb" required>
                         <option value="" disabled="disabled" selected="true">Clasificacion</option>
                         <?php
                                 $esrbs = new Control\EsrbController();
@@ -105,7 +105,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div  class="input-field">
-                        <select name="genre" id="genreSelect" class="form-select" name="selectGnr" required>
+                        <select name="genre" id="genreSelect" class="formSelect" name="selectGnr" required>
                         <option value="" disabled="disabled" selected="true">Genero</option>
                         <?php
                                 $genres = new Control\GenreController();
@@ -116,7 +116,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select name="platform" id="platformSelect" class="form-select" name="selectPltf" required>
+                        <select name="platform" id="platformSelect" class="formSelect" name="selectPltf" required>
                         <option value="" disabled="disabled" selected="true">Plataforma</option>
                         <?php
                                 $platforms = new Control\PlatformController();
@@ -127,7 +127,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select name="publisher" id="publisherSelect" class="form-select" name="selectPbls" required>
+                        <select name="publisher" id="publisherSelect" class="formSelect" name="selectPbls" required>
                         <option value="" disabled="disabled" selected="true">Publicador</option>
                         <?php
                                 $publishers = new Control\PublisherController();
@@ -198,7 +198,7 @@ use Http\Helpers as Helper;
                         <label id="gameDescLabelU" for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
-                        <select id="EsrbSelectU" class="form-select" name="selectEsrb" required>
+                        <select id="EsrbSelectU" class="formSelect" name="selectEsrb" required>
                         <option value="" disabled="disabled" selected="true">Clasificacion</option>
                         <?php
                                 $esrbs = new Control\EsrbController();
@@ -209,7 +209,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div  class="input-field">
-                        <select id="genreSelectU" class="form-select" name="selectGnr" required>
+                        <select id="genreSelectU" class="formSelect" name="selectGnr" required>
                         <option value="" disabled="disabled" selected="true">Genero</option>
                         <?php
                                 $genres = new Control\GenreController();
@@ -220,7 +220,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select id="platformSelectU" class="form-select" name="selectPltf" required>
+                        <select id="platformSelectU" class="formSelect" name="selectPltf" required>
                         <option value="" disabled="disabled" selected="true">Plataforma</option>
                         <?php
                                 $platforms = new Control\PlatformController();
@@ -231,7 +231,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select id="publisherSelectU" class="form-select" name="selectPbls" required>
+                        <select id="publisherSelectU" class="formSelect" name="selectPbls" required>
                         <option value="" disabled="disabled" selected="true">Publicador</option>
                         <?php
                                 $publishers = new Control\PublisherController();

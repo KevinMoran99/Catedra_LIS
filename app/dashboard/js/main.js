@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('.modal').modal();
-    $('.form-select').each(function(index, element) {
+    $('.formSelect').each(function(index, element) {
         $(this).select2();
     });
 
