@@ -176,8 +176,8 @@ $("#game-search").keypress( function (e) {
                         "<div class='card'>"+
                             "<div class='card-image'>"+
                                 "<img src='"+substr($data[i].cover,3)+"'>"+
-                                "<span class='card-title'>'"+$data[i].name()+"'</span>"+
-                                "<span id='gameId' class='id' style='visibility: hidden; display:none;'>'"+$row[i].id()+"</span>"+
+                                "<span class='card-title'>'"+$data[i].name+"'</span>"+
+                                "<span id='gameId' class='id' style='visibility: hidden; display:none;'>'"+$row[i].id+"</span>"+
                             "</div>"+
                         "</div>"+
                     "</a>"+
