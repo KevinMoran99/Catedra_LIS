@@ -120,7 +120,7 @@ use Http\Helpers as Helper;
                 <form id="frmSpec">
                     <div class="row">
                         <div class="input-field">
-                            <input id="specName" name="name" type="text" required>
+                            <input id="specName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.\,\'\:\;\¿\?\-\!]{1,50}$" title="Solo se permiten números, letras y signos de puntuación" required>
                             <label for="specName">Nombre de especificacion</label>
                         </div>
                     </div>
@@ -143,7 +143,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                        <input name="state" type="radio" checked />
+                                        <input name="state" type="radio" value="1" checked />
                                         <span>Activo</span>
                                     </label>
                                 </p>
@@ -151,7 +151,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                        <input name="state" type="radio" />
+                                        <input name="state" type="radio" value="0" />
                                         <span>Inactivo</span>
                                     </label>
                                 </p>
@@ -160,7 +160,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -182,7 +182,7 @@ use Http\Helpers as Helper;
                     <input type="hidden" name="id" id="specId">
                     <div class="row">
                         <div class="input-field">
-                            <input id="specNameU" name="name" type="text" required>
+                            <input id="specNameU" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten números, letras y signos de puntuación" required>
                             <label id="specNameLabelU" for="specNameU">Nombre de especificacion</label>
                         </div>
                     </div>
@@ -205,7 +205,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                        <input id="specStateA" name="state" type="radio" checked />
+                                        <input id="specStateA" name="state" value="1" type="radio" checked />
                                         <span>Activo</span>
                                     </label>
                                 </p>
@@ -213,7 +213,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                        <input id="specStateI" name="state" type="radio" />
+                                        <input id="specStateI" name="state" value="0" type="radio" />
                                         <span>Inactivo</span>
                                     </label>
                                 </p>
@@ -222,7 +222,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>

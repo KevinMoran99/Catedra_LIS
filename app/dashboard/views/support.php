@@ -117,12 +117,12 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmFaq" action="#">
                     <div class="input-field">
-                        <input id="faqTitle" name="title" type="text" required>
+                        <input id="faqTitle" name="title" type="text" minlength="3" maxlength="500" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\'\.\,\:\;\¿\?\-\!]{3,500}$" title="Solo se permiten números, letras y signos de puntuación" required>
                         <label for="faqTitle">Pregunta</label>
                     </div>
 
                     <div class="input-field">
-                        <textarea class="materialize-textarea" id="faqDescription" name="description" type="text" required></textarea>
+                        <textarea class="materialize-textarea" id="faqDescription" name="description" type="text" minlength="3" maxlength="1000" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s \' \. \, \' \: \; \¿ \? \- \!]{3,1000}$" title="Solo se permiten números, letras y signos de puntuación" required></textarea>
                         <label for="faqDescription">Respuesta</label>
                     </div>
 
@@ -149,7 +149,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -171,12 +171,12 @@ use Http\Helpers as Helper;
                 <form id="frmFaqUpdate" action="#">
                     <input type="hidden" name="id" id="faqId">
                     <div class="input-field">
-                        <input id="faqTitleU" name="title" type="text" required>
+                        <input id="faqTitleU" name="title" type="text" minlength="3" maxlength="500" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s \' \. \, \' \: \; \¿ \? \- \!]{3,500}$" title="Solo se permiten números, letras y signos de puntuación" required>
                         <label id="faqTitleLabelU" for="faqTitleU">Pregunta</label>
                     </div>
 
                     <div class="input-field">
-                        <textarea class="materialize-textarea" id="faqDescriptionU" name="description" type="text" required></textarea>
+                        <textarea class="materialize-textarea" id="faqDescriptionU" name="description" type="text" minlength="3" maxlength="1000" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s \' \. \, \' \: \; \¿ \? \- \!]{3,1000}$" title="Solo se permiten números, letras y signos de puntuación" required></textarea>
                         <label id="faqDescriptionLabelU" for="faqDescriptionU">Respuesta</label>
                     </div>
 
@@ -203,7 +203,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>

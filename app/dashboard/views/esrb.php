@@ -115,7 +115,7 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmRegEsrb">
                     <div class="input-field">
-                        <input id="nombreClasificacion" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" required>
+                        <input id="nombreClasificacion" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten números y letras" required>
                         <label for="nombreClasificacion">Nombre de clasificacion</label>
                     </div>
 
@@ -133,7 +133,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" value="0" type="radio" checked />
+                                <input name="state" value="0" type="radio" />
                                 <span>Inactivo</span>
                             </label>
                                 </p>
@@ -141,8 +141,8 @@ use Http\Helpers as Helper;
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -164,7 +164,7 @@ use Http\Helpers as Helper;
                 <form id="frmUpdateRegEsrb">
                     <input type="hidden" name="id" id="esrbId">
                     <div class="input-field">
-                        <input id="esrbUName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" required>
+                        <input id="esrbUName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten números y letras" required>
                         <label for="esrbUName" class="active">Nombre de clasificacion</label>
                     </div>
 
@@ -191,7 +191,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>

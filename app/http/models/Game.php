@@ -25,6 +25,13 @@ class Game implements Interfaces\ModelInterface
 
     private $pictures;
 
+
+    //Parámetros de tipo de búsqueda
+    public static $ESRB = 1;
+    public static $PUBLISHER = 2;
+    public static $GENRE = 3;
+    public static $PLATFORM = 4;
+
     /**
      * Game constructor.
      * @param $id
@@ -297,16 +304,39 @@ class Game implements Interfaces\ModelInterface
     }
 
 
-    public function search($param)
+    public function search($param, $field = false)
     {
-        $query = "SELECT g.*  FROM games g INNER JOIN esrbs e ON g.esrb_id = e.id 
-	              INNER JOIN publishers pu ON g.publisher_id = pu.id INNER JOIN genres ge ON g.genre_id = ge.id 
-	              INNER JOIN platforms pl ON g.platform_id = pl.id
-	              WHERE g.name LIKE CONCAT('%',?,'%') OR g.description LIKE CONCAT('%',?,'%') 
-	              OR e.name LIKE CONCAT('%',?,'%') OR pu.name LIKE CONCAT('%',?,'%') 
-	              OR ge.name LIKE CONCAT('%',?,'%') OR pl.name LIKE CONCAT('%',?,'%')
-                  OR g.state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
-        $params = array($param, $param, $param, $param, $param, $param, $param, $param);
+        //Búsqueda maestra
+        if (!$field) {
+            $query = "SELECT g.*  FROM games g INNER JOIN esrbs e ON g.esrb_id = e.id 
+                      INNER JOIN publishers pu ON g.publisher_id = pu.id INNER JOIN genres ge ON g.genre_id = ge.id 
+                      INNER JOIN platforms pl ON g.platform_id = pl.id
+                      WHERE g.name LIKE CONCAT('%',?,'%') OR g.description LIKE CONCAT('%',?,'%') 
+                      OR e.name LIKE CONCAT('%',?,'%') OR pu.name LIKE CONCAT('%',?,'%') 
+                      OR ge.name LIKE CONCAT('%',?,'%') OR pl.name LIKE CONCAT('%',?,'%')
+                      OR g.state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+            $params = array($param, $param, $param, $param, $param, $param, $param, $param);
+        }
+        //Buscar por clasificacion
+        else if ($field == Game::$ESRB) {
+            $query = "SELECT *  FROM games WHERE esrb_id = ?";
+            $params = array($param);
+        }
+        //Buscar por publicador
+        else if ($field == Game::$PUBLISHER) {
+            $query = "SELECT *  FROM games WHERE publisher_id = ?";
+            $params = array($param);
+        }
+        //Buscar por genero
+        else if ($field == Game::$GENRE) {
+            $query = "SELECT *  FROM games WHERE genre_id = ?";
+            $params = array($param);
+        }
+        //Buscar por plataforma
+        else if ($field == Game::$PLATFORM) {
+            $query = "SELECT *  FROM games WHERE platform_id = ?";
+            $params = array($param);
+        }
         //Array de objetos devueltos
         $result = [];
         //Recorriendo resultados

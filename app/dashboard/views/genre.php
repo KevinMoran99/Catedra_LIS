@@ -116,7 +116,7 @@ use Http\Helpers as Helper;
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmGenero">
                     <div class="input-field">
-                        <input id="genreName" name="name" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
+                        <input id="genreName" name="name" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label for="genreName">Nombre de genero</label>
                     </div>
 
@@ -143,7 +143,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-x btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -164,7 +164,7 @@ use Http\Helpers as Helper;
                 <form id="frmGeneroUpdate">
                     <input type="hidden" name="id" id="genreId">
                     <div class="input-field">
-                        <input id="genreNameU" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" required>
+                        <input id="genreNameU" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label for="genreNameU" class="active">Nombre de genero</label>
                     </div>
 
@@ -190,8 +190,8 @@ use Http\Helpers as Helper;
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="modal-x btn waves-effect right">Ingresar</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="submit" class="modal-x btn waves-effect right">Actualizar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
