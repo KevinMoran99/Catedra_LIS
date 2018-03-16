@@ -103,12 +103,20 @@ Class GameController
          if(!$flag){
             $game->setId($id);
             $game->setName($name);
-            $game->setCover($cover);
+            $game->setCover($url);
             $game->setDescription($description);
-            $game->setEsrb($esrb);
-            $game->setPublisher($publisher);
-            $game->setGenre($genre);
-            $game->setPlaform($platform);
+            $esrbM = new Model\Esrb();
+            $esrbM->setId($esrb);
+            $game->setEsrb($esrbM);
+            $publisherM = new Model\Publisher();
+            $publisherM->setId($publisher);
+            $game->setPublisher($publisherM);
+            $genreM=new Model\Genre();
+            $genreM->setId($genre);
+            $game->setGenre($genreM);
+            $platformM= new Model\Platform();
+            $platformM->setId($platform);
+            $game->setPlatform($platformM);
             $game->setState($state);
             $response = $game->update();
             if (is_bool($response)) {
@@ -168,14 +176,14 @@ try {
 
         if ($_POST["method"] == "getGame") {
             //obtenemos el registro
+            if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             (new GameController())->getGame($_POST["id"], true);
+        }
         }
 
         if($_POST["method"] == "updateGame"){
             //actualizamos el registro
-            if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             (new GameController())->updateGame($_POST['id'],$_POST['name'],$_FILES['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
-        }
         }
 
         if($_POST["method"] == "searchGame"){

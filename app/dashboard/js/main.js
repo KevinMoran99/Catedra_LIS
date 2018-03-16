@@ -38,7 +38,7 @@ $( "#frmRegJg" ).submit(function( event ) {
 
 
 //AJAX DE ACTUALIZAR REGISTRO
-$( "#actualizarJuego" ).submit(function( event ) {
+$( "#frmActJg" ).submit(function( event ) {
     event.preventDefault();
 
     var formData = new FormData(this);

@@ -75,7 +75,6 @@ use Http\Helpers as Helper;
         <div class="row">
             <div class="col s12 m8 offset-m2">
                 <form id="frmRegJg" enctype="multipart/form-data">
-                <input type="hidden" name="id" id="specId">
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Caratula</span>
@@ -87,14 +86,14 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="input-field">
                         <input name="name" id="gameName" type="text" required>
-                        <label for="registerUser">Nombre de juego</label>
+                        <label for="gameName">Nombre de juego</label>
                     </div>
                     <div class="input-field">
                         <textarea name="description" class="materialize-textarea" id="registerUser" type="text" required></textarea>
                         <label for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
-                        <select name="esrb" id="EsrbSelect" class="formSelect" name="selectEsrb" required>
+                        <select name="esrb" id="EsrbSelect" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Clasificacion</option>
                         <?php
                                 $esrbs = new Control\EsrbController();
@@ -105,7 +104,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div  class="input-field">
-                        <select name="genre" id="genreSelect" class="formSelect" name="selectGnr" required>
+                        <select name="genre" id="genreSelect" class="formSelect"required>
                         <option value="" disabled="disabled" selected="true">Genero</option>
                         <?php
                                 $genres = new Control\GenreController();
@@ -116,7 +115,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select name="platform" id="platformSelect" class="formSelect" name="selectPltf" required>
+                        <select name="platform" id="platformSelect" class="formSelect"  required>
                         <option value="" disabled="disabled" selected="true">Plataforma</option>
                         <?php
                                 $platforms = new Control\PlatformController();
@@ -127,7 +126,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select name="publisher" id="publisherSelect" class="formSelect" name="selectPbls" required>
+                        <select name="publisher" id="publisherSelect" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Publicador</option>
                         <?php
                                 $publishers = new Control\PublisherController();
@@ -180,25 +179,26 @@ use Http\Helpers as Helper;
         <div class="row">
             <div class="col s12 m8 offset-m2">
                 <form id="frmActJg" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="gameId">
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Caratula</span>
-                            <input type="file">
+                            <input name="cover" id="image"  type="file">
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
+                            <input id="gameCoverU" name="cover" class="file-path validate" type="text">
                         </div>
                     </div>
                     <div class="input-field">
-                        <input id="gameNameU" type="text" required>
+                        <input id="gameNameU" name="name" type="text" required>
                         <label id="gameNameLabelU" for="gameNameU">Nombre de juego</label>
                     </div>
                     <div class="input-field">
-                        <textarea class="materialize-textarea" id="gameDesc" type="text" required></textarea>
+                        <textarea class="materialize-textarea" name="description" id="gameDesc" type="text" required></textarea>
                         <label id="gameDescLabelU" for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
-                        <select id="EsrbSelectU" class="formSelect" name="selectEsrb" required>
+                        <select id="EsrbSelectU" name="esrb" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Clasificacion</option>
                         <?php
                                 $esrbs = new Control\EsrbController();
@@ -209,7 +209,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div  class="input-field">
-                        <select id="genreSelectU" class="formSelect" name="selectGnr" required>
+                        <select id="genreSelectU" name="genre" class="formSelect"  required>
                         <option value="" disabled="disabled" selected="true">Genero</option>
                         <?php
                                 $genres = new Control\GenreController();
@@ -220,7 +220,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select id="platformSelectU" class="formSelect" name="selectPltf" required>
+                        <select id="platformSelectU" name="platform" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Plataforma</option>
                         <?php
                                 $platforms = new Control\PlatformController();
@@ -231,7 +231,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select id="publisherSelectU" class="formSelect" name="selectPbls" required>
+                        <select id="publisherSelectU" name="publisher" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Publicador</option>
                         <?php
                                 $publishers = new Control\PublisherController();
