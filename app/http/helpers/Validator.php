@@ -27,7 +27,7 @@ class Validator{
 				$error = "El tipo de la imagen debe ser gif, jpg o png";
 				break;
 			case 3:
-				$error = "La dimensión de la imagen debe ser 500x500 pixeles";
+				$error = "La dimensión de la imagen debe ser 256x320 pixeles";
 				break;
 			case 4:
 				$error = "El tamaño de la imagen debe ser menor a 2MB";

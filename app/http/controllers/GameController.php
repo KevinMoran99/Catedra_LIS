@@ -19,12 +19,21 @@ Class GameController
         $flag = false;
         $validateError= "";
         $url=null;
-        //validamos si la imagen
+        //validamos si la imagen es valida
         if(!$validator->validateImage($cover,false,"../../web/img/",256,320)){
             $validateError = $validator->getImageError();
             $flag=true;
         }else{
             $url = $validator->finalUrl();
+        }
+        //validamos campos de texto
+        if (!$validator->validateAlphanumeric($name, 3, 50)) {
+            $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre del juego";
+            $flag = true;
+        }
+        if(!$validator->validateText($description,3,500)){
+            $validateError = "Solo se permiten numeros, letras y signos de puntuación en la descripción";
+            $flag = true;
         }
 
         //validamos
@@ -72,10 +81,10 @@ Class GameController
                 'name' => $game->getName(),
                 'cover' => $game->getCover(),
                 'description' => $game->getDescription(),
-                'esrb' => $game->getEsrb(),
-                'publisher' => $game->getPublisher(),
-                'genre' => $game->getGenre(),
-                'platform' => $game->getPlatform(),
+                'esrb' => $game->getEsrb()->getId(),
+                'publisher' => $game->getPublisher()->getId(),
+                'genre' => $game->getGenre()->getId(),
+                'platform' => $game->getPlatform()->getId(),
                 'state' => $game->getState()
             ));
             echo $json;
@@ -93,17 +102,41 @@ Class GameController
         //variables de validacion
         $flag = false;
         $validateError="";
+        $url=null;
 
+<<<<<<< HEAD
         //si no es alfanumerico setear flag a verdadero y agregar mensaje
         if(!$validator->validateImage($cover,false,"../../web/img",500,500)){
             $validateError = "Error al modificar la imagen";
+=======
+        //Validando imagen, si hay una
+        if (!empty($cover)) {
+            if (!$validator->validateImage($cover, false, "../../web/img/", 256, 320)) {
+                $validateError = $validator->getImageError();
+                $flag = true;
+            } else {
+                $url = $validator->finalUrl();
+            }
+        }
+        //validamos campos de texto
+        if (!$validator->validateAlphanumeric($name, 3, 50)) {
+            $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre del juego";
             $flag = true;
         }
+        if(!$validator->validateText($description,3,500)){
+            $validateError = "Solo se permiten numeros, letras y signos de puntuación en la descripción";
+>>>>>>> 6129c9ab5970705f2e47dbb1d494a7db5984789a
+            $flag = true;
+        }
+
          //si en este punto el flag es falso, actualizar el registro
          if(!$flag){
             $game->setId($id);
+            $game->getById(); //Para obtener cover actual si no fue actualizado
             $game->setName($name);
-            $game->setCover($url);
+            if(!empty($cover)) {
+                $game->setCover($url);
+            }
             $game->setDescription($description);
             $esrbM = new Model\Esrb();
             $esrbM->setId($esrb);
@@ -175,11 +208,20 @@ try {
         if ($_POST["method"] == "getGame") {
             //obtenemos el registro
             (new GameController())->getGame($_POST["id"], true);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6129c9ab5970705f2e47dbb1d494a7db5984789a
         }
 
         if($_POST["method"] == "updateGame"){
-            //actualizamos el registro
-            (new GameController())->updateGame($_POST['id'],$_POST['name'],$_FILES['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
+            //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
+            if(is_uploaded_file($_FILES['cover']['tmp_name'])) {
+                (new GameController())->updateGame($_POST['id'], $_POST['name'], $_FILES['cover'], $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], $_POST['platform'], $_POST['state']);
+            }
+            else {
+                (new GameController())->updateGame($_POST['id'], $_POST['name'], '', $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], $_POST['platform'], $_POST['state']);
+            }
         }
 
         if($_POST["method"] == "searchGame"){

@@ -102,15 +102,15 @@ use Http\Helpers as Helper;
                             <input name="cover" id="image"  type="file">
                         </div>
                         <div class="file-path-wrapper">
-                            <input name="cover" class="file-path validate" type="text">
+                            <input name="cover" class="file-path validate" type="text" required>
                         </div>
                     </div>
                     <div class="input-field">
-                        <input name="name" id="gameName" type="text" required>
+                        <input name="name" id="gameName" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label for="gameName">Nombre de juego</label>
                     </div>
                     <div class="input-field">
-                        <textarea name="description" class="materialize-textarea" id="registerUser" type="text" required></textarea>
+                        <textarea name="description" class="materialize-textarea" id="registerUser" type="text" minlength="3" maxlength="500" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\'\.\,\:\;\¿\?\-\!]{3,500}$" title="Solo se permiten números, letras y signos de puntuación" required></textarea>
                         <label for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
@@ -204,18 +204,18 @@ use Http\Helpers as Helper;
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Caratula</span>
-                            <input name="cover" id="image"  type="file">
+                            <input name="cover" id="image"  type="file" >
                         </div>
                         <div class="file-path-wrapper">
-                            <input id="gameCoverU" name="cover" class="file-path validate" type="text">
+                            <input id="gameCoverU" name="cover" class="file-path validate" type="text" >
                         </div>
                     </div>
                     <div class="input-field">
-                        <input id="gameNameU" name="name" type="text" required>
+                        <input id="gameNameU" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label id="gameNameLabelU" for="gameNameU">Nombre de juego</label>
                     </div>
                     <div class="input-field">
-                        <textarea class="materialize-textarea" name="description" id="gameDesc" type="text" required></textarea>
+                        <textarea class="materialize-textarea" name="description" id="gameDesc" type="text"  minlength="3" maxlength="500" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\'\.\,\:\;\¿\?\-\!]{3,500}$" title="Solo se permiten números, letras y signos de puntuación" required></textarea>
                         <label id="gameDescLabelU" for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">

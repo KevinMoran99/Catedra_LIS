@@ -40,7 +40,7 @@ $( "#frmSpecUpdate" ).submit(function( event ) {
 
     var formData = new FormData(this);
     formData.append("method","updateSpec");
-
+console.log(formData.get("name"));
     //Mensaje de confirmacion
     swal({
         title: '¿Desea modificar con los datos especificados?',

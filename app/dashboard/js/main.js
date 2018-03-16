@@ -44,6 +44,7 @@ $( "#frmActJg" ).submit(function( event ) {
 
     var formData = new FormData(this);
     formData.append("method","updateGame");
+    formData.append("id",$("#gameId").val());
 
     //Mensaje de confirmacion
     swal({
@@ -99,7 +100,7 @@ $(".edit").on('click', function () {
         contentType: false,
         processData: false,
         url: "../http/controllers/GameController.php",
-        success: function(result) {
+        success: function(result) {console.log(result);
             //parseamos el resultado a json
             var $data = jQuery.parseJSON(result);
 
