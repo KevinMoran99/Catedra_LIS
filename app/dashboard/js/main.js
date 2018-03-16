@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $('.modal').modal();
-    $('.form-select').each(function(index, element) {
+    $('#game-filter').select2();
+    $('.formSelect').each(function(index, element) {
         $(this).select2();
     });
 
@@ -105,6 +106,7 @@ $(".edit").on('click', function () {
             //seteamos los datos en la vista
             $("#gameNameU").val($data.name);
             $("#gameDesc").val($data.description);
+            M.textareaAutoResize($("#gameDesc"));
 
             $("#EsrbSelectU").val($data.esrb);
             $("#EsrbSelectU").select2();
