@@ -202,10 +202,6 @@ try {
         if ($_POST["method"] == "getGame") {
             //obtenemos el registro
             (new GameController())->getGame($_POST["id"], true);
-<<<<<<< HEAD
-=======
-
->>>>>>> 6129c9ab5970705f2e47dbb1d494a7db5984789a
         }
 
         if($_POST["method"] == "updateGame"){
