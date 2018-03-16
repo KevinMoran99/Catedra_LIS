@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('.modal').modal();
+    $('#game-filter').select2();
     $('.formSelect').each(function(index, element) {
         $(this).select2();
     });
@@ -134,4 +135,61 @@ $(".edit").on('click', function () {
             $("#actualizarJuego").modal('open');
         }
     });
+});
+
+
+/*METODO PARA BUSCAR*/
+$("#game-search").keypress( function (e) {
+    //validacion para verificar si presiono enter
+    if(e.which==13){
+
+        var formData = new FormData();
+        formData.append("param",$("#game-search").val());
+        formData.append("method","searchGame");
+        //inicializando ajax
+        $.ajax({
+            method: "POST",
+            //seteando metodo a utilizar en controlador y seteando la data
+            data: formData,
+            contentType: false,
+            processData: false,
+            url: "../http/controllers/GameController.php",
+            success: function(result) {
+                //limpiando cuerpo de tabla
+                $("#allGames").empty();
+                //limpiando los links de paginacion
+                $("#gameLinks").empty();
+                //parseando resultado a json
+                var $data = jQuery.parseJSON(result);
+
+                //generando un row por registro
+                for(var i=0;i<$data.length;i++){
+
+                    var $checked = "";
+                    if($data[i].state==1){
+                        $checked = "checked";
+                    }
+
+                    $("#allGames").append("<div class='col s6 m3 l3'>"+
+                    "<a class='modal-trigger edit' href='#actualizarJuego'>"+
+                        "<div class='card'>"+
+                            "<div class='card-image'>"+
+                                "<img src='"+substr($data[i].cover,3)+"'>"+
+                                "<span class='card-title'>'"+$data[i].name()+"'</span>"+
+                                "<span id='gameId' class='id' style='visibility: hidden; display:none;'>'"+$row[i].id()+"</span>"+
+                            "</div>"+
+                        "</div>"+
+                    "</a>"+
+                "</div>");
+                }
+            }
+        });
+    }
+});
+
+
+$("#revert").click(function () {
+    $("#allGames").empty();
+    $("#gameLinks").empty();
+    attach("main", 1);
 });

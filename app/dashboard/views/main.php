@@ -5,7 +5,7 @@ use Http\Helpers as Helper;
 ?>
 <!--vista principal-->
 
-<!--navbar-->
+<!--navbar
 <div class="navbar-fixed">
     <nav>
         <h5 id="nav-title">Todos los juegos:</h5>
@@ -19,10 +19,31 @@ use Http\Helpers as Helper;
         </div>
     </nav>
 </div>
-
+-->
+<div class="navbar-fixed">
+    <nav>
+        <h5 id="nav-title">Todos los juegos:</h5>
+        <div id="filter-container" class="input-field">
+        <div class="row search-box">
+        <!--Añadir filtro para especificaciones-->
+        <div >
+            <div class="card-search-box hoverable white">
+                <div>
+                    <input id="game-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por nombre">
+                    
+                </div>
+                
+            </div>
+            <button class="btn light-blue darken-2" id="revert">Revertir</button>
+        </div>
+    </div>
+        </div>
+    </nav>
+</div>
+    
 <div class="wrapper">
 
-    <div class="row">
+    <div id="allGames" class="row">
     <!--INICIO DEL PAGINATE -->
     <?php
     //mostrando los datos solicitados en base al paginate

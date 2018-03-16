@@ -95,7 +95,7 @@ Class GameController
         $validateError="";
 
         //si no es alfanumerico setear flag a verdadero y agregar mensaje
-        if(!$validator->validateImage($cover,false,"../../web/img",256,320)){
+        if(!$validator->validateImage($cover,false,"../../web/img",500,500)){
             $validateError = "Error al modificar la imagen";
             $flag = true;
         }
@@ -167,18 +167,14 @@ try {
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addGame") {
             //creamos un nuevo registro con los datos del array
-            if(is_uploaded_file($_FILES['cover']['tmp_name'])){
                 (new GameController())->addGame($_POST['name'],$_FILES['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
-            }
             
             
         }
 
         if ($_POST["method"] == "getGame") {
             //obtenemos el registro
-            if(is_uploaded_file($_FILES['cover']['tmp_name'])){
             (new GameController())->getGame($_POST["id"], true);
-        }
         }
 
         if($_POST["method"] == "updateGame"){
