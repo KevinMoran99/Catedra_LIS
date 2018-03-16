@@ -11,7 +11,7 @@ $( "#frmRegJg" ).submit(function( event ) {
     event.preventDefault();
     var formData = new FormData(this);
     var files = $('#image').prop('files')[0];
-    formData.append('image',files);
+    formData.append('cover',files);
     formData.append("method",'addGame');
     //inicializando ajax
     $.ajax({
