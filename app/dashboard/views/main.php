@@ -32,12 +32,12 @@ use Http\Helpers as Helper;
     foreach ($paginate->getData() as $row){
         
         echo '<div class="col s6 m3 l3">
-        <a class="modal-trigger" href="#actualizarJuego">
+        <a class="modal-trigger edit" href="#actualizarJuego">
             <div class="card">
                 <div class="card-image">
                     <img src="'.substr($row->getCover(),3).'">
                     <span class="card-title">'.$row->getName().'</span>
-                    <span class="id" style="visibility: hidden; display:none;">'.$row->getId().'</span>
+                    <span id="gameId" class="id" style="visibility: hidden; display:none;">'.$row->getId().'</span>
                 </div>
             </div>
         </a>
@@ -190,15 +190,15 @@ use Http\Helpers as Helper;
                         </div>
                     </div>
                     <div class="input-field">
-                        <input id="gameName" type="text" required>
-                        <label for="registerUser">Nombre de juego</label>
+                        <input id="gameNameU" type="text" required>
+                        <label id="gameNameLabelU" for="gameNameU">Nombre de juego</label>
                     </div>
                     <div class="input-field">
-                        <textarea class="materialize-textarea" id="registerUser" type="text" required></textarea>
-                        <label for="registerUser">Descripcion</label>
+                        <textarea class="materialize-textarea" id="gameDesc" type="text" required></textarea>
+                        <label id="gameDescLabelU" for="registerUser">Descripcion</label>
                     </div>
                     <div class="input-field">
-                        <select id="EsrbSelect" class="form-select" name="selectEsrb" required>
+                        <select id="EsrbSelectU" class="form-select" name="selectEsrb" required>
                         <option value="" disabled="disabled" selected="true">Clasificacion</option>
                         <?php
                                 $esrbs = new Control\EsrbController();
@@ -209,7 +209,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div  class="input-field">
-                        <select id="genreSelect" class="form-select" name="selectGnr" required>
+                        <select id="genreSelectU" class="form-select" name="selectGnr" required>
                         <option value="" disabled="disabled" selected="true">Genero</option>
                         <?php
                                 $genres = new Control\GenreController();
@@ -220,7 +220,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select id="platformSelect" class="form-select" name="selectPltf" required>
+                        <select id="platformSelectU" class="form-select" name="selectPltf" required>
                         <option value="" disabled="disabled" selected="true">Plataforma</option>
                         <?php
                                 $platforms = new Control\PlatformController();
@@ -231,7 +231,7 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                        <select id="publisherSelect" class="form-select" name="selectPbls" required>
+                        <select id="publisherSelectU" class="form-select" name="selectPbls" required>
                         <option value="" disabled="disabled" selected="true">Publicador</option>
                         <?php
                                 $publishers = new Control\PublisherController();
@@ -248,7 +248,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked value="1" />
+                                <input id="gameStateActU" name="state" type="radio" checked value="1" />
                                 <span>Activo</span>
                             </label>
                                 </p>
@@ -256,7 +256,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                <input name="state" type="radio" checked values="0" />
+                                <input id="gameStateIncU" name="state" type="radio" checked values="0" />
                                 <span>Inactivo</span>
                             </label>
                                 </p>
@@ -264,7 +264,7 @@ use Http\Helpers as Helper;
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
+                        <button type="submit" class="modal-submit btn waves-effect right">Modificar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>

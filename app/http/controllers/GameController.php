@@ -173,7 +173,9 @@ try {
 
         if($_POST["method"] == "updateGame"){
             //actualizamos el registro
-            (new GameController())->updateGame($_POST['id'],$_POST['name'],$_POST['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
+            if(is_uploaded_file($_FILES['cover']['tmp_name'])){
+            (new GameController())->updateGame($_POST['id'],$_POST['name'],$_FILES['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
+        }
         }
 
         if($_POST["method"] == "searchGame"){

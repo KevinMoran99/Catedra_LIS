@@ -1,9 +1,9 @@
 $(document).ready(function () {
     $('.modal').modal();
-    $('.formSelect').each(function(index, element) {
+    $('.form-select').each(function(index, element) {
         $(this).select2();
     });
-   $('.js-example-basic-single').select2();
+
 });
 
 //AJAX DE AGREGAR REGISTRO
@@ -38,11 +38,11 @@ $( "#frmRegJg" ).submit(function( event ) {
 
 
 //AJAX DE ACTUALIZAR REGISTRO
-$( "#frmSpecUpdate" ).submit(function( event ) {
+$( "#actualizarJuego" ).submit(function( event ) {
     event.preventDefault();
 
     var formData = new FormData(this);
-    formData.append("method","updateSpec");
+    formData.append("method","updateGame");
 
     //Mensaje de confirmacion
     swal({
@@ -58,14 +58,14 @@ $( "#frmSpecUpdate" ).submit(function( event ) {
                 data: formData,
                 contentType: false,
                 processData: false,
-                url: "../http/controllers/SpecController.php",
+                url: "../http/controllers/GameController.php",
                 success: function (result) {
                     var output = result.split("|");
                     if (output[0] == "Éxito") {
                         //si la operacion fue un exito, cerramos el modal
-                        $('#actualizarSpec').modal('close');
+                        $('#actualizarJuego').modal('close');
                         //refrescamos la pagina
-                        attach("spec", 1);
+                        attach("main", 1);
                     }
                     console.log(result);
                     swal({
@@ -78,6 +78,59 @@ $( "#frmSpecUpdate" ).submit(function( event ) {
                     })
                 }
             });
+        }
+    });
+});
+
+
+//AL HACER CLICK EN "EDITAR" SOBRE UN REGISTRO, LOS DATOS DE ESE REGISTRO SE PASAN AL MODAL DE ACTUALIZAR
+$(".edit").on('click', function () {
+    //obtenemos el id (OJO AGREGAR CLASE ID A TODOS LOS CAMPOS DE LAS TABLAS QUE ALMACENAN EL ID)
+    var id = $(this).find(".id").text();
+
+    var formData = new FormData();
+    formData.append("id",id);
+    formData.append("method","getGame");
+    $.ajax({
+        method: "POST",
+        //seteando id y metodo a utilizar en el controlador
+        data: formData,
+        contentType: false,
+        processData: false,
+        url: "../http/controllers/GameController.php",
+        success: function(result) {
+            //parseamos el resultado a json
+            var $data = jQuery.parseJSON(result);
+
+            //seteamos los datos en la vista
+            $("#gameNameU").val($data.name);
+            $("#gameDesc").val($data.description);
+
+            $("#EsrbSelectU").val($data.esrb);
+            $("#EsrbSelectU").select2();
+
+            $("#genreSelectU").val($data.genre);
+            $("#genreSelectU").select2();
+
+            $("#platformSelectU").val($data.platform);
+            $("#platformSelectU").select2();
+
+            $("#publisherSelectU").val($data.publisher);
+            $("#publisherSelectU").select2();
+
+            if($data.state==="1"){
+                $("#gameStateActU").prop("checked", true);
+            }else{
+                $("#gameStateIncU").prop("checked", true);
+            }
+
+            //seteamos el id (OJO AGEREGAR INPUT TYPE HIDDEN PARA ALMACENAR EL ID)
+            $("#gameId").val($data.id);
+            //Hacemos que la animacion del label se triggeree
+            $("#gameNameLabelU").addClass('active');
+            $("#gameDescLabelU").addClass('active');
+            //al setear todos los datos abrimos el modal
+            $("#actualizarJuego").modal('open');
         }
     });
 });
