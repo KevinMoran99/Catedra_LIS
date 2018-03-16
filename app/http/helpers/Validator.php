@@ -67,7 +67,7 @@ class Validator{
 						return true;
 					}else{
 						$this->imageError = 1;
-						return false;
+						return $url;
 					}
 				}else{
 					$this->imageError = 2;

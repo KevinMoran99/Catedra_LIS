@@ -62,14 +62,14 @@ Class GameController
                 'cover' => $game->getCover(),
                 'description' => $game->getDescription(),
                 'publisher' => $game->getPublisher(),
-                'genre' => $game->getGenre(),
+                'genre' => $game->getGame(),
                 'platform' => $game->getPlatform(),
                 'state' => $genre->getState()
             ));
             echo $json;
         }else{
             //si no es ajax, retorna un objeto
-            return $genre;
+            return $game;
         }
     }
 
@@ -83,13 +83,13 @@ Class GameController
         $validateError="";
 
         //si no es alfanumerico setear flag a verdadero y agregar mensaje
-        if(!$validator->validateImage($cover,1,$nosequees,256,320)){
+        if(!$validator->validateImage($cover,false,$nosequees,256,320)){
             $validateError = "Error al modificar la imagen";
             $flag = true;
         }
          //si en este punto el flag es falso, actualizar el registro
          if(!$flag){
-            $genre->setId($id);
+            $game->setId($id);
             $game->setName($name);
             $game->setCover($cover);
             $game->setDescription($description);

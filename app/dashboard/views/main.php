@@ -36,7 +36,7 @@ use Http\Helpers as Helper;
             <div class="card">
                 <div class="card-image">
                     <img src="../web/img/example.png">
-                    <span class="card-title">"Nombre Juego"</span>
+                    <span class="card-title">'.$row->getName().'</span>
                 </div>
             </div>
         </a>
@@ -51,7 +51,7 @@ use Http\Helpers as Helper;
         //generando los links de paginacion
         echo "<div class='row'>";
         for($i=1;$i<=$paginate->linksNumber();$i++){
-            echo"<a class='col s1 red-text' onclick=\"attach('game' ,$i)\">$i</a>";
+            echo"<a class='col s1 red-text' onclick=\"attach('main' ,$i)\">$i</a>";
         }
         echo "</div>"
         ?>
