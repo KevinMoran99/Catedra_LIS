@@ -173,23 +173,23 @@
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmSignUp">
                     <div class="input-field">
-                        <input id="signUpEmail" type="email" required>
+                        <input id="signUpEmail" name="email" type="email" required>
                         <label for="signUpEmail">Correo electrónico</label>
                     </div>
                     <div class="input-field">
-                        <input id="signUpUser" type="text" required>
+                        <input id="signUpUser" name="alias" type="text" required>
                         <label for="signUpUser">Nombre de usuario</label>
                     </div>
                     <div class="input-field">
-                        <input id="signUpPass" type="password" required>
+                        <input id="signUpPass" name="pass" type="password" required>
                         <label for="signUpPass">Contraseña</label>
                     </div>
                     <div class="input-field">
-                        <input id="signUpConfirm" type="password" required>
+                        <input id="signUpConfirm" name="passConfirm" type="password" required>
                         <label for="signUpConfirm">Repetir contraseña</label>
                     </div>
                     <label>
-                        <input type="checkbox" id="signUpTerms" required/>
+                        <input type="checkbox" id="signUpTerms" name="terms" required/>
                         <span>Acepto los términos y condiciones</span>
                     </label>
                     <div class="input-field">
