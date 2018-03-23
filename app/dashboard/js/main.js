@@ -86,10 +86,10 @@ $( "#frmActJg" ).submit(function( event ) {
 
 
 //AL HACER CLICK EN "EDITAR" SOBRE UN REGISTRO, LOS DATOS DE ESE REGISTRO SE PASAN AL MODAL DE ACTUALIZAR
-$(".edit").on('click', function () {
+$("#allGames").on('click','.edit', function () {
     //obtenemos el id (OJO AGREGAR CLASE ID A TODOS LOS CAMPOS DE LAS TABLAS QUE ALMACENAN EL ID)
     var id = $(this).find(".id").text();
-
+    console.log("stfu",id);
     var formData = new FormData();
     formData.append("id",id);
     formData.append("method","getGame");
@@ -170,14 +170,15 @@ $("#game-search").keypress( function (e) {
                     if($data[i].state==1){
                         $checked = "checked";
                     }
-
+                    var img = $data[i].cover.substring(3);
+                    console.log($data[i].id);
                     $("#allGames").append("<div class='col s6 m3 l3'>"+
                     "<a class='modal-trigger edit' href='#actualizarJuego'>"+
                         "<div class='card'>"+
                             "<div class='card-image'>"+
-                                "<img src='"+substr($data[i].cover,3)+"'>"+
-                                "<span class='card-title'>'"+$data[i].name+"'</span>"+
-                                "<span id='gameId' class='id' style='visibility: hidden; display:none;'>'"+$row[i].id+"</span>"+
+                                "<img src='"+img+"'>"+
+                                "<span class='card-title'>"+$data[i].name+"</span>"+
+                                "<span class='id' style='visibility: hidden; display:none;'>"+$data[i].id+"</span>"+
                             "</div>"+
                         "</div>"+
                     "</a>"+

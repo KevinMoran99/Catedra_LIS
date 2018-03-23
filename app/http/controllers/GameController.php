@@ -170,10 +170,10 @@ Class GameController
                     'id' => $data[$i]->getId(),
                     'name' => $data[$i]->getName(),
                     'cover' => $data[$i]->getCover(),
-                    'esrb' => $data[$i]->getEsrb()->getName(),
-                    'publisher' => $data[$i]->getPublisher()->getName(),
-                    'genre' => $data[$i]->getGenre()->getName(),
-                    'platform' => $data[$i]->getPlatform()->getName(),
+                    'esrb' => $data[$i]->getEsrb()->getId(),
+                    'publisher' => $data[$i]->getPublisher()->getId(),
+                    'genre' => $data[$i]->getGenre()->getId(),
+                    'platform' => $data[$i]->getPlatform()->getId(),
                     'state' => $data[$i]->getState()
                 );
                 array_push($array,$tmp);

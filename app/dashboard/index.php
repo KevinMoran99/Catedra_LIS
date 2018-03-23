@@ -10,7 +10,9 @@
         <!--Autenticación-->
         <?php
             include_once ("../../vendor/autoload.php");
-            if (!session_id()) session_start();
+            if (!session_id()) {
+                session_start();
+            }
             if (!isset($_SESSION['user'])){
                 header("Location:login.php");
                 die();

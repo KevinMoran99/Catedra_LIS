@@ -27,14 +27,7 @@ use Http\Helpers as Helper;
         <div class="row search-box">
         <!--Añadir filtro para especificaciones-->
         <div >
-            <div class="card-search-box hoverable white">
-                <div>
-                    <input id="game-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por nombre">
-                    
-                </div>
-                
-            </div>
-            <button class="btn light-blue darken-2" id="revert">Revertir</button>
+
         </div>
     </div>
         </div>
@@ -42,6 +35,18 @@ use Http\Helpers as Helper;
 </div>
     
 <div class="wrapper">
+    <div class="row search-box">
+        <!--Añadir filtro para generos-->
+        <div class="col s12 m6 offset-m3">
+            <div class="card-search-box hoverable white">
+                <div>
+                    <input id="game-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por cualquier parametro">
+
+                </div>
+            </div>
+            <button class="btn light-blue darken-2" id="revert">Revertir</button>
+        </div>
+    </div>
 
     <div id="allGames" class="row">
     <!--INICIO DEL PAGINATE -->
@@ -52,7 +57,7 @@ use Http\Helpers as Helper;
     $paginate = new Helper\Paginate($games->getAllGames(),$current_page);
     foreach ($paginate->getData() as $row){
         
-        echo '<div class="col s6 m3 l3">
+        echo '<div class="col s6 m3 l3 game">
         <a class="modal-trigger edit" href="#actualizarJuego">
             <div class="card">
                 <div class="card-image">
@@ -99,7 +104,7 @@ use Http\Helpers as Helper;
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Caratula</span>
-                            <input name="cover" id="image"  type="file">
+                            <input name="cover" id="image" accept="image/*"   type="file">
                         </div>
                         <div class="file-path-wrapper">
                             <input name="cover" class="file-path validate" type="text" required>
@@ -204,10 +209,10 @@ use Http\Helpers as Helper;
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Caratula</span>
-                            <input name="cover" id="image"  type="file" >
+                            <input name="cover" id="image" accept="image/*"   type="file" >
                         </div>
                         <div class="file-path-wrapper">
-                            <input id="gameCoverU" name="cover" class="file-path validate" type="text" >
+                            <input id="gameCoverU" name="cover" accept="image/*" class="file-path validate" type="text" >
                         </div>
                     </div>
                     <div class="input-field">

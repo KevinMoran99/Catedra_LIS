@@ -143,7 +143,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                        <input name="state" type="radio" checked />
+                                        <input name="state" value="1" type="radio" checked />
                                         <span>Activo</span>
                                     </label>
                                 </p>
@@ -151,7 +151,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                        <input name="state" type="radio" />
+                                        <input name="state" value="0" type="radio" />
                                         <span>Inactivo</span>
                                     </label>
                                 </p>
@@ -205,7 +205,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m5">
                                 <p>
                                     <label>
-                                        <input id="specStateA" name="state" type="radio" checked />
+                                        <input id="specStateA" value="1" name="state" type="radio" checked />
                                         <span>Activo</span>
                                     </label>
                                 </p>
@@ -213,7 +213,7 @@ use Http\Helpers as Helper;
                             <div class="col s12 m6 push-m4">
                                 <p>
                                     <label>
-                                        <input id="specStateI" name="state" type="radio" />
+                                        <input id="specStateI" value="0" name="state" type="radio" />
                                         <span>Inactivo</span>
                                     </label>
                                 </p>
