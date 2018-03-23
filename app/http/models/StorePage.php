@@ -177,12 +177,12 @@ class StorePage implements Interfaces\ModelInterface
         $this->setDiscount($page['discount']);
     }
 
-    public function getByGame($active = false){
+    public function getByGame($pGame, $active = false){
         if ($active)
             $query ="SELECT * FROM store_pages WHERE game_id = ? AND visible = 1";
         else
             $query ="SELECT * FROM store_pages WHERE game_id = ?";
-        $params = array($this->getGame()->getId());
+        $params = array($pGame->getId());
         //Array de objetos devueltos
         $result = [];
         //Recorriendo resultados

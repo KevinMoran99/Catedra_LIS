@@ -28,8 +28,7 @@ class StorePageController
         $game->setId($id);
         $game->getById();
         $page = new Model\StorePage();
-        $page->setGame($game);
-        return $page->getByGame(true);
+        return $page->getByGame($game,true);
     }
 
     public function getPage ($id, $ajax) {
