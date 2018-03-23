@@ -11,6 +11,11 @@ Class GameController
         return $game->getAll();
     }
 
+    public function getAllGamesPublic(){
+        $game= new Model\Game();
+        return $game->getAllPublic();
+    }
+
     public  function  addGame($name, $cover, $description, $esrb, $publisher, $genre, $platform, $state){
         //instancia
         $validator = new Helper\Validator();

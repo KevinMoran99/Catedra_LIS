@@ -257,6 +257,41 @@ class Game implements Interfaces\ModelInterface
         return $result;
     }
 
+    public function getAllPublic(){
+        $query ="SELECT * FROM games WHERE state = 1 ORDER BY id desc";
+        $params = array(null);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pEsrb = (new Esrb());
+            $pEsrb->setId($line["esrb_id"]);
+            $pEsrb->getById();
+            $pPublisher = new Publisher();
+            $pPublisher->setId($line["publisher_id"]);
+            $pPublisher->getById();
+            $pGenre = new Genre();
+            $pGenre->setId($line["genre_id"]);
+            $pGenre->getById();
+            $pPlatform = new Platform();
+            $pPlatform->setId($line["platform_id"]);
+            $pPlatform->getById();
+
+            //Registro
+            $game = (new Game());
+            $game->init($line["id"], $line["name"], $line["cover"], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+
+            //Hijos
+            $cPictures = (new Picture())->getByGame($game);
+
+            $game->setPictures($cPictures);
+
+            array_push($result, $game);
+        }
+        return $result;
+    }
+
     public function getById()
     {
         $query ="SELECT * FROM games WHERE id = ?";

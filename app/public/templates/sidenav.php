@@ -47,9 +47,9 @@
     <div id="menu-items">
     <li class="menu-item center-align selected-item"><a href="#" onclick="location.reload();">Tienda</a></li>
     <li id="menu-games" class="menu-item center-align menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames1">Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>
-    <li id="menu-support" class="menu-item center-align"><a href="#!" onclick="attach('support')">Soporte Técnico</a></li>
-    <li id="menu-about" class="menu-item center-align"><a href="#!" onclick="attach('about')">Quiénes somos</a></li>
-    <li id="menu-cart" class="menu-item center-align"><!--<a class="modal-trigger" href="#modalCart">--><a href="#!" onclick="attach('cart')">
+    <li id="menu-support" class="menu-item center-align"><a href="#!" onclick="attach('support',1)">Soporte Técnico</a></li>
+    <li id="menu-about" class="menu-item center-align"><a href="#!" onclick="attach('about',1)">Quiénes somos</a></li>
+    <li id="menu-cart" class="menu-item center-align"><!--<a class="modal-trigger" href="#modalCart">--><a href="#!" onclick="attach('cart',1)">
         <div class="row">
             <div class="col s3"><i class="material-icons">shopping_cart</i></div><div class="col s6">Carrito</div>
         </div>
@@ -98,14 +98,14 @@
 <!--Dropdowns-->
 <!--Juegos  -->
 <ul id="drpGames1" class="dropdown-content">
-    <li id="game-all" class="item-game"><a href="#!" onclick="attach('games')">Todos</a></li>
-    <li id="game-offer" class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
-    <li id="game-platform" class="item-game"><a href="#!" onclick="attach('games')">Por plataforma</a></li>
-    <li id="game-publisher" class="item-game"><a href="#!" onclick="attach('games')">Por publicador</a></li>
-    <li id="game-genre" class="item-game"><a href="#!" onclick="attach('games')">Por género</a></li>
-    <li id="game-rating" class="item-game"><a href="#!" onclick="attach('games')">Por rating</a></li>
-    <li id="game-esrb" class="item-game"><a href="#!" onclick="attach('games')">Por clasificación</a></li>
-    <li id="game-date" class="item-game"><a href="#!" onclick="attach('games')">Por lanzamiento</a>
+    <li id="game-all" class="item-game"><a href="#!" onclick="attach('games',1)">Todos</a></li>
+    <li id="game-offer" class="item-game"><a href="#!" onclick="attach('games',1)">Ofertas</a></li>
+    <li id="game-platform" class="item-game"><a href="#!" onclick="attach('games',1)">Por plataforma</a></li>
+    <li id="game-publisher" class="item-game"><a href="#!" onclick="attach('games',1)">Por publicador</a></li>
+    <li id="game-genre" class="item-game"><a href="#!" onclick="attach('games',1)">Por género</a></li>
+    <li id="game-rating" class="item-game"><a href="#!" onclick="attach('games',1)">Por rating</a></li>
+    <li id="game-esrb" class="item-game"><a href="#!" onclick="attach('games',1)">Por clasificación</a></li>
+    <li id="game-date" class="item-game"><a href="#!" onclick="attach('games',1)">Por lanzamiento</a>
     <!--<li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
     <li class="menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>-->
 </ul>
