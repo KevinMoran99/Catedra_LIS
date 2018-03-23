@@ -52,6 +52,7 @@ Class GameController
         if(!$flag) {
             $game->setName($name);
             $game->setCover($urlCover);
+            $game->setBanner($urlBanner);
             $game->setDescription($description);
             $esrbM = new Model\Esrb();
             $esrbM->setId($esrb);
@@ -92,6 +93,7 @@ Class GameController
                 'id' => $game->getId(),
                 'name' => $game->getName(),
                 'cover' => $game->getCover(),
+                'banner'=>$game->getBanner(),
                 'description' => $game->getDescription(),
                 'esrb' => $game->getEsrb()->getId(),
                 'publisher' => $game->getPublisher()->getId(),
@@ -107,7 +109,7 @@ Class GameController
     }
 
     //ACTUALIZAR REGISTRO
-    public function updateGame($id,$name, $cover, $description, $esrb, $publisher, $genre, $platform, $state){
+    public function updateGame($id,$name, $cover,$banner, $description, $esrb, $publisher, $genre, $platform, $state){
         //objetos de validacion y genero
         $validator = new Helper\Validator();
         $game = new Model\Game();
@@ -115,6 +117,7 @@ Class GameController
         $flag = false;
         $validateError="";
         $url=null;
+        $urlBanner=null;
 
         //Validando imagen, si hay una
         if (!empty($cover)) {
@@ -123,6 +126,15 @@ Class GameController
                 $flag = true;
             } else {
                 $url = $validator->finalUrl();
+            }
+        }
+        //Validando imagen, si hay una
+        if (!empty($banner)) {
+            if (!$validator->validateImage($banner, false, "../../web/img/", 1280, 720)) {
+                $validateError = $validator->getImageError();
+                $flag = true;
+            } else {
+                $urlBanner = $validator->finalUrl();
             }
         }
         //validamos campos de texto
@@ -142,6 +154,9 @@ Class GameController
             $game->setName($name);
             if(!empty($cover)) {
                 $game->setCover($url);
+            }
+            if(!empty($banner)){
+                $game->setBanner($urlBanner);
             }
             $game->setDescription($description);
             $esrbM = new Model\Esrb();
@@ -182,6 +197,7 @@ Class GameController
                     'id' => $data[$i]->getId(),
                     'name' => $data[$i]->getName(),
                     'cover' => $data[$i]->getCover(),
+                    'banner'=> $data[$i]->getBanner(),
                     'esrb' => $data[$i]->getEsrb()->getId(),
                     'publisher' => $data[$i]->getPublisher()->getId(),
                     'genre' => $data[$i]->getGenre()->getId(),
@@ -206,24 +222,21 @@ try {
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addGame") {
             //creamos un nuevo registro con los datos del array
-                (new GameController())->addGame($_POST['name'],$_FILES['cover'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
-            
-            
+            (new GameController())->addGame($_POST['name'],$_FILES['cover'],$_FILES['banner'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
+
         }
 
         if ($_POST["method"] == "getGame") {
             //obtenemos el registro
+
             (new GameController())->getGame($_POST["id"], true);
         }
 
         if($_POST["method"] == "updateGame"){
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
-            if(is_uploaded_file($_FILES['cover']['tmp_name'])) {
-                (new GameController())->updateGame($_POST['id'], $_POST['name'], $_FILES['cover'], $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], $_POST['platform'], $_POST['state']);
-            }
-            else {
-                (new GameController())->updateGame($_POST['id'], $_POST['name'], '', $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], $_POST['platform'], $_POST['state']);
-            }
+
+            (new GameController())->updateGame($_POST['id'], $_POST['name'], is_uploaded_file($_FILES['cover']['tmp_name']) ? $_FILES['cover'] : '',is_uploaded_file($_FILES['banner']['tmp_name']) ? $_FILES['banner'] : '', $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], $_POST['platform'], $_POST['state']);
+
         }
 
         if($_POST["method"] == "searchGame"){
@@ -232,5 +245,5 @@ try {
     }
 }
 catch (\Exception $error) {
-    Helper\Component::showMessage(Helper\Component::$ERROR, $error->getMessage());
+    //Helper\Component::showMessage(Helper\Component::$ERROR, $error->getMessage());
 }

@@ -110,6 +110,15 @@ use Http\Helpers as Helper;
                             <input name="cover" class="file-path validate" type="text" required>
                         </div>
                     </div>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Cover</span>
+                            <input name="banner" id="image2" accept="image/*"   type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input name="banner" class="file-path validate" type="text" required>
+                        </div>
+                    </div>
                     <div class="input-field">
                         <input name="name" id="gameName" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label for="gameName">Nombre de juego</label>
@@ -213,6 +222,15 @@ use Http\Helpers as Helper;
                         </div>
                         <div class="file-path-wrapper">
                             <input id="gameCoverU" name="cover" accept="image/*" class="file-path validate" type="text" >
+                        </div>
+                    </div>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Cover</span>
+                            <input name="banner" id="image2" accept="image/*"   type="file" >
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input id="gameBannerU" name="banner" accept="image/*" class="file-path validate" type="text" >
                         </div>
                     </div>
                     <div class="input-field">

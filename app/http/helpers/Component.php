@@ -42,7 +42,7 @@ class Component
                     $text = "Servidor desconocido";
                     break;
                 default:
-                    $text = "Ocurrió un problema, contacte al administrador :(";
+                    $text = $message;
             }
         }else{
             //Si el parámetro es un string normal, se imprimirá eso sin mas

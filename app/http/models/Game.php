@@ -25,6 +25,8 @@ class Game implements Interfaces\ModelInterface
 
     private $pictures;
 
+    private $banner;
+
 
     //Parámetros de tipo de búsqueda
     public static $ESRB = 1;
@@ -44,11 +46,12 @@ class Game implements Interfaces\ModelInterface
      * @param $platform
      * @param $state
      */
-    public function init($id, $name, $cover, $description, $esrb, $publisher, $genre, $platform, $state)
+    public function init($id, $name, $cover,$banner, $description, $esrb, $publisher, $genre, $platform, $state)
     {
         $this->id = $id;
         $this->name = $name;
         $this->cover = $cover;
+        $this->banner=$banner;
         $this->description = $description;
         $this->esrb = $esrb;
         $this->publisher = $publisher;
@@ -103,6 +106,21 @@ class Game implements Interfaces\ModelInterface
     public function setCover($cover)
     {
         $this->cover = $cover;
+    }
+    /**
+     * @return mixed
+     */
+    public function getBanner()
+    {
+        return $this->banner;
+    }
+
+    /**
+     * @param mixed $banner
+     */
+    public function setBanner($banner)
+    {
+        $this->banner = $banner;
     }
 
     /**
@@ -245,12 +263,12 @@ class Game implements Interfaces\ModelInterface
 
             //Registro
             $game = (new Game());
-            $game->init($line["id"], $line["name"], $line["cover"], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+            $game->init($line["id"], $line["name"], $line["cover"],$line['banner'], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
 
             //Hijos
-            $cPictures = (new Picture())->getByGame($game);
+           /* $cPictures = (new Picture())->getByGame($game);
 
-            $game->setPictures($cPictures);
+            $game->setPictures($cPictures);*/
 
             array_push($result, $game);
         }
@@ -280,12 +298,12 @@ class Game implements Interfaces\ModelInterface
 
             //Registro
             $game = (new Game());
-            $game->init($line["id"], $line["name"], $line["cover"], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+            $game->init($line["id"], $line["name"], $line["cover"], $line['banner'],$line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
 
             //Hijos
-            $cPictures = (new Picture())->getByGame($game);
+            //$cPictures = (new Picture())->getByGame($game);
 
-            $game->setPictures($cPictures);
+            //$game->setPictures($cPictures);
 
             array_push($result, $game);
         }
@@ -300,6 +318,7 @@ class Game implements Interfaces\ModelInterface
         $this->setId($game['id']);
         $this->setName($game['name']);
         $this->setCover($game['cover']);
+        $this->setBanner($game['banner']);
         $this->setDescription($game['description']);
             $pEsrb = new Esrb();
             $pEsrb->setId($game["esrb_id"]);
@@ -318,22 +337,22 @@ class Game implements Interfaces\ModelInterface
             $pPlatform->getById();
         $this->setPlatform($pPlatform);
         $this->setState($game['state']);
-            $cPictures = (new Picture())->getByGame($this);
-        $this->setPictures($cPictures);
+           // $cPictures = (new Picture())->getByGame($this);
+        //$this->setPictures($cPictures);
     }
 
     public function insert()
     {
-        $query ="INSERT INTO games (name, cover, description, esrb_id, publisher_id, genre_id, platform_id, state) VALUES(?,?,?,?,?,?,?,?)";
-        $params= array($this->getName(),$this->getCover(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
+        $query ="INSERT INTO games (name, cover, banner, description, esrb_id, publisher_id, genre_id, platform_id, state) VALUES(?,?,?,?,?,?,?,?,?)";
+        $params= array($this->getName(),$this->getCover(),$this->getBanner(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
                         $this->getGenre()->getId(),$this->getPlatform()->getId(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update()
     {
-        $query ="UPDATE games SET name=?,cover=?,description=?,esrb_id=?,publisher_id=?,genre_id=?,platform_id=?,state=? WHERE id=?";
-        $params= array($this->getName(),$this->getCover(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
+        $query ="UPDATE games SET name=?,cover=?,banner=?,description=?,esrb_id=?,publisher_id=?,genre_id=?,platform_id=?,state=? WHERE id=?";
+        $params= array($this->getName(),$this->getCover(),$this->getBanner(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
                         $this->getGenre()->getId(),$this->getPlatform()->getId(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
@@ -392,7 +411,7 @@ class Game implements Interfaces\ModelInterface
 
             //Registro
             $game = (new Game());
-            $game->init($line["id"], $line["name"], $line["cover"], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+            $game->init($line["id"], $line["name"], $line["cover"],$line['banner'] ,$line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
 
             //Hijos
             $cPictures = (new Picture())->getByGame($game);
