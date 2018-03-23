@@ -414,9 +414,9 @@ class Game implements Interfaces\ModelInterface
             $game->init($line["id"], $line["name"], $line["cover"],$line['banner'] ,$line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
 
             //Hijos
-            $cPictures = (new Picture())->getByGame($game);
+            /*$cPictures = (new Picture())->getByGame($game);
 
-            $game->setPictures($cPictures);
+            $game->setPictures($cPictures);*/
 
             array_push($result, $game);
         }

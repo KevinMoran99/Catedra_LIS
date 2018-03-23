@@ -135,6 +135,7 @@ CREATE TABLE bill_items(
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     bill_id INT UNSIGNED NOT NULL,
     store_page_id INT UNSIGNED NOT NULL,
+    game_key VARCHAR(100) NOT NULL,
     CONSTRAINT fk_bills_bill_items FOREIGN KEY(bill_id) REFERENCES bills(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_store_pages_bill_items FOREIGN KEY(store_page_id) REFERENCES store_pages(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ); 

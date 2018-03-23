@@ -139,26 +139,77 @@ class StorePage implements Interfaces\ModelInterface
 
 
     public function getAll($active = false){
-        $query ="SELECT * FROM store_pages";
+        if ($active)
+            $query ="SELECT * FROM store_pages WHERE visible = 1";
+        else
+            $query ="SELECT * FROM store_pages";
         $params = array(null);
-        return Model\Connection::select($query,$params);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pGame = (new Game());
+            $pGame->setId($line["game_id"]);
+            $pGame->getById();
+
+            //Registro
+            $page = (new StorePage());
+            $page->init($line["id"], $pGame, new \DateTime($line["release_date"]),$line['visible'], $line["price"], $line["discount"]);
+
+            array_push($result, $page);
+        }
+        return $result;
     }
 
     public function getById() {
         $query ="SELECT * FROM store_pages WHERE id = ?";
         $params = array($this->getId());
-        return Model\Connection::selectOne($query,$params);
+        $page = Model\Connection::selectOne($query,$params);
+        $this->setId($page['id']);
+        $pGame = new Game();
+        $pGame->setId($page['game_id']);
+        $pGame->getById();
+        $this->setGame($pGame);
+        $this->setReleaseDate(new \DateTime($page["release_date"]));
+        $this->setVisible($page['visible']);
+        $this->setPrice($page['price']);
+        $this->setDiscount($page['discount']);
+    }
+
+    public function getByGame($active = false){
+        if ($active)
+            $query ="SELECT * FROM store_pages WHERE game_id = ? AND visible = 1";
+        else
+            $query ="SELECT * FROM store_pages WHERE game_id = ?";
+        $params = array($this->getGame()->getId());
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pGame = (new Game());
+            $pGame->setId($line["game_id"]);
+            $pGame->getById();
+
+            //Registro
+            $page = (new StorePage());
+            $page->init($line["id"], $pGame, new \DateTime($line["release_date"]),$line['visible'], $line["price"], $line["discount"]);
+
+            array_push($result, $page);
+        }
+        return $result;
     }
 
     public function insert(){
         $query ="INSERT INTO store_pages (game_id,release_date,visible,price,discount) VALUES(?,?,?,?,?)";
-        $params= array($this->getGame(),$this->getReleaseDate(),$this->getVisible(),$this->getPrice(),$this->getDiscount());
+        $params= array($this->getGame()->getId(),$this->getReleaseDate()->format('Y-m-d'),$this->getVisible(),$this->getPrice(),$this->getDiscount());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update(){
         $query ="UPDATE store_pages SET game_id=?,release_date=?,visible=?,price=?,discount=? WHERE id=?";
-        $params= array($this->getGame(),$this->getReleaseDate(),$this->getVisible(),$this->getPrice(),$this->getDiscount(),$this->getId());
+        $params= array($this->getGame()->getId(),$this->getReleaseDate()->format('Y-m-d'),$this->getVisible(),$this->getPrice(),$this->getDiscount(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 

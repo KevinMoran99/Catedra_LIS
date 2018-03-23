@@ -135,5 +135,15 @@ class Validator{
 			return false;
 		}
 	}
+
+	public function validateDate($value) {
+	    try {
+	        new \DateTime($value);
+	        return true;
+        }
+        catch (\Exception $e){
+	        return false;
+        }
+    }
 }
 ?>
