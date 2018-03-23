@@ -16,20 +16,27 @@ Class GameController
         return $game->getAllPublic();
     }
 
-    public  function  addGame($name, $cover, $description, $esrb, $publisher, $genre, $platform, $state){
+    public  function  addGame($name, $cover, $banner, $description, $esrb, $publisher, $genre, $platform, $state){
         //instancia
         $validator = new Helper\Validator();
         $game = new Model\Game();
         //variables de validacion
         $flag = false;
         $validateError= "";
-        $url=null;
+        $urlCover=null;
+        $urlBanner=null;
         //validamos si la imagen es valida
         if(!$validator->validateImage($cover,false,"../../web/img/",256,320)){
             $validateError = $validator->getImageError();
             $flag=true;
         }else{
-            $url = $validator->finalUrl();
+            $urlCover = $validator->finalUrl();
+        }
+        if(!$validator->validateImage($banner,false,"../../web/img/",1280,720)){
+            $validateError = $validator->getImageError();
+            $flag=true;
+        }else{
+            $urlBanner = $validator->finalUrl();
         }
         //validamos campos de texto
         if (!$validator->validateAlphanumeric($name, 3, 50)) {
@@ -44,7 +51,7 @@ Class GameController
         //validamos
         if(!$flag) {
             $game->setName($name);
-            $game->setCover($url);
+            $game->setCover($urlCover);
             $game->setDescription($description);
             $esrbM = new Model\Esrb();
             $esrbM->setId($esrb);
