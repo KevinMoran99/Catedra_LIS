@@ -74,7 +74,7 @@ $(".menu-item").click(function(event) {
     }
 });
 
-//Código de login provisional
+//login
 $('#frmSignIn').submit(function(e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -92,6 +92,33 @@ $('#frmSignIn').submit(function(e) {
                     window.location.replace("../dashboard/index.php");
                 else
                     window.location.replace("index.php");
+            }
+            else
+                swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+        }
+    });
+});
+
+//Registrarse
+$('#frmSignUp').submit(function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    formData.append("method","signUp");
+    $.ajax({
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        url: "../http/controllers/UserController.php",
+        success: function (result) {
+            var output = result.split("|");
+            console.log(result);
+            if (output[0] == "Éxito") {
+                swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+                    .then(function (confirm) {
+                        window.location.replace("index.php");
+                    }
+                );
             }
             else
                 swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})

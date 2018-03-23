@@ -241,6 +241,68 @@ class UserController
 
     }
 
+    //Método de registro de usuario
+    public function signUp($alias, $email, $pass, $passConfirm, $terms) {
+        //creamos objetos de validacion y user
+        $validator = new Helper\Validator();
+        $user = new Model\User();
+        //variables de validacion
+        $flag = false;
+        $validateError = "";
+        //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
+        if (!$terms) {
+            $validateError = "Para registrarse en Stoam xD, debe aceptar los términos y condiciones";
+            $flag = true;
+        }
+        if (!($pass == $passConfirm)) {
+            $validateError = "Las contraseñas ingresadas no coinciden";
+            $flag = true;
+        }
+        if (!$validator->validatePassword($pass)) {
+            $validateError = "La contraseña debe tener al menos 6 caracteres de longitud";
+            $flag = true;
+        }
+        if (!$validator->validateEmail($email)) {
+            $validateError = "El email ingresado es inválido";
+            $flag = true;
+        }
+        if (!$validator->validateAlphanumeric($alias, 3, 50)) {
+            $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre de usuario";
+            $flag = true;
+        }
+
+        //si el flag sigue siendo falso en este punto, agrega un nuevo registro
+        if (!$flag) {
+            //Encriptando contraseña
+            $encPass = Helper\Encryptor::encrypt($pass, true);
+
+            //Obteniendo padre del user
+            $type = new Model\UserType();
+            $type->setId(2);
+            $type->getById();
+
+            //llenamos el objeto con los datos proporcionados
+            $user->setAlias($alias);
+            $user->setEmail($email);
+            $user->setPass($encPass);
+            $user->setUserType($type);
+            $user->setState(1);
+
+            $response = $user->insert(); //Si se hace el insert retornará true. Si no, retornará el código de la excepción mysql
+            if (is_bool($response)) {
+                ob_start();
+                $this->login($alias, $pass);
+                ob_end_clean();
+                Helper\Component::showMessage(Helper\Component::$SUCCESS, "¡BIENVENIDO A BORDO! Gracias por elegir Stoam xD");
+            } else {
+                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+            }
+        } else {
+            //si el flag es verdadero, muestra el mensaje de error de validacion
+            Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
+        }
+    }
+
     public function logout() {
         session_start();
         session_destroy();
@@ -272,6 +334,10 @@ if(isset($_POST["method"])){
 
         else if ($_POST["method"] == "login") {
             (new UserController())->login($_POST['alias'], $_POST['pass']);
+        }
+
+        else if ($_POST["method"] == "signUp") {
+            (new UserController())->signUp($_POST['alias'], $_POST['email'], $_POST['pass'], $_POST['passConfirm'], isset($_POST['terms']) ? true : false);
         }
 
         else if ($_POST["method"] == "logout") {
