@@ -140,9 +140,33 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
 
     public function getAll($active = false){
         if ($active)
-            $query ="SELECT * FROM store_pages WHERE visible = 1";
+            $query ="SELECT * FROM store_pages WHERE visible = 1 ORDER BY id DESC";
         else
-            $query ="SELECT * FROM store_pages";
+            $query ="SELECT * FROM store_pages ORDER BY id DESC";
+        $params = array(null);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pGame = (new Game());
+            $pGame->setId($line["game_id"]);
+            $pGame->getById();
+
+            //Registro
+            $page = (new StorePage());
+            $page->init($line["id"], $pGame, new \DateTime($line["release_date"]),$line['visible'], $line["price"], $line["discount"]);
+
+            array_push($result, $page);
+        }
+        return $result;
+    }
+
+    public function getTop3($active = false){
+        if ($active)
+            $query ="SELECT * FROM store_pages WHERE visible = 1 ORDER BY id DESC LIMIT 3";
+        else
+            $query ="SELECT * FROM store_pages ORDER BY id DESC LIMIT 3";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];

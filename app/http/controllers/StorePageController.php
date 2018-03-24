@@ -18,6 +18,11 @@ class StorePageController
         return $page->getAll();
     }
 
+    public function getTop3Pages () {
+        $page = new Model\StorePage();
+        return $page->getAll(true);
+    }
+
     public function getAllPagesPublic () {
         $page = new Model\StorePage();
         return $page->getAll(true);

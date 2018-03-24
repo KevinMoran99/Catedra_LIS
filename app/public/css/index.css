@@ -163,3 +163,9 @@ nav label {
         width: 80% !important;
     }
 }
+
+#carousel-image{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}

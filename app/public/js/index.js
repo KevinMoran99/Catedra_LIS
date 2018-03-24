@@ -7,7 +7,8 @@ $(document).ready(function() {
     $('.button-collapse').sidenav();
     $('#filter-container').hide();
     $('.js-example-basic-single').select2();
-    attach("main");
+    attach("main",1);
+
 });
 
 /*  $('.dropdown-content').on('click', function(event) {
@@ -158,6 +159,7 @@ function attach(id,page) {
         success: function(html) {
             $("#container").append(html);
             if (id === "main") {
+
                 startCarousel();
             }
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
