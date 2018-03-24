@@ -69,5 +69,8 @@ class BillController
         }else{
             Helper\Component::showMessage(Helper\Component::$WARNING, $response);
         }
+        if (is_empty($bill->getLastId())) {
+
+        }
     }
 }
