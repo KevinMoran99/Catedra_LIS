@@ -3,13 +3,16 @@ startCarousel();
 
 function startCarousel() {
     $('.carousel.carousel-slider').carousel({ fullWidth: true });
-    $('#game1-banner').css("background-image", "url('../web/img/nierBanner.jpg')");
-    $('#game2-banner').css("background-image", "url('../web/img/bioshockBanner.jpg')");
-    $('#game3-banner').css("background-image", "url('../web/img/childoflightBanner.jpg')");
-    $('#game4-banner').css("background-image", "url('../web/img/darksidersBanner.jpg')");
-    setInterval(function() {
-        $('.carousel').carousel('next');
-    }, 5000);
+    var carrouselItems = $(".carousel div.carousel-item");
+    carrouselItems.each(function (index) {
+        var image = $(this).find('#carousel-image').text();
+        $(this).css("background-image", "url('"+image+"')");
+    });
+    if(carrouselItems.length>1){
+        setInterval(function() {
+            $('.carousel').carousel('next');
+        }, 5000);
+    }
 }
 $('#nextButton').find('i').click(function(e) {
     e.preventDefault();

@@ -12,16 +12,15 @@ use Http\Helpers as Helper;
     <?php
     //mostrando los datos solicitados en base al paginate
     $current_page = $page;
-    $games = new Control\GameController();
-    $paginate = new Helper\Paginate($games->getAllGamesPublic(),$current_page);
+    $page = new Control\StorePageController();
+    $paginate = new Helper\Paginate($page->getAllPagesPublic(),$current_page);
     foreach ($paginate->getData() as $row){
-
         echo '<div class="col s6 m3 l3 game">
         <a class="modal-trigger edit" href="#actualizarJuego">
             <div class="card">
                 <div class="card-image">
-                    <img src="'.substr($row->getCover(),3).'">
-                    <span class="card-title">'.$row->getName().'</span>
+                    <img src="'.substr($row->getGame()->getCover(),3).'">
+                    <span class="card-title">'.$row->getGame()->getName().'</span>
                     <span id="gameId" class="id" style="visibility: hidden; display:none;">'.$row->getId().'</span>
                 </div>
             </div>

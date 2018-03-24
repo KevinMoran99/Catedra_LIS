@@ -12,7 +12,7 @@ class Connection{
     //conectar a la base 
     private static function connect(){
         $server="localhost";
-        $user = "ara";
+        $user = "root";
         $pass="fedora98";
         $database="stoam";
         try{
