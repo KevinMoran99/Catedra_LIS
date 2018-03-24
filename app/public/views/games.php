@@ -16,12 +16,11 @@ use Http\Helpers as Helper;
     $paginate = new Helper\Paginate($page->getAllPagesPublic(),$current_page);
     foreach ($paginate->getData() as $row){
         echo '<div class="col s6 m3 l3 game">
-        <a class="modal-trigger edit" href="#actualizarJuego">
+        <a onclick="attachDatail('.$row->getId().')">
             <div class="card">
                 <div class="card-image">
                     <img src="'.substr($row->getGame()->getCover(),3).'">
                     <span class="card-title">'.$row->getGame()->getName().'</span>
-                    <span id="gameId" class="id" style="visibility: hidden; display:none;">'.$row->getId().'</span>
                 </div>
             </div>
         </a>
