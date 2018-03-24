@@ -247,7 +247,22 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
             'id' => $this->getId(),
             'game' => [
                 'id' => $this->getGame()->getId(),
-                'name' => $this->getGame()->getName()
+                'name' => $this->getGame()->getName(),
+                'cover' => $this->getGame()->getCover(),
+                'banner'=>$this->getGame()->getBanner(),
+                'description' => $this->getGame()->getDescription(),
+                'esrb' => [
+                    'id' => $this->getGame()->getEsrb()->getId(),
+                    'name' => $this->getGame()->getEsrb()->getName(),
+                ],
+                'publisher' => [
+                    'id' => $this->getGame()->getPublisher()->getId(),
+                    'name' => $this->getGame()->getPublisher()->getName(),
+                ],
+                'genre' => [
+                    'id' => $this->getGame()->getGenre()->getId(),
+                    'name' => $this->getGame()->getGenre()->getName(),
+                ],
             ],
             'release_date' => $this->getReleaseDate()->format('Y-m-d'),
             'visible'=> $this->getVisible(),

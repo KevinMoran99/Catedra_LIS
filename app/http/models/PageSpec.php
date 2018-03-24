@@ -177,7 +177,22 @@ class PageSpec implements Interfaces\ModelInterface, \JsonSerializable
                 'id' => $this->getStorePage()->getId(),
                 'game' => [
                     'id' => $this->getStorePage()->getGame()->getId(),
-                    'name' => $this->getStorePage()->getGame()->getName()
+                    'name' => $this->getStorePage()->getGame()->getName(),
+                    'cover' => $this->getStorePage()->getGame()->getCover(),
+                    'banner'=>$this->getStorePage()->getGame()->getBanner(),
+                    'description' => $this->getStorePage()->getGame()->getDescription(),
+                    'esrb' => [
+                        'id' => $this->getStorePage()->getGame()->getEsrb()->getId(),
+                        'name' => $this->getStorePage()->getGame()->getEsrb()->getName(),
+                    ],
+                    'publisher' => [
+                        'id' => $this->getStorePage()->getGame()->getPublisher()->getId(),
+                        'name' => $this->getStorePage()->getGame()->getPublisher()->getName(),
+                    ],
+                    'genre' => [
+                        'id' => $this->getStorePage()->getGame()->getGenre()->getId(),
+                        'name' => $this->getStorePage()->getGame()->getGenre()->getName(),
+                    ],
                 ],
             ],
             'spec' => [
