@@ -169,7 +169,7 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
                     'name' => $this->getUser()->getUserType()->getName()
                 ]
             ],
-            'bill_date' => $this->getBillDate()
+            'bill_date' => $this->getBillDate()->format('Y-m-d')
         ];
     }
 }
