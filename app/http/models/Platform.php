@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Platform implements Interfaces\ModelInterface
+class Platform implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $name;
@@ -121,16 +121,24 @@ class Platform implements Interfaces\ModelInterface
     public function search($param) {
         $query = "SELECT * FROM platforms WHERE name LIKE CONCAT('%',?,'%') " .
             "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
-    $params = array($param, $param, $param);
-    //Array de objetos devueltos
-    $result = [];
-    //Recorriendo resultados
-    foreach(Model\Connection::select($query,$params) as $line) {
-        $platform = new Platform();
-        $platform->init($line["id"], $line["name"], $line["state"]);
-        array_push($result, $platform);
+        $params = array($param, $param, $param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $platform = new Platform();
+            $platform->init($line["id"], $line["name"], $line["state"]);
+            array_push($result, $platform);
+        }
+        return $result;
     }
-    return $result;
-}
 
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'state' => $this->getState()
+        ];
+    }
 }

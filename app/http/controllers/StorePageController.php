@@ -23,12 +23,17 @@ class StorePageController
         return $page->getAll(true);
     }
 
-    public function getPagesByGame ($id) {
+    public function getPagesByGame ($id, $ajax) {
         $game = new Model\Game();
         $game->setId($id);
         $game->getById();
         $page = new Model\StorePage();
-        return $page->getByGame($game,true);
+        if($ajax) {
+            echo json_encode($page->getByGame($game, true));
+        }
+        else {
+            return $page->getByGame($game, true);
+        }
     }
 
     public function getPage ($id, $ajax) {
@@ -39,15 +44,7 @@ class StorePageController
         $page->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
-                'id' => $page->getId(),
-                'game' => $page->getGame()->getId(),
-                'release_date' => $page->getReleaseDate()->format('Y-m-d'),
-                'visible'=>$page->getVisible(),
-                'price' => $page->getPrice(),
-                'discount' => $page->getDiscount()
-            ));
-            echo $json;
+            echo json_encode($page);
         }else{
             //si no es ajax, retorna un objeto
             return $page;
@@ -144,6 +141,12 @@ try {
             (new StorePageController())->getPage($_POST["id"], true);
         }
 
+        if ($_POST["method"] == "getPagesByGame") {
+            //obtenemos el registro
+
+            (new StorePageController())->getPagesByGame($_POST["game"], true);
+        }
+
         if($_POST["method"] == "updatePage"){
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
@@ -157,5 +160,5 @@ try {
     }
 }
 catch (\Exception $error) {
-    //Helper\Component::showMessage(Helper\Component::$ERROR, $error->getMessage());
+    Helper\Component::showMessage(Helper\Component::$ERROR, $error->getMessage());
 }

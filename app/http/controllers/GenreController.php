@@ -62,12 +62,12 @@ class GenreController
         $genre->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
+            /*$json = json_encode(array(
                 'id' => $genre->getId(),
                 'name' => $genre->getName(),
                 'state' => $genre->getState()
-            ));
-            echo $json;
+            ));*/
+            echo json_encode($genre);
         }else{
             //si no es ajax, retorna un objeto
             return $genre;
@@ -112,7 +112,7 @@ class GenreController
         $data = $genre->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $array = [];
+           /* $array = [];
             $json = null;
             for($i = 0;$i<sizeof($data);$i++){
                 $tmp = array(
@@ -122,8 +122,8 @@ class GenreController
                 );
                 array_push($array,$tmp);
             }
-            $json = json_encode($array);
-            echo $json;
+            $json = json_encode($array);*/
+            echo json_encode($data);
         }else{
             //si no es ajax, retorna un objeto
             return $data;

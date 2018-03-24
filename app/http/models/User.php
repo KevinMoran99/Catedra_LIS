@@ -12,7 +12,7 @@ use Http\Models as Model;
 use Http\Helpers as Helper;
 use Http\Models\Interfaces as Interfaces;
 
-class User implements Interfaces\ModelInterface
+class User implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $alias;
@@ -252,4 +252,17 @@ class User implements Interfaces\ModelInterface
             return false;
     }
 
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'alias' => $this->getAlias(),
+            'email' => $this->getEmail(),
+            'userType' => [
+                'id' => $this->getUserType()->getId(),
+                'name' => $this->getUserType()->getName()
+            ],
+            'state' => $this->getState()
+        ];
+    }
 }

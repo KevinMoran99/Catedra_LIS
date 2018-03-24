@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Spec implements Interfaces\ModelInterface
+class Spec implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $name;
@@ -168,5 +168,18 @@ class Spec implements Interfaces\ModelInterface
             array_push($result, $spec);
         }
         return $result;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'typeSpec' => [
+                'id' => $this->getTypeSpec()->getId(),
+                'name' => $this->getTypeSpec()->getName()
+            ],
+            'state' => $this->getState()
+        ];
     }
 }

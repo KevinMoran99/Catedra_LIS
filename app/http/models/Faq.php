@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Faq implements Interfaces\ModelInterface
+class Faq implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $title;
@@ -185,5 +185,15 @@ class Faq implements Interfaces\ModelInterface
             array_push($result, $faq);
         }
         return $result;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription(),
+            'state' => $this->getState()
+        ];
     }
 }

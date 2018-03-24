@@ -82,13 +82,7 @@ class SpecController
         $spec->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
-                'id' => $spec->getId(),
-                'name' => $spec->getName(),
-                'typeSpec' => $spec->getTypeSpec()->getId(),
-                'state' => $spec->getState()
-            ));
-            echo $json;
+            echo json_encode($spec);
         }else{
             //si no es ajax, retorna un objeto
             return $spec;
@@ -139,19 +133,7 @@ class SpecController
         $data = $spec->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $array = [];
-            $json = null;
-            for($i = 0;$i<sizeof($data);$i++){
-                $tmp = array(
-                    'id' => $data[$i]->getId(),
-                    'name' => $data[$i]->getName(),
-                    'typeSpec' => $data[$i]->getTypeSpec()->getName(),
-                    'state' => $data[$i]->getState()
-                );
-                array_push($array,$tmp);
-            }
-            $json = json_encode($array);
-            echo $json;
+            echo json_encode($data);
         }else{
             //si no es ajax, retorna un objeto
             return $data;

@@ -102,7 +102,7 @@ $("table").on('click', ".edit", function () {
             $("#userAliasU").val($data.alias);
             $("#userEmailU").val($data.email);
 
-            $("#userTypeU").val($data.userType);
+            $("#userTypeU").val($data.userType.id);
             $("#userTypeU").select2();
 
             if($data.state==="1"){
@@ -159,7 +159,7 @@ $("#user-search").keypress( function (e) {
                         "<td  class='id' style=\"visibility: hidden; display:none;\">"+$data[i].id+"</td>" +
                         "<td>"+$data[i].alias+"</td>" +
                         "<td>"+$data[i].email+"</td>" +
-                        "<td>"+$data[i].userType+"</td>" +
+                        "<td>"+$data[i].userType.name+"</td>" +
                         "<td>" +
                         "<label>" +
                         "<input type=\"checkbox\" disabled " + $checked + ">" +
@@ -167,7 +167,7 @@ $("#user-search").keypress( function (e) {
                         "</label>" +
                         "</td>" +
                         "<td>" +
-                        "<a href='#actualizarUser' class='edit modal-trigger'>" +
+                        "<a href='#actualizarUsuario' class='edit modal-trigger'>" +
                         "<i class='material-icons tooltipped editar' data-position='left' data-delay='50' data-tooltip='Editar'>mode_edit</i>" +
                         "</a>" +
                         "</td>");

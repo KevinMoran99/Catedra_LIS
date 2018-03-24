@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class StorePage implements Interfaces\ModelInterface
+class StorePage implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $game;
@@ -177,7 +177,7 @@ class StorePage implements Interfaces\ModelInterface
         $this->setDiscount($page['discount']);
     }
 
-    public function getByGame($pGame, $active = false){
+    public function getByGame(Game $pGame, $active = false){
         if ($active)
             $query ="SELECT * FROM store_pages WHERE game_id = ? AND visible = 1";
         else
@@ -215,6 +215,21 @@ class StorePage implements Interfaces\ModelInterface
 
     public function search($param) {
         // TODO: Implement search() method.
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'game' => [
+                'id' => $this->getGame()->getId(),
+                'name' => $this->getGame()->getName()
+            ],
+            'release_date' => $this->getReleaseDate()->format('Y-m-d'),
+            'visible'=> $this->getVisible(),
+            'price' => $this->getPrice(),
+            'discount' => $this->getDiscount()
+        ];
     }
 
 }

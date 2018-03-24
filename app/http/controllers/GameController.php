@@ -13,7 +13,7 @@ Class GameController
 
     public function getAllGamesPublic(){
         $game= new Model\Game();
-        return $game->getAllPublic();
+        return $game->getAll(true);
     }
 
     public  function  addGame($name, $cover, $banner, $description, $esrb, $publisher, $genre, $platform, $state){

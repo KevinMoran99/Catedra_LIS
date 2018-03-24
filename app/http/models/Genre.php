@@ -10,7 +10,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Genre implements Interfaces\ModelInterface
+class Genre implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $name;
@@ -130,5 +130,14 @@ class Genre implements Interfaces\ModelInterface
             array_push($result, $genre);
         }
         return $result;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'state' => $this->getState()
+        ];
     }
 }

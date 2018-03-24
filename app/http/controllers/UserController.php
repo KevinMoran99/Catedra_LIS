@@ -100,14 +100,7 @@ class UserController
         $user->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
-                'id' => $user->getId(),
-                'alias' => $user->getAlias(),
-                'email' => $user->getEmail(),
-                'userType' => $user->getUserType()->getId(),
-                'state' => $user->getState()
-            ));
-            echo $json;
+            echo json_encode($user);
         }else{
             //si no es ajax, retorna un objeto
             return $user;
@@ -196,20 +189,7 @@ class UserController
         $data = $user->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $array = [];
-            $json = null;
-            for($i = 0;$i<sizeof($data);$i++){
-                $tmp = array(
-                    'id' => $data[$i]->getId(),
-                    'alias' => $data[$i]->getAlias(),
-                    'email' => $data[$i]->getEmail(),
-                    'userType' => $data[$i]->getUserType()->getName(),
-                    'state' => $data[$i]->getState()
-                );
-                array_push($array,$tmp);
-            }
-            $json = json_encode($array);
-            echo $json;
+            echo json_encode($data);
         }else{
             //si no es ajax, retorna un objeto
             return $data;

@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Esrb implements Interfaces\ModelInterface
+class Esrb implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $name;
@@ -131,5 +131,14 @@ class Esrb implements Interfaces\ModelInterface
             array_push($result, $esrb);
         }
         return $result;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'state' => $this->getState()
+        ];
     }
 }

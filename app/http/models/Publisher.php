@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Publisher implements Interfaces\ModelInterface
+class Publisher implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $name;
@@ -131,5 +131,14 @@ class Publisher implements Interfaces\ModelInterface
             array_push($result, $publisher);
         }
         return $result;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'state' => $this->getState()
+        ];
     }
 }

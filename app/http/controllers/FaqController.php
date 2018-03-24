@@ -78,13 +78,7 @@ class FaqController
         $faq->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
-                'id' => $faq->getId(),
-                'title' => $faq->getTitle(),
-                'description' => $faq->getDescription(),
-                'state' => $faq->getState()
-            ));
-            echo $json;
+            echo json_encode($faq);
         }else{
             //si no es ajax, retorna un objeto
             return $faq;
@@ -135,19 +129,7 @@ class FaqController
         $data = $faq->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $array = [];
-            $json = null;
-            for($i = 0;$i<sizeof($data);$i++){
-                $tmp = array(
-                    'id' => $data[$i]->getId(),
-                    'title' => $data[$i]->getTitle(),
-                    'description' => $data[$i]->getDescription(),
-                    'state' => $data[$i]->getState()
-                );
-                array_push($array,$tmp);
-            }
-            $json = json_encode($array);
-            echo $json;
+            echo json_encode($data);
         }else{
             //si no es ajax, retorna un objeto
             return $data;

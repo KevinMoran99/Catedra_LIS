@@ -101,7 +101,7 @@ $("table").on('click', ".edit", function () {
             //seteamos los datos en la vista
             $("#specNameU").val($data.name);
 
-            $("#specTypeU").val($data.typeSpec);
+            $("#specTypeU").val($data.typeSpec.id);
             $("#specTypeU").select2();
 
             if($data.state==="1"){
@@ -155,7 +155,7 @@ $("#spec-search").keypress( function (e) {
                     $("#allSpecs").append("<tr>" +
                         "<td  class='id' style=\"visibility: hidden; display:none;\">"+$data[i].id+"</td>" +
                         "<td>"+$data[i].name+"</td>" +
-                        "<td>"+$data[i].typeSpec+"</td>" +
+                        "<td>"+$data[i].typeSpec.name+"</td>" +
                         "<td>" +
                         "<label>" +
                         "<input type=\"checkbox\" disabled " + $checked + ">" +

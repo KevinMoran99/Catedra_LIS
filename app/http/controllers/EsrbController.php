@@ -62,12 +62,7 @@ class EsrbController
         $esrb->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
-                'id' => $esrb->getId(),
-                'name' => $esrb->getName(),
-                'state' => $esrb->getState()
-            ));
-            echo $json;
+            echo json_encode($esrb);
         }else{
             //si no es ajax, retorna un objeto
             return $esrb;
@@ -113,18 +108,7 @@ class EsrbController
         $data = $esrb->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $array = [];
-            $json = null;
-            for($i = 0;$i<sizeof($data);$i++){
-                $tmp = array(
-                    'id' => $data[$i]->getId(),
-                    'name' => $data[$i]->getName(),
-                    'state' => $data[$i]->getState()
-                );
-                array_push($array,$tmp);
-            }
-            $json = json_encode($array);
-            echo $json;
+            echo json_encode($data);
         }else{
             //si no es ajax, retorna un objeto
             return $data;

@@ -71,12 +71,7 @@ class TypeSpecController
         $type->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
-                'id' => $type->getId(),
-                'name' => $type->getName(),
-                'state' => $type->getState()
-            ));
-            echo $json;
+            echo json_encode($type);
         }else{
             //si no es ajax, retorna un objeto
             return $type;
@@ -121,18 +116,7 @@ class TypeSpecController
         $data = $type->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $array = [];
-            $json = null;
-            for($i = 0;$i<sizeof($data);$i++){
-                $tmp = array(
-                    'id' => $data[$i]->getId(),
-                    'name' => $data[$i]->getName(),
-                    'state' => $data[$i]->getState()
-                );
-                array_push($array,$tmp);
-            }
-            $json = json_encode($array);
-            echo $json;
+            echo json_encode($data);
         }else{
             //si no es ajax, retorna un objeto
             return $data;
