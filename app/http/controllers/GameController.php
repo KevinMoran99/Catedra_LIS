@@ -16,7 +16,7 @@ Class GameController
         return $game->getAll(true);
     }
 
-    public  function  addGame($name, $cover, $banner, $description, $esrb, $publisher, $genre, $platform, $state){
+    public  function  addGame($name, $cover, $banner, $description, $esrb, $publisher, $genre, /*$platform,*/ $state){
         //instancia
         $validator = new Helper\Validator();
         $game = new Model\Game();
@@ -63,9 +63,9 @@ Class GameController
             $genreM=new Model\Genre();
             $genreM->setId($genre);
             $game->setGenre($genreM);
-            $platformM= new Model\Platform();
+            /*$platformM= new Model\Platform();
             $platformM->setId($platform);
-            $game->setPlatform($platformM);
+            $game->setPlatform($platformM);*/
             $game->setState($state);
             $response = $game->insert();
 
@@ -89,19 +89,7 @@ Class GameController
         $game->getById();
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $json = json_encode(array(
-                'id' => $game->getId(),
-                'name' => $game->getName(),
-                'cover' => $game->getCover(),
-                'banner'=>$game->getBanner(),
-                'description' => $game->getDescription(),
-                'esrb' => $game->getEsrb()->getId(),
-                'publisher' => $game->getPublisher()->getId(),
-                'genre' => $game->getGenre()->getId(),
-                'platform' => $game->getPlatform()->getId(),
-                'state' => $game->getState()
-            ));
-            echo $json;
+            echo json_encode($game);
         }else{
             //si no es ajax, retorna un objeto
             return $game;
@@ -109,7 +97,7 @@ Class GameController
     }
 
     //ACTUALIZAR REGISTRO
-    public function updateGame($id,$name, $cover,$banner, $description, $esrb, $publisher, $genre, $platform, $state){
+    public function updateGame($id,$name, $cover,$banner, $description, $esrb, $publisher, $genre, /*$platform,*/ $state){
         //objetos de validacion y genero
         $validator = new Helper\Validator();
         $game = new Model\Game();
@@ -168,9 +156,9 @@ Class GameController
             $genreM=new Model\Genre();
             $genreM->setId($genre);
             $game->setGenre($genreM);
-            $platformM= new Model\Platform();
+            /*$platformM= new Model\Platform();
             $platformM->setId($platform);
-            $game->setPlatform($platformM);
+            $game->setPlatform($platformM);*/
             $game->setState($state);
             $response = $game->update();
             if (is_bool($response)) {
@@ -190,24 +178,7 @@ Class GameController
         $data = $game->search($name);
         //si es una request ajax retorna un json con los datos
         if($ajax) {
-            $array = [];
-            $json = null;
-            for($i = 0;$i<sizeof($data);$i++){
-                $tmp = array(
-                    'id' => $data[$i]->getId(),
-                    'name' => $data[$i]->getName(),
-                    'cover' => $data[$i]->getCover(),
-                    'banner'=> $data[$i]->getBanner(),
-                    'esrb' => $data[$i]->getEsrb()->getId(),
-                    'publisher' => $data[$i]->getPublisher()->getId(),
-                    'genre' => $data[$i]->getGenre()->getId(),
-                    'platform' => $data[$i]->getPlatform()->getId(),
-                    'state' => $data[$i]->getState()
-                );
-                array_push($array,$tmp);
-            }
-            $json = json_encode($array);
-            echo $json;
+            echo json_encode($data);
         }else{
             //si no es ajax, retorna un objeto
             return $data;
@@ -222,7 +193,7 @@ try {
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addGame") {
             //creamos un nuevo registro con los datos del array
-            (new GameController())->addGame($_POST['name'],$_FILES['cover'],$_FILES['banner'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],$_POST['platform'], $_POST['state']);
+            (new GameController())->addGame($_POST['name'],$_FILES['cover'],$_FILES['banner'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],/*$_POST['platform'],*/ $_POST['state']);
 
         }
 
@@ -235,7 +206,7 @@ try {
         if($_POST["method"] == "updateGame"){
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
-            (new GameController())->updateGame($_POST['id'], $_POST['name'], is_uploaded_file($_FILES['cover']['tmp_name']) ? $_FILES['cover'] : '',is_uploaded_file($_FILES['banner']['tmp_name']) ? $_FILES['banner'] : '', $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], $_POST['platform'], $_POST['state']);
+            (new GameController())->updateGame($_POST['id'], $_POST['name'], is_uploaded_file($_FILES['cover']['tmp_name']) ? $_FILES['cover'] : '',is_uploaded_file($_FILES['banner']['tmp_name']) ? $_FILES['banner'] : '', $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], /*$_POST['platform'],*/ $_POST['state']);
 
         }
 

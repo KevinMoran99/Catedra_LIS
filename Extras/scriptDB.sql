@@ -12,12 +12,13 @@ CREATE TABLE genres(
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) UNIQUE NOT NULL,
     state BOOL DEFAULT 1
-); 
+);
+/*
 CREATE TABLE platforms(
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) UNIQUE NOT NULL,
     state BOOL DEFAULT 1
-);
+);*/
 /*
 create table os(
 id int not null PRIMARY KEY AUTO_INCREMENT,
@@ -56,18 +57,18 @@ CREATE TABLE games(
     esrb_id INT UNSIGNED NOT NULL,
     publisher_id INT UNSIGNED NOT NULL,
     genre_id INT UNSIGNED NOT NULL,
-    platform_id INT UNSIGNED NOT NULL,
+    -- platform_id INT UNSIGNED NOT NULL,
     state BOOL DEFAULT 1,
     CONSTRAINT fk_esrbs_games	FOREIGN KEY(esrb_id) REFERENCES esrbs(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_publishers_games FOREIGN KEY(publisher_id) REFERENCES publishers(id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT fk_genres_games FOREIGN KEY(genre_id) REFERENCES genres(id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT	fk_platforms_games FOREIGN KEY(platform_id) REFERENCES platforms(id) ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT fk_genres_games FOREIGN KEY(genre_id) REFERENCES genres(id) ON DELETE RESTRICT ON UPDATE CASCADE
+    -- CONSTRAINT	fk_platforms_games FOREIGN KEY(platform_id) REFERENCES platforms(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ); 
 
 ALTER TABLE games add index(esrb_id);
 ALTER TABLE games add index(publisher_id);
 ALTER TABLE games add index(genre_id);
-ALTER TABLE games add index(platform_id);
+-- ALTER TABLE games add index(platform_id);
 
 CREATE TABLE store_pages(
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -196,8 +197,8 @@ INSERT INTO genres (name) VALUES ("Puzzle");
 INSERT INTO genres (name) VALUES ("Platformer");
 
 -- platforms
-INSERT INTO platforms (name) VALUES ("Microsoft Windows");
-INSERT INTO platforms (name) VALUES ("Mac OS X");
+/*INSERT INTO platforms (name) VALUES ("Microsoft Windows");
+INSERT INTO platforms (name) VALUES ("Mac OS X");*/
 
 -- type_specs
 INSERT INTO type_specs(name) VALUES("Procesador");

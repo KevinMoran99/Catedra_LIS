@@ -112,7 +112,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="file-field input-field">
                         <div class="btn">
-                            <span>Cover</span>
+                            <span>Banner</span>
                             <input name="banner" id="image2" accept="image/*"   type="file">
                         </div>
                         <div class="file-path-wrapper">
@@ -149,17 +149,17 @@ use Http\Helpers as Helper;
                                 ?>
                         </select>
                     </div>
-                    <div class="input-field">
+                    <!--<div class="input-field">
                         <select name="platform" id="platformSelect" class="formSelect"  required>
                         <option value="" disabled="disabled" selected="true">Plataforma</option>
                         <?php
-                                $platforms = new Control\PlatformController();
+                                /*$platforms = new Control\PlatformController();
                                 foreach ($platforms->getAllPlatforms() as $platform) {
                                     echo "<option value=".$platform->getId().">".$platform->getName()."</option>";
-                                }
+                                }*/
                                 ?>
                         </select>
-                    </div>
+                    </div>-->
                     <div class="input-field">
                         <select name="publisher" id="publisherSelect" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Publicador</option>
@@ -226,7 +226,7 @@ use Http\Helpers as Helper;
                     </div>
                     <div class="file-field input-field">
                         <div class="btn">
-                            <span>Cover</span>
+                            <span>Banner</span>
                             <input name="banner" id="image2" accept="image/*"   type="file" >
                         </div>
                         <div class="file-path-wrapper">
@@ -263,17 +263,17 @@ use Http\Helpers as Helper;
                                 ?>
                         </select>
                     </div>
-                    <div class="input-field">
+                    <!--<div class="input-field">
                         <select id="platformSelectU" name="platform" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Plataforma</option>
                         <?php
-                                $platforms = new Control\PlatformController();
+                                /*$platforms = new Control\PlatformController();
                                 foreach ($platforms->getAllPlatforms() as $platform) {
                                     echo "<option value=".$platform->getId().">".$platform->getName()."</option>";
-                                }
+                                }*/
                                 ?>
                         </select>
-                    </div>
+                    </div>-->
                     <div class="input-field">
                         <select id="publisherSelectU" name="publisher" class="formSelect" required>
                         <option value="" disabled="disabled" selected="true">Publicador</option>

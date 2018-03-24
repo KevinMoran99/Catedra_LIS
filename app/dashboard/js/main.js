@@ -111,16 +111,16 @@ $("#allGames").on('click','.edit', function () {
             $("#gameDesc").val($data.description);
             M.textareaAutoResize($("#gameDesc"));
 
-            $("#EsrbSelectU").val($data.esrb);
+            $("#EsrbSelectU").val($data.esrb.id);
             $("#EsrbSelectU").select2();
 
-            $("#genreSelectU").val($data.genre);
+            $("#genreSelectU").val($data.genre.id);
             $("#genreSelectU").select2();
 
-            $("#platformSelectU").val($data.platform);
-            $("#platformSelectU").select2();
+            /*$("#platformSelectU").val($data.platform);
+            $("#platformSelectU").select2();*/
 
-            $("#publisherSelectU").val($data.publisher);
+            $("#publisherSelectU").val($data.publisher.id);
             $("#publisherSelectU").select2();
 
             if($data.state==="1"){

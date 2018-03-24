@@ -11,7 +11,7 @@ namespace Http\Models;
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
-class Game implements Interfaces\ModelInterface
+class Game implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $name;
@@ -20,7 +20,7 @@ class Game implements Interfaces\ModelInterface
     private $esrb;
     private $publisher;
     private $genre;
-    private $platform;
+    //private $platform;
     private $state;
 
     private $pictures;
@@ -46,7 +46,7 @@ class Game implements Interfaces\ModelInterface
      * @param $platform
      * @param $state
      */
-    public function init($id, $name, $cover,$banner, $description, $esrb, $publisher, $genre, $platform, $state)
+    public function init($id, $name, $cover,$banner, $description, $esrb, $publisher, $genre, /*$platform,*/ $state)
     {
         $this->id = $id;
         $this->name = $name;
@@ -56,7 +56,7 @@ class Game implements Interfaces\ModelInterface
         $this->esrb = $esrb;
         $this->publisher = $publisher;
         $this->genre = $genre;
-        $this->platform = $platform;
+        //$this->platform = $platform;
         $this->state = $state;
     }
 
@@ -190,18 +190,18 @@ class Game implements Interfaces\ModelInterface
     /**
      * @return mixed
      */
-    public function getPlatform()
+    /*public function getPlatform()
     {
         return $this->platform;
-    }
+    }*/
 
     /**
      * @param mixed $platform
      */
-    public function setPlatform($platform)
+    /*public function setPlatform($platform)
     {
         $this->platform = $platform;
-    }
+    }*/
 
     /**
      * @return mixed
@@ -257,13 +257,13 @@ class Game implements Interfaces\ModelInterface
             $pGenre = new Genre();
             $pGenre->setId($line["genre_id"]);
             $pGenre->getById();
-            $pPlatform = new Platform();
+            /*$pPlatform = new Platform();
             $pPlatform->setId($line["platform_id"]);
-            $pPlatform->getById();
+            $pPlatform->getById();*/
 
             //Registro
             $game = (new Game());
-            $game->init($line["id"], $line["name"], $line["cover"],$line['banner'], $line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+            $game->init($line["id"], $line["name"], $line["cover"],$line['banner'], $line["description"], $pEsrb, $pPublisher, $pGenre, /*$pPlatform,*/ $line["state"]);
 
             //Hijos
            /* $cPictures = (new Picture())->getByGame($game);
@@ -297,10 +297,10 @@ class Game implements Interfaces\ModelInterface
             $pGenre->setId($game["genre_id"]);
             $pGenre->getById();
         $this->setGenre($pGenre);
-            $pPlatform = new Platform();
+            /*$pPlatform = new Platform();
             $pPlatform->setId($game["platform_id"]);
             $pPlatform->getById();
-        $this->setPlatform($pPlatform);
+        $this->setPlatform($pPlatform);*/
         $this->setState($game['state']);
            // $cPictures = (new Picture())->getByGame($this);
         //$this->setPictures($cPictures);
@@ -308,17 +308,17 @@ class Game implements Interfaces\ModelInterface
 
     public function insert()
     {
-        $query ="INSERT INTO games (name, cover, banner, description, esrb_id, publisher_id, genre_id, platform_id, state) VALUES(?,?,?,?,?,?,?,?,?)";
+        $query ="INSERT INTO games (name, cover, banner, description, esrb_id, publisher_id, genre_id, /*platform_id,*/ state) VALUES(?,?,?,?,?,?,?,/*?,*/?)";
         $params= array($this->getName(),$this->getCover(),$this->getBanner(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
-                        $this->getGenre()->getId(),$this->getPlatform()->getId(),$this->getState());
+                        $this->getGenre()->getId(),/*$this->getPlatform()->getId(),*/$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update()
     {
-        $query ="UPDATE games SET name=?,cover=?,banner=?,description=?,esrb_id=?,publisher_id=?,genre_id=?,platform_id=?,state=? WHERE id=?";
+        $query ="UPDATE games SET name=?,cover=?,banner=?,description=?,esrb_id=?,publisher_id=?,genre_id=?,/*platform_id=?,*/state=? WHERE id=?";
         $params= array($this->getName(),$this->getCover(),$this->getBanner(),$this->getDescription(),$this->getEsrb()->getId(),$this->getPublisher()->getId(),
-                        $this->getGenre()->getId(),$this->getPlatform()->getId(),$this->getState(),$this->getId());
+                        $this->getGenre()->getId(),/*$this->getPlatform()->getId(),*/$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
@@ -329,12 +329,12 @@ class Game implements Interfaces\ModelInterface
         if (!$field) {
             $query = "SELECT g.*  FROM games g INNER JOIN esrbs e ON g.esrb_id = e.id 
                       INNER JOIN publishers pu ON g.publisher_id = pu.id INNER JOIN genres ge ON g.genre_id = ge.id 
-                      INNER JOIN platforms pl ON g.platform_id = pl.id
+                      /*INNER JOIN platforms pl ON g.platform_id = pl.id*/
                       WHERE g.name LIKE CONCAT('%',?,'%') OR g.description LIKE CONCAT('%',?,'%') 
                       OR e.name LIKE CONCAT('%',?,'%') OR pu.name LIKE CONCAT('%',?,'%') 
-                      OR ge.name LIKE CONCAT('%',?,'%') OR pl.name LIKE CONCAT('%',?,'%')
+                      OR ge.name LIKE CONCAT('%',?,'%') /*OR pl.name LIKE CONCAT('%',?,'%')*/
                       OR g.state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
-            $params = array($param, $param, $param, $param, $param, $param, $param, $param);
+            $params = array($param, $param, $param, $param, $param, /*$param,*/ $param, $param);
         }
         //Buscar por clasificacion
         else if ($field == Game::$ESRB) {
@@ -352,10 +352,10 @@ class Game implements Interfaces\ModelInterface
             $params = array($param);
         }
         //Buscar por plataforma
-        else if ($field == Game::$PLATFORM) {
+        /*else if ($field == Game::$PLATFORM) {
             $query = "SELECT *  FROM games WHERE platform_id = ?";
             $params = array($param);
-        }
+        }*/
         //Array de objetos devueltos
         $result = [];
         //Recorriendo resultados
@@ -370,13 +370,13 @@ class Game implements Interfaces\ModelInterface
             $pGenre = new Genre();
             $pGenre->setId($line["genre_id"]);
             $pGenre->getById();
-            $pPlatform = new Platform();
+            /*$pPlatform = new Platform();
             $pPlatform->setId($line["platform_id"]);
-            $pPlatform->getById();
+            $pPlatform->getById();*/
 
             //Registro
             $game = (new Game());
-            $game->init($line["id"], $line["name"], $line["cover"],$line['banner'] ,$line["description"], $pEsrb, $pPublisher, $pGenre, $pPlatform, $line["state"]);
+            $game->init($line["id"], $line["name"], $line["cover"],$line['banner'] ,$line["description"], $pEsrb, $pPublisher, $pGenre, /*$pPlatform,*/ $line["state"]);
 
             //Hijos
             /*$cPictures = (new Picture())->getByGame($game);
@@ -389,4 +389,31 @@ class Game implements Interfaces\ModelInterface
 
     }
 
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'cover' => $this->getCover(),
+            'banner'=>$this->getBanner(),
+            'description' => $this->getDescription(),
+            'esrb' => [
+                'id' => $this->getEsrb()->getId(),
+                'name' => $this->getEsrb()->getName(),
+            ],
+            'publisher' => [
+                'id' => $this->getPublisher()->getId(),
+                'name' => $this->getPublisher()->getName(),
+            ],
+            'genre' => [
+                'id' => $this->getGenre()->getId(),
+                'name' => $this->getGenre()->getName(),
+            ],
+            /*'platform' => [
+                'id' => $this->getPlatform()->getId(),
+                'name' => $this->getPlatform()->getName(),
+            ],*/
+            'state' => $this->getState()
+        ];
+    }
 }
