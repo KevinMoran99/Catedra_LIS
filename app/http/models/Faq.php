@@ -187,6 +187,25 @@ class Faq implements Interfaces\ModelInterface, \JsonSerializable
         return $result;
     }
 
+    public function searchActive($param) {
+        $query = "SELECT * FROM faqs WHERE title LIKE CONCAT('%',?,'%') OR description LIKE CONCAT('%',?,'%') AND state = 1";
+        $params = array($param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pUser = new User();
+            $pUser->setId($line["user_id"]);
+            $pUser->getById();
+
+            $faq = new Faq();
+            $faq->init($line["id"], $line["title"], $line["description"], $pUser, $line["state"]);
+            array_push($result, $faq);
+        }
+        return $result;
+    }
+
     public function jsonSerialize()
     {
         return [

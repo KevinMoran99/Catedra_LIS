@@ -135,6 +135,19 @@ class FaqController
             return $data;
         }
     }
+
+    public function searchActiveFaq($name,$ajax){
+        //nuevo objeto de tipo de especificacion
+        $faq = new Model\Faq();
+        $data = $faq->searchActive($name);
+        //si es una request ajax retorna un json con los datos
+        if($ajax) {
+            echo json_encode($data);
+        }else{
+            //si no es ajax, retorna un objeto
+            return $data;
+        }
+    }
 }
 
 
@@ -160,6 +173,10 @@ try {
 
         else if($_POST["method"] == "searchFaq"){
             (new FaqController())->searchFaq($_POST["param"],true);
+        }
+
+        else if($_POST["method"] == "searchActiveFaq"){
+            (new FaqController())->searchActiveFaq($_POST["param"],true);
         }
     }
 }

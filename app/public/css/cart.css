@@ -19,6 +19,11 @@ button a {
     color: white;
 }
 
+.quantity {
+    max-width: 100px;
+    margin-left: 50px !important;
+}
+
 /*El boton de vaciar tenia un margen raro*/
 .red {
     margin-left: -5px !important;
