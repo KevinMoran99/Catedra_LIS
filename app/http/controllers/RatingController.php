@@ -71,7 +71,7 @@ class RatingController
         if ($total == 0) {
             return "Aún no hay valoraciones de este juego";
         }
-        return $favorable * 100 / $total;
+        return "El ". $favorable * 100 / $total ."% de personas recomiendan este juego";
     }
 
     public function addRating ($billItem, $recommended, $description) {

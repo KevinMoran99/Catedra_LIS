@@ -11,6 +11,7 @@ use Http\Controllers as Control;
         <?php
         $page = new Control\StorePageController();
         $detail = $page->getPage($id,false);
+        $rating = new Control\RatingController();
         echo '
         <div class="gameBackground"></div>
             <div class="col s12 m6 l4">
@@ -20,10 +21,9 @@ use Http\Controllers as Control;
                 <div class="row">
                     <div class="center col s12">
                         <div class="row">
-                            <strong class="col s6">
-                                <p class="right text">Clasificacion</p>
-                            </strong>
-                            <p class="text">'.$detail->getGame()->getEsrb()->getName().'</p>
+                            <p class="text">Clasificacion</p>
+                           
+                            <h5 class="text">'.$detail->getGame()->getEsrb()->getName().'</h5>
                             <p id="banner">'.substr($detail->getGame()->getBanner(),3).'</p>
                         </div>
                     </div>
@@ -49,15 +49,13 @@ use Http\Controllers as Control;
             <div class="col s12 m6 l4">
         
                 <h5 class="col s12 center text">Rating promedio</h5>
-                <div class="col s12 center">
-                    <i class="medium material-icons rate-star tooltipped" id="malo" data-tooltip="Malo" data-position="bottom" data-delay="50">star</i>
-                    <i class="medium material-icons rate-star tooltipped" id="bueno" data-tooltip="Bueno" data-position="bottom" data-delay="50">star</i>
-                    <i class="medium material-icons rate-star tooltipped" id="muy-bueno" data-tooltip="Muy bueno" data-position="bottom" data-delay="50">star</i>
-                    <i class="medium material-icons rate-star tooltipped" id="excelente" data-tooltip="Excelente" data-position="bottom" data-delay="50">star</i>
+                <div class="col s12 center text">
+                    '.$rating->getFavorableByPage($detail->getId()).'
                 </div>
-                <a class="col s12 center text">Ver todos los rating</a>
+                
                 <div class="row">
-                    <button class="btn col s12 white black-text">$0.00</button>
+                    
+                    <button class="btn col s12 white black-text">'.$detail->getFinalPrice().'$</button>
                     <button class="btn col s12 blue">Al carrito</button>
                 </div>
             </div>

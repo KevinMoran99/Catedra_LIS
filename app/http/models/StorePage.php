@@ -135,6 +135,11 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
         $this->discount = $discount;
     }
 
+    public function getFinalPrice()
+    {
+        return $this->price - ($this->price * ($this->discount/100));
+    }
+
 
 
 

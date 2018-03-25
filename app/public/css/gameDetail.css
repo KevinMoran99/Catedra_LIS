@@ -23,14 +23,13 @@
 
 .gameBackground {
     /*background-image: url('../../web/img/5ab6cbc353302.jpg');*/
-    background-repeat: no-repeat;
-    background-position: center;
+    background: no-repeat center;
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: -100;
-    filter: blur(1.5px);
     overflow: hidden;
+
 }
 
 #gameDetailHeader {
