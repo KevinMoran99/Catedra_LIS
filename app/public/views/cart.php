@@ -27,6 +27,7 @@
                     <div class="card-content">
                         <h4>Nombre del juego</h4>
                         <div class="chip green white-text">$9.99</div>
+                        <input class="quantity" type="number" value="1" min="1" max="20">
                     </div>
                     <div class="card-action">
                         <a class="red-text delBtn" href="#">Eliminar</a>
@@ -45,6 +46,7 @@
                     <div class="card-content">
                         <h4>Nombre del juego</h4>
                         <div class="chip green white-text">$9.99</div>
+                        <input class="quantity" type="number" value="1" min="1" max="20">
                     </div>
                     <div class="card-action">
                         <a class="red-text delBtn" href="#">Eliminar</a>
@@ -63,6 +65,7 @@
                     <div class="card-content">
                         <h4>Nombre del juego</h4>
                         <div class="chip green white-text">$9.99</div>
+                        <input class="quantity" type="number" value="1" min="1" max="20">
                     </div>
                     <div class="card-action">
                         <a class="red-text delBtn" href="#">Eliminar</a>

@@ -183,6 +183,61 @@ class UserController
         }
     }
 
+    //Version de updateUser usada para que el cliente edite su perfil
+    //Solamente toma en cuenta alias y contraseña
+    public function updateProfile($alias, $pass, $passConfirm){
+
+        //Reanudando sesion para accesar variable de sesion
+        session_start();
+
+        //objetos de validacion y tipo de user
+        $validator = new Helper\Validator();
+        $user = $_SESSION['user'];
+        //variables de validacion
+        $flag = false;
+        $validateError="";
+
+        //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
+
+        //Si se especificó una nueva contraseña
+        if (!empty($pass)) {
+            if (!($pass == $passConfirm)) {
+                $validateError = "Las contraseñas ingresadas no coinciden";
+                $flag = true;
+            }
+            if (!$validator->validatePassword($pass)) {
+                $validateError = "La contraseña debe tener al menos 6 caracteres de longitud";
+                $flag = true;
+            }
+        }
+        if (!$validator->validateAlphanumeric($alias, 3, 50)) {
+            $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre de usuario";
+            $flag = true;
+        }
+
+        //si en este punto el flag es falso, actualizar el registro
+        if(!$flag){
+            //Obteniendo padre del user
+            $user->setAlias($alias);
+            if (!empty($pass)) {
+                //Encriptando contraseña
+                $pass = Helper\Encryptor::encrypt($pass, true);
+                $user->setPass($pass);
+            }
+            $response = $user->update();
+            if (is_bool($response)) {
+                //Actualizando variable de sesión
+                $_SESSION['user'] = $user;
+                Helper\Component::showMessage(Helper\Component::$SUCCESS, "Perfil actualizado");
+            }else {
+                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+            }
+        }else{
+            //si el flag es verdadero, enviar mensaje de error
+            Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
+        }
+    }
+
     public function searchUser($name,$ajax){
         //nuevo objeto de tipo de especificacion
         $user = new Model\User();
@@ -310,6 +365,11 @@ if(isset($_POST["method"])){
         else if($_POST["method"] == "updateUser"){
             //actualizamos el registro con los datos del array
             (new UserController())->updateUser($_POST['id'],$_POST['alias'], $_POST['email'], $_POST['pass'], $_POST['passConfirm'], $_POST['userType'], $_POST['state']);
+        }
+
+        else if($_POST["method"] == "updateProfile"){
+            //actualizamos el registro con los datos del array
+            (new UserController())->updateProfile($_POST['alias'], $_POST['pass'], $_POST['passConfirm']);
         }
 
         else if ($_POST["method"] == "login") {

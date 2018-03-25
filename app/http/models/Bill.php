@@ -18,6 +18,9 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
     private $user;
     private $billDate;
 
+    //$items es un array que contendrá todos los objetos billItems relacionados al bill
+    private $items;
+
     /**
      * Bill constructor.
      * @param $id
@@ -79,6 +82,24 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
         $this->billDate = $billDate;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param mixed $items
+     */
+    public function setItems($items)
+    {
+        $this->items = $items;
+    }
+
+
+
 
     public function getAll($active = false)
     {
@@ -96,6 +117,11 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
             //Registro
             $bill = new Bill();
             $bill->init($line["id"], $pUser, new \DateTime($line["bill_date"]));
+
+            //Hijos
+            $items = new BillItem();
+            $itemsArray = $items->getByBill($bill);
+            $bill->setItems($itemsArray);
             array_push($result, $bill);
         }
         return $result;
@@ -111,6 +137,11 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
             $pUser->setId($bill['user_id']);
             $pUser->getById();
         $this->init($bill['id'], $pUser, new \DateTime($bill["bill_date"]));
+
+        //Hijos
+        $items = new BillItem();
+        $itemsArray = $items->getByBill($this);
+        $this->setItems($itemsArray);
     }
 
     public function getByUser (User $user) {
@@ -128,6 +159,12 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
             //Registro
             $bill = new Bill();
             $bill->init($line["id"], $pUser, new \DateTime($line["bill_date"]));
+
+            //Hijos
+            $items = new BillItem();
+            $itemsArray = $items->getByBill($bill);
+            $bill->setItems($itemsArray);
+
             array_push($result, $bill);
         }
         return $result;
@@ -169,7 +206,8 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
                     'name' => $this->getUser()->getUserType()->getName()
                 ]
             ],
-            'bill_date' => $this->getBillDate()->format('Y-m-d')
+            'bill_date' => $this->getBillDate()->format('Y-m-d'),
+            'items' => $this->getItems() //En este indice habra un array que contendra objetos con la estructura de json que tiene BillItem
         ];
     }
 }

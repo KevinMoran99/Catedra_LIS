@@ -143,6 +143,61 @@ $('#logout').click(function() {
 });
 
 
+//Al hacer click en 'Editar información'
+$('#modalUserTrigger').click(function () {
+    //La variable alias esta definida en sidenav.php
+   $('#userName').val(alias);
+   $('#userNameLabel').addClass('active');
+});
+
+
+//Submit de editar perfil
+$('#frmUser').submit(function (event) {
+    event.preventDefault();
+
+    var formData = new FormData(this);
+    formData.append("method","updateProfile");
+
+    //Mensaje de confirmacion
+    swal({
+        title: '¿Desea modificar sus datos?',
+        icon: 'warning',
+        buttons: ['Cancelar', 'Modificar']
+    }).then(function (confirm) {
+        if (confirm) {
+            //Haciendo submit via ajax
+            $.ajax({
+                method: "POST",
+                //seteamos el metodo a utilizar en el controlador y la data
+                data: formData,
+                contentType: false,
+                processData: false,
+                url: "../http/controllers/UserController.php",
+                success: function (result) {
+                    var output = result.split("|");
+                    if (output[0] == "Éxito") {
+                        //si la operacion fue un exito, cerramos el modal
+                        $('#modalUser').modal('close');
+                        //refrescamos el modal
+                        alias = $('#userName').val();
+                        $('#userName').val("");
+                        $('#userPass').val("");
+                        $('#userConfirm').val("");
+                    }
+                    swal({
+                        title: output[0],
+                        text: output[1],
+                        icon: output[2],
+                        button: 'Aceptar',
+                        closeOnClickOutside: false,
+                        closeOnEsc: false
+                    })
+                }
+            });
+        }
+    });
+});
+
 
 //Al dar aceptar en el modal de términos y condiciones
 $('#termsAgree').click(function() {

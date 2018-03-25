@@ -19,6 +19,8 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
     private $bill;
     private $storePage;
     private $gameKey;
+    private $price;
+    private $discount;
 
     /**
      * BillItem constructor.
@@ -26,14 +28,19 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
      * @param $bill
      * @param $storePage
      * @param $gameKey
+     * @param $price
+     * @param $discount
      */
-    public function init($id, $bill, $storePage, $gameKey)
+    public function init($id, $bill, $storePage, $gameKey, $price, $discount)
     {
         $this->id = $id;
         $this->bill = $bill;
         $this->storePage = $storePage;
         $this->gameKey = $gameKey;
+        $this->price = $price;
+        $this->discount = $discount;
     }
+
 
     /**
      * @return mixed
@@ -99,6 +106,39 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
         $this->gameKey = $gameKey;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param mixed $discount
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+    }
+
+
 
     public function getAll($active = false)
     {
@@ -119,7 +159,7 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
 
             //Registro
             $item = new BillItem();
-            $item->init($line["id"], $pBill, $pPage, $line["game_key"]);
+            $item->init($line["id"], $pBill, $pPage, $line["game_key"], $line["price"], $line["discount"]);
             array_push($result, $item);
         }
         return $result;
@@ -139,7 +179,7 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
         $pPage->setId($item['store_page_id']);
         $pPage->getById();
 
-        $this->init($item["id"], $pBill, $pPage, $item["game_key"]);
+        $this->init($item["id"], $pBill, $pPage, $item["game_key"], $item["price"], $item["discount"]);
     }
 
     public function getByBill(Bill $bill) {
@@ -150,17 +190,13 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
         //Recorriendo resultados
         foreach(Model\Connection::select($query,$params) as $line) {
             //Padres
-            $pBill = new Bill();
-            $pBill->setId($line['bill_id']);
-            $pBill->getById();
-
             $pPage = new StorePage();
             $pPage->setId($line['store_page_id']);
             $pPage->getById();
 
             //Registro
             $item = new BillItem();
-            $item->init($line["id"], $pBill, $pPage, $line["game_key"]);
+            $item->init($line["id"], $bill, $pPage, $line["game_key"], $line["price"], $line["discount"]);
             array_push($result, $item);
         }
         return $result;
@@ -176,8 +212,8 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
             $params= array($key);
         } while (!empty(Model\Connection::selectOne($query, $params)));
 
-        $query ="INSERT INTO bill_items (bill_id, store_page_id, game_key) VALUES(?,?,?)";
-        $params= array($this->getBill()->getId(),$this->getStorePage()->getId(), $key);
+        $query ="INSERT INTO bill_items (bill_id, store_page_id, game_key, price, discount) VALUES(?,?,?,?,?)";
+        $params= array($this->getBill()->getId(),$this->getStorePage()->getId(), $key, $this->getStorePage()->getPrice(), $this->getStorePage()->getDiscount());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
@@ -198,42 +234,45 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
         return [
             'id' => $this->getId(),
             'bill' => [
-                'id' => $this->getId(),
+                'id' => $this->getBill()->getId(),
                 'user' => [
-                    'id' => $this->getUser()->getId(),
-                    'alias' => $this->getUser()->getAlias(),
-                    'email' => $this->getUser()->getEmail(),
+                    'id' => $this->getBill()->getUser()->getId(),
+                    'alias' => $this->getBill()->getUser()->getAlias(),
+                    'email' => $this->getBill()->getUser()->getEmail(),
                     'userType' => [
-                        'id' => $this->getUser()->getUserType()->getId(),
-                        'name' => $this->getUser()->getUserType()->getName()
+                        'id' => $this->getBill()->getUser()->getUserType()->getId(),
+                        'name' => $this->getBill()->getUser()->getUserType()->getName()
                     ]
                 ],
-                'bill_date' => $this->getBillDate()->format('Y-m-d')
+                'bill_date' => $this->getBill()->getBillDate()->format('Y-m-d')
             ],
             'storePage' => [
-                'id' => $this->getId(),
+                'id' => $this->getStorePage()->getId(),
                 'game' => [
-                    'id' => $this->getGame()->getId(),
-                    'name' => $this->getGame()->getName(),
-                    'cover' => $this->getGame()->getCover(),
-                    'banner'=>$this->getGame()->getBanner(),
-                    'description' => $this->getGame()->getDescription(),
+                    'id' => $this->getStorePage()->getGame()->getId(),
+                    'name' => $this->getStorePage()->getGame()->getName(),
+                    'cover' => $this->getStorePage()->getGame()->getCover(),
+                    'banner'=>$this->getStorePage()->getGame()->getBanner(),
+                    'description' => $this->getStorePage()->getGame()->getDescription(),
                     'esrb' => [
-                        'id' => $this->getGame()->getEsrb()->getId(),
-                        'name' => $this->getGame()->getEsrb()->getName(),
+                        'id' => $this->getStorePage()->getGame()->getEsrb()->getId(),
+                        'name' => $this->getStorePage()->getGame()->getEsrb()->getName(),
                     ],
                     'publisher' => [
-                        'id' => $this->getGame()->getPublisher()->getId(),
-                        'name' => $this->getGame()->getPublisher()->getName(),
+                        'id' => $this->getStorePage()->getGame()->getPublisher()->getId(),
+                        'name' => $this->getStorePage()->getGame()->getPublisher()->getName(),
                     ],
                     'genre' => [
-                        'id' => $this->getGame()->getGenre()->getId(),
-                        'name' => $this->getGame()->getGenre()->getName(),
+                        'id' => $this->getStorePage()->getGame()->getGenre()->getId(),
+                        'name' => $this->getStorePage()->getGame()->getGenre()->getName(),
                     ],
                 ],
-                'release_date' => $this->getReleaseDate()->format('Y-m-d'),
+                'release_date' => $this->getStorePage()->getReleaseDate()->format('Y-m-d'),
             ],
-            'gameKey' => $this->getGameKey()
+            'gameKey' => $this->getGameKey(),
+            'price' => $this->getPrice(),
+            'discount' => $this->getDiscount()
+
         ];
     }
 }

@@ -119,7 +119,7 @@
     <li class="item-game"><a href="#!" onclick="attach('games')">Fecha de lanzamiento</a></li>
 </ul>-->
 <ul id="drpAccount" class="dropdown-content">
-    <li><a class="modal-trigger" href="#modalUser">Editar información</a></li>
+    <li><a id="modalUserTrigger" class="modal-trigger" href="#modalUser">Editar información</a></li>
     <li><a id="logout" href="#">Cerrar sesión</a></li>
 </ul>
 
@@ -331,20 +331,20 @@
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmUser">
                     <div class="input-field">
-                        <input id="userName" type="text" required>
-                        <label for="userName">Nombre de usuario</label>
+                        <input id="userName" name="alias" type="text"  minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
+                        <label id="userNameLabel" for="userName">Nombre de usuario</label>
                     </div>
                     <div class="input-field">
-                        <input id="userPass" type="password" required>
+                        <input id="userPass" name="pass" min="6" max="50" type="password">
                         <label for="userPass">Contraseña</label>
                     </div>
                     <div class="input-field">
-                        <input id="userConfirm" type="password" required>
+                        <input id="userConfirm" name="passConfirm" min="6" max="50" type="password">
                         <label for="userConfirm">Repetir contraseña</label>
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Guardar cambios</button>
-                        <button class="btn waves-effect right modal-close">Cancelar</button>
+                        <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -352,6 +352,17 @@
     </div>
 </div>
 
+<script>
+    //Guardando alias de usuario en variable js
+    var alias = "<?php
+        if (isset($_SESSION['user'])) {
+            echo $_SESSION['user']->getAlias();
+        }
+        else {
+            echo '';
+        }
+        ?>";
+</script>
 
 
 <!--Modal de carrito-->
