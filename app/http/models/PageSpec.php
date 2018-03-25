@@ -121,6 +121,20 @@ class PageSpec implements Interfaces\ModelInterface, \JsonSerializable
         $this->setState($pageSpec['state']);
     }
 
+    //Determina si el spec ya fue agregado a esa storepage
+    public function isRepeated()
+    {
+        $query ="SELECT * FROM page_specs WHERE store_page_id = ? AND spec_id = ?";
+        $params = array($this->getStorePage()->getId(), $this->getSpec()->getId());
+        $pageSpec = Model\Connection::selectOne($query,$params);
+        if (empty($pageSpec)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public function getByPage(StorePage $pStorePage, $active = false){
         if ($active)
             $query ="SELECT * FROM page_specs WHERE store_page_id = ? AND state = 1";
@@ -160,6 +174,13 @@ class PageSpec implements Interfaces\ModelInterface, \JsonSerializable
     {
         $query ="UPDATE page_specs SET store_page_id = ?, spec_id = ?, state = ? WHERE id = ?";
         $params= array($this->getStorePage()->getId(),$this->getSpec()->getId(),$this->getState(),$this->getId());
+        return Model\Connection::insertOrUpdate($query,$params);
+    }
+
+    public function delete()
+    {
+        $query ="DELETE FROM page_specs WHERE id = ?";
+        $params= array($this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
