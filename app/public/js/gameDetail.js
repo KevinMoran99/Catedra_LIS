@@ -3,3 +3,8 @@ $(document).ready(function() {
     image.css('visibility','hidden');
     $(".gameBackground").css("background-image", "url('"+image.text()+"')");
 });
+
+
+$('#cartButton').click(function (e) {
+    console.log(gameId);
+});

@@ -56,12 +56,17 @@ use Http\Controllers as Control;
                 <div class="row">
                     
                     <button class="btn col s12 white black-text">'.$detail->getFinalPrice().'$</button>
-                    <button class="btn col s12 blue">Al carrito</button>
+                    <button id="cartButton" class="btn col s12 blue">Al carrito</button>
                 </div>
             </div>
         </div>
         
         <!--resto de informacion-->
-        <h5 class="center blue white-text info">Requisitos del sistema</h5>
+        <h5 class="center blue white-text info">Reviews de usuarios</h5>
         <p class="game-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor, vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo diam venenatis nunc, a </p>'; ?>
-        <script src="js/gameDetail.js"/>
+
+    <script>
+        var gameId = "<?php echo $id; ?>";
+    </script>
+
+    <script src="js/gameDetail.js"></script>
