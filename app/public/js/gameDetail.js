@@ -6,5 +6,13 @@ $(document).ready(function() {
 
 
 $('#cartButton').click(function (e) {
-    alert(gameId);
+    //Añadiendo id de juego a variable de sesion que contiene los ids de juegos del carrito
+    $.ajax({
+        method: 'POST',
+        data: {'id' : gameId},
+        url: "../http/controllers/CartController.php",
+        success: function (result) {
+            console.log(result);
+        }
+    });
 });

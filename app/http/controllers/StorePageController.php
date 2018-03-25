@@ -42,17 +42,33 @@ class StorePageController
     }
 
     public function getPage ($id, $ajax) {
+        $flag = false;
+        $validateError = "";
+
         //nuevo objeto de generos
         $page = new Model\StorePage();
         //llenamos el objeto con los datos proporcionados
         $page->setId($id);
         $page->getById();
-        //si es una request ajax retorna un json con los datos
-        if($ajax) {
-            echo json_encode($page);
-        }else{
-            //si no es ajax, retorna un objeto
-            return $page;
+
+        //Validando ids invalidos
+        if(is_null($page->getId())) {
+            $flag = true;
+            $validateError = "ID desconocido. Por favor, deje de intentar hackearnos :C";
+        }
+
+        if (!$flag) {
+            //si es una request ajax retorna un json con los datos
+            if ($ajax) {
+                echo json_encode($page);
+            } else {
+                //si no es ajax, retorna un objeto
+                return $page;
+            }
+        }
+        else {
+            Helper\Component::showMessage(Helper\Component::$ERROR,$validateError);
+            return "Invalid";
         }
     }
 

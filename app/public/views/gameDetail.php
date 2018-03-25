@@ -80,8 +80,12 @@ use Http\Controllers as Control;
 /*
     <!--resto de informacion-->
 
+<<<<<<< HEAD
     <p class="game-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor, vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo diam venenatis nunc, a </p>*/
 ;?>
-    <script src="js/gameDetail.js">
+
+    <script>
         var gameId = "<?php echo $id; ?>";
     </script>
+
+    <script src="js/gameDetail.js"></script>

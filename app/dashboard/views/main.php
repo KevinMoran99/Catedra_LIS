@@ -172,7 +172,9 @@ use Http\Helpers as Helper;
                                 ?>
                         </select>
                     </div>
-
+                    <div class="input-field">
+                    <a class="waves-effect waves-teal btn-flat modal-trigger" href="#storePageModal">Agregar pagina en la tienda para este juego</a>
+                    </div>
                     <div class="row">
                         <h6 class="center">Seleccione el estado del juego:</h6>
                         <div class="input-field col s6 push-s1">
@@ -193,7 +195,9 @@ use Http\Helpers as Helper;
                                 </p>
                             </div>
                         </div>
+                        
                     </div>
+                    
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
@@ -286,7 +290,9 @@ use Http\Helpers as Helper;
                                 ?>
                         </select>
                     </div>
-
+                    <div class="input-field">
+                    <a class="waves-effect waves-teal btn-flat modal-trigger" href="#storePageModal">Agregar pagina en la tienda para este juego</a>
+                    </div>
                     <div class="row">
                         <h6 class="center">Seleccione el estado del juego:</h6>
                         <div class="input-field col s6 push-s1">
@@ -307,7 +313,9 @@ use Http\Helpers as Helper;
                                 </p>
                             </div>
                         </div>
+                        
                     </div>
+                    
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Modificar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
@@ -317,6 +325,99 @@ use Http\Helpers as Helper;
         </div>
     </div>
 </div>
+
+<div id="storePageModal" class="modal">
+    <div class="modal-content">
+    <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3>Añadir Storepage</h3>
+            </div>
+        </div>
+        <label id="gameDateLabelU" for="gameDate">Fecha de lanzamiento</label>
+        <div class="input-field">
+        <input id="gameDate" name="release_date" type = "date" class = "datepicker" />
+                    </div>
+                    <div class="input-field">
+                        <input id="gamePrice" name="price" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
+                        <label id="gamePriceLabelU" for="gamePrice">Precio</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="gameDisc" name="discount" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
+                        <label id="gameDiscLabelU" for="gameDisc">Descuento</label>
+                    </div>
+                    <div class="row">
+                        <h6 class="center">Visibilidad en tienda:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                <input id="gameVis" name="visible" type="radio" checked value="1" />
+                                <span>Visible</span>
+                            </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                <input id="gameInv" name="visible" type="radio" checked values="0" />
+                                <span>Invisible</span>
+                            </label>
+                                </p>
+                            </div>
+                        </div>
+        <div class="row">
+            <button href="#storePageTable" type="submit" class="modal-submit btn waves-effect right modal-trigger">Añadir</button>
+        </div>
+    </div>
+  </div>
+
+  <div id="storePageTable" class="modal">
+    <div class="modal-content">
+    <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3>Añadir Specs</h3>
+            </div>
+        </div>
+        <table class="bordered highlight responsive-table">
+        <thead>
+          <tr>
+              <th>Tipo de especificacion</th>
+              <th>especificacion</th>
+              <th><i class="material-icons">delete</i></th>
+          </tr>
+        </thead>
+
+        
+      </table>
+
+    </div>
+    <div class="modal-footer">
+    <button href="#specSelect" type="submit" class="modal-submit btn waves-effect right modal-trigger">Añadir</button>
+    </div>
+  </div>
+
+   <div id="specSelect" class="modal">
+    <div class="modal-content">
+    <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3>Seleccionar Specs</h3>
+            </div>
+        </div>
+            <div class="input-field">
+                <select id="specType" class="formSelect" name="typeSpec" required>
+                    <option value="" selected="true" disabled="disabled">Tipo de especificación</option>
+                            </select>
+                        </div>
+            <div class="input-field">
+                <select id="specType" class="formSelect" name="Spec" required>
+                    <option value="" selected="true" disabled="disabled">Especificación</option>
+                            </select>
+                        </div>
+    </div>
+    <div class="modal-footer">
+    <button href="#specSelect" type="submit" class="modal-submit btn waves-effect right modal-trigger">Añadir</button>
+    </div>
+  </div>
 
 <script src="js/select.js"></script>
 <script src="js/main.js"></script>
