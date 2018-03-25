@@ -86,6 +86,11 @@
                     die();
                 }
             }
+
+            //Variable del carrito
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = [];
+            }
         ?>
         <div class="footer-copyright">
             <div class="container center-align  black-text">

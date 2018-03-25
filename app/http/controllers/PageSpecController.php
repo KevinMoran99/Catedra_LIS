@@ -20,7 +20,10 @@ class PageSpecController
         $page->getById();
         $pageSpec = new Model\PageSpec();
         //Si se llamó por ajax, devuelve un json, si no, devuelve el objeto
-        if ($ajax) {
+        if (empty($pageSpec->getByPage($page, true))) {
+            return "Aún no se establecen especificaciones para este juego";
+        }
+        else if ($ajax) {
             echo json_encode($pageSpec->getByPage($page, true));
         }
         else {
@@ -43,7 +46,7 @@ class PageSpecController
         }
     }
 
-    public function addPageSpec ($storePage, $spec, $state)
+    public function addPageSpec ($storePage, $spec)
     {
         //instancia
         $pageSpec = new Model\PageSpec();
@@ -55,18 +58,34 @@ class PageSpecController
         $specM->setId($spec);
         $specM->getById();
         $pageSpec->setSpec($specM);
-        $pageSpec->setState($state);
-        $response = $pageSpec->insert();
+        $pageSpec->setState(1);
 
-        //mostramos mensaje de error
-        if (is_bool($response)) {
-            Helper\Component::showMessage(Helper\Component::$SUCCESS, "Especificación de juego añadida");
-        } else {
-            Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+        $flag = false;
+        $validateError = "";
+
+        //validando valores repetidos
+        if ($pageSpec->isRepeated()) {
+            $flag = true;
+            $validateError = "Dato duplicado, no se puede guardar";
         }
+
+        if (!$flag) {
+            $response = $pageSpec->insert();
+
+            //mostramos mensaje de error
+            if (is_bool($response)) {
+                Helper\Component::showMessage(Helper\Component::$SUCCESS, "Especificación de juego añadida");
+            } else {
+                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+            }
+        }
+        else {
+            Helper\Component::showMessage(Helper\Component::$WARNING, $validateError);
+        }
+
     }
 
-    public function updatePageSpec ($id, $storePage, $spec, $state){
+    /*public function updatePageSpec ($id, $storePage, $spec, $state){
         //instancia
         $pageSpec = new Model\PageSpec();
 
@@ -88,6 +107,21 @@ class PageSpecController
         }else{
             Helper\Component::showMessage(Helper\Component::$WARNING, $response);
         }
+    }*/
+
+    public function deletePageSpec ($id){
+        //instancia
+        $pageSpec = new Model\PageSpec();
+
+        $pageSpec->setId($id);
+        $response = $pageSpec->delete();
+
+        //mostramos mensaje de error
+        if(is_bool($response)){
+            Helper\Component::showMessage(Helper\Component::$SUCCESS, "Especificación de juego elminada");
+        }else{
+            Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+        }
     }
 }
 
@@ -97,7 +131,7 @@ try {
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addPageSpec") {
             //creamos un nuevo registro con los datos del array
-            (new PageSpecController())->addPageSpec($_POST['storePage'],$_POST['spec'],$_POST['state']);
+            (new PageSpecController())->addPageSpec($_POST['storePage'],$_POST['spec']);
 
         }
 
@@ -113,10 +147,17 @@ try {
             (new PageSpecController())->getSpecsByPage($_POST["storePage"], true);
         }
 
-        if($_POST["method"] == "updatePageSpec"){
+        /*if($_POST["method"] == "updatePageSpec"){
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
             (new PageSpecController())->updatePageSpec($_POST['id'], $_POST['storePage'],$_POST['spec'],$_POST['state']);
+
+        }*/
+
+        if($_POST["method"] == "deletePageSpec"){
+            //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
+
+            (new PageSpecController())->deletePageSpec($_POST['id']);
 
         }
     }
