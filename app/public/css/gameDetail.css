@@ -29,9 +29,8 @@
     height: 100%;
     width: 100%;
     z-index: -100;
+    filter: blur(1.5px);
     overflow: hidden;
-    filter: blur(5px);
-    background: rgba(0, 0, 0, 0.5);
 }
 
 #gameDetailHeader {
@@ -41,4 +40,8 @@
 
 .container {
     overflow: hidden !important;
+}
+.text{
+    color: white;
+    text-shadow: black 0 0 10px;
 }

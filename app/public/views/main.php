@@ -11,13 +11,16 @@ use Http\Helpers as Helper;
     $page = new Control\StorePageController();
     $paginate = new Helper\Paginate($page->getTop3Pages(),$current_page);
     foreach ($paginate->getData() as $row){
-        echo '<div class="carousel-item"  id="game1-banner">
-                    <div class="carousel-fixed-item center white-text carousel-footer">
-                        <h2 id="game1">'.$row->getGame()->getName().'</h2>
-                        <p id="game1-developer">'.$row->getGame()->getPublisher()->getName().'</p>
-                        <p id="carousel-image">'.substr($row->getGame()->getBanner(),3).'</p>
+        echo '
+                    <a onclick="attachDatail('.$row->getId().')">
+                    <div class="carousel-item"  id="game1-banner">
+                        <div class="carousel-fixed-item center white-text carousel-footer">
+                            <h2 id="game1">'.$row->getGame()->getName().'</h2>
+                            <p id="game1-developer">'.$row->getGame()->getPublisher()->getName().'</p>
+                            <p id="carousel-image">'.substr($row->getGame()->getBanner(),3).'</p>
                     </div>
-             </div>';
+             </div>
+             </a>';
     }
     ?>
 </div>

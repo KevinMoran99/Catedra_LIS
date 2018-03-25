@@ -21,9 +21,9 @@ use Http\Controllers as Control;
                     <div class="center col s12">
                         <div class="row">
                             <strong class="col s6">
-                                <p class="right">Clasificacion</p>
+                                <p class="right text">Clasificacion</p>
                             </strong>
-                            <p>'.$detail->getGame()->getEsrb()->getName().'</p>
+                            <p class="text">'.$detail->getGame()->getEsrb()->getName().'</p>
                             <p id="banner">'.substr($detail->getGame()->getBanner(),3).'</p>
                         </div>
                     </div>
@@ -33,11 +33,11 @@ use Http\Controllers as Control;
             <div class="col s12 m6 l4 game-description">
         
                 <div class="info">
-                    <h5>Descripcion</h5>
-                    <p>'.$detail->getGame()->getDescription().'
+                    <h5 class="text">Descripcion</h5>
+                    <p class="text">'.$detail->getGame()->getDescription().'
                     </p>
-                    <h5>Disponible para: </h5>
-                    <ul>
+                    <h5 class="text">Disponible para: </h5>
+                    <ul class="text">
                         <li>*Cualquier cosa que no tenga kevin</li>
                     </ul>
                     <h5></h5>
@@ -48,14 +48,14 @@ use Http\Controllers as Control;
         
             <div class="col s12 m6 l4">
         
-                <h5 class="col s12 center">Rating promedio</h5>
+                <h5 class="col s12 center text">Rating promedio</h5>
                 <div class="col s12 center">
                     <i class="medium material-icons rate-star tooltipped" id="malo" data-tooltip="Malo" data-position="bottom" data-delay="50">star</i>
                     <i class="medium material-icons rate-star tooltipped" id="bueno" data-tooltip="Bueno" data-position="bottom" data-delay="50">star</i>
                     <i class="medium material-icons rate-star tooltipped" id="muy-bueno" data-tooltip="Muy bueno" data-position="bottom" data-delay="50">star</i>
                     <i class="medium material-icons rate-star tooltipped" id="excelente" data-tooltip="Excelente" data-position="bottom" data-delay="50">star</i>
                 </div>
-                <a class="col s12 center"">Ver todos los rating</a>
+                <a class="col s12 center text">Ver todos los rating</a>
                 <div class="row">
                     <button class="btn col s12 white black-text">$0.00</button>
                     <button class="btn col s12 blue">Al carrito</button>
