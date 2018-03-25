@@ -23,6 +23,9 @@ class Component
                 case 1045:
                     $text = "Autenticación desconocida";
                     break;
+                case 1048:
+                    $text = "ID desconocido. Por favor, deje de intentar hackearnos :C";
+                    break;
                 case 1049:
                     $text = "Base de datos desconocida";
                     break;
