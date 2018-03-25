@@ -23,7 +23,7 @@ switch ($control){
         include("../public/views/about.php");
         break;
     case "gameDetail":
-        $page = $_POST["current"];
+        $id = $_POST["id"];
         include("../public/views/gameDetail.php");
         break;
     case "support":

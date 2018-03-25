@@ -165,5 +165,18 @@ function attach(id,page) {
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
     });
+}
 
+function attachDatail(detailId) {
+    $("#container").empty();
+
+    $.ajax({
+        method: "POST",
+        url: "../routing/PublicRouting.php",
+        data: "control=gameDetail&id="+detailId,
+        success: function(html) {
+            $("#container").append(html);
+            //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
+        }
+    });
 }

@@ -50,21 +50,10 @@ use Http\Helpers as Helper;
 
     <div id="allGames" class="row">
     <!--INICIO DEL PAGINATE -->
-        <?php
-        $bill = new Control\BillController();
-        $bill->getBillsByUser(3,true);
-        echo '<br><br>';
-        /*$current_page = $page;
-        $bill = new Control\BillController();
-        $paginate = new Helper\Paginate($bill->getAllBills(),$current_page);
-        foreach ($paginate->getData() as $row){
-            echo $row->getUser()->getAlias() . "<br>";
-            echo $row->getBillDate()->format('d/m/Y') . "<br><br>";
-        }*/
-        ?>
+
     <?php
     //mostrando los datos solicitados en base al paginate
-    /*$current_page = $page;
+    $current_page = $page;
     $games = new Control\GameController();
     $paginate = new Helper\Paginate($games->getAllGames(),$current_page);
     foreach ($paginate->getData() as $row){
@@ -80,7 +69,7 @@ use Http\Helpers as Helper;
             </div>
         </a>
     </div>';
-    }*/
+    }
     ?>
     </div>
     <br>
@@ -88,11 +77,11 @@ use Http\Helpers as Helper;
         <!--INICIO DE ENLACES DE PAGINATE-->
         <?php
         //generando los links de paginacion
-        /*echo "<div class='row'>";
+        echo "<div class='row'>";
         for($i=1;$i<=$paginate->linksNumber();$i++){
             echo"<a class='col s1 red-text' onclick=\"attach('main' ,$i)\">$i</a>";
         }
-        echo "</div>"*/
+        echo "</div>"
         ?>
         </div>
     <div class="fixed-action-btn">
