@@ -247,7 +247,7 @@ class BillItem implements Interfaces\ModelInterface, \JsonSerializable
                 'bill_date' => $this->getBill()->getBillDate()->format('Y-m-d')
             ],
             'storePage' => [
-                'id' => $this->getId(),
+                'id' => $this->getStorePage()->getId(),
                 'game' => [
                     'id' => $this->getStorePage()->getGame()->getId(),
                     'name' => $this->getStorePage()->getGame()->getName(),

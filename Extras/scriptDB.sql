@@ -148,7 +148,7 @@ ALTER TABLE bill_items add index(store_page_id);
 
 CREATE TABLE ratings(
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    bill_item_id INT UNSIGNED NOT NULL,
+    bill_item_id INT UNSIGNED UNIQUE NOT NULL,
     recommended BOOL NOT NULL DEFAULT 1,
     description varchar(500) NOT NULL,
     review_date DATE NOT NULL,

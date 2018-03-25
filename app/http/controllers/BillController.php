@@ -57,40 +57,60 @@ class BillController
     public function addBill($pageArray) {
         session_start();
 
-        $bill = new Model\Bill();
-        $bill->setUser($_SESSION['user']);
-        $bill->setBillDate(new \DateTime());
-        $response = $bill->insert();
-        $id = $bill->getLastId();
-        $bill->setId($id);
-        //mostramos mensaje de error
-        if(is_bool($response)){
-            $flag = true;
-            //Añadiendo los items de la factura
-            foreach ($pageArray as $pageId) {
+        $flag1 = false;
+        $validateError = "";
 
-                $item = new Model\BillItem();
-                $item->setBill($bill);
+        //Validando ids pasados
+        foreach ($pageArray as $pageId) {
+            $page = new Model\StorePage();
+            $page->setId($pageId);
+            $page->getById();
+            //Si no se devolvio nada de la base, dará error
+            if(is_null($page->getId())) {
+                $flag1 = true;
+                $validateError = "ID desconocido. Por favor, deje de intentar hackearnos :C";
+            }
+        }
+
+        if (!$flag1) {
+            $bill = new Model\Bill();
+            $bill->setUser($_SESSION['user']);
+            $bill->setBillDate(new \DateTime());
+            $response = $bill->insert();
+            $id = $bill->getLastId();
+            $bill->setId($id);
+            //mostramos mensaje de error
+            if(is_bool($response)){
+                $flag = false;
+                //Añadiendo los items de la factura
+                foreach ($pageArray as $pageId) {
+
+                    $item = new Model\BillItem();
+                    $item->setBill($bill);
                     $page = new Model\StorePage();
                     $page->setId($pageId);
                     $page->getById();
-                $item->setStorePage($page);
-                $itemResponse = $item->insert();
+                    $item->setStorePage($page);
+                    $itemResponse = $item->insert();
 
-                if (!is_bool($itemResponse)) {
-                    $flag = false;
+                    if (!is_bool($itemResponse)) {
+                        $flag = true;
+                    }
                 }
+                //Si no ocurrieron errores, devuelve un string conteniendo el json de la factura generada
+                if (!$flag) {
+                    $bill->getById();
+                    Helper\Component::showMessage(Helper\Component::$SUCCESS, json_encode($bill));
+                }
+                else {
+                    Helper\Component::showMessage(Helper\Component::$ERROR, "Ocurrió un error al procesar la factura");
+                }
+            }else{
+                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
             }
-            //Si no ocurrieron errores, devuelve un string conteniendo el json de la factura generada
-            if ($flag) {
-                $bill->getById();
-                Helper\Component::showMessage(Helper\Component::$SUCCESS, json_encode($bill));
-            }
-            else {
-                Helper\Component::showMessage(Helper\Component::$ERROR, "Ocurrió un error al procesar la factura");
-            }
-        }else{
-            Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+        }
+        else {
+            Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
         }
     }
 }
