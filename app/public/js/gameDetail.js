@@ -6,5 +6,5 @@ $(document).ready(function() {
 
 
 $('#cartButton').click(function (e) {
-    alert(gameId);
+    console.log(gameId);
 });
