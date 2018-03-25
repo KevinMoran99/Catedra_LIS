@@ -392,7 +392,30 @@ use Http\Helpers as Helper;
 
     </div>
     <div class="modal-footer">
-    <button href="#" type="submit" class="modal-submit btn waves-effect right modal-trigger">Añadir</button>
+    <button href="#specSelect" type="submit" class="modal-submit btn waves-effect right modal-trigger">Añadir</button>
+    </div>
+  </div>
+
+   <div id="specSelect" class="modal">
+    <div class="modal-content">
+    <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3>Seleccionar Specs</h3>
+            </div>
+        </div>
+            <div class="input-field">
+                <select id="specType" class="formSelect" name="typeSpec" required>
+                    <option value="" selected="true" disabled="disabled">Tipo de especificación</option>
+                            </select>
+                        </div>
+            <div class="input-field">
+                <select id="specType" class="formSelect" name="Spec" required>
+                    <option value="" selected="true" disabled="disabled">Especificación</option>
+                            </select>
+                        </div>
+    </div>
+    <div class="modal-footer">
+    <button href="#specSelect" type="submit" class="modal-submit btn waves-effect right modal-trigger">Añadir</button>
     </div>
   </div>
 
