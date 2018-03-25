@@ -60,11 +60,28 @@ use Http\Controllers as Control;
                 </div>
             </div>
         </div>
-        
-        <!--resto de informacion-->
-        <h5 class="center blue white-text info">Reviews de usuarios</h5>
-        <p class="game-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor, vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo diam venenatis nunc, a </p>'; ?>
+        <h5 class="center blue-text info">Reviews de usuarios</h5>
+        <div class="row">';
 
+        foreach( $rating->getRatingsByPage($id,false) as $row){
+            $recomendado = $row->getRecommended() ? "Recomendado" : "No recomendado";
+            $color = $row->getRecommended() ? "green" : "red";
+            echo '
+            <div class="card col s6">
+                <div class="row '.$color.'">
+                        <h5 class="col s6 white-text review-container">'.$row->getBillItem()->getBill()->getUser()->getAlias().': '.$recomendado.'</h5>
+                </div>
+                <p class="review-container">'.$row->getDescription().'</p>
+            </div>
+            ';
+        }
+        echo '</div>';
+
+/*
+    <!--resto de informacion-->
+
+    <p class="game-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor, vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo diam venenatis nunc, a </p>*/
+;?>
     <script src="js/gameDetail.js">
         var gameId = "<?php echo $id; ?>";
     </script>
