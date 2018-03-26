@@ -36,6 +36,29 @@ class BillController
         }
     }
 
+    //OBTENER REGISTRO VALIDANDO QUE CORRESPONDA AL USUARIO LOGEADO
+    public function getBillForClient($id, $ajax){
+        //nuevo objeto de tipo de specs
+        $bill = new Model\Bill();
+        //llenamos el objeto con los datos proporcionados
+        $bill->setId($id);
+        $bill->getById();
+
+        session_start();
+
+        //Validando a la mara chistosita
+        if ($bill->getUser()->getId() != $_SESSION['user']->getId()) {
+            return "No se me pase de listo ;)";
+        }
+        //si es una request ajax retorna un json con los datos
+        else if($ajax) {
+            echo json_encode($bill);
+        }else{
+            //si no es ajax, retorna un objeto
+            return $bill;
+        }
+    }
+
     //Obtener todas las facturas de un usuario
     public function getBillsByUser($user, $ajax) {
         $userM = new Model\User();
@@ -53,9 +76,18 @@ class BillController
 
     }
 
-    //Obtiene como parametro un array con los ids de todas las store_pages incluidas en la factura
-    public function addBill($pageArray) {
+    //Obtiene sus datos de la variable de sesion del carrito
+    public function addBill() {
         session_start();
+
+        //Array de ids de todas las storepages (individualmente) a añadir a la factura
+        $pageArray = [];
+
+        foreach ($_SESSION['cart'] as $item) {
+            for ($i = 0; $i < $item[1]; $i++) {
+                array_push($pageArray, $item[0]->getId());
+            }
+        }
 
         $flag1 = false;
         $validateError = "";
@@ -99,6 +131,10 @@ class BillController
                 }
                 //Si no ocurrieron errores, devuelve un string conteniendo el json de la factura generada
                 if (!$flag) {
+                    //Vaciando carrito
+                    $_SESSION['cart'] = [];
+
+                    //Devolviendo objeto de factura
                     $bill->getById();
                     Helper\Component::showMessage(Helper\Component::$SUCCESS, json_encode($bill));
                 }
@@ -120,10 +156,7 @@ try {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addBill") {
-            //PARA HACER EL INSERT DE LA FACTURA, ENVIAR UN STRING CONTENIENDO LOS IDS DE TODAS LAS
-            //STORE PAGES A COMPRAR, DELIMITADOS POR UNA COMA
-            $array = explode(",", $_POST['store_pages']);
-            (new BillController())->addBill($array);
+            (new BillController())->addBill();
         }
 
         else if ($_POST["method"] == "getBill") {
@@ -131,9 +164,21 @@ try {
             (new BillController())->getBill($_POST["id"], true);
         }
 
+        else if ($_POST["method"] == "getBillForClient") {
+            //obtenemos el registro
+            (new BillController())->getBillForClient($_POST["id"], true);
+        }
+
         else if ($_POST["method"] == "getBillsByUser") {
             //obtenemos el registro
             (new BillController())->getBillsByUser($_POST["user_id"], true);
+        }
+
+        else if ($_POST["method"] == "getClientBills") {
+            //obteniendo id del cliente
+            session_start();
+            //obtenemos el registro
+            (new BillController())->getBillsByUser($_SESSION['user']->getId(), true);
         }
     }
 }
