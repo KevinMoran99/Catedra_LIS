@@ -80,7 +80,10 @@ use Http\Controllers as Control;
         <div class="row">';
     //FIN TERCERA SECCION
     //CUARTA SECCION
-
+    if(sizeof($ratings)==0){
+        echo '<h5 class="center-align">Vaya parece que no hay reviews disponibles :(</h5>
+                <p class="center-align">Vuelve mas tarde o crea una tu mismo si posees el juego</p>';
+    }
     foreach ($ratings as $row) {
         $recommended = $row->getRecommended() ? "Recomendado" : "No recomendado";
         $color = $row->getRecommended() ? "green" : "red";
