@@ -110,4 +110,36 @@ use Http\Helpers as Helper;
     </div>
 </div>
 
+
+<!--Modal de items de facturas del usuario-->
+<div id="modalCartItems" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="../web/img/logo.png">
+            </div>
+            <div class="col m10 s9">
+                <h3>Su factura ha sido procesada</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <h4>Sus compras:</h4>
+            </div>
+            <div id="cartItemList" class="collection col s12">
+
+            </div>
+            <div class="col s12 right-align">
+                <h4>Total: $0.00</h4>
+            </div>
+            <div class="col s12 center-align">
+                <span>*Puede ver esta factura en cualquier momento en "Mi perfil -> Ver mis facturas"*</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+
 <script src="js/cart.js"></script>

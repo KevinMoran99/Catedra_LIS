@@ -360,7 +360,7 @@
 
 
 <!--Modal de facturas del usuario-->
-<div id="modalBills" class="modal">
+<div id="modalBills" class="modal modal-fixed-footer">
     <div class="modal-content">
         <div class="modal-header row white-text valign-wrapper">
             <div class="col m2 s3">
@@ -376,11 +376,14 @@
             </div>
         </div>
     </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
 </div>
 
 
 <!--Modal de items de facturas del usuario-->
-<div id="modalBillItems" class="modal">
+<div id="modalBillItems" class="modal modal-fixed-footer">
     <div class="modal-content">
         <div class="modal-header row white-text valign-wrapper">
             <div class="col m2 s3">
@@ -394,7 +397,13 @@
             <div id="billItemList" class="collection col s12">
 
             </div>
+            <div class="col s12 right-align">
+                <h4>Total: $0.00</h4>
+            </div>
         </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
     </div>
 </div>
 

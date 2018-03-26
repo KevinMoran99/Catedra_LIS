@@ -1,0 +1,19 @@
+.card img {
+    max-height: 200px;
+}
+
+.cartItem .card{
+    background-color: #f7f9f9;
+}
+
+.priceDetail {
+    border-radius: 0 5px 5px 0;
+    border-left: 2px solid #0D47A1;
+    background-color: white;
+}
+
+@media only screen and (max-width: 500px) {
+    .card img {
+        max-height: 100%;
+    }
+}

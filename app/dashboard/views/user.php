@@ -4,6 +4,8 @@ use Http\Controllers as Control;
 use Http\Helpers as Helper;
 ?>
 
+<link rel="stylesheet" href="css/user.css">
+
 <!--vista de usuarios-->
 <div class="wrapper">
     <div class="row search-box">
@@ -40,6 +42,7 @@ use Http\Helpers as Helper;
                                         <th>Tipo</th>
                                         <th>Estado</th>
                                         <th>Editar</th>
+                                        <th>Facturas</th>
                                     </tr>
                                 </thead>
 
@@ -58,7 +61,7 @@ use Http\Helpers as Helper;
                                         echo "
                                                         <tr>
                                                             <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
-                                                            <td>".$row->getAlias()."</td>
+                                                            <td class='alias'>".$row->getAlias()."</td>
                                                             <td>".$row->getEmail()."</td>
                                                             <td>".$row->getUserType()->getName()."</td>
                                                             <td>
@@ -70,6 +73,11 @@ use Http\Helpers as Helper;
                                                             <td>
                                                                 <a  href='#actualizarUsuario' class=\"edit modal-trigger\">
                                                                      <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
+                                                                 </a>
+                                                             </td>
+                                                            <td>
+                                                                <a href='#facturasUsuario' class=\"edit modal-trigger modalBillsTrigger\">
+                                                                     <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">local_atm</i>
                                                                  </a>
                                                              </td>
                                                         </tr>
@@ -245,6 +253,49 @@ use Http\Helpers as Helper;
                 </form>
             </div>
         </div>
+    </div>
+</div>
+
+
+<!--Modal de facturas del usuario-->
+<div id="facturasUsuario" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Facturas de</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div id="billList" class="collection col s12">
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+</div>
+
+
+<!--Modal de items de facturas del usuario-->
+<div id="modalBillItems" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class=""></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div id="billItemList" class="collection col s12">
+
+            </div>
+            <div class="col s12 right-align">
+                <h4>Total: $0.00</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
     </div>
 </div>
 

@@ -3,7 +3,11 @@ $(document).ready( function () {
     //hack que corrije bug del contenedor de las card-image
     setTimeout(function () {
         $(".card-image").css("max-width", "none");
-    }, 50)
+    }, 50);
+
+    $('#modalCartItems').modal({
+        onCloseStart :  function() { window.location.reload(); }
+    });
 });
 
 //Previniendo entrada de texto en input type number
@@ -79,7 +83,7 @@ function submitBill () {
     swal({
         title: '¿Desea realizar esta transacción?',
         icon: 'warning',
-        buttons: ['Cancelar', 'Modificar']
+        buttons: ['Cancelar', 'Aceptar']
     }).then(function (confirm) {
         if (confirm) {
 
@@ -88,8 +92,67 @@ function submitBill () {
                 data: {'method': 'addBill'},
                 url: "../http/controllers/BillController.php",
                 success: function (result) {
-                    console.log(result);
-                    window.location.reload();
+
+                    var output = result.split("|");
+                    if (output[0] == "Éxito") {
+
+                        var $bill = jQuery.parseJSON(output[1]);
+                        //Obteniendo id con los items
+                        $data = $bill.items;
+                        //Vaciando lista
+                        $('#cartItemList').empty();
+                        //Total de gasto
+                        var total = 0;
+                        for (var i = 0; i < $data.length; i++) {
+                            total += $data[i].price - ($data[i].price * $data[i].discount / 100);
+
+                            $('#cartItemList').append(
+                                '<div class="row cardBillItem">' +
+                                '<div class="col s12">' +
+                                '<div class="card horizontal cart-card">' +
+                                '<div class="card-image">' +
+                                '<img class="responsive-img" src=' + (($data[i].storePage.game.cover).substring(3)).replace(" ", "%20") + '>' +
+                                '</div>' +
+                                '<div class="card-stacked">' +
+                                '<div class="card-content">' +
+                                '<h4>' + $data[i].storePage.game.name + '</h4>' +
+                                '<div class="row">' +
+                                '<div class="col s4 priceDetail">' +
+                                '<label>Precio</label><br>' +
+                                '<div class="chip green white-text">$' + $data[i].price + '</div>' +
+                                '</div>' +
+                                '<div class="col s4 priceDetail">' +
+                                '<label>Descuento</label><br>' +
+                                '<div class="chip red white-text">-' + $data[i].discount + '%</div>' +
+                                '</div>' +
+                                '<div class="col s4 priceDetail right-align">' +
+                                '<label>Subtotal:</label><br>' +
+                                '<div class="chip green white-text">$' + ($data[i].price - ($data[i].price * $data[i].discount / 100)).toFixed(2) + '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<div class="col s12 priceDetail">' +
+                                '<label>key:</label><br>' +
+                                '<h5>' + $data[i].gameKey + '</h5>' +
+                                '</div>' +
+                                '</div>' +
+
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                        }
+
+                        $('#cartItemList').next().find('h4').html("Total: $" + total.toFixed(2));
+
+                        $('#modalCartItems').modal('open');
+                    }
+
+                    else {
+                        swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false});
+                    }
                 }
             });
         }
