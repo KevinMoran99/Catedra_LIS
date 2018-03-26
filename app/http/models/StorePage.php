@@ -19,6 +19,7 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
     private $visible;
     private $price;
     private $discount;
+    private $dominantColor;
 
     /**
      * StorePage constructor.
@@ -138,6 +139,22 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
     public function getFinalPrice()
     {
         return $this->price - ($this->price * ($this->discount/100));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDominantColor()
+    {
+        return $this->dominantColor;
+    }
+
+    /**
+     * @param mixed $dominantColor
+     */
+    public function setDominantColor($dominantColor)
+    {
+        $this->dominantColor = $dominantColor;
     }
 
 

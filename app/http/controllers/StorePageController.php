@@ -9,6 +9,7 @@
 namespace Http\Controllers;
 use Http\Models as Model;
 use Http\Helpers as Helper;
+use ColorThief\ColorThief as ColorHeleper;
 
 
 class StorePageController
@@ -50,7 +51,8 @@ class StorePageController
         //llenamos el objeto con los datos proporcionados
         $page->setId($id);
         $page->getById();
-
+        $dominantColor = ColorHeleper::getColor(substr($page->getGame()->getBanner(),3));
+        $page->setDominantColor($dominantColor);
         //Validando ids invalidos
         if(is_null($page->getId())) {
             $flag = true;

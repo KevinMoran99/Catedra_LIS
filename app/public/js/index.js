@@ -205,13 +205,12 @@ $('#termsAgree').click(function() {
 });
 
 function attach(id,page) {
-    $("#container").empty();
-
     $.ajax({
         method: "POST",
         url: "../routing/PublicRouting.php",
         data: "control=" + id+"&current="+page,
         success: function(html) {
+            $("#container").empty();
             $("#container").append(html);
             if (id === "main") {
 
@@ -223,14 +222,17 @@ function attach(id,page) {
 }
 
 function attachDatail(detailId) {
-    $("#container").empty();
-
+    var container = $("#container");
+    var progress = $('#progressModal');
+    progress.modal('open');
     $.ajax({
         method: "POST",
         url: "../routing/PublicRouting.php",
         data: "control=gameDetail&id="+detailId,
         success: function(html) {
-            $("#container").append(html);
+            container.empty();
+            container.append(html);
+            progress.modal('close');
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
     });
