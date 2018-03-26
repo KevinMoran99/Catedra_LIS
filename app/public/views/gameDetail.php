@@ -20,6 +20,7 @@ use Http\Controllers as Control;
     //PRIMERA SECCION
     echo '
         <div class="gameBackground"></div>
+            <p id="dominantColor">'.implode(',',$detail->getDominantColor()).'</p>
             <div class="col s12 m6 l4">
                 <div class="row">
                     <img class="center" class="col push-s2" src="' . substr($detail->getGame()->getCover(), 3) . '" id="gameCover" />
@@ -75,22 +76,20 @@ use Http\Controllers as Control;
                     <button id="cartButton" class="btn col s12 blue">Al carrito</button>
                 </div>
             </div>
-        </div>
-        <h5 class="center blue-text info">Reviews de usuarios</h5>
-        <div class="row">';
+        </div> ';
     //FIN TERCERA SECCION
     //CUARTA SECCION
     if(sizeof($ratings)==0){
-        echo '<h5 class="center-align">Vaya parece que no hay reviews disponibles :(</h5>
-                <p class="center-align">Vuelve mas tarde o crea una tu mismo si posees el juego</p>';
+        echo '<h5 class="center-align text">Vaya parece que no hay reviews disponibles :(</h5>
+                <p class="center-align text">Vuelve mas tarde o crea una tu mismo si posees el juego</p>';
     }
     foreach ($ratings as $row) {
         $recommended = $row->getRecommended() ? "Recomendado" : "No recomendado";
         $color = $row->getRecommended() ? "green" : "red";
         echo '
-            <div class="card col l6 m6 s12">
+            <div class="card review-card col l6 m6 s12">
                 <div class="row ' . $color . '">
-                        <h5 class="white-text review-container">' . $row->getBillItem()->getBill()->getUser()->getAlias() . ': ' . $recommended . '</h5>
+                        <h5 class="text review-container">' . $row->getBillItem()->getBill()->getUser()->getAlias() . ': ' . $recommended . '</h5>
                 </div>
                 <p class="review-container">' . $row->getDescription() . '</p>
             </div>
@@ -117,7 +116,6 @@ use Http\Controllers as Control;
                     </div>';
     }//FIN SEXTA SECCION
     ; ?>
-
     <script>
         var gameId = "<?php echo $id; ?>";
     </script>

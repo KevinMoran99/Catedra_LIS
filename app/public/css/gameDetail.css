@@ -23,7 +23,7 @@
 
 .gameBackground {
     /*background-image: url('../../web/img/5ab6cbc353302.jpg');*/
-    background: no-repeat center;
+    background: no-repeat center center;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -50,4 +50,7 @@
 
 .review-card{
     margin: 5px;
+}
+#dominantColor{
+    visibility: hidden;
 }

@@ -18,5 +18,8 @@
       "Http\\Controllers\\" : "app/http/controllers",
       "Http\\Helpers\\" : "app/http/helpers"
     }
+  },
+  "require": {
+    "ksubileau/color-thief-php": "^1.3"
   }
 }

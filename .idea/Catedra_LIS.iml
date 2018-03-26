@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/app/http/models" isTestSource="false" packagePrefix="Http\Models\" />
       <sourceFolder url="file://$MODULE_DIR$/app/http/models/interfaces" isTestSource="false" packagePrefix="Http\Models\Interfaces\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ksubileau/color-thief-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -2,6 +2,8 @@ $(document).ready(function() {
     var image =  $("#banner");
     image.css('visibility','hidden');
     $(".gameBackground").css("background-image", "url('"+image.text()+"')");
+    $("body").css("background-color","rgba("+$("#dominantColor").text()+",0.8)");
+    $("nav.center-align").css("background-color","rgba("+$("#dominantColor").text()+")")
 });
 
 
