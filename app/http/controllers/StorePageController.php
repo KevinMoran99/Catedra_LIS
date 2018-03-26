@@ -42,7 +42,7 @@ class StorePageController
         }
     }
 
-    public function getPage ($id, $ajax) {
+    public function getPage ($id, $ajax, $cart = false) {
         $flag = false;
         $validateError = "";
 
@@ -51,7 +51,7 @@ class StorePageController
         //llenamos el objeto con los datos proporcionados
         $page->setId($id);
         $page->getById();
-        $dominantColor = ColorHeleper::getColor(substr($page->getGame()->getBanner(),3));
+        $dominantColor = ColorHeleper::getColor(substr($page->getGame()->getBanner(),$cart ? 0 : 3));
         $page->setDominantColor($dominantColor);
         //Validando ids invalidos
         if(is_null($page->getId())) {

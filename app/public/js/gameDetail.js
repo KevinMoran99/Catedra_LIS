@@ -14,6 +14,7 @@ $('#cartButton').click(function (e) {
         data: {'id' : gameId, 'method' : 'addItem'},
         url: "../http/controllers/CartController.php",
         success: function (result) {
+            console.log(result);
             attach('cart');
             $(".menu-item").removeClass("selected-item");
             $(".menu-item").find("li").removeClass("selected-item");

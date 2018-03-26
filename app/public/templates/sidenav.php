@@ -125,6 +125,7 @@
 </ul>-->
 <ul id="drpAccount" class="dropdown-content">
     <li><a id="modalUserTrigger" class="modal-trigger" href="#modalUser">Editar información</a></li>
+    <li><a id="modalBillsTrigger" class="modal-trigger" href="#modalBills">Ver mis facturas</a></li>
     <li><a id="logout" href="#">Cerrar sesión</a></li>
 </ul>
 
@@ -352,6 +353,46 @@
                         <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal de facturas del usuario-->
+<div id="modalBills" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="../web/img/logo.png">
+            </div>
+            <div class="col m10 s9">
+                <h3 class="">Mis facturas</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div id="billList" class="collection col s12">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal de items de facturas del usuario-->
+<div id="modalBillItems" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="../web/img/logo.png">
+            </div>
+            <div class="col m10 s9">
+                <h3 id="billItemHeader"></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div id="billItemList" class="collection col s12">
+
             </div>
         </div>
     </div>

@@ -37,7 +37,7 @@ class CartController
     //Añadiento item a carrito
     public function addItem ($id) {
         //Obteniendo objeto de store_page
-        $page = (new StorePageController())->getPage($id,false);
+        $page = (new StorePageController())->getPage($id,false, true);
         if ($page == "Invalid") {
             die();
         }
@@ -81,7 +81,7 @@ class CartController
         }
 
         //Obteniendo objeto de store_page
-        $page = (new StorePageController())->getPage($id,false);
+        $page = (new StorePageController())->getPage($id,false, true);
         if ($page == "Invalid") {
             die();
         }

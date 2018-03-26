@@ -36,6 +36,29 @@ class BillController
         }
     }
 
+    //OBTENER REGISTRO VALIDANDO QUE CORRESPONDA AL USUARIO LOGEADO
+    public function getBillForClient($id, $ajax){
+        //nuevo objeto de tipo de specs
+        $bill = new Model\Bill();
+        //llenamos el objeto con los datos proporcionados
+        $bill->setId($id);
+        $bill->getById();
+
+        session_start();
+
+        //Validando a la mara chistosita
+        if ($bill->getUser()->getId() != $_SESSION['user']->getId()) {
+            return "No se me pase de listo ;)";
+        }
+        //si es una request ajax retorna un json con los datos
+        else if($ajax) {
+            echo json_encode($bill);
+        }else{
+            //si no es ajax, retorna un objeto
+            return $bill;
+        }
+    }
+
     //Obtener todas las facturas de un usuario
     public function getBillsByUser($user, $ajax) {
         $userM = new Model\User();
@@ -141,9 +164,21 @@ try {
             (new BillController())->getBill($_POST["id"], true);
         }
 
+        else if ($_POST["method"] == "getBillForClient") {
+            //obtenemos el registro
+            (new BillController())->getBillForClient($_POST["id"], true);
+        }
+
         else if ($_POST["method"] == "getBillsByUser") {
             //obtenemos el registro
             (new BillController())->getBillsByUser($_POST["user_id"], true);
+        }
+
+        else if ($_POST["method"] == "getClientBills") {
+            //obteniendo id del cliente
+            session_start();
+            //obtenemos el registro
+            (new BillController())->getBillsByUser($_SESSION['user']->getId(), true);
         }
     }
 }
