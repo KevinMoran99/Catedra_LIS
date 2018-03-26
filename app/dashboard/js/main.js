@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+    });
     $('.modal').modal();
     $('#game-filter').select2();
     $('.formSelect').each(function(index, element) {
         $(this).select2();
     });
-
 });
 
 //AJAX DE AGREGAR REGISTRO
