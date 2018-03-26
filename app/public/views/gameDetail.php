@@ -12,6 +12,9 @@ use Http\Controllers as Control;
         $page = new Control\StorePageController();
         $detail = $page->getPage($id,false);
         $rating = new Control\RatingController();
+        $ratings =  $rating->getRatingsByPage($id,false);
+        $bill = new Control\BillController();
+        $bills = $bill->getAllBills();
         echo '
         <div class="gameBackground"></div>
             <div class="col s12 m6 l4">
@@ -63,25 +66,37 @@ use Http\Controllers as Control;
         <h5 class="center blue-text info">Reviews de usuarios</h5>
         <div class="row">';
 
-        foreach( $rating->getRatingsByPage($id,false) as $row){
-            $recomendado = $row->getRecommended() ? "Recomendado" : "No recomendado";
+        foreach($ratings as $row){
+            $recommended = $row->getRecommended() ? "Recomendado" : "No recomendado";
             $color = $row->getRecommended() ? "green" : "red";
             echo '
-            <div class="card col s6">
+            <div class="card col l6 m6 s12">
                 <div class="row '.$color.'">
-                        <h5 class="col s6 white-text review-container">'.$row->getBillItem()->getBill()->getUser()->getAlias().': '.$recomendado.'</h5>
+                        <h5 class="white-text review-container">'.$row->getBillItem()->getBill()->getUser()->getAlias().': '.$recommended.'</h5>
                 </div>
                 <p class="review-container">'.$row->getDescription().'</p>
             </div>
             ';
         }
         echo '</div>';
+        $buyed = false;
+        foreach ($bills as $bill){
+            for($i=0;$i<sizeof($bill->getItems());$i++){
+                if($bill->getItems()[$i]->getStorePage()->getId() == $id) {
+                    $buyed = true;
+                }
+            }
 
-/*
-    <!--resto de informacion-->
+        }
 
-<<<<<<< HEAD
-    <p class="game-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean auctor gravida tristique. Vestibulum est dolor, vestibulum eget vulputate consectetur, vehicula sed est. Fusce efficitur, nunc in pharetra faucibus, leo diam venenatis nunc, a </p>*/
+        if($buyed){
+            echo '<div class="fixed-action-btn horizontal click-to-toggle">
+                        <a href="#nuevaReview" class="btn-floating btn-large light-blue darken-2 waves-effect waves-light modal-trigger" data-position="left" data-delay="50">
+                            <i class="material-icons">add</i>
+                        </a>
+                    </div>';
+        }
+
 ;?>
 
     <script>
