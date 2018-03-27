@@ -489,6 +489,7 @@ use Http\Helpers as Helper;
                                     <th>Descuento</th>
                                     <th>Visible</th>
                                     <th>Editar</th>
+                                    <th>Specs</th>
 
                                 </tr>
                                 </thead>

@@ -140,6 +140,11 @@ $('#modPageButton').click(function () {
                              '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">mode_edit</i>'+
                          '</a>'+
                      '</td>'+
+                     '<td>'+
+                        '<a  href="#" class=\"edit modal-trigger\">'+
+                             '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">settings</i>'+
+                         '</a>'+
+                     '</td>'+
                 '</tr>'
                 )
             }
