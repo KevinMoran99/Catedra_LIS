@@ -50,7 +50,7 @@ $( "#frmReview" ).submit(function( event ) {
                 //si la operacion fue un exito, cerramos el modal
                 $('#review-modal').modal('close');
                 //refrescamos la pagina
-                attachDatail("gameDetail", gameId);
+                attachDatail(gameId);
             }
             console.log(result);
             swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})

@@ -50,6 +50,20 @@ class RatingController
             return $rating->getByPage($pageM);
         }
     }
+    public function getRatingsByPagePublic ($page, $ajax) {
+        $pageM = new Model\StorePage();
+        $pageM->setId($page);
+        $pageM->getById();
+
+        $rating = new Model\Rating();
+
+        if ($ajax) {
+            echo json_encode($rating->getByPage($pageM));
+        }
+        else {
+            return $rating->getByPage($pageM,true);
+        }
+    }
 
     public function getFavorableByPage ($page) {
         $pageM = new Model\StorePage();

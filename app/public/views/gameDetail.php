@@ -15,7 +15,7 @@ use Http\Controllers as Control;
     $page = new Control\StorePageController();
     $detail = $page->getPage($id, false);
     $rating = new Control\RatingController();
-    $ratings = $rating->getRatingsByPage($id, false);
+    $ratings = $rating->getRatingsByPagePublic($id, false);
     $bill = new Control\BillController();
     $spec = new Control\PageSpecController();
     $specs = $spec->getSpecsByPage($id, false);
@@ -90,7 +90,6 @@ use Http\Controllers as Control;
         $bills = $bill->getBillsByUser($_SESSION['user']->getId(), false);
     }
     foreach ($ratings as $row) {
-        print $row->getId();
         $recommended = $row->getRecommended() ? "Recomendado" : "No recomendado";
         $color = $row->getRecommended() ? "green" : "red";
         if (isset($_SESSION['user'])) {
@@ -100,7 +99,6 @@ use Http\Controllers as Control;
         }
         echo '
             <div class="card review-card col l6 m6 s12">
-            <div>'.$row->getId().'</div>
                 <div class="row ' . $color . '">
                         <h5 class="text review-container">' . $row->getBillItem()->getBill()->getUser()->getAlias() . ': ' . $recommended . '</h5>
                 </div>
