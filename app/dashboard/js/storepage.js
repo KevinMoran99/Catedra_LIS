@@ -156,44 +156,43 @@ $('#modPageButton').click(function () {
 
         
 $('#modSpecButton').click(function () {
-    var itemId = $("#gameId").val();
+    var itemId = $(".id").val();
     $.ajax({
         method: 'POST',
-        data: {'game' : itemId, 'method' : 'getPagesByGame'},
-        url: "../http/controllers/StorePageController.php",
+        data: {'game' : itemId, 'method' : 'getPageSpec'},
+        url: "../http/controllers/PageSpecController.php",
         success: function (result) {
 
             console.log(itemId)
             $data = jQuery.parseJSON(result);            
             //Obteniendo id con los items
 
-            $('#allStorePages').empty();
-            for(var i = 0; i < $data.length; i++) {
-                $('#allStorePages').append(
-                    '<tr>'+
-                    '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
-                    '<td>'+$data[i].releaseDate+'</td>'+
-                    '<td>'+$data[i].price+'</td>'+
-                    '<td>'+$data[i].discount+'</td>'+
-                    '<td>'+
-                        '<label>'+
-                            '<input type=\"checkbox\" disabled '+$data[i].visible+"' />'"+
-                            '<span></span>'+
-                         '</label>'+
-                    '</td>'+
-                    '<td>'+
-                        '<a  href="#storePageModalU" class=\"edit modal-trigger\">'+
-                             '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">mode_edit</i>'+
-                         '</a>'+
-                     '</td>'+
-                     '<td>'+
-                        '<a id="modSpecButton"  href="#storePageSpecs" class=\"edit modal-trigger\">'+
-                             '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">settings</i>'+
-                         '</a>'+
-                     '</td>'+
-                '</tr>'
-                )
-            }
+            $('#allPageSpecs').empty();
+            $('#allPageSpecs').append(
+                '<tr>'+
+                '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
+                '<td>'+$data[i].releaseDate+'</td>'+
+                '<td>'+$data[i].price+'</td>'+
+                '<td>'+$data[i].discount+'</td>'+
+                '<td>'+
+                    '<label>'+
+                        '<input type=\"checkbox\" disabled '+$data[i].visible+"' />'"+
+                        '<span></span>'+
+                     '</label>'+
+                '</td>'+
+                '<td>'+
+                    '<a  href="#storePageModalU" class=\"edit modal-trigger\">'+
+                         '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">mode_edit</i>'+
+                     '</a>'+
+                 '</td>'+
+                 '<td>'+
+                    '<a id="modSpecButton"  href="#storePageSpecs" class=\"edit modal-trigger\">'+
+                         '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">settings</i>'+
+                     '</a>'+
+                 '</td>'+
+            '</tr>'
+            )
+
         }
                 
             });

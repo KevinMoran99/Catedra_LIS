@@ -598,7 +598,7 @@ use Http\Helpers as Helper;
                                     <th style="visibility: hidden; display:none;">ID</th>
                                     <th>Tipo de especificacion</th>
                                     <th>Especificacion</th>
-                                    <th>Visible</th>
+                                    <th>Activo</th>
                                     <th>Editar</th>
                                 </tr>
                                 </thead>
