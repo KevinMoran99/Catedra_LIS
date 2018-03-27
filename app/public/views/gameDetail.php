@@ -20,6 +20,7 @@ use Http\Controllers as Control;
     $spec = new Control\PageSpecController();
     $specs = $spec->getSpecsByPage($id, false);
     $ratingId = 0;
+    $billItem = 0;
     //PRIMERA SECCION
     echo '
         <div class="gameBackground"></div>
@@ -111,7 +112,6 @@ use Http\Controllers as Control;
     //SEXTA SECCION
     if (isset($_SESSION['user'])) {
         $buyed = false;
-        $billItem = 0;
         foreach ($bills as $bill) {
             for ($i = 0; $i < sizeof($bill->getItems()); $i++) {
                 if ($bill->getItems()[$i]->getStorePage()->getId() == $id) {
@@ -150,9 +150,9 @@ use Http\Controllers as Control;
             </div>
             <div class="row">
                 <div class="col s12 m8 offset-m2 center-align">
-                <input id="myReviewId" type="hidden" name="id" value="'.$ratingId.'">
+                <input id="myReviewId" type="hidden" name="id" value="' . $ratingId . '">
                     <form id="frmReview">
-                        <input type="hidden" name="bill_item_id" value="'.$billItem.'">
+                        <input type="hidden" name="bill_item_id" value="' . $billItem . '">
                         <div class="input-field">
                             <textarea id="review-description" name="description" class="materialize-textarea">' . $descripcionRating . '</textarea>
                             <label for="textarea1" class="active">Descripcion</label>
