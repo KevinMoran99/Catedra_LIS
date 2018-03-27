@@ -30,6 +30,7 @@ $( "#frmStorePageSpecAdd" ).submit(function( event ) {
     });
 });
 
+//AJAX DE OBTENER TODOS LOS REGISTROS
 $('#pageSpecButton').click(function () {
     var itemId = pageId;
         $.ajax({
