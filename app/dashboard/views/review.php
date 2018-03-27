@@ -81,7 +81,7 @@ use Http\Helpers as Helper;
                                 </tbody>
                             </table>
                             <br>
-                            <div id="pageLinks">
+                            <div id="reviewLinks">
                                 <!--INICIO DE ENLACES DE PAGINATE-->
                                 <?php
                                 //generando los links de paginacion
