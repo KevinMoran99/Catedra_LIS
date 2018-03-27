@@ -110,7 +110,7 @@ class StorePageController
         }
     }
 
-    public function updatePage ($id, $game, $releaseDate, $visible, $price, $discount){
+    public function updatePage ($id, $releaseDate, $visible, $price, $discount){
         //instancia
         $validator = new Helper\Validator();
         $page = new Model\StorePage();
@@ -126,10 +126,7 @@ class StorePageController
         //validamos
         if(!$flag) {
             $page->setId($id);
-            $gameM = new Model\Game();
-            $gameM->setId($game);
-            $gameM->getById();
-            $page->setGame($gameM);
+            $page->getById();
             $page->setReleaseDate(new \DateTime($releaseDate));
             $page->setVisible($visible);
             $page->setPrice($price);
@@ -161,7 +158,7 @@ try {
         if ($_POST["method"] == "getPage") {
             //obtenemos el registro
 
-            (new StorePageController())->getPage($_POST["id"], true);
+            (new StorePageController())->getPage($_POST["id"], true, true);
         }
 
         if ($_POST["method"] == "getPagesByGame") {
@@ -173,7 +170,7 @@ try {
         if($_POST["method"] == "updatePage"){
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
-            (new StorePageController())->updatePage($_POST['id'], $_POST['game'],$_POST['release_date'],$_POST['visible'],$_POST['price'],$_POST['discount']);
+            (new StorePageController())->updatePage($_POST['id'],$_POST['release_date'],$_POST['visible'],$_POST['price'],$_POST['discount']);
 
         }
 

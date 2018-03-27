@@ -21,6 +21,18 @@ class GenreController
         return $genres->getAll();
     }
 
+    public function getAllGenresPublic($ajax){
+        //creamos un nuevo objeto
+        $genres = new Model\Genre();
+        //retornamos todos los datos
+        if ($ajax) {
+            echo json_encode($genres->getAll(true));
+        }
+        else {
+            return $genres->getAll(true);
+        }
+    }
+
     //AGREGAR REGISTRO
     public function  addGenre($name,$state){
         //creamos objetos de validacion y genero
@@ -153,6 +165,11 @@ try {
 
         if($_POST["method"] == "searchGenre"){
             (new GenreController())->searchGenre($_POST["param"],true);
+        }
+
+        if ($_POST["method"] == "getAllGenresPublic") {
+            //obtenemos el registro
+            (new GenreController())->getAllGenresPublic(true);
         }
     }
 }

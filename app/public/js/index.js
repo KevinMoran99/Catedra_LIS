@@ -21,7 +21,8 @@ $(".menu-item").click(function(event) {
     var triggerer = $(event.target)
     var parent = triggerer.parents("li");
     var title = $("#nav-title");
-    var filter = $("#filter-container");
+    var filterContainer = $("#filter-container");
+    var filter = $("#filter");
 
     //Si se hace click sobre un li que redirige a games, debe color solamente el li padre
     if (parent.hasClass("menu-trigger")) {
@@ -41,37 +42,89 @@ $(".menu-item").click(function(event) {
     //Actualizando navbar según el item seleccionado
     if (parent.is("#menu-support")) {
         title.html("Soporte Técnico");
-        filter.hide();
+        filterContainer.hide();
     } else if (parent.is("#menu-about")) {
         title.html("Quiénes somos");
-        filter.hide();
+        filterContainer.hide();
     } else if (parent.is("#menu-cart")) {
         title.html("Carrito de compras");
-        filter.hide();
+        filterContainer.hide();
+
     } else if (parent.is("#game-all")) {
         title.html("Todos los juegos:");
-        filter.show();
+        filterContainer.show();
     } else if (parent.is("#game-offer")) {
         title.html("Ofertas:");
-        filter.show();
-    } else if (parent.is("#game-platform")) {
+        filterContainer.show();
+    /*} else if (parent.is("#game-platform")) {
         title.html("Buscar por plataforma:");
-        filter.show();
+        filter.show();*/
     } else if (parent.is("#game-publisher")) {
         title.html("Buscar por publicador:");
-        filter.show();
+
+        $.ajax({
+            method: 'POST',
+            data: {'method' : 'getAllPublishersPublic'},
+            url: '../http/controllers/PublisherController.php',
+            success: function (result) {
+                $data = jQuery.parseJSON(result);
+
+                filter.empty();
+                filter.append("<option value='' disabled selected>Ninguno</option>");
+
+                for (var i = 0; i < $data.length; i++) {
+                    filter.append("<option value=" + $data[i].id + ">" + $data[i].name + "</option>");
+                }
+            }
+        });
+
+        filterContainer.show();
     } else if (parent.is("#game-genre")) {
         title.html("Buscar por género:");
-        filter.show();
+
+        $.ajax({
+            method: 'POST',
+            data: {'method' : 'getAllGenresPublic'},
+            url: '../http/controllers/GenreController.php',
+            success: function (result) {
+                $data = jQuery.parseJSON(result);
+
+                filter.empty();
+                filter.append("<option value='' disabled selected>Ninguno</option>");
+
+                for (var i = 0; i < $data.length; i++) {
+                    filter.append("<option value=" + $data[i].id + ">" + $data[i].name + "</option>");
+                }
+            }
+        });
+
+        filterContainer.show();
     } else if (parent.is("#game-rating")) {
         title.html("Buscar por ratings:");
-        filter.show();
+        filterContainer.show();
     } else if (parent.is("#game-esrb")) {
         title.html("Buscar por clasificación:");
-        filter.show();
+
+        $.ajax({
+            method: 'POST',
+            data: {'method' : 'getAllEsrbsPublic'},
+            url: '../http/controllers/EsrbController.php',
+            success: function (result) {
+                $data = jQuery.parseJSON(result);
+
+                filter.empty();
+                filter.append("<option value='' disabled selected>Ninguno</option>");
+
+                for (var i = 0; i < $data.length; i++) {
+                    filter.append("<option value=" + $data[i].id + ">" + $data[i].name + "</option>");
+                }
+            }
+        });
+
+        filterContainer.show();
     } else if (parent.is("#game-date")) {
         title.html("Buscar por fecha de lanzamiento:");
-        filter.show();
+        filterContainer.show();
     }
 });
 

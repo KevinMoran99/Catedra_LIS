@@ -21,6 +21,18 @@ class EsrbController
         return $esrb->getAll();
     }
 
+    public function getAllEsrbsPublic($ajax){
+        //creamos un nuevo objeto
+        $esrb = new Model\Esrb();
+        //retornamos todos los datos
+        if ($ajax) {
+            echo json_encode($esrb->getAll(true));
+        }
+        else {
+            return $esrb->getAll(true);
+        }
+    }
+
     //AGREGAR REGISTRO
     public function  addEsrb($name,$state){
         //creamos objetos de validacion y genero
@@ -139,6 +151,11 @@ try {
 
         if($_POST["method"] == "searchEsrb"){
             (new EsrbController())->searchEsrb($_POST["param"],true);
+        }
+
+        if ($_POST["method"] == "getAllEsrbsPublic") {
+            //obtenemos el registro
+            (new EsrbController())->getAllEsrbsPublic( true);
         }
     }
 }

@@ -219,8 +219,25 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
 
     public function search($param)
     {
-        //Método innecesario
-        return "Método innecesario";
+        $query = "SELECT r.* FROM ratings r INNER JOIN bill_items bi ON r.bill_item_id = bi.id INNER JOIN bills b ON bi.bill_id = b.id
+                  INNER JOIN users u ON b.user_id = u.id INNER JOIN store_pages sp ON bi.store_page_id = sp.id INNER JOIN games g ON sp.game_id = g.id
+                  WHERE u.alias LIKE CONCAT('%',?,'%') OR g.name LIKE CONCAT('%',?,'%')";
+        $params = array($param,$param);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pItem = new BillItem();
+            $pItem->setId($line['bill_item_id']);
+            $pItem->getById();
+
+            //Registro
+            $rating = new Rating();
+            $rating->init($line["id"], $pItem, $line["recommended"], $line["description"], new \DateTime($line["review_date"]), $line["visible"]);
+            array_push($result, $rating);
+        }
+        return $result;
     }
 
     public function jsonSerialize()
