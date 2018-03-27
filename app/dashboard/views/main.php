@@ -530,29 +530,6 @@ use Http\Helpers as Helper;
                             </select>
                         </div>
                     <div class="row">
-                        <h6 class="center">Seleccione estado de la especificacion:</h6>
-                        <div class="input-field col s6 push-s1">
-                            <div class="col s12 m6 push-m5">
-                                <p>
-                                    <label>
-                                        <input id="" name="visible" type="radio" checked value="1"/>
-                                        <span>Activa</span>
-                                    </label>
-                                </p>
-                            </div>
-                            <div class="col s12 m6 push-m4">
-                                <p>
-                                    <label>
-                                        <input id="" name="visible" type="radio" value="0"/>
-                                        <span>Inactiva</span>
-                                    </label>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Añadir</button>
                     </div>
                 </form>
