@@ -162,6 +162,19 @@ class RatingController
             Helper\Component::showMessage(Helper\Component::$WARNING, $response);
         }
     }
+
+    public function searchRating ($param, $ajax) {
+        //nuevo objeto de tipo de especificacion
+        $rating = new Model\Rating();
+        $data = $rating->search($param);
+        //si es una request ajax retorna un json con los datos
+        if($ajax) {
+            echo json_encode($data);
+        }else{
+            //si no es ajax, retorna un objeto
+            return $data;
+        }
+    }
 }
 
 try {
@@ -194,6 +207,11 @@ try {
         else if ($_POST["method"] == "updateRatingVisible") {
             //obtenemos el registro
             (new RatingController())->updateRatingVisible($_POST["id"],$_POST["visible"]);
+        }
+
+        else if ($_POST["method"] == "searchRating") {
+            //obtenemos el registro
+            (new RatingController())->searchRating($_POST["param"],true);
         }
     }
 }

@@ -105,7 +105,7 @@
 <ul id="drpGames1" class="dropdown-content">
     <li id="game-all" class="item-game"><a href="#!" onclick="attach('games',1)">Todos</a></li>
     <li id="game-offer" class="item-game"><a href="#!" onclick="attach('games',1)">Ofertas</a></li>
-    <li id="game-platform" class="item-game"><a href="#!" onclick="attach('games',1)">Por plataforma</a></li>
+    <!--<li id="game-platform" class="item-game"><a href="#!" onclick="attach('games',1)">Por plataforma</a></li>-->
     <li id="game-publisher" class="item-game"><a href="#!" onclick="attach('games',1)">Por publicador</a></li>
     <li id="game-genre" class="item-game"><a href="#!" onclick="attach('games',1)">Por género</a></li>
     <li id="game-rating" class="item-game"><a href="#!" onclick="attach('games',1)">Por rating</a></li>

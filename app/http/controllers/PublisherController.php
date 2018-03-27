@@ -22,6 +22,20 @@ class PublisherController
         return $publishers->getAll();
     }
 
+    //obtener todos los publicadores activos
+    public function getAllPublishersPublic($ajax){
+        //instancia
+        $publishers = new Model\Publisher();
+        //retornamos todos los objetos
+        if ($ajax) {
+            echo json_encode($publishers->getAll(true));
+        }
+        else {
+            return $publishers->getAll(true);
+        }
+
+    }
+
     //agregar publicador
     public  function  addPublisher($name, $state){
         //instancia
@@ -139,6 +153,10 @@ try {
 
         if($_POST["method"] == "searchPublisher"){
             (new PublisherController())->searchPublisher($_POST["param"],true);
+        }
+
+        if($_POST["method"] == "getAllPublishersPublic"){
+            (new PublisherController())->getAllPublishersPublic(true);
         }
     }
 }

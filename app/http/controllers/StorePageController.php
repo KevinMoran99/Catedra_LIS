@@ -161,7 +161,7 @@ try {
         if ($_POST["method"] == "getPage") {
             //obtenemos el registro
 
-            (new StorePageController())->getPage($_POST["id"], true);
+            (new StorePageController())->getPage($_POST["id"], true, true);
         }
 
         if ($_POST["method"] == "getPagesByGame") {
