@@ -288,8 +288,9 @@ use Http\Helpers as Helper;
                         </select>
                     </div>
                     <div class="input-field">
-                    <a class="waves-effect waves-teal btn-flat modal-trigger" href="#storePageModal">Agregar pagina en la tienda para este juego</a>
-                    </div>
+                    <a  class="waves-effect waves-teal btn-flat modal-trigger" href="#storePageModal">Agregar pagina en la tienda para este juego</a>
+                    <a id="modPageButton" class="waves-effect waves-teal btn-flat modal-trigger" href="#storePageGestModal">Gestionar paginas en la tienda de este juego</a>
+                    </div>  
                     <div class="row">
                         <h6 class="center">Seleccione el estado del juego:</h6>
                         <div class="input-field col s6 push-s1">
@@ -323,6 +324,7 @@ use Http\Helpers as Helper;
     </div>
 </div>
 
+<!--Modal de agregar storepages-->
 <div id="storePageModal" class="modal">
 <div class="modal-content">
         <div class="modal-header row blue white-text">
@@ -370,7 +372,7 @@ use Http\Helpers as Helper;
                     </div>
                     
                     <div class="row">
-                        <button href="#storePageTable" type="submit" class="modal-trigger modal-submit btn waves-effect right">Añadir</button>
+                        <button  type="submit" class="modal-submit btn waves-effect right">Añadir</button>
                     </div>
                 </form>
             </div>
@@ -378,6 +380,110 @@ use Http\Helpers as Helper;
     </div>
   </div>
 
+  <!--Modal de modificar storepages-->
+<div id="storePageModalU" class="modal">
+<div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Modificar Storepage</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <form id="frmStrPgU">
+                <input type="hidden" name="id" id="pageId">
+                    <div class="input-field">
+                    <label for="gameDateU">Fecha de lanzamiento</label>
+                        <input id="gameDateU" name="release_date" type="text" class="datepicker">
+                    </div>
+                    <div class="input-field">
+                        <input name="price" id="gamePriceU" type="number" pattern="^([0-9]+(\.[0-9]+)?)$" title="Solo se permiten números" required>
+                        <label for="gamePriceU">Precio</label>
+                    </div>
+                    <div class="input-field">
+                        <input name="discount" id="gameDiscU" min="0" type="number" pattern="^[0-9]*$" title="Solo se permiten números" required>
+                        <label for="gameDiscU">Descuento</label>
+                    </div>
+                    
+                    <div class="row">
+                        <h6 class="center">Seleccione visibilidad en la tienda:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                <input id="gameVis" name="visible" type="radio" checked value="1" />
+                                <span>Visible</span>
+                            </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                <input id="gameInv" name="visible" type="radio" value="0" />
+                                <span>Invisible</span>
+                            </label>
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <button  type="submit" class="modal-submit btn waves-effect right">Añadir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<!--Modal de gestionar paginas en la tienda-->
+  <div id="storePageGestModal" class="modal">
+<div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Gestionar Storepages</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="divtab col s12 m10 offset-m1  black-text">
+                <div class="tabla z-depth-3">
+                    <div class="card white">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="card-title-inline">
+                                        <span class="card-title">Paginas en la tienda</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="bordered highlight responsive-table" id="storepages">
+                                <thead>
+                                    <tr class="table-storepages">
+                                        <th style="visibility: hidden; display:none;">ID</th>
+                                        <th>Fecha de salida</th>
+                                        <th>Precio</th>
+                                        <th>Descuento</th>
+                                        <th>Visible</th>
+                                        <th>Editar</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody id="allStorePages">
+
+                                </tbody>
+                            </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<!--Modal de tabla de specs para storepages-->
 <div id="storePageTable" class="modal">
 <div class="modal-content">
         <div class="modal-header row blue white-text">
@@ -428,7 +534,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2">
-                <form id="frmStrPg">
+                <form id="frmStrSpec">
                 <div class="row">
                         <div class="input-field">
                             <select id="specType" class="formSelect" name="typeSpec" required>

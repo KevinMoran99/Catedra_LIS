@@ -93,7 +93,6 @@ $( "#frmActJg" ).submit(function( event ) {
 $("#allGames").on('click','.edit', function () {
     //obtenemos el id (OJO AGREGAR CLASE ID A TODOS LOS CAMPOS DE LAS TABLAS QUE ALMACENAN EL ID)
     var id = $(this).find(".id").text();
-    console.log("stfu",id);
     var formData = new FormData();
     formData.append("id",id);
     formData.append("method","getGame");

@@ -50,6 +50,20 @@ class RatingController
             return $rating->getByPage($pageM);
         }
     }
+    public function getRatingsByPagePublic ($page, $ajax) {
+        $pageM = new Model\StorePage();
+        $pageM->setId($page);
+        $pageM->getById();
+
+        $rating = new Model\Rating();
+
+        if ($ajax) {
+            echo json_encode($rating->getByPage($pageM));
+        }
+        else {
+            return $rating->getByPage($pageM,true);
+        }
+    }
 
     public function getFavorableByPage ($page) {
         $pageM = new Model\StorePage();
@@ -182,7 +196,7 @@ try {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addRating") {
-            (new RatingController())->addRating($_POST['bill_item'], $_POST['recommended'], $_POST['description']);
+            (new RatingController())->addRating($_POST['bill_item_id'], $_POST['recommended'], $_POST['description']);
         }
 
         else if ($_POST["method"] == "updateRating") {

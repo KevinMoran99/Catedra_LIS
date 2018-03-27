@@ -254,8 +254,8 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
     }
 
     public function update(){
-        $query ="UPDATE store_pages SET game_id=?,release_date=?,visible=?,price=?,discount=? WHERE id=?";
-        $params= array($this->getGame()->getId(),$this->getReleaseDate()->format('Y-m-d'),$this->getVisible(),$this->getPrice(),$this->getDiscount(),$this->getId());
+        $query ="UPDATE store_pages SET release_date=?,visible=?,price=?,discount=? WHERE id=?";
+        $params= array($this->getReleaseDate()->format('Y-m-d'),$this->getVisible(),$this->getPrice(),$this->getDiscount(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
