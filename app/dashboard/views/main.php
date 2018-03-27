@@ -414,18 +414,18 @@ use Http\Helpers as Helper;
                 <form id="frmStrPgU">
                     <input type="hidden" name="id" id="pageId">
                     <div class="input-field">
-                        <label for="gameDateU">Fecha de lanzamiento</label>
+                        <label for="gameDateU" class="active">Fecha de lanzamiento</label>
                         <input id="gameDateU" name="release_date" type="text" class="datepicker">
                     </div>
                     <div class="input-field">
                         <input name="price" id="gamePriceU" type="number" pattern="^([0-9]+(\.[0-9]+)?)$"
                                title="Solo se permiten números" required>
-                        <label for="gamePriceU">Precio</label>
+                        <label for="gamePriceU" class="active">Precio</label>
                     </div>
                     <div class="input-field">
                         <input name="discount" id="gameDiscU" min="0" type="number" pattern="^[0-9]*$"
                                title="Solo se permiten números" required>
-                        <label for="gameDiscU">Descuento</label>
+                        <label for="gameDiscU" class="active">Descuento</label>
                     </div>
 
                     <div class="row">
@@ -507,7 +507,7 @@ use Http\Helpers as Helper;
 </div>
 
 
-<!--Modal de modificar storepages-->
+<!--Modal de agregar storepagesSpec-->
 <div id="storePageSpecAdd" class="modal">
     <div class="modal-content">
         <div class="modal-header row blue white-text">
@@ -561,10 +561,8 @@ use Http\Helpers as Helper;
                                 <thead>
                                 <tr class="table-storepages">
                                     <th style="visibility: hidden; display:none;">ID</th>
-                                    <th>Tipo de especificacion</th>
                                     <th>Especificacion</th>
-                                    <th>Visible</th>
-                                    <th>Editar</th>
+                                    <th>Eliminar</th>
                                 </tr>
                                 </thead>
                                 <tbody id="allPageSpecs">

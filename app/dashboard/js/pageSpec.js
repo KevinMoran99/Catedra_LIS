@@ -23,7 +23,7 @@ $( "#frmStorePageSpecAdd" ).submit(function( event ) {
             if (output[0] == "Éxito") {
                 //si la operacion fue un exito, cerramos el modal
                 $('#StorePageSpecAdd').modal('close');
-                //TODO:recargar la vista
+                getData(pageId);
             }
             console.log(result);
             swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
@@ -31,10 +31,8 @@ $( "#frmStorePageSpecAdd" ).submit(function( event ) {
     });
 });
 
-//AJAX DE AGREGAR REGISTRO
-$( "#eliminarSpec" ).on('click',function( event ) {
-    event.preventDefault();
-    var id = $(this).closest("tr").find(".id").text();
+function deleteSpec(id) {
+    console.log(id);
     var formData = new FormData(this);
     formData.append("method","deletePageSpec");
     formData.append("id",id);
@@ -42,7 +40,7 @@ $( "#eliminarSpec" ).on('click',function( event ) {
     swal({
         title: '¿Desea eliminar el registro? Esta accion no se puede revertir',
         icon: 'warning',
-        buttons: ['Cancelar', 'Modificar']
+        buttons: ['Cancelar', 'Eliminar']
     }).then(function (confirm) {
         if (confirm) {
             $.ajax({
@@ -57,6 +55,7 @@ $( "#eliminarSpec" ).on('click',function( event ) {
                     if (output[0] == "Éxito") {
                         //si la operacion fue un exito, recargamos la vista
                         //TODO:recargar la vista
+                        getData(pageId);
                     }
                     console.log(result);
                     swal({
@@ -71,5 +70,35 @@ $( "#eliminarSpec" ).on('click',function( event ) {
             });
         }
     });
-});
+}
 
+function getData(id) {
+    var itemId = id;
+    setId(itemId);
+    console.log(pageId);
+    $.ajax({
+        method: 'POST',
+        data: {'storePage' : itemId, 'method' : 'getSpecsByPage'},
+        url: "../http/controllers/PageSpecController.php",
+        success: function (result) {
+            console.log(result);
+            $data = jQuery.parseJSON(result);
+            //Obteniendo id con los items
+
+            $('#allPageSpecs').empty();
+            for(var i = 0; i < $data.length; i++) {
+                $('#allPageSpecs').append(
+                    '<tr>'+
+                    '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
+                    '<td>'+$data[i].spec.name+'</td>'+
+                    '<td>'+
+                    '<a class="eliminarSpec" onclick="deleteSpec('+$data[i].id+')">'+
+                    '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">delete</i>'+
+                    '</a>'+
+                    '</td>'+
+                    '</tr>'
+                )
+            }
+        }
+    });
+}
