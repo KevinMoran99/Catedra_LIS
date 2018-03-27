@@ -507,12 +507,77 @@ use Http\Helpers as Helper;
 </div>
 </div>
 
-<!--Modal de tabla de specs para storepages-->
-<div id="storePageTable" class="modal">
+
+<!--Modal de modificar storepages-->
+<div id="storePageSpecAdd" class="modal">
     <div class="modal-content">
         <div class="modal-header row blue white-text">
             <div class="col m10 s9">
-                <h3 class="">Lista de especificaciones</h3>
+                <h3 class="">Agregar especificacion</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <form id="frmStrPgU">
+                <div class="input-field">
+                            <select id="specType" class="formSelect" name="typeSpec" required>
+                                <option value="" selected="true" disabled="disabled">Tipo de especificación</option>
+                                <?php
+                                $typeSpecs = new Control\TypeSpecController();
+                                foreach ($typeSpecs->getAllActiveTypeSpecs() as $type) {
+                                    echo "<option value=".$type->getId().">".$type->getName()."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <select id="spec" class="formSelect" name="spec" required>
+                                <option value="" selected="true" disabled="disabled">Especificación</option>
+                                <?php
+                                $specs = new Control\SpecController();
+                                foreach ($specs->getAllActiveSpecs() as $spec) {
+                                    echo "<option value=".$spec->getId().">".$spec->getName()."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    <div class="row">
+                        <h6 class="center">Seleccione estado de la especificacion:</h6>
+                        <div class="input-field col s6 push-s1">
+                            <div class="col s12 m6 push-m5">
+                                <p>
+                                    <label>
+                                        <input id="" name="visible" type="radio" checked value="1"/>
+                                        <span>Activa</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col s12 m6 push-m4">
+                                <p>
+                                    <label>
+                                        <input id="" name="visible" type="radio" value="0"/>
+                                        <span>Inactiva</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Añadir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="storePageSpecs" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text">
+            <div class="col m10 s9">
+                <h3 class="">Gestionar Especificacion</h3>
             </div>
         </div>
         <div class="row">
@@ -523,19 +588,23 @@ use Http\Helpers as Helper;
                             <div class="row">
                                 <div class="col s12">
                                     <div class="card-title-inline">
-                                        <span class="card-title">Especificaciones</span>
+                                        <span class="card-title">Especiones de la pagina</span>
                                     </div>
                                 </div>
                             </div>
-                            <table class="bordered highlight responsive-table" id="users">
+                            <table class="bordered highlight responsive-table" id="storepages">
                                 <thead>
-                                <tr class="table-users">
+                                <tr class="table-storepages">
                                     <th style="visibility: hidden; display:none;">ID</th>
                                     <th>Tipo de especificacion</th>
                                     <th>Especificacion</th>
-                                    <th><i class="material-icons">delete</i></th>
+                                    <th>Visible</th>
+                                    <th>Editar</th>
                                 </tr>
                                 </thead>
+                                <tbody id="allPageSpecs">
+
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -543,60 +612,16 @@ use Http\Helpers as Helper;
             </div>
         </div>
         <div class="row">
-            <button href="#storePageSpecs" type="submit" class="modal-trigger modal-submit btn waves-effect right">
+            <button href="#storePageSpecAdd" type="submit" class="modal-trigger modal-submit btn waves-effect right">
                 Añadir
             </button>
         </div>
-
     </div>
 </div>
-
-<div id="storePageSpecs" class="modal">
-    <div class="modal-content">
-        <div class="modal-header row blue white-text">
-            <div class="col m10 s9">
-                <h3 class="">Agregar Storepage</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m8 offset-m2">
-                <form id="frmStrSpec">
-                    <div class="row">
-                        <div class="input-field">
-                            <select id="specType" class="formSelect" name="typeSpec" required>
-                                <option value="" selected="true" disabled="disabled">Tipo de especificación</option>
-                                <?php
-                                $typeSpecs = new Control\TypeSpecController();
-                                foreach ($typeSpecs->getAllActiveTypeSpecs() as $type) {
-                                    echo "<option value=" . $type->getId() . ">" . $type->getName() . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="input-field">
-                            <select id="specs" class="formSelect" name="spec" required>
-                                <option value="" selected="true" disabled="disabled">Especificación</option>
-                                <?php
-                                $specs = new Control\SpecController();
-                                foreach ($specs->getAllActiveSpecs() as $type) {
-                                    echo "<option value=" . $type->getId() . ">" . $type->getName() . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <button href="#" type="submit" class="modal-trigger modal-submit btn waves-effect right">
-                                Añadir
-                            </button>
-                        </div>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 
 
+<script src="js/storepage.js"></script>
 <script src="js/select.js"></script>
 <script src="js/main.js"></script>
-<script src="js/storepage.js"></script>
