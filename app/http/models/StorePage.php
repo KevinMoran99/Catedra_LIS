@@ -259,8 +259,79 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
-    public function search($param) {
-        // TODO: Implement search() method.
+
+    //Parámetros de tipo de búsqueda
+    public static $GAME = 0;
+    public static $PUBLISHER = 1;
+    public static $GENRE = 2;
+    public static $ESRB = 3;
+    public static $SELLER = 4;
+    public static $RATING = 5;
+    public static $DATE = 6;
+    public static $OFFER = 7;
+
+    public function search($param, $type = false) {
+        //Búsqueda por nombre
+        if ($type == StorePage::$GAME) {
+            $query = "SELECT * FROM store_pages WHERE game_id = ? AND visible = 1";
+            $params = array($param);
+        }
+        //Buscar por publicador
+        else if ($type == StorePage::$PUBLISHER) {
+            $query = "SELECT * FROM store_pages sp INNER JOIN games g ON sp.game_id = g.id WHERE publisher_id = ? AND visible = 1";
+            $params = array($param);
+        }
+        //Buscar por genero
+        else if ($type == StorePage::$GENRE) {
+            $query = "SELECT * FROM store_pages sp INNER JOIN games g ON sp.game_id = g.id WHERE genre_id = ? AND visible = 1";
+            $params = array($param);
+        }
+        //Buscar por clasificacion
+        else if ($type == StorePage::$ESRB) {
+            $query = "SELECT * FROM store_pages sp INNER JOIN games g ON sp.game_id = g.id WHERE esrb_id = ? AND visible = 1";
+            $params = array($param);
+        }
+        //Buscar más vendidos
+        else if ($type == StorePage::$SELLER) {
+            $query = "SELECT sp.*, bi.cnt FROM store_pages sp LEFT JOIN (SELECT store_page_id, COUNT(*) as cnt 
+                      FROM bill_items GROUP BY store_page_id ) bi ON sp.id = bi.store_page_id WHERE sp.visible = 1 ORDER BY bi.cnt DESC";
+            $params = array(null);
+        }
+        //Buscar más recomendados
+        else if ($type == StorePage::$RATING) {
+            $query = "SELECT sp.*, rec.cnt * 100 / tot.cnt as percent FROM store_pages sp 
+                      LEFT JOIN (SELECT bi.store_page_id, COUNT(*) cnt FROM ratings r INNER JOIN bill_items bi ON r.bill_item_id = bi.id 
+                      WHERE recommended = 1 GROUP BY store_page_id) rec ON sp.id = rec.store_page_id
+                      LEFT JOIN (SELECT bi.store_page_id, COUNT(*) cnt FROM ratings r INNER JOIN bill_items bi ON r.bill_item_id = bi.id 
+                      GROUP BY store_page_id) tot ON sp.id = tot.store_page_id WHERE sp.visible = 1 ORDER BY percent DESC";
+            $params = array(null);
+        }
+        //Buscar más recientes
+        else if ($type == StorePage::$DATE) {
+            $query = "SELECT * FROM store_pages WHERE visible = 1 ORDER BY release_date DESC";
+            $params = array(null);
+        }
+        //Buscar en descuento
+        else if ($type == StorePage::$OFFER) {
+            $query = "SELECT * FROM store_pages WHERE visible = 1 ORDER BY discount DESC";
+            $params = array(null);
+        }
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pGame = (new Game());
+            $pGame->setId($line["game_id"]);
+            $pGame->getById();
+
+            //Registro
+            $page = (new StorePage());
+            $page->init($line["id"], $pGame, new \DateTime($line["release_date"]),$line['visible'], $line["price"], $line["discount"]);
+
+            array_push($result, $page);
+        }
+        return $result;
     }
 
     public function jsonSerialize()

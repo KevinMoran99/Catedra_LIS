@@ -143,6 +143,37 @@ class StorePageController
             Helper\Component::showMessage(Helper\Component::$ERROR,$validateError);
         }
     }
+
+    public function searchPage ($searchType, $param) {
+        $page = new Model\StorePage();
+
+        switch ($searchType) {
+            case "game":
+                return $page->search($param, Model\StorePage::$GAME);
+                break;
+            case "publisher":
+                return $page->search($param, Model\StorePage::$PUBLISHER);
+                break;
+            case "genre":
+                return $page->search($param, Model\StorePage::$GENRE);
+                break;
+            case "esrb":
+                return $page->search($param, Model\StorePage::$ESRB);
+                break;
+            case "seller":
+                return $page->search("", Model\StorePage::$SELLER);
+                break;
+            case "rating":
+                return $page->search("", Model\StorePage::$RATING);
+                break;
+            case "date":
+                return $page->search("", Model\StorePage::$DATE);
+                break;
+            case "offer":
+                return $page->search("", Model\StorePage::$OFFER);
+                break;
+        }
+    }
 }
 
 try {
@@ -171,6 +202,13 @@ try {
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
             (new StorePageController())->updatePage($_POST['id'],$_POST['release_date'],$_POST['visible'],$_POST['price'],$_POST['discount']);
+
+        }
+
+        if($_POST["method"] == "searchPage"){
+            //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
+
+            (new StorePageController())->searchPage($_POST['searchType'],$_POST['param']);
 
         }
 

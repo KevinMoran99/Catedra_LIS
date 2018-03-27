@@ -25,14 +25,7 @@ use Http\Helpers as Helper;
     ?>
 </div>
 
-<div class="row">
+<div id="mainBreak" class="row">
     <h4 class="left">Explora nuestros juegos</h4>
-    <form id="search-game-form" class="right col s2">
-        <div class="input-field col s12">
-            <i class="material-icons prefix">search</i>
-            <input id="search-game" type="text" class="validate">
-            <label for="search-game">Buscar</label>
-        </div>
-    </form>
 </div>
 <?php include 'games.php';?>

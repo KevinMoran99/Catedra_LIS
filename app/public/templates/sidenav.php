@@ -24,10 +24,6 @@
         <h5 id="nav-title">Sttom xD</h5>
         <div id="filter-container" class="input-field">
             <select id="filter" class="js-example-basic-single">
-              <option value="" disabled selected>Todos</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
             </select>
         </div>
     </nav>
@@ -103,14 +99,15 @@
 <!--Dropdowns-->
 <!--Juegos  -->
 <ul id="drpGames1" class="dropdown-content">
-    <li id="game-all" class="item-game"><a href="#!" onclick="attach('games',1)">Todos</a></li>
-    <li id="game-offer" class="item-game"><a href="#!" onclick="attach('games',1)">Ofertas</a></li>
+    <li id="game-all" class="item-game"><a href="#!" onclick="attach('games',1)">Por nombre</a></li>
     <!--<li id="game-platform" class="item-game"><a href="#!" onclick="attach('games',1)">Por plataforma</a></li>-->
     <li id="game-publisher" class="item-game"><a href="#!" onclick="attach('games',1)">Por publicador</a></li>
     <li id="game-genre" class="item-game"><a href="#!" onclick="attach('games',1)">Por género</a></li>
-    <li id="game-rating" class="item-game"><a href="#!" onclick="attach('games',1)">Por rating</a></li>
     <li id="game-esrb" class="item-game"><a href="#!" onclick="attach('games',1)">Por clasificación</a></li>
-    <li id="game-date" class="item-game"><a href="#!" onclick="attach('games',1)">Por lanzamiento</a>
+    <li id="game-seller" class="item-game"><a href="#!">Más vendidos</a></li>
+    <li id="game-rating" class="item-game"><a href="#!">Más recomendados</a></li>
+    <li id="game-date" class="item-game"><a href="#!">Más recientes</a>
+    <li id="game-offer" class="item-game"><a href="#!">En descuento</a></li>
     <!--<li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
     <li class="menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>-->
 </ul>

@@ -35,7 +35,7 @@
     margin-bottom: 0;
 }
 
-#menu-button, #menu-logo, .modal-header {
+#menu-button, #menu-logo, .modal-header, #mainBreak {
     background: linear-gradient(mediumspringgreen, skyblue);
 }
 
@@ -61,6 +61,13 @@
 
 .selected-item>a, #menu-user>a {
     color: white !important;
+}
+
+#mainBreak {
+    color: #01579b;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-bottom: 10px;
 }
 
 /*Permite hacer scroll cuando el footer del sidenav cubre lo demas*/
