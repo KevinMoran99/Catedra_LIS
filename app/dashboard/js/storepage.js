@@ -153,47 +153,5 @@ $('#modPageButton').click(function () {
 
         });
 
-$('#pageSpecButton').click(function () {
-    var itemId = $(".id").val();
-        $.ajax({
-            method: 'POST',
-            data: {'id' : itemId, 'method' : 'getPageSpec'},
-            url: "../http/controllers/PageSpecController.php",
-            success: function (result) {
-        
-                console.log(itemId);
-                    $data = jQuery.parseJSON(result);            
-                    //Obteniendo id con los items
-        
-                    $('#allPageSpecs').empty();
-                    for(var i = 0; i < $data.length; i++) {
-                        $('#allPageSpecs').append(
-                            '<tr>'+
-                            '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
-                            '<td>'+$data[i].releaseDate+'</td>'+
-                            '<td>'+$data[i].price+'</td>'+
-                            '<td>'+$data[i].discount+'</td>'+
-                            '<td>'+
-                                '<label>'+
-                                    '<input type=\"checkbox\" disabled '+$data[i].visible+"' />'"+
-                                    '<span></span>'+
-                                 '</label>'+
-                            '</td>'+
-                            '<td>'+
-                                '<a  href="#storePageModalU" class=\"edit modal-trigger\">'+
-                                     '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">mode_edit</i>'+
-                                 '</a>'+
-                             '</td>'+
-                             '<td>'+
-                                '<a  href="#storePageSpecs" class=\"modal-trigger\">'+
-                                     '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">settings</i>'+
-                                 '</a>'+
-                             '</td>'+
-                        '</tr>'
-                        )
-                    }
-                }
-    });
-        
-});
+
 
