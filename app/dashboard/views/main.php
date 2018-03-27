@@ -517,18 +517,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2">
-                <form id="frmStrPgU">
-                <div class="input-field">
-                            <select id="specType" class="formSelect" name="typeSpec" required>
-                                <option value="" selected="true" disabled="disabled">Tipo de especificación</option>
-                                <?php
-                                $typeSpecs = new Control\TypeSpecController();
-                                foreach ($typeSpecs->getAllActiveTypeSpecs() as $type) {
-                                    echo "<option value=".$type->getId().">".$type->getName()."</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
+                <form id="frmStorePageSpecAdd">
                         <div class="input-field">
                             <select id="spec" class="formSelect" name="spec" required>
                                 <option value="" selected="true" disabled="disabled">Especificación</option>
@@ -618,7 +607,7 @@ use Http\Helpers as Helper;
     </div>
 </div>
 
-
+<script src="js/pageSpec.js"></script>
 <script src="js/storepage.js"></script>
 <script src="js/select.js"></script>
 <script src="js/main.js"></script>
