@@ -131,6 +131,7 @@ class RatingController
         //si en este punto el flag es falso, actualizar el registro
         if(!$flag){
             $rating->setId($id);
+            $rating->getById();
             $rating->setRecommended($recommended);
             $rating->setDescription($description);
             $rating->setReviewDate(new \DateTime());
@@ -143,6 +144,22 @@ class RatingController
         }else{
             //si el flag es verdadero, enviar mensaje de error
             Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
+        }
+    }
+
+    public function updateRatingVisible ($id, $visible) {
+        $validator = new Helper\Validator();
+        $rating = new Model\Rating();
+
+        //si en este punto el flag es falso, actualizar el registro
+        $rating->setId($id);
+        $rating->getById();
+        $rating->setVisible($visible);
+        $response = $rating->update();
+        if (is_bool($response)) {
+            Helper\Component::showMessage(Helper\Component::$SUCCESS, "Valoración modificada");
+        }else {
+            Helper\Component::showMessage(Helper\Component::$WARNING, $response);
         }
     }
 }
@@ -172,6 +189,11 @@ try {
         else if ($_POST["method"] == "getFavorableByPage") {
             //obtenemos el registro
             (new RatingController())->getFavorableByPage($_POST["store_page"]);
+        }
+
+        else if ($_POST["method"] == "updateRatingVisible") {
+            //obtenemos el registro
+            (new RatingController())->updateRatingVisible($_POST["id"],$_POST["visible"]);
         }
     }
 }
