@@ -13,7 +13,7 @@ class Connection{
     private static function connect(){
         $server="localhost";
         $user = "root";
-        $pass="fedora98";
+        $pass="";
         $database="stoam";
         try{
             self::$connection = new PDO("mysql:host=$server; dbname=$database; charset=utf8",$user,$pass);
