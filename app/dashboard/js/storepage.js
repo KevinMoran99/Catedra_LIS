@@ -141,7 +141,7 @@ $('#modPageButton').click(function () {
                          '</a>'+
                      '</td>'+
                      '<td>'+
-                        '<a  href="#storePageSpecs" class=\"modal-trigger\">'+
+                        '<a id="pageSpecButton"  href="#storePageSpecs" class=\"modal-trigger\">'+
                              '<i class="material-icons tooltipped editar" onclick="setId('+$data[i].id+')" data-position=\"left\" data-delay=\"50\">settings</i>'+
                          '</a>'+
                      '</td>'+

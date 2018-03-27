@@ -585,8 +585,7 @@ use Http\Helpers as Helper;
                                 <tr class="table-storepages">
                                     <th style="visibility: hidden; display:none;">ID</th>
                                     <th>Especificacion</th>
-                                    <th>Activo</th>
-                                    <th>Editar</th>
+                                    <th>Eliminar</th>
                                 </tr>
                                 </thead>
                                 <tbody id="allPageSpecs">

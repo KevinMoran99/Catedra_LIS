@@ -29,3 +29,33 @@ $( "#frmStorePageSpecAdd" ).submit(function( event ) {
         }
     });
 });
+
+$('#pageSpecButton').click(function () {
+    var itemId = pageId;
+        $.ajax({
+            method: 'POST',
+            data: {'page' : itemId, 'method' : 'getSpecsByPage'},
+            url: "../http/controllers/PageSpecController.php",
+            success: function (itemId) {
+                console.log(result);
+                    $data = jQuery.parseJSON(result);            
+                    //Obteniendo id con los items
+        
+                    $('#allPageSpecs').empty();
+                    for(var i = 0; i < $data.length; i++) {
+                        $('#allPageSpecs').append(
+                            '<tr>'+
+                            '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
+                            '<td>'+$data[i].pageSpec+'</td>'+
+                             '<td>'+
+                                '<a id="eliminarSpec" href="#">'+
+                                     '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">delete</i>'+
+                                 '</a>'+
+                             '</td>'+
+                        '</tr>'
+                        )
+                    }
+                }
+    });
+        
+});
