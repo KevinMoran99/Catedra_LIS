@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd',
+        container: 'body'
     });
     $('.modal').modal();
     $('#game-filter').select2();
