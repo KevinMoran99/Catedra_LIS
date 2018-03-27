@@ -50,6 +50,20 @@ class RatingController
             return $rating->getByPage($pageM);
         }
     }
+    public function getRatingsByPagePublic ($page, $ajax) {
+        $pageM = new Model\StorePage();
+        $pageM->setId($page);
+        $pageM->getById();
+
+        $rating = new Model\Rating();
+
+        if ($ajax) {
+            echo json_encode($rating->getByPage($pageM));
+        }
+        else {
+            return $rating->getByPage($pageM,true);
+        }
+    }
 
     public function getFavorableByPage ($page) {
         $pageM = new Model\StorePage();
@@ -131,6 +145,7 @@ class RatingController
         //si en este punto el flag es falso, actualizar el registro
         if(!$flag){
             $rating->setId($id);
+            $rating->getById();
             $rating->setRecommended($recommended);
             $rating->setDescription($description);
             $rating->setReviewDate(new \DateTime());
@@ -145,6 +160,22 @@ class RatingController
             Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
         }
     }
+
+    public function updateRatingVisible ($id, $visible) {
+        $validator = new Helper\Validator();
+        $rating = new Model\Rating();
+
+        //si en este punto el flag es falso, actualizar el registro
+        $rating->setId($id);
+        $rating->getById();
+        $rating->setVisible($visible);
+        $response = $rating->update();
+        if (is_bool($response)) {
+            Helper\Component::showMessage(Helper\Component::$SUCCESS, "Valoración modificada");
+        }else {
+            Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+        }
+    }
 }
 
 try {
@@ -152,7 +183,7 @@ try {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
         if ($_POST["method"] == "addRating") {
-            (new RatingController())->addRating($_POST['bill_item'], $_POST['recommended'], $_POST['description']);
+            (new RatingController())->addRating($_POST['bill_item_id'], $_POST['recommended'], $_POST['description']);
         }
 
         else if ($_POST["method"] == "updateRating") {
@@ -172,6 +203,11 @@ try {
         else if ($_POST["method"] == "getFavorableByPage") {
             //obtenemos el registro
             (new RatingController())->getFavorableByPage($_POST["store_page"]);
+        }
+
+        else if ($_POST["method"] == "updateRatingVisible") {
+            //obtenemos el registro
+            (new RatingController())->updateRatingVisible($_POST["id"],$_POST["visible"]);
         }
     }
 }
