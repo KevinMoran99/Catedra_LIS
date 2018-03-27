@@ -460,6 +460,7 @@ use Http\Helpers as Helper;
     </div>
 </div>
 
+
 <!--Modal de gestionar paginas en la tienda-->
 <div id="storePageGestModal" class="modal">
     <div class="modal-content">
@@ -503,8 +504,6 @@ use Http\Helpers as Helper;
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 
 
@@ -616,8 +615,6 @@ use Http\Helpers as Helper;
                 Añadir
             </button>
         </div>
-    </div>
-</div>
     </div>
 </div>
 
