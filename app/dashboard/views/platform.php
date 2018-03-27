@@ -54,8 +54,8 @@ use Http\Helpers as Helper;
                                     }
                                     echo "
                                                 <tr>
-                                                    <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
-                                                    <td>".$row->getName()."</td>
+                                                    <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>"+
+                                                    '<td>'.$row->getName()."</td>
                                                     <td> 
                                                         <label>
                                                             <input type=\"checkbox\" disabled ".$checked." />

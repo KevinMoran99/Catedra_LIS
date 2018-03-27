@@ -1,12 +1,9 @@
 //AJAX de agregar storepage
-$( "#frmRegJg" ).submit(function( event ) {
+$( "#frmStrPg" ).submit(function( event ) {
     event.preventDefault();
     var formData = new FormData(this);
-    var files = $('#image').prop('files')[0];
-    var files2 = $('#image2').prop('files')[0];
-    formData.append('cover',files);
-    formData.append('banner',files2);
-    formData.append("method",'addGame');
+    formData.append("game",$("#gameId").val());
+    formData.append("method",'addPage');
     //inicializando ajax
     $.ajax({
         method: "POST",
@@ -15,12 +12,12 @@ $( "#frmRegJg" ).submit(function( event ) {
         contentType: false,
         processData: false,
         //url (?
-        url: "../http/controllers/GameController.php",
+        url: "../http/controllers/StorePageController.php",
         success: function(result) {
             var output = result.split("|");
             if (output[0] == "Éxito") {
                 //si la operacion fue un exito, cerramos el modal
-                $('#nuevoJuego').modal('close');
+                $('#storePageModal').modal('close');
                 //refrescamos la pagina
                 attach("main", 1);
             }
@@ -29,3 +26,79 @@ $( "#frmRegJg" ).submit(function( event ) {
         }
     });
 });
+
+$("table").on('click', ".edit", function () {
+    //obtenemos el id (OJO AGREGAR CLASE ID A TODOS LOS CAMPOS DE LAS TABLAS QUE ALMACENAN EL ID)
+    var id = $(this).closest("tr").find(".id").text();
+    var formData = new FormData();
+    formData.append("method",'getPage');
+    formData.append('id',id.toString());
+    $.ajax({
+        method: "POST",
+        //seteando id y metodo a utilizar en el controlador
+        data: formData,
+        contentType: false,
+        processData: false,
+        url: "../http/controllers/StorePageController.php",
+        success: function(result) {
+            //parseamos el resultado a json
+            var $data = jQuery.parseJSON(result);
+
+            //seteamos los datos en la vista
+            $("#gameDateU").val($data.releaseDate);
+            $("#gamePriceU").val($data.price);
+            $("#gameDiscU").val($data.discount);
+            console.log("visible"+$data.visible);
+            if($data.visible==="1"){
+                $("#gameVis").prop("checked", true);
+            }else{
+                $("#gameInv").prop("checked", true);
+            }
+
+            //seteamos el id (OJO AGEREGAR INPUT TYPE HIDDEN PARA ALMACENAR EL ID)
+            $("#pageId").val($data.id);
+            //al setear todos los datos abrimos el modal
+            $("#storePageModalU").modal('open');
+        }
+    });
+});
+
+$('#modPageButton').click(function () {
+    var itemId = $("#gameId").val();
+    $.ajax({
+        method: 'POST',
+        data: {'game' : itemId, 'method' : 'getPagesByGame'},
+        url: "../http/controllers/StorePageController.php",
+        success: function (result) {
+
+            console.log(itemId)
+            $data = jQuery.parseJSON(result);            
+            //Obteniendo id con los items
+
+            $('#allStorePages').empty();
+            for(var i = 0; i < $data.length; i++) {
+                $('#allStorePages').append(
+                    '<tr>'+
+                    '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
+                    '<td>'+$data[i].releaseDate+'</td>'+
+                    '<td>'+$data[i].price+'</td>'+
+                    '<td>'+$data[i].discount+'</td>'+
+                    '<td>'+
+                        '<label>'+
+                            '<input type=\"checkbox\" disabled "'+$data[i].visible+" />'"+
+                            '<span></span>'+
+                         '</label>'+
+                    '</td>'+
+                    '<td>'+
+                        '<a  href="#storePageModalU" class=\"edit modal-trigger\">'+
+                             '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">mode_edit</i>'+
+                         '</a>'+
+                     '</td>'+
+                '</tr>'
+                )
+            }
+        }
+                
+            });
+
+        });
