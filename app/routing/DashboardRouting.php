@@ -50,4 +50,8 @@ switch ($control){
         $page = $_POST["current"];
         include("../dashboard/views/typeSpec.php");
         break;
+    case "review":
+        $page = $_POST["current"];
+        include("../dashboard/views/review.php");
+        break;
 }

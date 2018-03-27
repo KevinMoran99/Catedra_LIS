@@ -162,10 +162,8 @@ class RatingController
     }
 
     public function updateRatingVisible ($id, $visible) {
-        $validator = new Helper\Validator();
-        $rating = new Model\Rating();
 
-        //si en este punto el flag es falso, actualizar el registro
+        $rating = new Model\Rating();
         $rating->setId($id);
         $rating->getById();
         $rating->setVisible($visible);

@@ -117,12 +117,15 @@ $('#modPageButton').click(function () {
         url: "../http/controllers/StorePageController.php",
         success: function (result) {
 
-            console.log(itemId)
+            console.log(itemId);
             $data = jQuery.parseJSON(result);            
             //Obteniendo id con los items
 
             $('#allStorePages').empty();
             for(var i = 0; i < $data.length; i++) {
+                var checked ="";
+                console.log($data[i].visible)
+                if($data[i].visible == 1){checked = "checked"}
                 $('#allStorePages').append(
                     '<tr>'+
                     '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
@@ -131,7 +134,7 @@ $('#modPageButton').click(function () {
                     '<td>'+$data[i].discount+'</td>'+
                     '<td>'+
                         '<label>'+
-                            '<input type=\"checkbox\" disabled "'+$data[i].visible+" />'"+
+                            '<input type=\"checkbox\" disabled '+checked+' />'+
                             '<span></span>'+
                          '</label>'+
                     '</td>'+
@@ -140,11 +143,18 @@ $('#modPageButton').click(function () {
                              '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">mode_edit</i>'+
                          '</a>'+
                      '</td>'+
+                     '<td>'+
+                        '<a id="pageSpecButton"  href="#storePageSpecs" class=\"modal-trigger\">'+
+                             '<i class="material-icons tooltipped editar" onclick="getData('+$data[i].id+')" data-position=\"left\" data-delay=\"50\">settings</i>'+
+                         '</a>'+
+                     '</td>'+
                 '</tr>'
                 )
             }
         }
-                
             });
 
         });
+
+
+
