@@ -61,6 +61,10 @@ use Http\Controllers as Control;
                             ';
         }
     }
+    $discount = "";
+    if($detail->getDiscount()>0){
+        $discount= "<button class='btn col s12 white black-text'> Con " . $detail->getDiscount() . "% de descuento</button>";
+    }
     //FIN SEGUNDA SECCION
     //TERCERA SECCION
     echo '</ul>
@@ -77,6 +81,7 @@ use Http\Controllers as Control;
                 <div class="row">
                     
                     <button class="btn col s12 white black-text">' . $detail->getFinalPrice() . '$</button>
+                    '.$discount.'
                     <button id="cartButton" class="btn col s12 blue">Al carrito</button>
                 </div>
             </div>
