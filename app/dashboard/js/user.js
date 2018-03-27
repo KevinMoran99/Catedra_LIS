@@ -157,7 +157,7 @@ $("#user-search").keypress( function (e) {
 
                     $("#allUsers").append("<tr>" +
                         "<td  class='id' style=\"visibility: hidden; display:none;\">"+$data[i].id+"</td>" +
-                        "<td>"+$data[i].alias+"</td>" +
+                        "<td class='alias'>"+$data[i].alias+"</td>" +
                         "<td>"+$data[i].email+"</td>" +
                         "<td>"+$data[i].userType.name+"</td>" +
                         "<td>" +
@@ -169,6 +169,11 @@ $("#user-search").keypress( function (e) {
                         "<td>" +
                         "<a href='#actualizarUsuario' class='edit modal-trigger'>" +
                         "<i class='material-icons tooltipped editar' data-position='left' data-delay='50' data-tooltip='Editar'>mode_edit</i>" +
+                        "</a>" +
+                        "</td>" +
+                        "<td>" +
+                        "<a href='#facturasUsuario' class='edit modal-trigger modalBillsTrigger'>" +
+                        "<i class='material-icons tooltipped editar' data-position='left' data-delay='50'>local_atm</i>" +
                         "</a>" +
                         "</td>");
                 }
@@ -182,4 +187,114 @@ $("#revert").click(function () {
     $("#allUsers").empty();
     $("#userLinks").empty();
     attach("user", 1);
+});
+
+
+
+//Mostrar facturas de usuario
+$("table").on('click', '.modalBillsTrigger', function () {
+    var id = $(this).closest("tr").find(".id").text();
+    var alias = $(this).closest("tr").find(".alias").text();
+    $.ajax({
+        method: 'POST',
+        data: {'user_id' : id, 'method' : 'getBillsByUser'},
+        url: "../http/controllers/BillController.php",
+        success: function (result) {
+            var $data = jQuery.parseJSON(result);
+            $('#billList').empty();
+
+            //header de modal
+            $('#facturasUsuario').find('h3').html("Facturas de " + alias);
+
+            //Si el usuario no ha hecho facturas
+            if ($data.length === 0) {
+                $('#billList').append(
+                    '<h5 class="center-align">Este usuario no tiene ninguna factura</h5>'
+                );
+            }
+
+            //Si el usuario tiene facturas, las imprime
+            else {
+                for(var i = 0; i < $data.length; i++) {
+                    $('#billList').append(
+                        '<input type="hidden" value=' + $data[i].id + '/> ' +
+                        '<a href="#modalBillItems" class="billBtn collection-item modal-trigger">COD#' + $data[i].id + ' - Fecha: ' + $data[i].bill_date + '</a>'
+                    );
+                }
+            }
+
+        }
+    });
+});
+
+//Al hacer click en una de las facturas
+$('#billList').on("click", "a", function () {
+    var itemId = $(this).prev().val();
+    $.ajax({
+        method: 'POST',
+        data: {'id' : itemId, 'method' : 'getBill'},
+        url: "../http/controllers/BillController.php",
+        success: function (result) {
+            var $bill = jQuery.parseJSON(result);
+            //Obteniendo id con los items
+            $data = $bill.items;
+            //Estableciendo header
+            $('#modalBillItems').find('h3').html('COD#' + $bill.id + ' - Fecha: ' + $bill.bill_date);
+            //Vaciando lista
+            $('#billItemList').empty();
+            //Total de gasto
+            var total = 0;
+            for(var i = 0; i < $data.length; i++) {
+                total += $data[i].price - ($data[i].price * $data[i].discount / 100);
+
+                $('#billItemList').append(
+                    '<div class="row cardBillItem">' +
+                    '<div class="col s12">' +
+                    '<div class="card horizontal cart-card">' +
+                    '<div class="card-image">' +
+                    '<img class="responsive-img" src=' + (($data[i].storePage.game.cover).substring(3)).replace(" ", "%20") + '>' +
+                    '</div>' +
+                    '<div class="card-stacked">' +
+                    '<div class="card-content">' +
+                    '<h4>' + $data[i].storePage.game.name + '</h4>' +
+                    '<div class="row">' +
+                    '<div class="col s4 priceDetail">' +
+                    '<label>Precio</label><br>' +
+                    '<div class="chip green white-text">$' + $data[i].price + '</div>' +
+                    '</div>' +
+                    '<div class="col s4 priceDetail">' +
+                    '<label>Descuento</label><br>' +
+                    '<div class="chip red white-text">-' + $data[i].discount + '%</div>' +
+                    '</div>' +
+                    '<div class="col s4 priceDetail right-align">' +
+                    '<label>Subtotal:</label><br>' +
+                    '<div class="chip green white-text">$' + ($data[i].price - ($data[i].price * $data[i].discount / 100)).toFixed(2) + '</div>' +
+                    '</div>' +
+                    '</div>' +
+
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>'
+                );
+            }
+
+            $('#billItemList').next().find('h4').html("Total: $" + total.toFixed(2));
+        }
+    });
+});
+
+
+//Togglea la clase horizontal del card de las facturas dependiendo del ancho de la pantalla
+$(function(){
+
+    $(window).bind("resize",function(){
+        if($(this).width() <500){
+            $('.cardBillItem .card').removeClass('horizontal');
+        }
+        else{
+            $('.cardBillItem .card').addClass('horizontal');
+        }
+    });
 });

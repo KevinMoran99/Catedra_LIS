@@ -207,12 +207,24 @@ $('#modalBillsTrigger').click(function () {
         success: function (result) {
             var $data = jQuery.parseJSON(result);
             $('#billList').empty();
-            for(var i = 0; i < $data.length; i++) {
+
+            //Si el usuario no ha hecho facturas
+            if ($data.length === 0) {
                 $('#billList').append(
-                    '<input type="hidden" value=' + $data[i].id + '/> ' +
-                    '<a href="#modalBillItems" class="billBtn collection-item modal-trigger">' + $data[i].bill_date + '</a>'
+                    '<h5 class="center-align">No tienes ninguna factura</h5>'
                 );
             }
+
+            //Si el usuario tiene facturas, las imprime
+            else {
+                for(var i = 0; i < $data.length; i++) {
+                    $('#billList').append(
+                        '<input type="hidden" value=' + $data[i].id + '/> ' +
+                        '<a href="#modalBillItems" class="billBtn collection-item modal-trigger">COD#' + $data[i].id + ' - Fecha: ' + $data[i].bill_date + '</a>'
+                    );
+                }
+            }
+
         }
     });
 });
@@ -228,8 +240,15 @@ $('#billList').on("click", "a", function () {
             var $bill = jQuery.parseJSON(result);
             //Obteniendo id con los items
             $data = $bill.items;
+            //Estableciendo header
+            $('#modalBillItems').find('h3').html('COD#' + $bill.id + ' - Fecha: ' + $bill.bill_date);
+            //Vaciando lista
             $('#billItemList').empty();
+            //Total de gasto
+            var total = 0;
             for(var i = 0; i < $data.length; i++) {
+                total += $data[i].price - ($data[i].price * $data[i].discount / 100);
+
                 $('#billItemList').append(
                     '<div class="row cardBillItem">' +
                         '<div class="col s12">' +
@@ -268,6 +287,8 @@ $('#billList').on("click", "a", function () {
                     '</div>'
                 );
             }
+
+            $('#billItemList').next().find('h4').html("Total: $" + total.toFixed(2));
         }
     });
 });

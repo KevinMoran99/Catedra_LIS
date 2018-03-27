@@ -103,7 +103,7 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
 
     public function getAll($active = false)
     {
-        $query = "SELECT * FROM bills";
+        $query = "SELECT * FROM bills ORDER BY id DESC";
         $params = array(null);
         //Array de objetos devueltos
         $result = [];
@@ -145,7 +145,7 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
     }
 
     public function getByUser (User $user) {
-        $query = "SELECT * FROM bills WHERE user_id = ?";
+        $query = "SELECT * FROM bills WHERE user_id = ? ORDER BY id DESC";
         $params = array($user->getId());
         //Array de objetos devueltos
         $result = [];
@@ -206,7 +206,7 @@ class Bill implements Interfaces\ModelInterface, \JsonSerializable
                     'name' => $this->getUser()->getUserType()->getName()
                 ]
             ],
-            'bill_date' => $this->getBillDate()->format('Y-m-d'),
+            'bill_date' => $this->getBillDate()->format('d/m/Y'),
             'items' => $this->getItems() //En este indice habra un array que contendra objetos con la estructura de json que tiene BillItem
         ];
     }
