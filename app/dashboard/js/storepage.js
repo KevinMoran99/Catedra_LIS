@@ -141,7 +141,7 @@ $('#modPageButton').click(function () {
                          '</a>'+
                      '</td>'+
                      '<td>'+
-                        '<a id="" href="#storePageSpecs" class=\"modal-trigger\">'+
+                        '<a id="pageSpecButton" href="#storePageSpecs" class=\"modal-trigger\">'+
                              '<i class="material-icons tooltipped editar" data-position=\"left\" data-delay=\"50\">settings</i>'+
                          '</a>'+
                      '</td>'+
@@ -153,21 +153,21 @@ $('#modPageButton').click(function () {
 
         });
 
-$('#modPageButton').click(function () {
-    var itemId = $("#gameId").val();
+$('#pageSpecButton').click(function () {
+    var itemId = $(".id").val();
         $.ajax({
             method: 'POST',
-            data: {'game' : itemId, 'method' : 'getPagesByGame'},
-            url: "../http/controllers/StorePageController.php",
+            data: {'id' : itemId, 'method' : 'getPageSpec'},
+            url: "../http/controllers/PageSpecController.php",
             success: function (result) {
         
                 console.log(itemId);
                     $data = jQuery.parseJSON(result);            
                     //Obteniendo id con los items
         
-                    $('#allStorePages').empty();
+                    $('#allPageSpecs').empty();
                     for(var i = 0; i < $data.length; i++) {
-                        $('#allStorePages').append(
+                        $('#allPageSpecs').append(
                             '<tr>'+
                             '<td class="id" style=\"visibility: hidden; display:none;\">'+$data[i].id+'</td>'+
                             '<td>'+$data[i].releaseDate+'</td>'+
