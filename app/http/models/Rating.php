@@ -19,6 +19,7 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
     private $recommended;
     private $description;
     private $reviewDate;
+    private $visible;
 
     /**
      * Rating constructor.
@@ -27,14 +28,16 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
      * @param $recommended
      * @param $description
      * @param $reviewDate
+     * @param $visible
      */
-    public function init($id, $billItem, $recommended, $description, $reviewDate)
+    public function init($id, $billItem, $recommended, $description, $reviewDate, $visible)
     {
         $this->id = $id;
         $this->billItem = $billItem;
         $this->recommended = $recommended;
         $this->description = $description;
         $this->reviewDate = $reviewDate;
+        $this->visible = $visible;
     }
 
 
@@ -118,10 +121,32 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
         $this->reviewDate = $reviewDate;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * @param mixed $visible
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+    }
+
+
 
     public function getAll($active = false)
     {
-        $query = "SELECT * FROM ratings";
+        if ($active) {
+            $query = "SELECT * FROM ratings WHERE visible = 1";
+        }
+        else {
+            $query = "SELECT * FROM ratings";
+        }
         $params = array(null);
         //Array de objetos devueltos
         $result = [];
@@ -134,7 +159,7 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
 
             //Registro
             $rating = new Rating();
-            $rating->init($line["id"], $pItem, $line["recommended"], $line["description"], new \DateTime($line["review_date"]));
+            $rating->init($line["id"], $pItem, $line["recommended"], $line["description"], new \DateTime($line["review_date"]), $line["visible"]);
             array_push($result, $rating);
         }
         return $result;
@@ -149,12 +174,17 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
         $pItem = new BillItem();
         $pItem->setId($rating['bill_item_id']);
         $pItem->getById();
-        $this->init($rating["id"], $pItem, $rating["recommended"], $rating["description"], new \DateTime($rating["review_date"]));
+        $this->init($rating["id"], $pItem, $rating["recommended"], $rating["description"], new \DateTime($rating["review_date"]), $rating["visible"]);
     }
 
-    public function getByPage(StorePage $page)
+    public function getByPage(StorePage $page, $active = false)
     {
-        $query = "SELECT * FROM ratings r INNER JOIN bill_items bi ON r.bill_item_id = bi.id WHERE bi.store_page_id = ?";
+        if ($active) {
+            $query = "SELECT r.* FROM ratings r INNER JOIN bill_items bi ON r.bill_item_id = bi.id WHERE bi.store_page_id = ? AND visible = 1";
+        }
+        else {
+            $query = "SELECT r.* FROM ratings r INNER JOIN bill_items bi ON r.bill_item_id = bi.id WHERE bi.store_page_id = ?";
+        }
         $params = array($page->getId());
         //Array de objetos devueltos
         $result = [];
@@ -167,7 +197,7 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
 
             //Registro
             $rating = new Rating();
-            $rating->init($line["id"], $pItem, $line["recommended"], $line["description"], new \DateTime($line["review_date"]));
+            $rating->init($line["id"], $pItem, $line["recommended"], $line["description"], new \DateTime($line["review_date"]), $line["visible"]);
             array_push($result, $rating);
         }
         return $result;
@@ -175,15 +205,15 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
 
     public function insert()
     {
-        $query ="INSERT INTO ratings (bill_item_id, recommended, description, review_date) VALUES(?,?,?,?)";
-        $params= array($this->getBillItem()->getId(),$this->getRecommended(),$this->getDescription(),$this->getReviewDate()->format('Y-m-d'));
+        $query ="INSERT INTO ratings (bill_item_id, recommended, description, review_date, visible) VALUES(?,?,?,?,?)";
+        $params= array($this->getBillItem()->getId(),$this->getRecommended(),$this->getDescription(),$this->getReviewDate()->format('Y-m-d'),1);
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function update()
     {
-        $query ="UPDATE ratings SET recommended = ?, description = ?, review_date = ? WHERE id = ?";
-        $params= array($this->getRecommended(),$this->getDescription(),$this->getReviewDate()->format('Y-m-d'), $this->getId());
+        $query ="UPDATE ratings SET recommended = ?, description = ?, review_date = ?, visible = ? WHERE id = ?";
+        $params= array($this->getRecommended(),$this->getDescription(),$this->getReviewDate()->format('Y-m-d'),$this->getVisible(), $this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
@@ -242,7 +272,8 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
 
             'recommended' => $this->getRecommended(),
             'description' => $this->getDescription(),
-            'reviewDate' => $this->getReviewDate()->format('Y-m-d')
+            'reviewDate' => $this->getReviewDate()->format('Y-m-d'),
+            'visible' => $this->getVisible()
         ];
     }
 

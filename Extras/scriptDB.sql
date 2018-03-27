@@ -152,6 +152,7 @@ CREATE TABLE ratings(
     recommended BOOL NOT NULL DEFAULT 1,
     description varchar(500) NOT NULL,
     review_date DATE NOT NULL,
+    visible BOOL NOT NULL DEFAULT 1,
     CONSTRAINT fk_bill_items_ratings FOREIGN KEY(bill_item_id) REFERENCES bill_items(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
