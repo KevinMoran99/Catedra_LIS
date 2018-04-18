@@ -133,6 +133,27 @@ class Esrb implements Interfaces\ModelInterface, \JsonSerializable
         return $result;
     }
 
+    //OJO: Esta función devuelve un array que contiene dos arrays: Uno con los nombres de las clasificaciones
+    //y el otro con la cantidad de juegos de cada clasificacion, en orden
+    //NO devuelve un array de objetos del tipo Esrb
+    public function getChartInfo() {
+        $query ="SELECT e.name AS esrb, COUNT(g.id) AS count FROM esrbs e LEFT JOIN games g ON e.id = g.esrb_id GROUP BY e.name";
+        $params = array(null);
+        //Arrays de datos devueltos
+        $esrb = [];
+        $count = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            array_push($esrb, $line["esrb"]);
+            array_push($count, $line["count"]);
+        }
+        $result = array(
+            "esrb" => $esrb, 
+            "count" => $count
+        );
+        return $result;
+    }
+
     public function jsonSerialize()
     {
         return [

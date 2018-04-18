@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/app/http/models/interfaces" isTestSource="false" packagePrefix="Http\Models\Interfaces\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ksubileau/color-thief-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/setasign/fpdf" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

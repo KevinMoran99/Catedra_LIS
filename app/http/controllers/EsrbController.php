@@ -126,6 +126,11 @@ class EsrbController
             return $data;
         }
     }
+
+    //Información de gráfica
+    public function getChartEsrb() {
+        echo json_encode((new Model\Esrb())->getChartInfo());
+    }
 }
 
 
@@ -156,6 +161,11 @@ try {
         if ($_POST["method"] == "getAllEsrbsPublic") {
             //obtenemos el registro
             (new EsrbController())->getAllEsrbsPublic( true);
+        }
+
+        if ($_POST["method"] == "getChartEsrb") {
+            //obtenemos los datos
+            (new EsrbController())->getChartEsrb();
         }
     }
 }

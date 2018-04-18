@@ -11,9 +11,15 @@ Class GameController
         return $game->getAll();
     }
 
-    public function getAllGamesPublic(){
+    public function getAllGamesPublic($ajax){
         $game= new Model\Game();
-        return $game->getAll(true);
+        //retornamos todos los datos
+        if ($ajax) {
+            echo json_encode($game->getAll(true));
+        }
+        else {
+            return $game->getAll(true);
+        }
     }
 
     public  function  addGame($name, $cover, $banner, $description, $esrb, $publisher, $genre, /*$platform,*/ $state){
@@ -212,6 +218,11 @@ try {
 
         if($_POST["method"] == "searchGame"){
             (new GameController())->searchGame($_POST["param"],true);
+        }
+
+        if ($_POST["method"] == "getAllGamesPublic") {
+            //obtenemos el registro
+            (new GameController())->getAllGamesPublic(true);
         }
     }
 }

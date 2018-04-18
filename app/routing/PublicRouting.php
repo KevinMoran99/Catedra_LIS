@@ -16,6 +16,10 @@ switch ($control){
         break;
     case "games":
         $page = $_POST["current"];
+        if (isset($_POST["searchType"])) {
+            $searchType = $_POST["searchType"];
+            $param = $_POST["param"];
+        }
         include("../public/views/games.php");
         break;
     case "about":

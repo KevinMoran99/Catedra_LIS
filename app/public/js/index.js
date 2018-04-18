@@ -51,10 +51,22 @@ $(".menu-item").click(function(event) {
         filterContainer.hide();
 
     } else if (parent.is("#game-all")) {
-        title.html("Todos los juegos:");
-        filterContainer.show();
-    } else if (parent.is("#game-offer")) {
-        title.html("Ofertas:");
+        title.html("Buscar por nombre:");
+        $.ajax({
+            method: 'POST',
+            data: {'method' : 'getAllGamesPublic'},
+            url: '../http/controllers/GameController.php',
+            success: function (result) {
+                $data = jQuery.parseJSON(result);
+
+                filter.empty();
+                filter.append("<option value='' disabled selected>Ninguno</option>");
+
+                for (var i = 0; i < $data.length; i++) {
+                    filter.append("<option value=" + $data[i].id + ">" + $data[i].name + "</option>");
+                }
+            }
+        });
         filterContainer.show();
     /*} else if (parent.is("#game-platform")) {
         title.html("Buscar por plataforma:");
@@ -99,9 +111,6 @@ $(".menu-item").click(function(event) {
         });
 
         filterContainer.show();
-    } else if (parent.is("#game-rating")) {
-        title.html("Buscar por ratings:");
-        filterContainer.show();
     } else if (parent.is("#game-esrb")) {
         title.html("Buscar por clasificación:");
 
@@ -122,9 +131,46 @@ $(".menu-item").click(function(event) {
         });
 
         filterContainer.show();
+    } else if (parent.is("#game-seller")) {
+        title.html("Más vendidos");
+        filterContainer.hide();
+        attachGames(1,"seller","");
+    } else if (parent.is("#game-rating")) {
+        title.html("Más recomendados");
+        filterContainer.hide();
+        attachGames(1,"rating","");
     } else if (parent.is("#game-date")) {
-        title.html("Buscar por fecha de lanzamiento:");
-        filterContainer.show();
+        title.html("Más recientes");
+        filterContainer.hide();
+        attachGames(1,"date","");
+    } else if (parent.is("#game-offer")) {
+        title.html("En descuento");
+        filterContainer.hide();
+        attachGames(1,"offer","");
+    }
+});
+
+$('#filter').change(function () {
+    switch ($("#nav-title").html()) {
+        case "Buscar por nombre:":
+            attachGames(1,"game",$('#filter').val());
+            break;
+        case "Buscar por publicador:":
+            attachGames(1,"publisher",$('#filter').val());
+            break;
+        case "Buscar por clasificación:":
+            attachGames(1,"esrb",$('#filter').val());
+            break;
+        case "Buscar por género:":
+            attachGames(1,"genre",$('#filter').val());
+            break;
+    }
+});
+
+$('#filter').keypress( function (e) {
+    //validacion para verificar si presiono enter
+    if(e.which==13) {
+        alert("xD");
     }
 });
 
@@ -389,6 +435,23 @@ function attachDatail(detailId) {
         method: "POST",
         url: "../routing/PublicRouting.php",
         data: "control=gameDetail&id="+detailId,
+        success: function(html) {
+            container.empty();
+            container.append(html);
+            progress.modal('close');
+            //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
+        }
+    });
+}
+
+function attachGames(page,searchType,param) {
+    var container = $("#container");
+    var progress = $('#progressModal');
+    progress.modal('open');
+    $.ajax({
+        method: "POST",
+        url: "../routing/PublicRouting.php",
+        data: "control=games&current="+page+"&searchType="+searchType+"&param="+param,
         success: function(html) {
             container.empty();
             container.append(html);
