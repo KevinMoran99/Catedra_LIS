@@ -52,17 +52,17 @@ class StandardPdf extends PDF
         //volviendo a tama;o original de letra
         $this->setFont('Arial', 'B', 15);
         //volviendo a color original de letra
-        $this->SetTextColor(255,255,255);
+        $this->SetTextColor(0,0,0);
         //salto de linea
         $this->Ln(30);
         //linea divisoria
+        $this->SetDrawColor(53, 234, 188);
         $this->Line(10, 35, 210-10, 35);
     }
 
     // Pie de página
     function Footer()
     {
-
         // Posición: a 1,5 cm del final
         $this->SetY(-15);
         // Arial italic 8
