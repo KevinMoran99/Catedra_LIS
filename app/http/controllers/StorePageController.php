@@ -174,6 +174,16 @@ class StorePageController
                 break;
         }
     }
+
+    //Información de gráfica lineal
+    public function getLinePage($year, $game_id) {
+        echo json_encode((new Model\StorePage())->getLineChartInfo($year, $game_id));
+    }
+
+    //Información de gráfica de radar
+    public function getRadarPage($game_id) {
+        echo json_encode((new Model\StorePage())->getRadarChartInfo($game_id));
+    }
 }
 
 try {
@@ -210,6 +220,16 @@ try {
 
             (new StorePageController())->searchPage($_POST['searchType'],$_POST['param']);
 
+        }
+
+        if ($_POST["method"] == "getLinePage") {
+            //obtenemos los datos
+            (new StorePageController())->getLinePage($_POST["year"], $_POST["game"]);
+        }
+
+        if ($_POST["method"] == "getRadarPage") {
+            //obtenemos los datos
+            (new StorePageController())->getRadarPage($_POST["game"]);
         }
 
         /*if($_POST["method"] == "searchStorePage"){

@@ -89,6 +89,15 @@ nav label {
     width: 100% !important;
 }
 
+#chartBar {
+    overflow-x: auto;
+}
+
+.chart-container {
+    width: 100px;
+    height: 100px;
+}
+
 @media only screen and (max-width: 992px) {
     .wrapper {
         margin-left: 0;

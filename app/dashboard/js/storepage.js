@@ -33,7 +33,7 @@ $( "#frmStrPgU" ).submit(function( event ) {
 
     var formData = new FormData(this);
     formData.append("method","updatePage");
-    formData.append("id",$(".id").val());
+    formData.append("id",$("#pageId").val());
     //Mensaje de confirmacion
     swal({
         title: '¿Desea modificar con los datos especificados?',
