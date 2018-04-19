@@ -62,11 +62,17 @@ if(sizeof($list)<1){
                 $sum += $i->getPrice();
             }
         }
+        //estableciendo el color de texto a blanco
         $pdf->SetTextColor(255,255,255);
+        //color con el que se llenara el row
         $pdf->SetFillColor(53, 234, 188);
+        //color del borde del cell que hara de container
         $pdf->SetDrawColor(53, 234, 188);
+        //cell container
         $pdf->Cell(190,10,"",1,0,"L",true);
+        //cell hack para poder imprimir sobre el container
         $pdf->Cell(0,0,"",0,1,"L");
+        //contenido del row
         $pdf->Cell(5);
         $pdf->Cell(30,11,$item->getAlias(),0,0,"L");
         $pdf->Cell(25);
@@ -74,6 +80,7 @@ if(sizeof($list)<1){
         $pdf->Cell(45);
         $pdf->Cell(30,10,'$'.$sum,0,1,"L");
         $pdf->Ln(5);
+        //estableciendo el color de texto a negro de nuevo
         $pdf->SetTextColor(0,0,0);
     }
 }

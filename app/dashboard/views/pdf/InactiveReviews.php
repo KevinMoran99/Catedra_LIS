@@ -30,30 +30,36 @@ $pdf->SetFont('Arial','',12);
 
 
 
-
+//obteniendo todos los reviews inactivos
 $ratings = new Controller\RatingController();
 $list = $ratings->getInactiveRatingsByPage(5);
+//validando que hayan registros
 if(sizeof($list)<1){
     $pdf->Cell(50);
     $pdf->Cell(0,10,'No hay reviews deshabilitados por el momento',0,1);
 }else{
-    $index = 70;
     foreach ($list as $review){
-        //Bloque de header de datos
+        //Estableciendo texto en color blanco
         $pdf->SetTextColor(255,255,255);
+        //estableciendo color con el que se llenara el cell row
         $pdf->SetFillColor(53, 234, 188);
+        //estableciendo colores de bordes del cell row
         $pdf->SetDrawColor(53, 234, 188);
+        //cell row
         $pdf->Cell(190,30,"",1,0,"L",true);
+        //cell hack para poder escribir sobre el cell row
         $pdf->Cell(0,0,"",0,1,"L");
+        //imprimiendo los datos del row
         $pdf->Cell(5);
         $pdf->Cell(30,11,$review->getBillItem()->getBill()->getUser()->getAlias(),0,1,"L");
+        //estableciendo color de texto a negro de nuevo
         $pdf->SetTextColor(0,0,0);
+        //estableciendo tama;o de fuente menor
         $pdf->SetFont('Arial','',10);
         $pdf->Cell(5);
         $pdf->Cell(30,11,$review->getDescription(),0,1,"L");
         $pdf->Ln(10);
         $pdf->SetFont('Arial','',12);
-        $index+=30;
     }
 }
 
