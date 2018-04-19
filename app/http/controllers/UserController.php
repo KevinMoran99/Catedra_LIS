@@ -31,6 +31,11 @@ class UserController
         return $user->getAll(true);
     }
 
+    public function getAllInactiveUsers(){
+        $user = new Model\User();
+        return $user->getAllInactive();
+    }
+
     //AGREGAR REGISTRO
     public function addUser($alias, $email, $pass, $passConfirm, $userType, $state)
     {

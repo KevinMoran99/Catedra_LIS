@@ -160,6 +160,27 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         return $result;
     }
 
+    public function getAllInactive(){
+
+        $query ="SELECT * FROM users WHERE state = 0 AND user_type_id = 2";
+        $params = array(null);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pUserType = new UserType();
+            $pUserType->setId($line['user_type_id']);
+            $pUserType->getById();
+
+            //Registro
+            $user = new User();
+            $user->init($line["id"], $line["alias"], $line["email"], $line["pass"], $pUserType, $line["state"]);
+            array_push($result, $user);
+        }
+        return $result;
+    }
+
     public function getById()
     {
         $query ="SELECT * FROM users WHERE id = ?";

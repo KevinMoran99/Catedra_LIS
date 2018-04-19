@@ -50,6 +50,15 @@ class RatingController
             return $rating->getByPage($pageM);
         }
     }
+    public function getInactiveRatingsByPage($page) {
+        $pageM = new Model\StorePage();
+        $pageM->setId($page);
+        $pageM->getById();
+
+        $rating = new Model\Rating();
+
+        return $rating->getByPageInactive($pageM);
+    }
     public function getRatingsByPagePublic ($page, $ajax) {
         $pageM = new Model\StorePage();
         $pageM->setId($page);

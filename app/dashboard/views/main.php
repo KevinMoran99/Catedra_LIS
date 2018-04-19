@@ -491,6 +491,7 @@ use Http\Helpers as Helper;
                                     <th>Visible</th>
                                     <th>Editar</th>
                                     <th>Specs</th>
+                                    <th>Reviews excluidas</th>
 
                                 </tr>
                                 </thead>

@@ -87,7 +87,7 @@ use Http\Helpers as Helper;
                                 //generando los links de paginacion
                                 echo "<div class='row'>";
                                 for($i=1;$i<=$paginate->linksNumber();$i++){
-                                    echo"<a class='col s1 red-text' onclick=\"attach('esrb' ,$i)\">$i</a>";
+                                    echo"<a class='col s1 red-text' onclick=\"attach('review' ,$i)\">$i</a>";
                                 }
                                 echo "</div>"
                                 ?>

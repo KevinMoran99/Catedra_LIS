@@ -52,22 +52,23 @@ class StandardPdf extends PDF
         //volviendo a tama;o original de letra
         $this->setFont('Arial', 'B', 15);
         //volviendo a color original de letra
-        $this->SetTextColor(255,255,255);
+        $this->SetTextColor(0,0,0);
         //salto de linea
         $this->Ln(30);
         //linea divisoria
+        $this->SetDrawColor(53, 234, 188);
         $this->Line(10, 35, 210-10, 35);
     }
 
     // Pie de página
     function Footer()
     {
-
+        session_start();
         // Posición: a 1,5 cm del final
         $this->SetY(-15);
         // Arial italic 8
         $this->SetFont('Arial','I',8);
-        //nos pocisionamos al final de la fila y le restamos 20
+        //nos posicionamos al final de la fila y le restamos 20
         $this->SetX(-20);
         //estableciendo numero de pagina en dicha posicion
         $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
@@ -78,6 +79,6 @@ class StandardPdf extends PDF
         //estableciendonos al centro de la fila
         $this->SetX(0);
         //nombre de usuario
-        $this->Cell(0,10,"Username aqui",0,0,"C");
+        $this->Cell(0,10,$_SESSION['user']->getAlias(),0,0,"C");
     }
 }

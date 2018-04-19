@@ -17,6 +17,9 @@ use Http\Helpers as Helper;
                 </div>
             </div>
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
+            <form method="post" action="views/pdf/InactiveUsers.php">
+                <button class="btn light-blue darken-2" id="revert">Usuarios inactivos</button>
+            </form>
         </div>
     </div>
     <!--visualizar datos-->
@@ -43,6 +46,7 @@ use Http\Helpers as Helper;
                                         <th>Estado</th>
                                         <th>Editar</th>
                                         <th>Facturas</th>
+                                        <th>Reporte</th>
                                     </tr>
                                 </thead>
 
@@ -80,6 +84,11 @@ use Http\Helpers as Helper;
                                                                      <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">local_atm</i>
                                                                  </a>
                                                              </td>
+                                                                 <td>
+                                                                    <a href='views/pdf/GamesOfUser.php?user=".$row->getId()."' target=\"_blank\" class=\"edit modal-trigger modalBillsTrigger\">
+                                                                         <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">picture_as_pdf</i>
+                                                                     </a>
+                                                                 </td>
                                                         </tr>
                                                     
                                                     ";
