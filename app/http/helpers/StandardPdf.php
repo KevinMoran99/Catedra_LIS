@@ -68,7 +68,7 @@ class StandardPdf extends PDF
         $this->SetY(-15);
         // Arial italic 8
         $this->SetFont('Arial','I',8);
-        //nos pocisionamos al final de la fila y le restamos 20
+        //nos posicionamos al final de la fila y le restamos 20
         $this->SetX(-20);
         //estableciendo numero de pagina en dicha posicion
         $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
