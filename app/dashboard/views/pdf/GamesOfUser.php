@@ -27,8 +27,10 @@ $pdf->SetAutoPageBreak(true,10);
 $pdf->SetFont('Arial','',12);
 /*Fin campos obligatorios*/
 
+$selected_user = $_GET['user'];
+
 $users = new Controller\UserController();
-$user = $users->getUser(4,false);
+$user = $users->getUser($selected_user,false);
 
 if($user == null){
     $pdf->Cell(50);
@@ -81,7 +83,7 @@ if($user == null){
             $pdf->SetTextColor(0, 0, 0);
         }else{
             $pdf->Cell(50);
-            $pdf->Cell(0,10,'El usuario no es valido',0,1);
+            $pdf->Cell(0,10,'Este usuario no es elegible para compras',0,1);
         }
 }
 

@@ -63,6 +63,7 @@ class StandardPdf extends PDF
     // Pie de página
     function Footer()
     {
+        session_start();
         // Posición: a 1,5 cm del final
         $this->SetY(-15);
         // Arial italic 8
@@ -78,6 +79,6 @@ class StandardPdf extends PDF
         //estableciendonos al centro de la fila
         $this->SetX(0);
         //nombre de usuario
-        $this->Cell(0,10,"Username aqui",0,0,"C");
+        $this->Cell(0,10,$_SESSION['user']->getAlias(),0,0,"C");
     }
 }
