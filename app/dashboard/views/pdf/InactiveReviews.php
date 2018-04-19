@@ -28,7 +28,7 @@ $pdf->SetAutoPageBreak(true,10);
 $pdf->SetFont('Arial','',12);
 /*Fin campos obligatorios*/
 
-$selected_page = $_POST['page'];
+$selected_page = $_GET['page'];
 
 //obteniendo todos los reviews inactivos
 $ratings = new Controller\RatingController();

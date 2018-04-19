@@ -85,7 +85,7 @@ use Http\Helpers as Helper;
                                                                  </a>
                                                              </td>
                                                                  <td>
-                                                                    <a href='views/pdf/GamesOfUser.php?user=".$row->getId()."' class=\"edit modal-trigger modalBillsTrigger\">
+                                                                    <a href='views/pdf/GamesOfUser.php?user=".$row->getId()."' target=\"_blank\" class=\"edit modal-trigger modalBillsTrigger\">
                                                                          <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">picture_as_pdf</i>
                                                                      </a>
                                                                  </td>
