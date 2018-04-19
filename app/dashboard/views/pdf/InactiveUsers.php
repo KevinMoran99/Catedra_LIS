@@ -50,13 +50,25 @@ if(sizeof($list)<1){
     $pdf->Ln(10);
     /* Contenido de PDF*/
     foreach ($list as $item) {
-
+        //obteniendo todos las facturas de usuario
+        $bills = new Controller\BillController();
+        $bill = $bills->getBillsByUser($item->getId(),false);
+        $sum = 0.00;
+        foreach($bill as $b){
+            //obteniendo todos los items de factura de usuario
+            $bItems = $b->getItems();
+            //sumatoria de precios
+            foreach($bItems as $i){
+                $sum += $i->getPrice();
+            }
+        }
+        //imprimiendo datos
         $pdf->Cell(5);
         $pdf->Cell(30,11,$item->getAlias(),0,0,"L");
         $pdf->Cell(25);
         $pdf->Cell(30,10,$item->getEmail(),0,0,"L");
         $pdf->Cell(45);
-        $pdf->Cell(30,10,'Monto invertido',0,1,"L");
+        $pdf->Cell(30,10,'$'.$sum,0,1,"L");
     }
 }
 
