@@ -202,6 +202,28 @@ class Rating implements Interfaces\ModelInterface, \JsonSerializable
         }
         return $result;
     }
+    public function getByPageInactive(StorePage $page)
+    {
+
+        $query = "SELECT r.* FROM ratings r INNER JOIN bill_items bi ON r.bill_item_id = bi.id WHERE bi.store_page_id = ? AND visible = 0";
+
+        $params = array($page->getId());
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pItem = new BillItem();
+            $pItem->setId($line['bill_item_id']);
+            $pItem->getById();
+
+            //Registro
+            $rating = new Rating();
+            $rating->init($line["id"], $pItem, $line["recommended"], $line["description"], new \DateTime($line["review_date"]), $line["visible"]);
+            array_push($result, $rating);
+        }
+        return $result;
+    }
 
     public function insert()
     {

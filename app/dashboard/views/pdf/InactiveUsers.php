@@ -62,13 +62,19 @@ if(sizeof($list)<1){
                 $sum += $i->getPrice();
             }
         }
-        //imprimiendo datos
+        $pdf->SetTextColor(255,255,255);
+        $pdf->SetFillColor(53, 234, 188);
+        $pdf->SetDrawColor(53, 234, 188);
+        $pdf->Cell(190,10,"",1,0,"L",true);
+        $pdf->Cell(0,0,"",0,1,"L");
         $pdf->Cell(5);
         $pdf->Cell(30,11,$item->getAlias(),0,0,"L");
         $pdf->Cell(25);
         $pdf->Cell(30,10,$item->getEmail(),0,0,"L");
         $pdf->Cell(45);
         $pdf->Cell(30,10,'$'.$sum,0,1,"L");
+        $pdf->Ln(5);
+        $pdf->SetTextColor(0,0,0);
     }
 }
 
