@@ -388,6 +388,7 @@ $('#billList').on("click", "a", function () {
             }
 
             $('#billItemList').next().find('h4').html("Total: $" + total.toFixed(2));
+            $('#billId').val($bill.id);
         }
     });
 });

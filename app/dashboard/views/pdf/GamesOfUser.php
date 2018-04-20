@@ -72,7 +72,7 @@ if($user == null){
                         $sum += $i->getPrice();
                         $pdf->Cell(30, 10, $i->getStorePage()->getGame()->getName(), 0, 0, "L");
                         $pdf->Cell(110);
-                        $pdf->Cell(30, 10, "Obtenido en: ".$b->getBillDate()->format('d-m-Y'), 0, 1, "L");
+                        $pdf->Cell(30, 10, "Obtenido en: ".$b->getBillDate()->format('d/m/Y'), 0, 1, "L");
                     }
                     //enviando juego al array
                     array_push($lastGame,$i->getStorePage()->getGame()->getName());

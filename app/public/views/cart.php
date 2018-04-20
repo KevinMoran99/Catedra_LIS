@@ -131,6 +131,10 @@ use Http\Helpers as Helper;
             </div>
             <div class="col s12 right-align">
                 <h4>Total: $0.00</h4>
+                <form method="post" action="views/pdf/Bill.php" target="_blank">
+                    <input type="hidden" id="newBillId" name="id" value=""/>
+                    <button class="btn light-blue darken-2">Generar comprobante</button>
+                </form>
             </div>
             <div class="col s12 center-align">
                 <span>*Puede ver esta factura en cualquier momento en "Mi perfil -> Ver mis facturas"*</span>

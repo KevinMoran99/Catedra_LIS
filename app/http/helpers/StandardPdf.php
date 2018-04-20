@@ -63,7 +63,10 @@ class StandardPdf extends PDF
     // Pie de página
     function Footer()
     {
-        session_start();
+        if(!isset($_SESSION)) 
+        { 
+            session_start();
+        }
         // Posición: a 1,5 cm del final
         $this->SetY(-15);
         // Arial italic 8
