@@ -49,7 +49,6 @@ class StorePageController
     public function getTop10Games(){
         $Top= new Model\StorePage();
         return $Top->getTop10Games();
-
     }
 
     public function getPage ($id, $ajax, $cart = false) {

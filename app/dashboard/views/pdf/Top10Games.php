@@ -43,7 +43,8 @@ if(sizeof($list)<1){
     $pdf->Line(10, 55, 210-10, 55);
     $pdf->Ln(10);
     /* Contenido de PDF*/
-    foreach ($list as $item) {
+
+    for($i=0;$i<sizeof($list);$i++){
         //estableciendo el color de texto a blanco
         $pdf->SetTextColor(255,255,255);
         //color con el que se llenara el row
@@ -56,9 +57,9 @@ if(sizeof($list)<1){
         $pdf->Cell(0,0,"",0,1,"L");
         //contenido del row
         $pdf->Cell(5);
-        $pdf->Cell(30,11,$item->$games,0,0,"L");
+        $pdf->Cell(30,11,$list[$i][0][0],0,0,"L");
         $pdf->Cell(25);
-        $pdf->Cell(30,10,$item->$recommended,0,0,"L");
+        $pdf->Cell(30,10,$list[$i][0][1],0,0,"L");
         $pdf->Cell(45);
         $pdf->Ln(5);
         //estableciendo el color de texto a negro de nuevo

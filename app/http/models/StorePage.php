@@ -232,19 +232,16 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
 
     public function getTop10Games()
     {
-        $query="SELECT SUM(recommended), games.name FROM store_pages INNER JOIN games on store_pages.game_id=games.id INNER JOIN bill_items on store_pages.id=bill_items.store_page_id INNER JOIN ratings on bill_items.id=ratings.bill_item_id ORDER BY SUM(recommended) DESC LIMIT 10";
+        $query="SELECT SUM(recommended), games.name FROM store_pages INNER JOIN games on store_pages.game_id=games.id INNER JOIN bill_items on store_pages.id=bill_items.store_page_id INNER JOIN ratings on bill_items.id=ratings.bill_item_id GROUP BY games.name ORDER BY SUM(recommended) DESC LIMIT 10";
         $params = array(null);
         //Arrays de datos devueltos
         $games = [];
-        $recommended = [];
          //Recorriendo resultados
          foreach(Model\Connection::select($query,$params) as $line) {
-            array_push($games, $line["name"]);
-            array_push($recommended, $line["SUM(recommended)"]);
+            array_push($games, array($line["name"],$line["SUM(recommended)"]));
         }
         $result = array(
-            "name" => $games, 
-            "SUM(recommended)" => $recommended
+            $games,
         );
         return $result;
     }
