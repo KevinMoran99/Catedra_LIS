@@ -41,6 +41,16 @@ class StorePageController
             return $page->getByGame($game, true);
         }
     }
+    public function getDiscountGames(){
+        $game= new Model\StorePage();
+        return $game->getDiscountGames();
+
+    }
+    public function getTop10Games(){
+        $Top= new Model\StorePage();
+        return $Top->getTop10Games();
+
+    }
 
     public function getPage ($id, $ajax, $cart = false) {
         $flag = false;

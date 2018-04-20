@@ -209,6 +209,47 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
         return $result;
     }
 
+    public function getDiscountGames()
+    {
+        $query ="SELECT name, discount, release_date FROM `store_pages` INNER JOIN games on store_pages.game_id=games.id where discount>0";
+        $params = array(null);
+        //Array de objetos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            //Padres
+            $pGame = new Game();
+            $pStorePage= new StorePage();
+            $pGame->setName($line['name']);
+            $pStorePage->setDiscount($line['discount']);
+            $pStorePage->setReleaseDate($line['release_date']);
+            $pStorePage->setGame($pGame);
+            array_push($result,$pStorePage);
+            
+        }
+        return $result;
+    }
+
+    public function getTop10Games()
+    {
+        $query="SELECT SUM(recommended), games.name FROM store_pages INNER JOIN games on store_pages.game_id=games.id INNER JOIN bill_items on store_pages.id=bill_items.store_page_id INNER JOIN ratings on bill_items.id=ratings.bill_item_id ORDER BY SUM(recommended) DESC LIMIT 10";
+        $params = array(null);
+        //Arrays de datos devueltos
+        $games = [];
+        $recommended = [];
+         //Recorriendo resultados
+         foreach(Model\Connection::select($query,$params) as $line) {
+            array_push($games, $line["name"]);
+            array_push($recommended, $line["SUM(recommended)"]);
+        }
+        $result = array(
+            "name" => $games, 
+            "SUM(recommended)" => $recommended
+        );
+        return $result;
+    }
+    
+
     public function getById() {
         $query ="SELECT * FROM store_pages WHERE id = ?";
         $params = array($this->getId());

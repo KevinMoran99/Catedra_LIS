@@ -148,35 +148,44 @@ function initBar() {
 
 function initPie() {
     //Inicializando gráfica de pastel
-    
-    var ctx = document.getElementById("ChartPie").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
+
+    $.ajax({
+        method: "POST",
+        data: {'method' : 'getChartGenre'},
+        url: "../http/controllers/GenreController.php",
+        success: function(result) {
+            //parseamos el resultado a json
+            var $data = jQuery.parseJSON(result);
+
+            var backColor = [], bordColor = [];
+            //Creando un color aleatorio por cada item de la grafica y añadiendo dicho color a 
+            //unos arrays que serviran de parametros para el chart
+            for ($i = 0; $i < $data.genre.length; $i++) {
+                var r = Math.floor(Math.random() * 256);
+                var g = Math.floor(Math.random() * 256);
+                var b = Math.floor(Math.random() * 256); 
+
+                backColor.push('rgba('+r+','+g+','+b+',0.2)');
+                bordColor.push('rgba('+r+','+g+','+b+',1)');
+            }
+
+            //Inicializando gráfica con valores obtenidos
+            var ctx = document.getElementById("ChartPie").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: $data.genre,
+                    datasets: [{
+                        data: $data.count,
+                        backgroundColor: backColor,
+                        borderColor: bordColor,
+                        borderWidth: 1
+                    }]
+                }
+            });
         }
     });
+    
 }
 
 function initPolar() {

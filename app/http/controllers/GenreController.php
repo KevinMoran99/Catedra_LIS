@@ -141,6 +141,10 @@ class GenreController
             return $data;
         }
     }
+
+    public function getChartGenre() {
+        echo json_encode((new Model\Genre())->getChartInfo());
+    }
 }
 
 //Fuera de la clase handleamos las request y las enviamos a su respectivo metodo

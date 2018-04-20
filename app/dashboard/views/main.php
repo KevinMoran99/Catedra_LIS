@@ -46,9 +46,18 @@ use Http\Helpers as Helper;
 
                 </div>
             </div>
+        <div class="row">
+            <div class="col l3">
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
+            </div>
+            <div class="col l2">
+            <form method="post" action="views/pdf/DiscountGames.php">
+                <button class="btn light-blue darken-2" id="revert">Descuentos</button>
+            </form>
+            </div>
         </div>
     </div>
+</div>
 
     <div id="allGames" class="row">
         <!--INICIO DEL PAGINATE -->
@@ -554,7 +563,7 @@ use Http\Helpers as Helper;
                             <div class="row">
                                 <div class="col s12">
                                     <div class="card-title-inline">
-                                        <span class="card-title">Especiones de la pagina</span>
+                                        <span class="card-title">Especificaciones de la pagina</span>
                                     </div>
                                 </div>
                             </div>

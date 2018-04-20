@@ -16,10 +16,16 @@ use Http\Helpers as Helper;
                     <input id="user-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar usuario">
                 </div>
             </div>
+            <div class="row">
+            <div class="col l3">
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
+            </div>
+            <div class="col l2">
             <form method="post" action="views/pdf/InactiveUsers.php">
-                <button class="btn light-blue darken-2" id="revert">Usuarios inactivos</button>
+                <button class="btn light-blue darken-2" id="revert">Inactivos</button>
             </form>
+            </div>
+        </div>
         </div>
     </div>
     <!--visualizar datos-->

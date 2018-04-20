@@ -132,6 +132,26 @@ class Genre implements Interfaces\ModelInterface, \JsonSerializable
         return $result;
     }
 
+    public function getChartInfo() {
+        $query ="SELECT ge.name AS genre, COUNT(ga.id) AS count FROM genres ge LEFT JOIN games ga ON ge.id = ga.genre_id GROUP BY ge.name";
+        $params = array(null);
+        //Arrays de datos devueltos
+        $genre = [];
+        $count = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            array_push($genre, $line["genre"]);
+            array_push($count, $line["count"]);
+        }
+        $result = array(
+            "genre" => $genre, 
+            "count" => $count
+        );
+        return $result;
+    }
+
+    
+
     public function jsonSerialize()
     {
         return [
