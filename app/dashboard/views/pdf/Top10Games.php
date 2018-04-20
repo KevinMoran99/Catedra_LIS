@@ -56,9 +56,9 @@ if(sizeof($list)<1){
         $pdf->Cell(0,0,"",0,1,"L");
         //contenido del row
         $pdf->Cell(5);
-        $pdf->Cell(30,11,$item->getGames()->getName(),0,0,"L");
+        $pdf->Cell(30,11,$item->$games,0,0,"L");
         $pdf->Cell(25);
-        $pdf->Cell(30,10,$item->getRecommended()."%",0,0,"L");
+        $pdf->Cell(30,10,$item->$recommended,0,0,"L");
         $pdf->Cell(45);
         $pdf->Ln(5);
         //estableciendo el color de texto a negro de nuevo

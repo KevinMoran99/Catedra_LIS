@@ -19,15 +19,10 @@ use Http\Helpers as Helper;
             <div class="row">
             <div class="col l3">
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
-<<<<<<< HEAD
             </div>
             <div class="col l2">
             <form method="post" action="views/pdf/InactiveUsers.php">
                 <button class="btn light-blue darken-2" id="revert">Inactivos</button>
-=======
-            <form method="post" action="views/pdf/InactiveUsers.php" target="_blank">
-                <button class="btn light-blue darken-2" id="revert">Usuarios inactivos</button>
->>>>>>> ccdc1e9a866b667e48df590ce0c1f24896301571
             </form>
             </div>
         </div>
