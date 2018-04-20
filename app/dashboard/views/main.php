@@ -47,12 +47,12 @@ use Http\Helpers as Helper;
                 </div>
             </div>
         <div class="row">
-            <div class="col l3">
+            <div class="col s6">
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
             </div>
-            <div class="col l2">
+            <div class="col s6">
             <form method="post" action="views/pdf/DiscountGames.php">
-                <button class="btn light-blue darken-2" id="revert">Descuentos</button>
+                <button class="btn green darken-2 right" id="revert">Reporte Descuentos</button>
             </form>
             </div>
         </div>

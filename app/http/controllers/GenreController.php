@@ -175,6 +175,10 @@ try {
             //obtenemos el registro
             (new GenreController())->getAllGenresPublic(true);
         }
+        if ($_POST["method"] == "getChartGenre") {
+            //obtenemos el registro
+            (new GenreController())->getChartGenre();
+        }
     }
 }
 catch (\Exception $error) {

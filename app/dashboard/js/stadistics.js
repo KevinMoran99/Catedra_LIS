@@ -154,6 +154,8 @@ function initPie() {
         data: {'method' : 'getChartGenre'},
         url: "../http/controllers/GenreController.php",
         success: function(result) {
+            console.log("cosita");
+            console.log(result.toString());
             //parseamos el resultado a json
             var $data = jQuery.parseJSON(result);
 
