@@ -17,7 +17,7 @@ use Http\Helpers as Helper;
                 </div>
             </div>
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
-            <form method="post" action="views/pdf/InactiveUsers.php">
+            <form method="post" action="views/pdf/InactiveUsers.php" target="_blank">
                 <button class="btn light-blue darken-2" id="revert">Usuarios inactivos</button>
             </form>
         </div>

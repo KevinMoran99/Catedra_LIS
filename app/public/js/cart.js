@@ -146,6 +146,7 @@ function submitBill () {
                         }
 
                         $('#cartItemList').next().find('h4').html("Total: $" + total.toFixed(2));
+                        $('#newBillId').val($bill.id);
 
                         $('#modalCartItems').modal('open');
                     }

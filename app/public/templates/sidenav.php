@@ -396,6 +396,10 @@
             </div>
             <div class="col s12 right-align">
                 <h4>Total: $0.00</h4>
+                <form method="post" action="views/pdf/Bill.php" target="_blank">
+                    <input type="hidden" id="billId" name="id" value=""/>
+                    <button class="btn light-blue darken-2" id="revert">Generar comprobante</button>
+                </form>
             </div>
         </div>
     </div>
