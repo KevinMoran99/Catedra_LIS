@@ -51,7 +51,7 @@ use Http\Helpers as Helper;
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
             </div>
             <div class="col s6">
-            <form method="post" action="views/pdf/DiscountGames.php">
+            <form method="post" target="_blank" action="views/pdf/DiscountGames.php">
                 <button class="btn green darken-2 right" id="revert">Reporte Descuentos</button>
             </form>
             </div>

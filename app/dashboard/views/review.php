@@ -20,12 +20,12 @@ use Http\Helpers as Helper;
                     </div>
             </div>
             <div class="row">
-            <div class="col l3">
+            <div class="col s6">
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
             </div>
-            <div class="col l2">
-            <form method="post" action="views/pdf/Top10Games.php">
-                <button class="btn light-blue darken-2" id="revert">Top 10</button>
+            <div class="col s6">
+            <form method="post" target="_blank" action="views/pdf/Top10Games.php">
+                <button class="btn green darken-2 right" id="revert">Top 10 Evaluados</button>
             </form>
             </div>
         </div>
