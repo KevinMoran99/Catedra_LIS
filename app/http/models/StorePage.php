@@ -10,6 +10,7 @@ namespace Http\Models;
 //require ("../../../vendor/autoload.php");
 use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
+use DateTime;
 
 class StorePage implements Interfaces\ModelInterface, \JsonSerializable
 {
@@ -328,6 +329,106 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
             //Registro
             $page = (new StorePage());
             $page->init($line["id"], $pGame, new \DateTime($line["release_date"]),$line['visible'], $line["price"], $line["discount"]);
+
+            array_push($result, $page);
+        }
+        return $result;
+    }
+
+    public function getLineChartInfo($year, $game_id) {
+        $query ="SELECT sp.release_date, 
+                COUNT(CASE WHEN MONTH(b.bill_date) = '1' THEN 1 END) AS jan, 
+                COUNT(CASE WHEN MONTH(b.bill_date) = '2' THEN 1 END) AS feb,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '3' THEN 1 END) AS mar,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '4' THEN 1 END) AS apr,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '5' THEN 1 END) AS may,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '6' THEN 1 END) AS jun,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '7' THEN 1 END) AS jul,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '8' THEN 1 END) AS aug,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '9' THEN 1 END) AS sep,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '10' THEN 1 END) AS oct,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '11' THEN 1 END) AS nov,  
+                COUNT(CASE WHEN MONTH(b.bill_date) = '12' THEN 1 END) AS dece 
+                FROM store_pages sp LEFT JOIN bill_items bi ON sp.id = bi.store_page_id 
+                LEFT JOIN bills b ON bi.bill_id = b.id AND YEAR(b.bill_date) = ? 
+                WHERE sp.game_id = ? GROUP BY sp.release_date";
+        $params = array($year, $game_id);
+        //Arrays de datos devueltos
+        $result = [];
+        $jan = 0; $feb = 0; $mar = 0; $apr = 0; $may = 0; $jun = 0; $jul = 0; $aug = 0; $sep = 0; $oct = 0; $nov = 0; $dec = 0;
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $page = array(
+                "release_date" => DateTime::createFromFormat('Y-m-d', $line["release_date"])->format('d/m/Y'),
+                "jan" => $line["jan"],
+                "feb" => $line["feb"],
+                "mar" => $line["mar"],
+                "apr" => $line["apr"],
+                "may" => $line["may"],
+                "jun" => $line["jun"],
+                "jul" => $line["jul"],
+                "aug" => $line["aug"],
+                "sep" => $line["sep"],
+                "oct" => $line["oct"],
+                "nov" => $line["nov"],
+                "dec" => $line["dece"]
+            );
+
+            array_push($result, $page);
+
+            //Actualizando valores totales
+            $jan += $line["jan"];
+            $feb += $line["feb"];
+            $mar += $line["mar"];
+            $apr += $line["apr"];
+            $may += $line["may"];
+            $jun += $line["jun"];
+            $jul += $line["jul"];
+            $aug += $line["aug"];
+            $sep += $line["sep"];
+            $oct += $line["oct"];
+            $nov += $line["nov"];
+            $dec += $line["dece"];
+        }
+
+        $page = array(
+            "release_date" => "Total",
+            "jan" => $jan,
+            "feb" => $feb,
+            "mar" => $mar,
+            "apr" => $apr,
+            "may" => $may,
+            "jun" => $jun,
+            "jul" => $jul,
+            "aug" => $aug,
+            "sep" => $sep,
+            "oct" => $oct,
+            "nov" => $nov,
+            "dec" => $dec
+        );
+
+        array_push($result, $page);
+
+        return $result;
+    }
+
+    public function getRadarChartInfo($game_id) {
+        $query ="SELECT sp.release_date, sp.price, sp.discount, COUNT(bi.id) AS sold, SUM(r.recommended) AS recommended, COUNT(r.id) AS reviews FROM store_pages sp 
+        INNER JOIN games g ON sp.game_id = g.id LEFT JOIN bill_items bi ON sp.id = bi.store_page_id LEFT JOIN ratings r ON bi.id = r.bill_item_id 
+        WHERE g.id = ? GROUP BY sp.release_date, sp.price, sp.discount";
+        $params = array($game_id);
+        //Arrays de datos devueltos
+        $result = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            $page = array(
+                "date" => DateTime::createFromFormat('Y-m-d', $line["release_date"])->format('d/m/Y'),
+                "price" => $line["price"],
+                "discount" => $line["discount"],
+                "sold" => $line["sold"],
+                "recommended" => $line["recommended"] != null ? $line["recommended"] : 0,
+                "reviews" => $line["reviews"]
+            );
 
             array_push($result, $page);
         }

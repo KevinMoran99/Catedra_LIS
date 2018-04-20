@@ -27,11 +27,14 @@ $pdf->SetAutoPageBreak(true,10);
 $pdf->SetFont('Arial','',12);
 /*Fin campos obligatorios*/
 
+try{
 $selected_user = $_GET['user'];
-
+}catch (\Exception $e){
+    $selected_user = 0;
+}
 $users = new Controller\UserController();
 $user = $users->getUser($selected_user,false);
-
+if($selected_user != 0){
 if($user == null){
     $pdf->Cell(50);
     $pdf->Cell(0,10,'El usuario no existe',0,1);
@@ -90,4 +93,8 @@ if($user == null){
 
 //imprimiendo <3
 $pdf->Output( "I" ,"report.pdf",true);
+}else{
+    header("Location:../../login.php");
+    die();
+}
 ?>

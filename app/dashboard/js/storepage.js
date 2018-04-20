@@ -33,7 +33,7 @@ $( "#frmStrPgU" ).submit(function( event ) {
 
     var formData = new FormData(this);
     formData.append("method","updatePage");
-    formData.append("id",$(".id").val());
+    formData.append("id",$("#pageId").val());
     //Mensaje de confirmacion
     swal({
         title: '¿Desea modificar con los datos especificados?',
@@ -148,6 +148,11 @@ $('#modPageButton').click(function () {
                              '<i class="material-icons tooltipped editar" onclick="getData('+$data[i].id+')" data-position=\"left\" data-delay=\"50\">settings</i>'+
                          '</a>'+
                      '</td>'+
+                     '<td>' +
+                        '<a href=\'views/pdf/InactiveReviews.php?page='+$data[i].id+'\' target="_blank" class="modal-trigger modalBillsTrigger">' +
+                        '   <i class="material-icons tooltipped editar" data-position="left" data-delay="50">picture_as_pdf</i>' +
+                        '</a>' +
+                    '</td>'+
                 '</tr>'
                 )
             }

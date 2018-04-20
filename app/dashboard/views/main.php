@@ -359,7 +359,7 @@ use Http\Helpers as Helper;
                         <input id="gameDate" name="release_date" type="text" class="datepicker">
                     </div>
                     <div class="input-field">
-                        <input name="price" id="gamePrice" type="number" pattern="^([0-9]+(\.[0-9]+)?)$"
+                        <input name="price" id="gamePrice" type="number" step="0.01" pattern="^([0-9]+(\.[0-9]+)?)$"
                                title="Solo se permiten números" required>
                         <label for="gamePrice">Precio</label>
                     </div>
@@ -418,7 +418,7 @@ use Http\Helpers as Helper;
                         <input id="gameDateU" name="release_date" type="text" class="datepicker">
                     </div>
                     <div class="input-field">
-                        <input name="price" id="gamePriceU" type="number" pattern="^([0-9]+(\.[0-9]+)?)$"
+                        <input name="price" id="gamePriceU" type="number" step="0.01" pattern="^([0-9]+(\.[0-9]+)?)$"
                                title="Solo se permiten números" required>
                         <label for="gamePriceU" class="active">Precio</label>
                     </div>
@@ -491,6 +491,7 @@ use Http\Helpers as Helper;
                                     <th>Visible</th>
                                     <th>Editar</th>
                                     <th>Specs</th>
+                                    <th>Reviews excluidas</th>
 
                                 </tr>
                                 </thead>

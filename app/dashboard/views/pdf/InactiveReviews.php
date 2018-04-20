@@ -28,8 +28,13 @@ $pdf->SetAutoPageBreak(true,10);
 $pdf->SetFont('Arial','',12);
 /*Fin campos obligatorios*/
 
-$selected_page = $_POST['page'];
+try{
+$selected_page = $_GET['page'];
+}catch (\Exception $e){
+    $selected_page=0;
+}
 
+if($selected_page != 0){
 //obteniendo todos los reviews inactivos
 $ratings = new Controller\RatingController();
 $list = $ratings->getInactiveRatingsByPage($selected_page);
@@ -67,4 +72,8 @@ if(sizeof($list)<1){
 
 //imprimiendo <3
 $pdf->Output( "I" ,"report.pdf",true);
+}else{
+    header("Location:../../login.php");
+    die();
+}
 ?>

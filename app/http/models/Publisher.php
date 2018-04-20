@@ -133,6 +133,29 @@ class Publisher implements Interfaces\ModelInterface, \JsonSerializable
         return $result;
     }
 
+    //OJO: Esta función devuelve un array que contiene dos arrays: Uno con los nombres de los publicadores
+    //y el otro con la cantidad de juegos vendidos por cada publicador, en orden
+    //NO devuelve un array de objetos del tipo Publisher
+    public function getChartInfo() {
+        $query ="SELECT p.name AS publisher, COUNT(bi.id) AS count FROM publishers p LEFT JOIN games g ON p.id = g.publisher_id 
+                LEFT JOIN store_pages sp ON g.id = sp.game_id LEFT JOIN bill_items bi ON sp.id = bi.store_page_id 
+                GROUP BY p.name";
+        $params = array(null);
+        //Arrays de datos devueltos
+        $publisher = [];
+        $count = [];
+        //Recorriendo resultados
+        foreach(Model\Connection::select($query,$params) as $line) {
+            array_push($publisher, $line["publisher"]);
+            array_push($count, $line["count"]);
+        }
+        $result = array(
+            "publisher" => $publisher, 
+            "count" => $count
+        );
+        return $result;
+    }
+
     public function jsonSerialize()
     {
         return [

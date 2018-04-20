@@ -129,6 +129,11 @@ class PublisherController
             return $data;
         }
     }
+    
+    //Información de gráfica
+    public function getChartPublisher() {
+        echo json_encode((new Model\Publisher())->getChartInfo());
+    }
 }
 
 //Fuera de la clase handleamos las request y las enviamos a su respectivo metodo
@@ -157,6 +162,11 @@ try {
 
         if($_POST["method"] == "getAllPublishersPublic"){
             (new PublisherController())->getAllPublishersPublic(true);
+        }
+
+        if ($_POST["method"] == "getChartPublisher") {
+            //obtenemos los datos
+            (new PublisherController())->getChartPublisher();
         }
     }
 }
