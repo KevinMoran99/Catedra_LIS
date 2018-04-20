@@ -19,7 +19,15 @@ use Http\Helpers as Helper;
                         <input id="review-search" type="text" class="validate filtro" name="filtro" placeholder="Buscar por juego o usuario ">
                     </div>
             </div>
+            <div class="row">
+            <div class="col l3">
             <button class="btn light-blue darken-2" id="revert">Revertir</button>
+            </div>
+            <div class="col l2">
+            <form method="post" action="views/pdf/Top10Games.php">
+                <button class="btn light-blue darken-2" id="revert">Top 10</button>
+            </form>
+            </div>
         </div>
     </div>
     <!--tabla de visualizacion de datos-->
