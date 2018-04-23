@@ -150,6 +150,7 @@
                         <input id="signInPass" name="pass" type="password" required>
                         <label for="signInPass">Contraseña</label>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6Lf2ClUUAAAAAA3EZ2c9eC9U_1PwaPkbC4LDWt9T"></div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>

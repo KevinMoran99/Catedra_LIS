@@ -378,7 +378,38 @@ if(isset($_POST["method"])){
         }
 
         else if ($_POST["method"] == "login") {
-            (new UserController())->login($_POST['alias'], $_POST['pass']);
+            //validando captcha
+            $recaptcha = $_POST["g-recaptcha-response"];
+            //url de google
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
+            //datos a enviar (Incluyendo clave de google de captcha)
+            $data = array(
+                'secret' => '6Lf2ClUUAAAAAHmmt2tBXCMfbiApLghA7FsGsOpk',
+                'response' => $recaptcha
+            );
+            //estableciendo parametros de query
+            $options = array(
+                'http' => array (
+                    'header' => "Content-Type: application/x-www-form-urlencoded\r\n".
+                        "User-Agent:MyAgent/1.0\r\n",
+                    'method' => 'POST',
+                    'content' => http_build_query($data)
+                )
+            );
+            //estableciendo un contexto
+            $context  = stream_context_create($options);
+            //solicitando la data
+            $verify = file_get_contents($url, false, $context);
+            //parse a json
+            $captcha_success = json_decode($verify);
+            //validando
+            if ($captcha_success->success) {
+                // Human After All
+                (new UserController())->login($_POST['alias'], $_POST['pass']);
+            }else{
+                Helper\Component::showMessage(Helper\Component::$WARNING, "Captcha incorrecto");
+            }
+
         }
 
         else if ($_POST["method"] == "signUp") {
