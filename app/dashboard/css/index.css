@@ -98,6 +98,12 @@ nav label {
     height: 100px;
 }
 
+.chart-header {
+    background-color: steelblue;
+    color: white;
+    padding: 1px;
+}
+
 @media only screen and (max-width: 992px) {
     .wrapper {
         margin-left: 0;

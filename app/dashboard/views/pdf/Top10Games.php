@@ -57,11 +57,11 @@ if(sizeof($list)<1){
         $pdf->Cell(0,0,"",0,1,"L");
         //contenido del row
         $pdf->Cell(5);
-        $pdf->Cell(30,11,$list[$i][0][0],0,0,"L");
+        $pdf->Cell(30,11,$list[$i][0],0,0,"L");
         $pdf->Cell(25);
-        $pdf->Cell(30,10,$list[$i][0][1],0,0,"L");
+        $pdf->Cell(30,10,$list[$i][1],0,0,"L");
         $pdf->Cell(45);
-        $pdf->Ln(5);
+        $pdf->Ln(15);
         //estableciendo el color de texto a negro de nuevo
         $pdf->SetTextColor(0,0,0);
     }

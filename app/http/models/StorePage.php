@@ -240,10 +240,7 @@ class StorePage implements Interfaces\ModelInterface, \JsonSerializable
          foreach(Model\Connection::select($query,$params) as $line) {
             array_push($games, array($line["name"],$line["SUM(recommended)"]));
         }
-        $result = array(
-            $games,
-        );
-        return $result;
+        return $games;
     }
     
 

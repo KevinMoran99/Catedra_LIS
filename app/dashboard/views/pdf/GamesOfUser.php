@@ -13,7 +13,7 @@ use Http\Controllers as Controller;
 date_default_timezone_set("America/El_Salvador");
 
 
-$pdf = new Helper\StandardPdf("P","mm","A4");
+$pdf = new Helper\StandardPdf("P","mm","Letter");
 //establecemos el titulo del PDF !!!!IMPORTANTE
 $pdf->setHeaderText("Juegos obtenidos por usuario");
 $pdf->AliasNbPages();

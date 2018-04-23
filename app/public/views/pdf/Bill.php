@@ -16,7 +16,7 @@ date_default_timezone_set("America/El_Salvador");
 $bill = new Controller\BillController();
 $bill = $bill->getBillForClient($_POST["id"],false);
 
-$pdf = new Helper\StandardPdf("P","mm","A4");
+$pdf = new Helper\StandardPdf("P","mm","Letter");
 //establecemos el titulo del PDF !!!!IMPORTANTE
 $pdf->setHeaderText("Factura No. " . $_POST["id"]);
 $pdf->AliasNbPages();

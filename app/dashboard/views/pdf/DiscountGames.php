@@ -9,7 +9,7 @@ use Http\Controllers as Controller;
 date_default_timezone_set("America/El_Salvador");
 
 
-$pdf = new Helper\StandardPdf("P","mm","A4");
+$pdf = new Helper\StandardPdf("P","mm","Letter");
 //establecemos el titulo del PDF !!!!IMPORTANTE
 $pdf->setHeaderText("Juegos con descuentos");
 $pdf->AliasNbPages();
@@ -64,7 +64,7 @@ if(sizeof($list)<1){
         $pdf->Cell(25);
         $pdf->Cell(30,10,$item->getReleaseDate(),0,0,"L");
         $pdf->Cell(45);
-        $pdf->Ln(5);
+        $pdf->Ln(15);
         //estableciendo el color de texto a negro de nuevo
         $pdf->SetTextColor(0,0,0);
     }
