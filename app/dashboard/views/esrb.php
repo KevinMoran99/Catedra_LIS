@@ -113,7 +113,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmRegEsrb">
+                <form id="frmRegEsrb" autocomplete="off">
                     <div class="input-field">
                         <input id="nombreClasificacion" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten números y letras" required>
                         <label for="nombreClasificacion">Nombre de clasificacion</label>
@@ -161,7 +161,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmUpdateRegEsrb">
+                <form id="frmUpdateRegEsrb" autocomplete="off">
                     <input type="hidden" name="id" id="esrbId">
                     <div class="input-field">
                         <input id="esrbUName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten números y letras" required>

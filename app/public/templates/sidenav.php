@@ -141,7 +141,7 @@
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmSignIn">
+                <form id="frmSignIn" autocomplete="off">
                     <div class="input-field">
                         <input id="signInUser" name="alias" type="text" required>
                         <label for="signInUser">Nombre de usuario</label>
@@ -175,7 +175,7 @@
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmSignUp">
+                <form id="frmSignUp" autocomplete="off">
                     <div class="input-field">
                         <input id="signUpEmail" name="email" type="email" required>
                         <label for="signUpEmail">Correo electrónico</label>
@@ -333,7 +333,7 @@
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmUser">
+                <form id="frmUser" autocomplete="off">
                     <div class="input-field">
                         <input id="userName" name="alias" type="text"  minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
                         <label id="userNameLabel" for="userName">Nombre de usuario</label>

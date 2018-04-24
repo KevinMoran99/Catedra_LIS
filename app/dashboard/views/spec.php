@@ -117,7 +117,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2">
-                <form id="frmSpec">
+                <form id="frmSpec" autocomplete="off">
                     <div class="row">
                         <div class="input-field">
                             <input id="specName" name="name" type="text" required>
@@ -178,7 +178,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2">
-                <form id="frmSpecUpdate">
+                <form id="frmSpecUpdate" autocomplete="off">
                     <input type="hidden" name="id" id="specId">
                     <div class="row">
                         <div class="input-field">

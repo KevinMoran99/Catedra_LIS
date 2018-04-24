@@ -114,7 +114,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmTipoSpec">
+                <form id="frmTipoSpec" autocomplete="off">
                     <div class="input-field">
                         <input id="typeSpecName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
                         <label for="typeSpecName">Nombre de Tipo</label>
@@ -162,7 +162,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmTipoSpecUpdate">
+                <form id="frmTipoSpecUpdate" autocomplete="off">
                     <input type="hidden" name="id" id="typeSpecId">
                     <div class="input-field">
                         <input id="typeSpecNameU" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>

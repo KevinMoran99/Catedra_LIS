@@ -140,7 +140,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2">
-                <form id="frmUser">
+                <form id="frmUser" autocomplete="off">
                     <div class="input-field">
                         <input id="userAlias" name="alias" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>
                         <label for="userAlias">Nombre de usuario</label>
@@ -210,7 +210,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2">
-                <form id="frmUserUpdate">
+                <form id="frmUserUpdate" autocomplete="off">
                     <input type="hidden" name="id" id="userId">
                     <div class="input-field">
                         <input id="userAliasU" name="alias" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten numeros y letras" required>

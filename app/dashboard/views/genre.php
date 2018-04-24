@@ -114,7 +114,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmGenero">
+                <form id="frmGenero" autocomplete="off">
                     <div class="input-field">
                         <input id="genreName" name="name" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label for="genreName">Nombre de genero</label>
@@ -161,7 +161,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmGeneroUpdate">
+                <form id="frmGeneroUpdate" autocomplete="off">
                     <input type="hidden" name="id" id="genreId">
                     <div class="input-field">
                         <input id="genreNameU" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>

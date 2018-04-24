@@ -12,7 +12,7 @@
         <div class="col s12 m4 offset-m4 center-align">
             <div class="card">
                 <div class="card-content">
-                    <form id="frmSignIn">
+                    <form id="frmSignIn" autocomplete="off">
                         <h3>Iniciar sesión</h3>
                         <div class="input-field">
                             <input id="signInUser" name="alias" type="text" required>

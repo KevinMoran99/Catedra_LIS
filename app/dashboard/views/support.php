@@ -115,7 +115,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmFaq" action="#">
+                <form id="frmFaq" action="#" autocomplete="off">
                     <div class="input-field">
                         <input id="faqTitle" name="title" type="text" minlength="3" maxlength="500" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\'\.\,\:\;\¿\?\-\!]{3,500}$" title="Solo se permiten números, letras y signos de puntuación" required>
                         <label for="faqTitle">Pregunta</label>

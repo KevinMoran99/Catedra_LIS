@@ -113,7 +113,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmPublisher">
+                <form id="frmPublisher" autocomplete="off">
                     <div class="input-field">
                         <input id="publisherName" name="name" type="text" minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label for="registerUser">Nombre de publicador</label>
@@ -162,7 +162,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmUpdatePublisher">
+                <form id="frmUpdatePublisher" autocomplete="off">
                     <input type="hidden" class="id" id="publisherId" name="id">
                     <div class="input-field">
                         <input id="publisherUName" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>

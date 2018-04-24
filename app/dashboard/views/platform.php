@@ -113,7 +113,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmPlatform">
+                <form id="frmPlatform" autocomplete="off">
                     <div class="input-field">
                         <input id="platformName" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
                         <label for="platformName">Nombre de plataforma</label>
@@ -163,7 +163,7 @@ use Http\Helpers as Helper;
         </div>
         <div class="row">
             <div class="col s12 m8 offset-m2 center-align">
-                <form id="frmUpdatePlatform">
+                <form id="frmUpdatePlatform" autocomplete="off">
                     <input type="hidden" name="id" id="platformId">
                     <div class="input-field">
                         <input id="platformUName" name="name" type="text"  minlength="3" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{3,50}$" title="Solo se permiten números y letras" required>
