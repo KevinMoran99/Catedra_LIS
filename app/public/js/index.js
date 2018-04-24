@@ -407,11 +407,15 @@ function attach(id,page) {
         url: "../routing/PublicRouting.php",
         data: "control=" + id+"&current="+page,
         success: function(html) {
-            $("#container").empty();
-            $("#container").append(html);
-            if (id === "main") {
+            if(html==""){
+                window.location.replace("index.php");
+            }else {
+                $("#container").empty();
+                $("#container").append(html);
+                if (id === "main") {
 
-                startCarousel();
+                    startCarousel();
+                }
             }
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
@@ -440,9 +444,13 @@ function attachDatail(detailId) {
         url: "../routing/PublicRouting.php",
         data: "control=gameDetail&id="+detailId,
         success: function(html) {
-            container.empty();
-            container.append(html);
-            progress.modal('close');
+            if(html==""){
+                window.location.replace("index.php");
+            }else {
+                container.empty();
+                container.append(html);
+                progress.modal('close');
+            }
             //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
     });
