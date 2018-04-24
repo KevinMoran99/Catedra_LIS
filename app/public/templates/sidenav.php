@@ -200,6 +200,10 @@
                         <a href="#modalTerms" class="modal-trigger">Ver términos y condiciones</a>
                     </div>
                     <div class="row">
+                        <div class="col s6 push-s3 g-recaptcha" data-sitekey="6Lf2ClUUAAAAAA3EZ2c9eC9U_1PwaPkbC4LDWt9T"></div>
+                    </div>
+
+                    <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Registrar</button>
                         <button class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
