@@ -318,7 +318,17 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
             'email' => $this->getEmail(),
             'userType' => [
                 'id' => $this->getUserType()->getId(),
-                'name' => $this->getUserType()->getName()
+                'name' => $this->getUserType()->getName(),
+                'games' => $this->getUserType()->getGames(),
+                'users' => $this->getUserType()->getUsers(),
+                'support' => $this->getUserType()->getSupport(),
+                'stadistics' => $this->getUserType()->getStadistics(),
+                'reviews' => $this->getUserType()->getReviews(),
+                'esrbs' => $this->getUserType()->getEsrbs(),
+                'publishers' => $this->getUserType()->getPublishers(),
+                'genres' => $this->getUserType()->getGenres(),
+                'specs' => $this->getUserType()->getSpecs(),
+                'typeSpecs' => $this->getUserType()->getTypeSpecs()
             ],
             'state' => $this->getState()
         ];

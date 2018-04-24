@@ -12,7 +12,7 @@ use Http\Models as Model;
 use Http\Models\Interfaces as Interfaces;
 
 
-class UserType implements Interfaces\ModelInterface
+class UserType implements Interfaces\ModelInterface, \JsonSerializable
 {
     private $id;
     private $name;
@@ -388,5 +388,24 @@ class UserType implements Interfaces\ModelInterface
             array_push($result, $userType);
         }
         return $result;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'state' => $this->getState(),
+            'games' => $this->getGames(),
+            'users' => $this->getUsers(),
+            'support' => $this->getSupport(),
+            'stadistics' => $this->getStadistics(),
+            'reviews' => $this->getReviews(),
+            'esrbs' => $this->getEsrbs(),
+            'publishers' => $this->getPublishers(),
+            'genres' => $this->getGenres(),
+            'specs' => $this->getSpecs(),
+            'typeSpecs' => $this->getTypeSpecs()
+        ];
     }
 }
