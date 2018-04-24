@@ -193,8 +193,11 @@ $('#frmSignIn').submit(function(e) {
                 else
                     window.location.replace("index.php");
             }
-            else
+            else{
+                grecaptcha.reset();
                 swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+            }
+
         }
     });
 });
@@ -219,9 +222,9 @@ $('#frmSignUp').submit(function(e) {
                         window.location.replace("index.php");
                     }
                 );
-            }
-            else
+            }else {
                 swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+            }
         }
     });
 });
