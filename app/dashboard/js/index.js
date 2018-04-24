@@ -71,7 +71,12 @@ function attach(id,page){
         url: "../routing/DashboardRouting.php",
         data: "control="+id+"&current="+page,
         success: function(html) {
-           $("#container").append(html);
+            if(html==""){
+                window.location.replace("login.php");
+            }else{
+                $("#container").append(html);
+            }
+
            //window.history.pushState("Stoam", "Stoam", window.location.pathname+url);
         }
      });

@@ -17,8 +17,17 @@ $('#frmSignIn').submit(function (e) {
                 else
                     window.location.replace("../public/index.php");
             }
-            else
-                swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+            else {
+                grecaptcha.reset();
+                swal({
+                    title: output[0],
+                    text: output[1],
+                    icon: output[2],
+                    button: 'Aceptar',
+                    closeOnClickOutside: false,
+                    closeOnEsc: false
+                })
+            }
         }
     });
 });

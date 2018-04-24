@@ -277,7 +277,9 @@ class UserController
                 //Inicializando variables de sesion
                 session_start();
                 $_SESSION["user"] = $user;
-
+                $_SESSION['logged_in'] = true;
+                $_SESSION['last_activity'] = time();
+                $_SESSION['expire_time'] = 300;
                 if ($user->getUserType()->getId() == 1)
                     Helper\Component::showMessage(1, "admin");
                 else
@@ -423,7 +425,36 @@ if(isset($_POST["method"])){
         }
 
         else if ($_POST["method"] == "signUp") {
-            (new UserController())->signUp($_POST['alias'], $_POST['email'], $_POST['pass'], $_POST['passConfirm'], isset($_POST['terms']) ? true : false);
+            //validando captcha
+            $recaptcha = $_POST["g-recaptcha-response"];
+            //url de google
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
+            //datos a enviar (Incluyendo clave de google de captcha)
+            $data = array(
+                'secret' => '6Lf2ClUUAAAAAHmmt2tBXCMfbiApLghA7FsGsOpk',
+                'response' => $recaptcha
+            );
+            //estableciendo parametros de query
+            $options = array(
+                'http' => array (
+                    'header' => "Content-Type: application/x-www-form-urlencoded\r\n".
+                        "User-Agent:MyAgent/1.0\r\n",
+                    'method' => 'POST',
+                    'content' => http_build_query($data)
+                )
+            );
+            //estableciendo un contexto
+            $context  = stream_context_create($options);
+            //solicitando la data
+            $verify = file_get_contents($url, false, $context);
+            //parse a json
+            $captcha_success = json_decode($verify);
+            //validando
+            if ($captcha_success->success) {
+                (new UserController())->signUp($_POST['alias'], $_POST['email'], $_POST['pass'], $_POST['passConfirm'], isset($_POST['terms']) ? true : false);
+            }else{
+                Helper\Component::showMessage(Helper\Component::$WARNING, "Captcha incorrecto");
+            }
         }
 
         else if ($_POST["method"] == "logout") {

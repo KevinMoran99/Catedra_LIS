@@ -8,6 +8,16 @@
 include_once ("../../vendor/autoload.php");
 
 $control =$_POST['control'];
+session_start();
+if(isset($_SESSION['last_activity']) && isset($_SESSION['expire_time'])) {
+    if ($_SESSION['last_activity'] < time() - $_SESSION['expire_time']) {
+        session_abort();
+        $controller = new \Http\Controllers\UserController();
+        $controller->logout();
+        die();
+    }
+}
+session_abort();
 //retornamos la vista seleccionada
 switch ($control){
     case "main":
