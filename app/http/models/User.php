@@ -251,11 +251,13 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         $query ="SELECT * FROM users WHERE (alias = ? OR email = ?) AND state = 1";
         $params = array($this->getAlias(), $this->getAlias());
         $user = Model\Connection::selectOne($query,$params);
+
+        
         //Desencriptando contraseña
-        $pass = Helper\Encryptor::decrypt($user['pass'], true);
+        //$pass = Helper\Encryptor::decrypt($user['pass']);
 
         //Comparando con la contraseña proporcionada
-        if ($pass == $this->getPass()) {
+        if (password_verify($this->getPass(), $pass)) {
             //Si las contraseñas concuerdan, se hace el login
             $this->setId($user['id']);
             $this->setAlias($user['alias']);

@@ -234,7 +234,7 @@ INSERT INTO user_types(name, games, users, support, stadistics, reviews, esrbs, 
 INSERT INTO user_types(name) VALUES("Cliente");
 
 -- users
-INSERT INTO users(alias, email, pass, user_type_id) VALUES('root', 'admin@gmail.com', 'rD+zciy2T/B0gVwOpfIlWYiwhf3Oag==', 1);
+INSERT INTO users(alias, email, pass, user_type_id) VALUES('root', 'admin@gmail.com', 'JFbMF0L3avmI5V+IFvsGZGhFSBMEkQ==', 1); /*Contraseña: 123456*/
 INSERT INTO users(alias, email, pass, user_type_id) VALUES('Oscar98', 'oscar@gmail.com', 'bUHhaaUHxvzDcssdGGdNJNDdksdsOOda', 2);
 INSERT INTO users(alias, email, pass, user_type_id) VALUES('Kevin99', 'kevin@gmail.com', 'cUHhaaUHxvzDcssdGGdNJNDdksdsOOdb', 2);
 INSERT INTO users(alias, email, pass, user_type_id) VALUES('RaulEmoxitho', 'raul@gmail.com', 'dUHhaaUHxvzDcssdGGdNJNDdksdsOOdc', 2);

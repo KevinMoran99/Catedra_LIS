@@ -22,7 +22,8 @@ class Encryptor
      */
     public static function encrypt($message, /*$key,*/ $encode = false)
     {
-        $key = hex2bin('010102030405060708090e0b0c0d0e0f101112141415661718191a1b1c1d1e1f');
+        return password_hash($message, PASSWORD_BCRYPT);
+        /*$key = hex2bin('010102030405060708090e0b0c0d0e0f101112141415661718191a1b1c1d1e1f');
         $nonceSize = openssl_cipher_iv_length(self::METHOD);
         $nonce = openssl_random_pseudo_bytes($nonceSize);
 
@@ -38,8 +39,8 @@ class Encryptor
         // Naively, we can just concatenate
         if ($encode) {
             return base64_encode($nonce.$ciphertext);
-        }
-        return $nonce.$ciphertext;
+        }*/
+        //return $nonce.$ciphertext;
     }
 
     /**
@@ -50,9 +51,9 @@ class Encryptor
      * @param boolean $encoded - are we expecting an encoded string?
      * @return string
      */
-    public static function decrypt($message, /*$key,*/ $encoded = false)
+    public static function decrypt($message, $key=false, $encoded = false)
     {
-        $key = hex2bin('010102030405060708090e0b0c0d0e0f101112141415661718191a1b1c1d1e1f');
+        /*$key = hex2bin('010102030405060708090e0b0c0d0e0f101112141415661718191a1b1c1d1e1f');
 
         if ($encoded) {
             $message = base64_decode($message, true);
@@ -73,6 +74,6 @@ class Encryptor
             $nonce
         );
 
-        return $plaintext;
+        return $plaintext;*/
     }
 }

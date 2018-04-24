@@ -144,6 +144,15 @@ class UserController
                 $validateError = "La contraseña debe tener al menos 6 caracteres de longitud";
                 $flag = true;
             }
+
+            $user->setId($id);
+            $user->getById();
+            if ($user->getPass() == Helper\Encryptor::encrypt($pass, true)) {
+                $validateError = "La nueva contraseña debe ser diferente a la anterior";
+                $flag = true;
+            }
+
+
         }
         if (is_null($userType)) {
             $validateError = "Por favor elija un tipo de usuario";
@@ -263,7 +272,8 @@ class UserController
         $user->setAlias($name);
         $user->setPass($pass);
         if ($user->checkName()) {
-            if ($user->login()) {
+            Helper\Component::showMessage(3, $user->login());
+            /*if ($user->login()) {
                 //Inicializando variables de sesion
                 session_start();
                 $_SESSION["user"] = $user;
@@ -274,7 +284,7 @@ class UserController
                     Helper\Component::showMessage(1, "cliente");
             }
             else
-                Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");
+                Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");*/
         }
         else
             Helper\Component::showMessage(3, "No existe ningún usuario con el alias o email especificado.");
