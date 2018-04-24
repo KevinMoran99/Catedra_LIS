@@ -55,7 +55,7 @@ class UserController
             $flag = true;
         }
         if (!$validator->validatePassword($pass)) {
-            $validateError = "La contraseña debe tener al menos 6 caracteres de longitud";
+            $validateError = "La contraseña debe tener al menos 8 caracteres de longitud y contener al menos un caracter alfanumérico y un caracter especial";
             $flag = true;
         }
         if (!$validator->validateEmail($email)) {
@@ -66,11 +66,16 @@ class UserController
             $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre de usuario";
             $flag = true;
         }
+        //Verificando que el alias y la contraseña sean diferentes
+        if ($pass == $alias) {
+            $validateError = "El alias y la contraseña deben ser diferentes";
+            $flag = true;
+        }
 
         //si el flag sigue siendo falso en este punto, agrega un nuevo registro
         if (!$flag) {
             //Encriptando contraseña
-            $pass = Helper\Encryptor::encrypt($pass, true);
+            $pass = Helper\Encryptor::encrypt($pass);
 
             //Obteniendo padre del user
             $type = new Model\UserType();
@@ -141,14 +146,20 @@ class UserController
                 $flag = true;
             }
             if (!$validator->validatePassword($pass)) {
-                $validateError = "La contraseña debe tener al menos 6 caracteres de longitud";
+                $validateError = "La contraseña debe tener al menos 8 caracteres de longitud y contener al menos un caracter alfanumérico y un caracter especial";
                 $flag = true;
             }
 
+            //Verificando que la nueva contraseña sea diferente a la anterior
             $user->setId($id);
             $user->getById();
-            if ($user->getPass() == Helper\Encryptor::encrypt($pass, true)) {
+            if (password_verify($pass, $user->getPass())) {
                 $validateError = "La nueva contraseña debe ser diferente a la anterior";
+                $flag = true;
+            }
+            //Verificando que el alias y la contraseña sean diferentes
+            if ($pass == $alias) {
+                $validateError = "El alias y la contraseña deben ser diferentes";
                 $flag = true;
             }
 
@@ -178,14 +189,17 @@ class UserController
             $user->getById(); // Para obtener la contraseña en caso de que no sea cambiada
             $user->setAlias($alias);
             $user->setEmail($email);
+
+            $passChanged = false;
             if (!empty($pass)) {
                 //Encriptando contraseña
-                $pass = Helper\Encryptor::encrypt($pass, true);
+                $pass = Helper\Encryptor::encrypt($pass);
                 $user->setPass($pass);
+                $passChanged = true;
             }
             $user->setUserType($type);
             $user->setState($state);
-            $response = $user->update();
+            $response = $user->update($passChanged);
             if (is_bool($response)) {
                 Helper\Component::showMessage(Helper\Component::$SUCCESS, "Usuario actualizado");
             }else {
@@ -220,7 +234,19 @@ class UserController
                 $flag = true;
             }
             if (!$validator->validatePassword($pass)) {
-                $validateError = "La contraseña debe tener al menos 6 caracteres de longitud";
+                $validateError = "La contraseña debe tener al menos 8 caracteres de longitud y contener al menos un caracter alfanumérico y un caracter especial";
+                $flag = true;
+            }
+
+            //Verificando que el alias y la contraseña sean diferentes
+            if ($pass == $alias) {
+                $validateError = "El alias y la contraseña deben ser diferentes";
+                $flag = true;
+            }
+
+            //Verificando que la nueva contraseña sea diferente a la anterior
+            if (password_verify($pass, $user->getPass())) {
+                $validateError = "La nueva contraseña debe ser diferente a la anterior";
                 $flag = true;
             }
         }
@@ -233,12 +259,16 @@ class UserController
         if(!$flag){
             //Obteniendo padre del user
             $user->setAlias($alias);
+
+            $passChanged = false;
             if (!empty($pass)) {
                 //Encriptando contraseña
-                $pass = Helper\Encryptor::encrypt($pass, true);
+                $pass = Helper\Encryptor::encrypt($pass);
                 $user->setPass($pass);
+
+                $passChanged = true;
             }
-            $response = $user->update();
+            $response = $user->update($passChanged);
             if (is_bool($response)) {
                 //Actualizando variable de sesión
                 $_SESSION['user'] = $user;
@@ -272,8 +302,7 @@ class UserController
         $user->setAlias($name);
         $user->setPass($pass);
         if ($user->checkName()) {
-            Helper\Component::showMessage(3, $user->login());
-            /*if ($user->login()) {
+            if ($user->login()) {
                 //Inicializando variables de sesion
                 session_start();
                 $_SESSION["user"] = $user;
@@ -286,7 +315,7 @@ class UserController
                     Helper\Component::showMessage(1, "cliente");
             }
             else
-                Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");*/
+                Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");
         }
         else
             Helper\Component::showMessage(3, "No existe ningún usuario con el alias o email especificado.");
@@ -311,7 +340,7 @@ class UserController
             $flag = true;
         }
         if (!$validator->validatePassword($pass)) {
-            $validateError = "La contraseña debe tener al menos 6 caracteres de longitud";
+            $validateError = "La contraseña debe tener al menos 8 caracteres de longitud y contener al menos un caracter alfanumérico y un caracter especial";
             $flag = true;
         }
         if (!$validator->validateEmail($email)) {
@@ -322,11 +351,16 @@ class UserController
             $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre de usuario";
             $flag = true;
         }
+        //Verificando que el alias y la contraseña sean diferentes
+        if ($pass == $alias) {
+            $validateError = "El alias y la contraseña deben ser diferentes";
+            $flag = true;
+        }
 
         //si el flag sigue siendo falso en este punto, agrega un nuevo registro
         if (!$flag) {
             //Encriptando contraseña
-            $encPass = Helper\Encryptor::encrypt($pass, true);
+            $encPass = Helper\Encryptor::encrypt($pass);
 
             //Obteniendo padre del user
             $type = new Model\UserType();
@@ -358,6 +392,79 @@ class UserController
     public function logout() {
         session_start();
         session_destroy();
+    }
+
+    //Verifica si la contraseña del usuario logeado no ha expirado
+    public function checkPasswordDate($ajax = false){
+
+        //Reanudando sesion para accesar variable de sesion
+        session_start();
+
+        //user logeado
+        $user = $_SESSION['user'];
+
+        if ($ajax) {
+            echo $user->passIsExpired();
+        }
+        else {
+            return $user->passIsExpired();
+        }
+    }
+
+    public function updatePassword($pass, $passConfirm) {
+        //Reanudando sesion para accesar variable de sesion
+        session_start();
+
+        //objetos de validacion y tipo de user
+        $validator = new Helper\Validator();
+        $user = $_SESSION['user'];
+        //variables de validacion
+        $flag = false;
+        $validateError="";
+
+        //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
+
+        //Si se especificó una nueva contraseña
+        if (!($pass == $passConfirm)) {
+            $validateError = "Las contraseñas ingresadas no coinciden";
+            $flag = true;
+        }
+        if (!$validator->validatePassword($pass)) {
+            $validateError = "La contraseña debe tener al menos 8 caracteres de longitud y contener al menos un caracter alfanumérico y un caracter especial";
+            $flag = true;
+        }
+
+        //Verificando que el alias y la contraseña sean diferentes
+        if ($pass == $user->getAlias()) {
+            $validateError = "El alias y la contraseña deben ser diferentes";
+            $flag = true;
+        }
+
+        //Verificando que la nueva contraseña sea diferente a la anterior
+        if (password_verify($pass, $user->getPass())) {
+            $validateError = "La nueva contraseña debe ser diferente a la anterior";
+            $flag = true;
+        }
+        
+        //si en este punto el flag es falso, actualizar el registro
+        if(!$flag){
+            
+            //Encriptando contraseña
+            $pass = Helper\Encryptor::encrypt($pass);
+            $user->setPass($pass);
+            $response = $user->update(true);
+
+            if (is_bool($response)) {
+                //Actualizando variable de sesión
+                $_SESSION['user'] = $user;
+                Helper\Component::showMessage(Helper\Component::$SUCCESS, "Perfil actualizado");
+            }else {
+                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+            }
+        }else{
+            //si el flag es verdadero, enviar mensaje de error
+            Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
+        }
     }
 }
 
@@ -459,6 +566,14 @@ if(isset($_POST["method"])){
 
         else if ($_POST["method"] == "logout") {
             (new UserController())->logout();
+        }
+
+        else if ($_POST["method"] == "checkPasswordDate") {
+            (new UserController())->checkPasswordDate(true);
+        }
+
+        else if ($_POST["method"] == "updatePassword") {
+            (new UserController())->updatePassword($_POST['pass'], $_POST['passConfirm']);
         }
     }
     catch (\Exception $error) {

@@ -23,6 +23,7 @@ use Http\Helpers as Helper;
             <div class="col s6">
             <form method="post" target="_blank" action="views/pdf/InactiveUsers.php">
                 <button class="btn green darken-2 right" id="revert">Reporte inactivos</button>
+            </form>
             </div>
         </div>
         </div>

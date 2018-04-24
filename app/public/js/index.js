@@ -9,6 +9,21 @@ $(document).ready(function() {
     $('.js-example-basic-single').select2();
     attach("main",1);
 
+    //Verificando si la contraseña del usuario no ha expirado
+    $.ajax({
+        method: "POST",
+        //seteando metodo a utilizar en controlador y seteando la data
+        data: {'method' : 'checkPasswordDate'},
+        url: "../http/controllers/UserController.php",
+        success: function(result) {
+            if(result == 1) {
+                $('#modalPassExpired').modal({
+                    dismissible: false
+                });
+                $("#modalPassExpired").modal('open');
+            }
+        }
+    });
 });
 
 /*  $('.dropdown-content').on('click', function(event) {
@@ -473,3 +488,31 @@ function attachGames(page,searchType,param) {
         }
     });
 }
+
+//Ajax de cambiar contraseña expirada
+$("#frmExpired").submit(function( event ) {
+    event.preventDefault();
+    var formData = new FormData(this);
+    formData.append('pass',$("#expiredPass").val());
+    formData.append('passConfirm',$("#expiredConfirm").val());
+    formData.append("method",'updatePassword');
+    //inicializando ajax
+    $.ajax({
+        method: "POST",
+        //seteando metodo a utilizar en controlador y seteando la data
+        data: formData,
+        contentType: false,
+        processData: false,
+        //url (?
+        url: "../http/controllers/UserController.php",
+        success: function(result) {
+            var output = result.split("|");
+            if (output[0] == "Éxito") {
+                //si la operacion fue un exito, cerramos el modal
+                $('#modalPassExpired').modal('close');
+            }
+            console.log(result);
+            swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+        }
+    });
+});

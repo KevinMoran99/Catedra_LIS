@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('.formSelect').each(function(index, element) {
         $(this).select2();
     });
+
 });
 
 //AJAX DE AGREGAR REGISTRO

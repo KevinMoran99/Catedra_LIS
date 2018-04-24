@@ -3,7 +3,6 @@ $(document).ready(function () {
         format: 'yyyy-mm-dd',
         container: 'body'
     });
-    $('.modal').modal();
     $('#game-filter').select2();
     $('.formSelect').each(function(index, element) {
         $(this).select2();

@@ -43,3 +43,33 @@
         <!--<li class="item-game"><a href="#!" onclick="attach('games')">Ofertas</a></li>
     <li class="menu-trigger"><a class="dropdown-trigger" href="#!" data-target="drpGames2">Buscar por<i class="material-icons right">keyboard_arrow_right</i></a></li>-->
 </ul>
+
+
+
+<!--Modal de actualización de contraseña expirada-->
+<div id="modalPassExpired" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row blue white-text center-align">
+            <div class="col m10 s9">
+                <h5 class="">Hace 3 meses que no cambias tu contraseña. Por favor, crea una nueva para continuar:</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmExpired" autocomplete="off">
+                    <div class="input-field">
+                        <input id="expiredPass" name="pass" type="password" required />
+                        <label for="expiredPass">Contraseña</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="expiredConfirm" name="passConfirm" type="password" required />
+                        <label for="expiredConfirm">Repetir contraseña</label>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

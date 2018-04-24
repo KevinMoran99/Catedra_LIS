@@ -360,6 +360,37 @@
     </div>
 </div>
 
+<!--Modal de actualización de contraseña expirada-->
+<div id="modalPassExpired" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="../web/img/logo.png"> 
+            </div>
+            <div class="col m10 s9">
+            <h5 class="">Hace 3 meses que no cambias tu contraseña. Por favor, crea una nueva para continuar:</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmExpired" autocomplete="off">
+                    <div class="input-field">
+                        <input id="expiredPass" name="pass" min="6" max="50" type="password">
+                        <label for="expiredPass">Contraseña</label>
+                    </div>
+                    <div class="input-field">
+                        <input id="expiredConfirm" name="passConfirm" min="6" max="50" type="password">
+                        <label for="expiredConfirm">Repetir contraseña</label>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--Modal de facturas del usuario-->
 <div id="modalBills" class="modal modal-fixed-footer">

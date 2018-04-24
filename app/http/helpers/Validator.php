@@ -129,7 +129,7 @@ class Validator{
 	}
 
 	public function validatePassword($value){
-		if(strlen($value) > 5){
+		if(strlen($value) > 7 && preg_match('/^(?=.*[a-zA-Z0-9])(?=.*[-_!#$%&\/()=?+*])/', $value)){
 			return true;
 		}else{
 			return false;

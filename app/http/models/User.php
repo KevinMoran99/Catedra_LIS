@@ -20,6 +20,7 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
     private $pass;
     private $userType;
     private $state;
+    private $passDate; //No es incluido en método init
 
     /**
      * User constructor.
@@ -136,6 +137,22 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         $this->state = $state;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPassDate()
+    {
+        return $this->passDate;
+    }
+
+    /**
+     * @param mixed $passDate
+     */
+    public function setPassDate($passDate)
+    {
+        $this->passDate = $passDate;
+    }
+
 
     public function getAll($active = false){
         if ($active)
@@ -199,14 +216,21 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
 
     public function insert()
     {
-        $query ="INSERT INTO users (alias, email, pass, user_type_id, state) VALUES(?,?,?,?,?)";
+        $query ="INSERT INTO users (alias, email, pass, user_type_id, state, pass_date) VALUES(?,?,?,?,?,CURDATE())";
         $params= array($this->getAlias(),$this->getEmail(),$this->getPass(),$this->getUserType()->getId(),$this->getState());
         return Model\Connection::insertOrUpdate($query,$params);
     }
 
-    public function update()
+    public function update($passChanged = false)
     {
-        $query ="UPDATE users SET alias=?,email=?,pass=?,user_type_id=?,state=? WHERE id=?";
+        //Si la contraseña fue cambiada, hay que actualizar la fecha de modificación de la misma
+        if ($passChanged) {
+            $query ="UPDATE users SET alias=?,email=?,pass=?,user_type_id=?,state=?,pass_date=DATE_ADD(CURDATE(), INTERVAL 1 DAY) WHERE id=?";
+        }
+        else {
+            $query ="UPDATE users SET alias=?,email=?,pass=?,user_type_id=?,state=? WHERE id=?";
+        }
+        
         $params= array($this->getAlias(),$this->getEmail(),$this->getPass(),$this->getUserType()->getId(),$this->getState(),$this->getId());
         return Model\Connection::insertOrUpdate($query,$params);
     }
@@ -252,12 +276,9 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         $params = array($this->getAlias(), $this->getAlias());
         $user = Model\Connection::selectOne($query,$params);
 
-        
-        //Desencriptando contraseña
-        //$pass = Helper\Encryptor::decrypt($user['pass']);
 
         //Comparando con la contraseña proporcionada
-        if (password_verify($this->getPass(), $pass)) {
+        if (password_verify($this->getPass(), $user['pass'])) {
             //Si las contraseñas concuerdan, se hace el login
             $this->setId($user['id']);
             $this->setAlias($user['alias']);
@@ -273,6 +294,20 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         }
         else
             return false;
+    }
+
+    //Verifica si la contraseña del usuario ya expiró
+    public function passIsExpired()
+    {
+        $query ="SELECT * FROM users WHERE id = ? AND DATE_ADD(pass_date, INTERVAL 90 DAY) <= CURDATE()";
+        $params = array($this->getId());
+        $passExpired = Model\Connection::selectOne($query,$params);
+        if($passExpired) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public function jsonSerialize()
