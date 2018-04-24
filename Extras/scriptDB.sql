@@ -97,7 +97,17 @@ ALTER TABLE page_specs add index(spec_id);
 CREATE TABLE user_types(
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) UNIQUE,
-    state BOOL DEFAULT 1
+    state BOOL DEFAULT 1,
+    games BOOL DEFAULT 0,
+    users BOOL DEFAULT 0,
+    support BOOL DEFAULT 0,
+    stadistics BOOL DEFAULT 0,
+    reviews BOOL DEFAULT 0,
+    esrbs BOOL DEFAULT 0,
+    publishers BOOL DEFAULT 0,
+    genres BOOL DEFAULT 0,
+    specs BOOL DEFAULT 0,
+    type_specs BOOL DEFAULT 0
 ); 
 
 CREATE TABLE users(
@@ -220,7 +230,7 @@ INSERT INTO actions(name) VALUES("Factura generada");
 INSERT INTO actions(name) VALUES("Calificación añadida");
 
 -- user_types
-INSERT INTO user_types(name) VALUES("Administrador");
+INSERT INTO user_types(name, games, users, support, stadistics, reviews, esrbs, publishers, genres, specs, type_specs) VALUES("Administrador", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 INSERT INTO user_types(name) VALUES("Cliente");
 
 -- users
