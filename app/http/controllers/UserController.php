@@ -269,7 +269,7 @@ class UserController
                 $_SESSION["user"] = $user;
                 $_SESSION['logged_in'] = true;
                 $_SESSION['last_activity'] = time();
-                $_SESSION['expire_time'] = 30;
+                $_SESSION['expire_time'] = 300;
                 if ($user->getUserType()->getId() == 1)
                     Helper\Component::showMessage(1, "admin");
                 else
