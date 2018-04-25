@@ -1,6 +1,9 @@
 <?php
 //declarando namespace a utilizar
 use Http\Controllers as Control;
+function error_found(){
+    header("Location: yourerrorpage.php");
+}
 
 ?>
 <link rel="stylesheet" href="css/gameDetail.css">
@@ -11,16 +14,20 @@ use Http\Controllers as Control;
     <?php
     //iniciando sesion para utilizar posteriormente
     session_start();
-    //variables principales
-    $page = new Control\StorePageController();
-    $detail = $page->getPage($id, false);
-    $rating = new Control\RatingController();
-    $ratings = $rating->getRatingsByPagePublic($id, false);
-    $bill = new Control\BillController();
-    $spec = new Control\PageSpecController();
-    $specs = $spec->getSpecsByPage($id, false);
-    $ratingId = 0;
-    $billItem = 0;
+    if(isset($ajax)) {
+        //variables principales
+        $page = new Control\StorePageController();
+        $detail = $page->getPage($id, false);
+        $rating = new Control\RatingController();
+        $ratings = $rating->getRatingsByPagePublic($id, false);
+        $bill = new Control\BillController();
+        $spec = new Control\PageSpecController();
+        $specs = $spec->getSpecsByPage($id, false);
+        $ratingId = 0;
+        $billItem = 0;
+    }else{
+        header("Location:../index.php");
+    }
     //PRIMERA SECCION
     echo '
         <div class="gameBackground"></div>

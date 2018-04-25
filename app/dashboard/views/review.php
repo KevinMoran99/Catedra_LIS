@@ -8,6 +8,10 @@
 //declarando namespace a utilizar
 use Http\Controllers as Control;
 use Http\Helpers as Helper;
+
+if(!isset($ajax)){
+    header("Location:../index.php");
+}
 ?>
 
 <div class="wrapper">

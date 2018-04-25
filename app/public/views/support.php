@@ -2,6 +2,9 @@
 //declarando namespace a utilizar
 use Http\Controllers as Control;
 use Http\Helpers as Helper;
+if(!isset($ajax)){
+    header("Location:../index.php");
+}
 ?>
 <link rel="stylesheet" href="css/support.css">
 <!--vista de faq -->
