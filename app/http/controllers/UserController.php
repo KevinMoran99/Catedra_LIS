@@ -309,10 +309,11 @@ class UserController
                 $_SESSION['logged_in'] = true;
                 $_SESSION['last_activity'] = time();
                 $_SESSION['expire_time'] = 300;
-                if ($user->getUserType()->getId() == 1)
+                if ($user->getUserType()->getId() != 2) {
                     Helper\Component::showMessage(1, "admin");
-                else
+                }else {
                     Helper\Component::showMessage(1, "cliente");
+                }
             }
             else
                 Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");

@@ -24,7 +24,7 @@
         ?>
 
         <!--menu-->
-        <?php include 'templates/sidenav.html';?>
+        <?php include 'templates/sidenav.php';?>
         
         <div id="container">
         </div>
