@@ -2,6 +2,10 @@ body {
     background-color: darkgray;
 }
 
+.modal-header {
+    background: linear-gradient(mediumspringgreen, skyblue);
+}
+
 .card {
     margin-top: 30%;
 }

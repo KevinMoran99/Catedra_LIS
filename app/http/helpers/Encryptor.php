@@ -8,15 +8,33 @@
 
 namespace Http\Helpers;
 
+use RandomLib\Factory;
 
 class Encryptor
 {
 
+    //Encriptación de una sola direccion
     public static function encrypt($message)
     {
         return password_hash($message, PASSWORD_BCRYPT);
     }
 
+    //Genera una contraseña aleatoria
+    public static function generatePassword() {
+        //Objetos que hacen la generación aleatoria
+        $factory = new Factory();
+        $generator = $factory->getMediumStrengthGenerator();
+
+        //Objeto de validación
+        $validator = new Validator();
+        do {
+            //Generando contraseña
+            $randomString = $generator->generateString(8, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_!#$%&\/()=?+*');
+        
+        }while(!$validator->validatePassword($randomString)); //Si la contraseña generada no tiene al menos un caracter alfanumerico y especial, es generada de nuevo
+
+        return $randomString;
+    }
 
 
     //const METHOD = 'aes-256-ctr';

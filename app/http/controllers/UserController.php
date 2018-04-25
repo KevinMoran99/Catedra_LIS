@@ -466,6 +466,58 @@ class UserController
             Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
         }
     }
+
+    public function resetPass($email) {
+        //creamos objetos de validacion y user
+        $validator = new Helper\Validator();
+        $user = new Model\User();
+        $user->setEmail($email);
+        //variables de validacion
+        $flag = false;
+        $validateError = "";
+        //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
+        if (!$validator->validateEmail($email)) {
+            $validateError = "El email ingresado es inválido";
+            $flag = true;
+        }
+        else if (!$user->checkEmail()) {
+            $validateError = "No existe ninguna cuenta vinculada al email ingresado";
+            $flag = true;
+        }
+
+        //si el flag sigue siendo falso en este punto, agrega un nuevo registro
+        if (!$flag) {
+            
+            //Generando contraseña aleatoria
+            $pass = Helper\Encryptor::generatePassword();
+
+            //Enviando contraseña por correo
+            $response = Helper\Mailer::resetPassword($email, $pass);
+
+            if (is_bool($response)) {
+
+                //Encriptando contraseña
+                $encPass = Helper\Encryptor::encrypt($pass);
+                //llenamos el objeto con los datos proporcionados
+                $user->setPass($encPass);
+                //Guardando contraseña
+                $response = $user->resetPass();
+
+                if (is_bool($response)) {
+                    Helper\Component::showMessage(Helper\Component::$SUCCESS, "El mensaje de reestablecimiento de contraseña ha sido enviado a la cuenta de correo electrónico proporcionada");
+                } else {
+                    Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+                }
+                
+            } else {
+                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+            }
+        } else {
+            //si el flag es verdadero, muestra el mensaje de error de validacion
+            Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
+        }
+    }
+
 }
 
 //script ejecutado al llamar al controlador con ajax
@@ -583,6 +635,11 @@ if(isset($_POST["method"])){
         else if ($_POST["method"] == "updatePassword") {
             $_POST = $val->validateForm($_POST);
             (new UserController())->updatePassword($_POST['pass'], $_POST['passConfirm']);
+        }
+
+        else if ($_POST["method"] == "resetPass") {
+            $_POST = $val->validateForm($_POST);
+            (new UserController())->resetPass($_POST['email']);
         }
     }
     catch (\Exception $error) {

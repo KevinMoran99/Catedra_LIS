@@ -156,7 +156,12 @@
                         <button class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
-                <a href="#modalSignUp" class="modal-close modal-trigger">¿No tienes una cuenta?</a>
+                <div class="row">
+                    <a href="#modalSignUp" class="modal-close modal-trigger">¿No tienes una cuenta?</a>
+                </div>
+                <div class="row">
+                    <a href="#modalPassLost" class="modal-close modal-trigger">Perdí mi contraseña</a>
+                </div>
             </div>
         </div>
     </div>
@@ -384,6 +389,33 @@
                     </div>
                     <div class="row">
                         <button type="submit" class="modal-submit btn waves-effect right">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal de recuperación de contraseña-->
+<div id="modalPassLost" class="modal">
+    <div class="modal-content">
+        <div class="modal-header row white-text valign-wrapper">
+            <div class="col m2 s3">
+                <img class="responsive-img" src="../web/img/logo.png"> 
+            </div>
+            <div class="col m10 s9">
+            <h3 class="">Recuperación de contraseña</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <form id="frmPassLost" autocomplete="off">
+                    <div class="input-field">
+                        <input id="passLostEmail" name="email" type="email" required>
+                        <label for="passLostEmail">Correo electrónico</label>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="modal-submit btn waves-effect right">Enviar mensaje de recuperación</button>
                     </div>
                 </form>
             </div>

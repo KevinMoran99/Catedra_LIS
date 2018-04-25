@@ -269,6 +269,17 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
             return false;
     }
 
+    //Verifica si existe un usuario [con estado activo] con el email especificado
+    public function checkEmail () {
+        $query ="SELECT * FROM users WHERE email = ? AND state = 1";
+        $params = array($this->getEmail());
+        $user = Model\Connection::selectOne($query,$params);
+        if ($user)
+            return true;
+        else
+            return false;
+    }
+
     //Verifica que la contraseña sea valida y hace login
     public function login () {
         //Obteniendo contraseña para comparar
@@ -308,6 +319,15 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         else {
             return false;
         }
+    }
+
+    //Cambia la contraseña del email dado
+    public function resetPass()
+    {
+        $query ="UPDATE users SET pass=?,pass_date=DATE_ADD(CURDATE(), INTERVAL 1 DAY) WHERE email=?";
+        
+        $params= array($this->getPass(),$this->getEmail());
+        return Model\Connection::insertOrUpdate($query,$params);
     }
 
     public function jsonSerialize()
