@@ -129,22 +129,27 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addTypeSpec") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new TypeSpecController())->addTypeSpec($_POST['name'], $_POST['state']);
         }
 
         else if ($_POST["method"] == "getTypeSpec") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new TypeSpecController())->getTypeSpec($_POST["id"], true);
         }
 
         else if($_POST["method"] == "updateTypeSpec"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro con los datos del array
             (new TypeSpecController())->updateTypeSpec($_POST['id'],$_POST['name'],$_POST['state']);
         }
 
         else if($_POST["method"] == "searchTypeSpec"){
+            $_POST = $val->validateForm($_POST);
             (new TypeSpecController())->searchTypeSpec($_POST["param"],true);
         }
     }

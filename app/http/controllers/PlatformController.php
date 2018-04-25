@@ -121,22 +121,27 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addPlatform") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new PlatformController())->addPlatform($_POST['name'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getPlatform") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new PlatformController())->getPlatform($_POST["id"], true);
         }
 
         if($_POST["method"] == "updatePlatform"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro con los datos del array
             (new PlatformController())->updatePlatform($_POST['id'],$_POST['name'],$_POST['state']);
         }
 
         if($_POST["method"] == "searchPlatform"){
+            $_POST = $val->validateForm($_POST);
             (new PlatformController())->searchPlatform($_POST["param"],true);
         }
     }

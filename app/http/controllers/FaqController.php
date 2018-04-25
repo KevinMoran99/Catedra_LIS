@@ -156,26 +156,32 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addFaq") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new FaqController())->addFaq($_POST['title'], $_POST['description'], $_POST['state']);
         }
 
         else if ($_POST["method"] == "getFaq") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new FaqController())->getFaq($_POST["id"], true);
         }
 
         else if($_POST["method"] == "updateFaq"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro con los datos del array
             (new FaqController())->updateFaq($_POST['id'],$_POST['title'], $_POST['description'],$_POST['state']);
         }
 
         else if($_POST["method"] == "searchFaq"){
+            $_POST = $val->validateForm($_POST);
             (new FaqController())->searchFaq($_POST["param"],true);
         }
 
         else if($_POST["method"] == "searchActiveFaq"){
+            $_POST = $val->validateForm($_POST);
             (new FaqController())->searchActiveFaq($_POST["param"],true);
         }
     }

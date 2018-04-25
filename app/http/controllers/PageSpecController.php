@@ -129,19 +129,23 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addPageSpec") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new PageSpecController())->addPageSpec($_POST['storePage'],$_POST['spec']);
 
         }
 
         if ($_POST["method"] == "getPageSpec") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
 
             (new PageSpecController())->getPageSpec($_POST["id"], true);
         }
 
         if ($_POST["method"] == "getSpecsByPage") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
 
             (new PageSpecController())->getSpecsByPage($_POST["storePage"], true);
@@ -155,6 +159,7 @@ try {
         }*/
 
         if($_POST["method"] == "deletePageSpec"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
             (new PageSpecController())->deletePageSpec($_POST['id']);

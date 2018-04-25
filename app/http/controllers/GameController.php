@@ -197,7 +197,9 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addGame") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new GameController())->addGame($_POST['name'],$_FILES['cover'],$_FILES['banner'],$_POST['description'],$_POST['esrb'],$_POST['publisher'],$_POST['genre'],/*$_POST['platform'],*/ $_POST['state']);
 
@@ -205,11 +207,12 @@ try {
 
         if ($_POST["method"] == "getGame") {
             //obtenemos el registro
-
+            $_POST = $val->validateForm($_POST);
             (new GameController())->getGame($_POST["id"], true);
         }
 
         if($_POST["method"] == "updateGame"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
             (new GameController())->updateGame($_POST['id'], $_POST['name'], is_uploaded_file($_FILES['cover']['tmp_name']) ? $_FILES['cover'] : '',is_uploaded_file($_FILES['banner']['tmp_name']) ? $_FILES['banner'] : '', $_POST['description'], $_POST['esrb'], $_POST['publisher'], $_POST['genre'], /*$_POST['platform'],*/ $_POST['state']);
@@ -217,6 +220,7 @@ try {
         }
 
         if($_POST["method"] == "searchGame"){
+            $_POST = $val->validateForm($_POST);
             (new GameController())->searchGame($_POST["param"],true);
         }
 

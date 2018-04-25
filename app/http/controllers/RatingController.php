@@ -202,35 +202,43 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addRating") {
+            $_POST = $val->validateForm($_POST);
             (new RatingController())->addRating($_POST['bill_item_id'], $_POST['recommended'], $_POST['description']);
         }
 
         else if ($_POST["method"] == "updateRating") {
+            $_POST = $val->validateForm($_POST);
             (new RatingController())->updateRating($_POST['id'], $_POST['recommended'], $_POST['description']);
         }
 
         else if ($_POST["method"] == "getRating") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new RatingController())->getRating($_POST["id"], true);
         }
 
         else if ($_POST["method"] == "getRatingByPage") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new RatingController())->getRatingsByPage($_POST["store_page"], true);
         }
 
         else if ($_POST["method"] == "getFavorableByPage") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new RatingController())->getFavorableByPage($_POST["store_page"]);
         }
 
         else if ($_POST["method"] == "updateRatingVisible") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new RatingController())->updateRatingVisible($_POST["id"],$_POST["visible"]);
         }
 
         else if ($_POST["method"] == "searchRating") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new RatingController())->searchRating($_POST["param"],true);
         }

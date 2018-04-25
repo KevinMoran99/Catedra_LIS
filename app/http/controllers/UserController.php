@@ -471,32 +471,39 @@ class UserController
 //script ejecutado al llamar al controlador con ajax
 if(isset($_POST["method"])){
     include_once ("../../../vendor/autoload.php");
+    $val = new Helper\Validator();
     try {
         if ($_POST["method"] == "addUser") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new UserController())->addUser($_POST['alias'], $_POST['email'], $_POST['pass'], $_POST['passConfirm'], $_POST['userType'], $_POST['state']);
         }
 
         else if ($_POST["method"] == "getUser") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new UserController())->getUser($_POST["id"], true);
         }
 
         else if($_POST["method"] == "searchUser"){
+            $_POST = $val->validateForm($_POST);
             (new UserController())->searchUser($_POST["param"],true);
         }
 
         else if($_POST["method"] == "updateUser"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro con los datos del array
             (new UserController())->updateUser($_POST['id'],$_POST['alias'], $_POST['email'], $_POST['pass'], $_POST['passConfirm'], $_POST['userType'], $_POST['state']);
         }
 
         else if($_POST["method"] == "updateProfile"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro con los datos del array
             (new UserController())->updateProfile($_POST['alias'], $_POST['pass'], $_POST['passConfirm']);
         }
 
         else if ($_POST["method"] == "login") {
+            $_POST = $val->validateForm($_POST);
             //validando captcha
             $recaptcha = $_POST["g-recaptcha-response"];
             //url de google
@@ -532,6 +539,7 @@ if(isset($_POST["method"])){
         }
 
         else if ($_POST["method"] == "signUp") {
+            $_POST = $val->validateForm($_POST);
             //validando captcha
             $recaptcha = $_POST["g-recaptcha-response"];
             //url de google
@@ -573,6 +581,7 @@ if(isset($_POST["method"])){
         }
 
         else if ($_POST["method"] == "updatePassword") {
+            $_POST = $val->validateForm($_POST);
             (new UserController())->updatePassword($_POST['pass'], $_POST['passConfirm']);
         }
     }

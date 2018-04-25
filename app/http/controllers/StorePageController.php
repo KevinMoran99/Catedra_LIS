@@ -199,25 +199,30 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addPage") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new StorePageController())->addPage($_POST['game'],$_POST['release_date'],$_POST['visible'],$_POST['price'],$_POST['discount']);
 
         }
 
         if ($_POST["method"] == "getPage") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
 
             (new StorePageController())->getPage($_POST["id"], true, true);
         }
 
         if ($_POST["method"] == "getPagesByGame") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
 
             (new StorePageController())->getPagesByGame($_POST["game"], true);
         }
 
         if($_POST["method"] == "updatePage"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
             (new StorePageController())->updatePage($_POST['id'],$_POST['release_date'],$_POST['visible'],$_POST['price'],$_POST['discount']);
@@ -225,6 +230,7 @@ try {
         }
 
         if($_POST["method"] == "searchPage"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro. Si no se establecio otra imagen, no se toma en cuenta ese campo
 
             (new StorePageController())->searchPage($_POST['searchType'],$_POST['param']);
@@ -232,11 +238,13 @@ try {
         }
 
         if ($_POST["method"] == "getLinePage") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos los datos
             (new StorePageController())->getLinePage($_POST["year"], $_POST["game"]);
         }
 
         if ($_POST["method"] == "getRadarPage") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos los datos
             (new StorePageController())->getRadarPage($_POST["game"]);
         }

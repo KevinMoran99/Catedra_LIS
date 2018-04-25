@@ -152,22 +152,27 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addGenre") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new GenreController())->addGenre($_POST['name'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getGenre") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new GenreController())->getGenre($_POST["id"], true);
         }
 
         if($_POST["method"] == "updateGenre"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro
             (new GenreController())->updateGenre($_POST['id'],$_POST['name'],$_POST['state']);
         }
 
         if($_POST["method"] == "searchGenre"){
+            $_POST = $val->validateForm($_POST);
             (new GenreController())->searchGenre($_POST["param"],true);
         }
 

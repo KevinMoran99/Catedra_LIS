@@ -155,26 +155,31 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addBill") {
             (new BillController())->addBill();
         }
 
         else if ($_POST["method"] == "getBill") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new BillController())->getBill($_POST["id"], true);
         }
 
         else if ($_POST["method"] == "getBillForClient") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new BillController())->getBillForClient($_POST["id"], true);
         }
 
         else if ($_POST["method"] == "getBillsByUser") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new BillController())->getBillsByUser($_POST["user_id"], true);
         }
 
         else if ($_POST["method"] == "getClientBills") {
+            $_POST = $val->validateForm($_POST);
             //obteniendo id del cliente
             session_start();
             //obtenemos el registro

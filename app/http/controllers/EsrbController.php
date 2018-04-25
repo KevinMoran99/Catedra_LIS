@@ -139,22 +139,27 @@ try {
     if (isset($_POST["method"])) {
         //incluimos la clase autoload para poder utilizar los namespaces
         include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addEsrb") {
+            $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new EsrbController())->addEsrb($_POST['name'], $_POST['state']);
         }
 
         if ($_POST["method"] == "getEsrb") {
+            $_POST = $val->validateForm($_POST);
             //obtenemos el registro
             (new EsrbController())->getEsrb($_POST["id"], true);
         }
 
         if($_POST["method"] == "updateEsrb"){
+            $_POST = $val->validateForm($_POST);
             //actualizamos el registro con los datos del array
             (new EsrbController())->updateEsrb($_POST['id'],$_POST['name'],$_POST['state']);
         }
 
         if($_POST["method"] == "searchEsrb"){
+            $_POST = $val->validateForm($_POST);
             (new EsrbController())->searchEsrb($_POST["param"],true);
         }
 

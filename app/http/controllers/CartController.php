@@ -114,15 +114,21 @@ class CartController
 try
 {
     if (isset($_POST["method"])) {
+        //incluimos la clase autoload para poder utilizar los namespaces
+        include_once("../../../vendor/autoload.php");
+        $val = new Helper\Validator();
         if ($_POST["method"] == "addItem") {
+            $_POST = $val->validateForm($_POST);
             (new CartController())->addItem($_POST['id']);
         }
 
         else if ($_POST["method"] == "addQuant") {
+            $_POST = $val->validateForm($_POST);
             (new CartController())->addQuant($_POST['id'], $_POST['quant']);
         }
 
         else if ($_POST["method"] == "delItem") {
+            $_POST = $val->validateForm($_POST);
             (new CartController())->delItem($_POST['id']);
         }
 
