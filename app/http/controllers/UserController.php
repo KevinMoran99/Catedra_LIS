@@ -305,14 +305,15 @@ class UserController
             if ($user->login()) {
                 //Inicializando variables de sesion
                 session_start();
-                $_SESSION["user"] = $user;
                 $_SESSION['logged_in'] = true;
                 $_SESSION['last_activity'] = time();
                 $_SESSION['expire_time'] = 300;
-                if ($user->getUserType()->getId() != 2) {
-                    Helper\Component::showMessage(1, "admin");
-                }else {
+                if ($user->getUserType()->getId() == 2) {
+                    $_SESSION["userC"] = $user;
                     Helper\Component::showMessage(1, "cliente");
+                }else {
+                    $_SESSION["user"] = $user;
+                    Helper\Component::showMessage(1, "admin");
                 }
             }
             else

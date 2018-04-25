@@ -98,7 +98,7 @@ if(!isset($ajax)){
                 </div>
                 <div class="row">
                     <?php
-                        if (!(empty($_SESSION['user']) || empty($_SESSION['cart']))) {
+                        if (!(empty($_SESSION['userC']) || empty($_SESSION['cart']))) {
                             echo '<button class="col s12 l3 btn waves-effect right" onclick="submitBill()">Realizar transacción</button>';
                         }
                     ?>
