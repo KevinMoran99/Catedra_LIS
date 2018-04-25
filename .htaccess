@@ -92,3 +92,7 @@ AddDefaultCharset utf-8
 <IfModule mod_autoindex.c>
     Options All -Indexes
 </IfModule>
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://localhost:8080/catedra_lis/.*$ [NC]
+RewriteRule \.(gif|jpg)$ http://localhost:8080/externa.jpg [R,L]
