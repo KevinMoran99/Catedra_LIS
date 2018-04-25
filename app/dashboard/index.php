@@ -24,9 +24,15 @@
         ?>
 
         <!--menu-->
-        <?php include 'templates/sidenav.html';?>
+        <?php include 'templates/sidenav.php';?>
         
         <div id="container">
+            <div class="row">
+                <h4 class="col s6 push-s3">Bienvenido a Sttom</h4>
+            </div>
+            <div class="row">
+                <p class="col s6 push-s3 blue-text">Elija una de las opciones del menu disponibles para continuar</p>
+            </div>
         </div>
         
         

@@ -12,6 +12,24 @@ class StandardPdf extends PDF
 {
     //variable que almacena el texto del header
     private $text;
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 
     /**
      * @return mixed
@@ -82,6 +100,6 @@ class StandardPdf extends PDF
         //estableciendonos al centro de la fila
         $this->SetX(0);
         //nombre de usuario
-        $this->Cell(0,10,$_SESSION['user']->getAlias(),0,0,"C");
+        $this->Cell(0,10,$this->getUser(),0,0,"C");
     }
 }

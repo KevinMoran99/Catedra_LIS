@@ -1,6 +1,9 @@
 <?php
 //declarando namespace a utilizar
 use Http\Controllers as Control;
+function error_found(){
+    header("Location: yourerrorpage.php");
+}
 
 ?>
 <link rel="stylesheet" href="css/gameDetail.css">
@@ -11,16 +14,20 @@ use Http\Controllers as Control;
     <?php
     //iniciando sesion para utilizar posteriormente
     session_start();
-    //variables principales
-    $page = new Control\StorePageController();
-    $detail = $page->getPage($id, false);
-    $rating = new Control\RatingController();
-    $ratings = $rating->getRatingsByPagePublic($id, false);
-    $bill = new Control\BillController();
-    $spec = new Control\PageSpecController();
-    $specs = $spec->getSpecsByPage($id, false);
-    $ratingId = 0;
-    $billItem = 0;
+    if(isset($ajax)) {
+        //variables principales
+        $page = new Control\StorePageController();
+        $detail = $page->getPage($id, false);
+        $rating = new Control\RatingController();
+        $ratings = $rating->getRatingsByPagePublic($id, false);
+        $bill = new Control\BillController();
+        $spec = new Control\PageSpecController();
+        $specs = $spec->getSpecsByPage($id, false);
+        $ratingId = 0;
+        $billItem = 0;
+    }else{
+        header("Location:../index.php");
+    }
     //PRIMERA SECCION
     echo '
         <div class="gameBackground"></div>
@@ -92,14 +99,14 @@ use Http\Controllers as Control;
         echo '<h5 class="center-align text">Vaya parece que no hay reviews disponibles :(</h5>
                 <p class="center-align text">Vuelve mas tarde o crea una tu mismo si posees el juego</p>';
     }
-    if (isset($_SESSION['user'])) {
-        $bills = $bill->getBillsByUser($_SESSION['user']->getId(), false);
+    if (isset($_SESSION['userC'])) {
+        $bills = $bill->getBillsByUser($_SESSION['userC']->getId(), false);
     }
     foreach ($ratings as $row) {
         $recommended = $row->getRecommended() ? "Recomendado" : "No recomendado";
         $color = $row->getRecommended() ? "green" : "red";
-        if (isset($_SESSION['user'])) {
-            if ($row->getBillItem()->getBill()->getUser()->getId() == $_SESSION['user']->getId()) {
+        if (isset($_SESSION['userC'])) {
+            if ($row->getBillItem()->getBill()->getUser()->getId() == $_SESSION['userC']->getId()) {
                 $ratingId = $row->getId();
             }
         }
@@ -115,7 +122,7 @@ use Http\Controllers as Control;
     //FIN CUARTA SECCION
     echo '</div>';
     //SEXTA SECCION
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['userC'])) {
         $buyed = false;
         foreach ($bills as $bill) {
             for ($i = 0; $i < sizeof($bill->getItems()); $i++) {

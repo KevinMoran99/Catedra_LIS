@@ -9,6 +9,10 @@ include_once("../../../../vendor/autoload.php");
 use Http\Helpers as Helper;
 use Http\Controllers as Controller;
 
+session_start();
+if(!isset($_POST["id"]) || !isset($_SESSION['userC'])){
+    header("Location:../index.php");
+}
 /*inicio de campos obligatorios*/
 //estableciendo zona horaria del El salvador !!!IMPORTANTE
 date_default_timezone_set("America/El_Salvador");
@@ -19,6 +23,8 @@ $bill = $bill->getBillForClient($_POST["id"],false);
 $pdf = new Helper\StandardPdf("P","mm","Letter");
 //establecemos el titulo del PDF !!!!IMPORTANTE
 $pdf->setHeaderText("Factura No. " . $_POST["id"]);
+
+$pdf->setUser($_SESSION['userC']->getAlias());
 $pdf->AliasNbPages();
 //agregamos la pagina inicial
 $pdf->AddPage();

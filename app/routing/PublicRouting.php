@@ -22,10 +22,12 @@ session_abort();
 switch ($control){
     case "main":
         $page = $_POST["current"];
+        $ajax = 'true';
         include("../public/views/main.php");
         break;
     case "games":
         $page = $_POST["current"];
+        $ajax = 'true';
         if (isset($_POST["searchType"])) {
             $searchType = $_POST["searchType"];
             $param = $_POST["param"];
@@ -34,18 +36,22 @@ switch ($control){
         break;
     case "about":
         $page = $_POST["current"];
+        $ajax = 'true';
         include("../public/views/about.php");
         break;
     case "gameDetail":
         $id = $_POST["id"];
+        $ajax = 'true';
         include("../public/views/gameDetail.php");
         break;
     case "support":
         $page = $_POST["current"];
+        $ajax = 'true';
         include("../public/views/support.php");
         break;
     case "cart":
         $page = $_POST["current"];
+        $ajax = 'true';
         include("../public/views/cart.php");
         break;
     case "rating":

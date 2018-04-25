@@ -4,7 +4,10 @@ include_once("../../../../vendor/autoload.php");
 use Http\Helpers as Helper;
 use Http\Controllers as Controller;
 /*inicio de campos obligatorios*/
-
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location:../../index.php");
+}
 //estableciendo zona horaria del El salvador !!!IMPORTANTE
 date_default_timezone_set("America/El_Salvador");
 
@@ -12,6 +15,7 @@ date_default_timezone_set("America/El_Salvador");
 $pdf = new Helper\StandardPdf("P","mm","Letter");
 //establecemos el titulo del PDF !!!!IMPORTANTE
 $pdf->setHeaderText("Juegos con descuentos");
+$pdf->setUser($_SESSION['user']->getAlias());
 $pdf->AliasNbPages();
 //agregamos la pagina inicial
 $pdf->AddPage();

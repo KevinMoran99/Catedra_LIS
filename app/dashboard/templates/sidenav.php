@@ -8,21 +8,49 @@
             </div>
         </div>
     </li>
-    <li id="menu-games" class="menu-item selected-item"><a class="waves-effect" href="#!" onclick="attach('main',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Juegos">games</i>Juegos</a></li>
+    <?php
+        $user = $_SESSION['user'];
+        $type = $user->getUserType();
+
+        if($type->getGames()){
+            echo '<li id="menu-games" class="menu-item selected-item"><a class="waves-effect" href="#!" onclick="attach(\'main\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Juegos">games</i>Juegos</a></li>';
+        }
+        if($type->getUsers()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'user\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Usuarios">account_box</i>Usuarios</a></li>';
+        }
+        if($type->getSupport()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'support\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Soporte Técnico">build</i>Soporte Técnico</a></li>';
+        }
+        if($type->getStadistics()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'stadistics\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Estadísticas">call_made</i>Estadísticas</a></li>';
+        }
+        if($type->getReviews()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'review\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Moderar Reviews">rate_review</i>Moderar reviews</a></li>';
+        }
+        echo '<li>
+                <div class="divider"></div>
+              </li>';
+        if($type->getEsrbs()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'esrb\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Clasificaciones ESRB">brightness_auto</i>Clasificaciones ESRB</a></li>';
+        }
+        if($type->getPublishers()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'publisher\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Publicadores">business_center</i>Publicadores</a></li>';
+        }
+        if($type->getGenres()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'genre\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Géneros">extension</i>Géneros</a></li>';
+        }
+        if($type->getSpecs()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'spec\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Géneros">settings</i>Especificaciones</a></li>';
+        }
+        if($type->getTypeSpecs()){
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'typeSpec\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Plataformas">settings_applications</i>Tipos de especificaciones</a></li>';
+        }
+    ?>
+
     <!--<li id="menu-games" class="menu-item menu-trigger selected-item"><a class="waves-effect dropdown-trigger" href="#!" data-target="drpGames1"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Juegos">games</i>Juegos<i class="material-icons right">keyboard_arrow_right</i></a></li>-->
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('user',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Usuarios">account_box</i>Usuarios</a></li>
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('support',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Soporte Técnico">build</i>Soporte Técnico</a></li>
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('stadistics',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Estadísticas">call_made</i>Estadísticas</a></li>
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('review',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Moderar Reviews">rate_review</i>Moderar reviews</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('esrb',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Clasificaciones ESRB">brightness_auto</i>Clasificaciones ESRB</a></li>
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('publisher',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Publicadores">business_center</i>Publicadores</a></li>
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('genre',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Géneros">extension</i>Géneros</a></li>
+
+
     <!--<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('platform',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Plataformas">desktop_windows</i>Plataformas</a></li>-->
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('spec',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Géneros">settings</i>Especificaciones</a></li>
-    <li class="menu-item"><a class="waves-effect" href="#!" onclick="attach('typeSpec',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Plataformas">settings_applications</i>Tipos de especificaciones</a></li>
     <li>
         <div class="divider"></div>
     </li>

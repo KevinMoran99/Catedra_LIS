@@ -1,8 +1,8 @@
 
 <?php
-//declarando namespace a utilizar
-use Http\Controllers as Control;
-use Http\Helpers as Helper;
+if(!isset($ajax)){
+    header("Location:../index.php");
+}
 ?>
 <link rel="stylesheet" href="css/cart.css">
 <!--vista de carro de compras de -->
@@ -98,7 +98,7 @@ use Http\Helpers as Helper;
                 </div>
                 <div class="row">
                     <?php
-                        if (!(empty($_SESSION['user']) || empty($_SESSION['cart']))) {
+                        if (!(empty($_SESSION['userC']) || empty($_SESSION['cart']))) {
                             echo '<button class="col s12 l3 btn waves-effect right" onclick="submitBill()">Realizar transacción</button>';
                         }
                     ?>

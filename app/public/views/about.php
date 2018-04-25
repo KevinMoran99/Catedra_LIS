@@ -1,3 +1,8 @@
+<?php
+if(!isset($ajax)){
+    header("Location:../index.php");
+}
+?>
 <link rel="stylesheet" href="css/about.css">
 <!--vista de acerca de -->
 

@@ -56,7 +56,7 @@
             //Autenticacion
             include_once ("../../vendor/autoload.php");
             if (!session_id()) session_start();
-            if (!isset($_SESSION['user'])) {
+            if (!isset($_SESSION['userC'])) {
                 ?>
                 <div id="menu-login" class="container">
                     <div class="center-align row">
@@ -77,7 +77,7 @@
                 <?php
 
                 //Si es un admin, se redirige a dashboard
-                if ($_SESSION['user']->getUserType()->getId() == 1) {
+                if ($_SESSION['userC']->getUserType()->getId() == 1) {
                     header("Location:../dashboard/index.php");
                     die();
                 }
@@ -479,8 +479,8 @@
 <script>
     //Guardando alias de usuario en variable js
     var alias = "<?php
-        if (isset($_SESSION['user'])) {
-            echo $_SESSION['user']->getAlias();
+        if (isset($_SESSION['userC'])) {
+            echo $_SESSION['userC']->getAlias();
         }
         else {
             echo '';

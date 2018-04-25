@@ -1,3 +1,8 @@
+<?php
+if(!isset($ajax)){
+    header("Location:../index.php");
+}
+?>
 <link rel="stylesheet" href="css/gameDetail.css">
 <!--vista de rating -->
 <!--header-->

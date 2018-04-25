@@ -2,7 +2,7 @@ $(document).ready( function () {
     $('.dropdown-trigger').dropdown();
     $('.sidenav').sidenav();
     $('.modal').modal();
-    attach("main");
+    //attach("main");
 
     //Verificando si la contraseña del usuario no ha expirado
     $.ajax({
