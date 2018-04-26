@@ -363,7 +363,8 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
 
     public function search($param) {
         $query = "SELECT * FROM user_types WHERE name LIKE CONCAT('%',?,'%') " .
-                 "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)";
+                 "OR state = (CASE WHEN 'activo' LIKE CONCAT('%',?,'%') THEN 1 WHEN 'inactivo' LIKE CONCAT('%',?,'%') THEN 0 END)
+                 AND id > 2";
         $params = array($param,$param,$param);
         //Array de objetos devueltos
         $result = [];
