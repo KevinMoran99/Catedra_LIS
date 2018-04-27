@@ -295,14 +295,40 @@ class UserController
         }
     }
 
-    //METODO DE INICIO DE SESION
-    public function login($name, $pass) {
+    //METODO DE INICIO DE SESION PASO 1
+    public function loginStep1($name, $pass) {
         //$name puede ser el alias o el email
         $user = new Model\User();
         $user->setAlias($name);
         $user->setPass($pass);
         if ($user->checkName()) {
-            if ($user->login()) {
+            $hash = $user->loginStep1();
+            if (!is_bool($hash)) {
+                //Enviando hash por correo
+                $response = Helper\Mailer::sendMail($user->getEmail(), $hash, Helper\Mailer::$CONFIRMHASH);
+
+                if (is_bool($response)) {
+                    Helper\Component::showMessage(Helper\Component::$SUCCESS, "Código de confirmación enviado");
+                } else {
+                    Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+                }
+            }
+            else
+                Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");
+        }
+        else
+            Helper\Component::showMessage(3, "No existe ningún usuario con el alias o email especificado.");
+
+    }
+
+    //METODO DE INICIO DE SESION PASO 2
+    public function loginStep2($name, $hash) {
+        //$name puede ser el alias o el email
+        $user = new Model\User();
+        $user->setAlias($name);
+        $user->setLoginCode($hash);
+        if ($user->checkName()) {
+            if ($user->loginStep2()) {
                 //Inicializando variables de sesion
                 session_start();
                 $_SESSION['logged_in'] = true;
@@ -317,7 +343,7 @@ class UserController
                 }
             }
             else
-                Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");
+                Helper\Component::showMessage(3, "El código de confirmación especificado es incorrecto.");
         }
         else
             Helper\Component::showMessage(3, "No existe ningún usuario con el alias o email especificado.");
@@ -494,7 +520,7 @@ class UserController
             $pass = Helper\Encryptor::generatePassword();
 
             //Enviando contraseña por correo
-            $response = Helper\Mailer::resetPassword($email, $pass);
+            $response = Helper\Mailer::sendMail($email, $pass, Helper\Mailer::$RESETPASS);
 
             if (is_bool($response)) {
 
@@ -556,7 +582,7 @@ if(isset($_POST["method"])){
             (new UserController())->updateProfile($_POST['alias'], $_POST['pass'], $_POST['passConfirm']);
         }
 
-        else if ($_POST["method"] == "login") {
+        else if ($_POST["method"] == "loginStep1") {
             $_POST = $val->validateForm($_POST);
             //validando captcha
             $recaptcha = $_POST["g-recaptcha-response"];
@@ -585,11 +611,16 @@ if(isset($_POST["method"])){
             //validando
             if ($captcha_success->success) {
                 // Human After All
-                (new UserController())->login($_POST['alias'], $_POST['pass']);
+                (new UserController())->loginStep1($_POST['alias'], $_POST['pass']);
             }else{
                 Helper\Component::showMessage(Helper\Component::$WARNING, "Captcha incorrecto");
             }
 
+        }
+
+        else if ($_POST["method"] == "loginStep2") {
+            $_POST = $val->validateForm($_POST);
+            (new UserController())->loginStep2($_POST['alias'], $_POST['hash']);
         }
 
         else if ($_POST["method"] == "signUp") {

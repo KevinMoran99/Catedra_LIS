@@ -36,6 +36,19 @@ class Encryptor
         return $randomString;
     }
 
+    //Genera un hash aleatorio que es enviado al correo electronico de un usuario que quiere hacer login
+    public static function generateConfirmHash() {
+        //Objetos que hacen la generación aleatoria
+        $factory = new Factory();
+        $generator = $factory->getMediumStrengthGenerator();
+
+        //Objeto de validación
+        $validator = new Validator();
+        $randomString = $generator->generateString(10);
+        
+        return $randomString;
+    }
+
 
     //const METHOD = 'aes-256-ctr';
     /**

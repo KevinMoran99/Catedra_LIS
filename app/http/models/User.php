@@ -21,6 +21,7 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
     private $userType;
     private $state;
     private $passDate; //No es incluido en método init
+    private $loginCode; //No es incluido en método init
 
     /**
      * User constructor.
@@ -153,6 +154,22 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         $this->passDate = $passDate;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLoginCode()
+    {
+        return $this->loginCode;
+    }
+
+    /**
+     * @param mixed $loginCode
+     */
+    public function setLoginCode($loginCode)
+    {
+        $this->loginCode = $loginCode;
+    }
+
 
     public function getAll($active = false){
         if ($active)
@@ -280,17 +297,48 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
             return false;
     }
 
-    //Verifica que la contraseña sea valida y hace login
-    public function login () {
+    //Verifica que la contraseña sea valida y luego envia el codigo de seguridad al correo del usuario
+    public function loginStep1 () {
         //Obteniendo contraseña para comparar
         $query ="SELECT * FROM users WHERE (alias = ? OR email = ?) AND state = 1";
         $params = array($this->getAlias(), $this->getAlias());
         $user = Model\Connection::selectOne($query,$params);
 
-
         //Comparando con la contraseña proporcionada
         if (password_verify($this->getPass(), $user['pass'])) {
-            //Si las contraseñas concuerdan, se hace el login
+
+            //Si las contraseñas concuerdan, se envia el codigo de confirmacion al email
+            $hash = Helper\Encryptor::generateConfirmHash();
+
+            //Encriptando hash
+            $encHash = Helper\Encryptor::encrypt($hash);
+
+            //Guardando hash
+            $query ="UPDATE users SET login_code = ? WHERE id = ?";
+            $params = array($encHash, $user['id']);
+
+            $confirm = Model\Connection::insertOrUpdate($query,$params);
+            
+            //Estableciendole el email para usarlo en el mensaje y en el segundo paso
+            $this->setEmail($user['email']);
+            
+            //Retorna el hash para ser enviado por correo desde el controlador
+            return $hash;
+        }
+        else
+            return false;
+    }
+
+    //Verifica que el hash de confirmacion de login sea valido, y luego hace el login
+    public function loginStep2 () {
+        //Obteniendo contraseña para comparar
+        $query ="SELECT * FROM users WHERE (alias = ? OR email = ?) AND state = 1";
+        $params = array($this->getAlias(), $this->getAlias());
+        $user = Model\Connection::selectOne($query,$params);
+
+        //Comparando con el hash proporcionado
+        if (password_verify($this->getLoginCode(), $user['login_code'])) {
+            //Si los hash concuerdan, se hace el login
             $this->setId($user['id']);
             $this->setAlias($user['alias']);
             $this->setEmail($user['email']);

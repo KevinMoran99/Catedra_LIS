@@ -35,6 +35,34 @@
         </div>
     </div>
 
+    <!--Modal de confirmación de cuenta-->
+    <div id="modalConfirmLogin" class="modal">
+        <div class="modal-content">
+            <div class="modal-header row white-text valign-wrapper">
+                <div class="col m2 s3">
+                    <img class="responsive-img" src="../web/img/logo.png"> 
+                </div>
+                <div class="col m10 s9">
+                <h3 class="">Confirmación de cuenta</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m8 offset-m2 center-align">
+                    <form id="frmConfirmLogin" autocomplete="off">
+                        <p>Hemos enviado un código de verificación a su cuenta de correo electrónico. Por favor, copie este mensaje aquí para continuar:</p>
+                        <div class="input-field">
+                            <input id="confirmHash" name="confirmHash" type="text" required>
+                            <label for="confirmHash">Código</label>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="modal-submit btn waves-effect right">Continuar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Modal de recuperación de contraseña-->
     <div id="modalPassLost" class="modal">
         <div class="modal-content">

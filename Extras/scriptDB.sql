@@ -118,6 +118,7 @@ CREATE TABLE users(
     user_type_id INT UNSIGNED NOT NULL,
     state BOOL DEFAULT 1,
     pass_date DATE NOT NULL,
+    login_code VARCHAR(100) DEFAULT NULL,
     CONSTRAINT fk_user_types_users FOREIGN KEY(user_type_id) REFERENCES user_types(id) ON DELETE RESTRICT ON UPDATE CASCADE
 ); 
 
