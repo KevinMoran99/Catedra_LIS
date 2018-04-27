@@ -36,6 +36,32 @@ class UserController
         return $user->getAllInactive();
     }
 
+    //Devuelve true si hay al menos un usuario registrado
+    public function hasUsers($ajax = false) {
+        //creamos un nuevo objeto
+        $user = new Model\User();
+        //retornamos todos los datos
+        $users = $user->getAll(true);
+
+        //Evaluando
+        if (sizeof($users) == 0) {
+            if ($ajax) {
+                echo 'false';
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            if ($ajax) {
+                echo 'true';
+            }
+            else {
+                return true;
+            }
+        }
+    }
+
     //AGREGAR REGISTRO
     public function addUser($alias, $email, $pass, $passConfirm, $userType, $state)
     {
@@ -405,9 +431,88 @@ class UserController
             $response = $user->insert(); //Si se hace el insert retornará true. Si no, retornará el código de la excepción mysql
             if (is_bool($response)) {
                 ob_start();
-                $this->login($alias, $pass);
+                //Obteniendo usuario recien creado y guardandolo en variable de sesion
+                $user->getByEmail();
+                session_start();
+                $_SESSION['logged_in'] = true;
+                $_SESSION['last_activity'] = time();
+                $_SESSION['expire_time'] = 300;
+                $_SESSION["userC"] = $user;
                 ob_end_clean();
                 Helper\Component::showMessage(Helper\Component::$SUCCESS, "¡BIENVENIDO A BORDO! Gracias por elegir Stoam xD");
+            } else {
+                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+            }
+        } else {
+            //si el flag es verdadero, muestra el mensaje de error de validacion
+            Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
+        }
+    }
+
+    //Método de registro de primer usuario
+    public function firstSignUp($alias, $email, $pass, $passConfirm) {
+        //creamos objetos de validacion y user
+        $validator = new Helper\Validator();
+        $user = new Model\User();
+        //variables de validacion
+        $flag = false;
+        $validateError = "";
+        //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
+        if ($this->hasUsers()) {
+            $validateError = "La primera cuenta ya ha sido creada";
+            $flag = true;
+        }
+        if (!($pass == $passConfirm)) {
+            $validateError = "Las contraseñas ingresadas no coinciden";
+            $flag = true;
+        }
+        if (!$validator->validatePassword($pass)) {
+            $validateError = "La contraseña debe tener al menos 8 caracteres de longitud y contener al menos un caracter alfanumérico y un caracter especial";
+            $flag = true;
+        }
+        if (!$validator->validateEmail($email)) {
+            $validateError = "El email ingresado es inválido";
+            $flag = true;
+        }
+        if (!$validator->validateAlphanumeric($alias, 3, 50)) {
+            $validateError = "Solo se permiten numeros, letras y signos de puntuación en el nombre de usuario";
+            $flag = true;
+        }
+        //Verificando que el alias y la contraseña sean diferentes
+        if ($pass == $alias) {
+            $validateError = "El alias y la contraseña deben ser diferentes";
+            $flag = true;
+        }
+
+        //si el flag sigue siendo falso en este punto, agrega un nuevo registro
+        if (!$flag) {
+            //Encriptando contraseña
+            $encPass = Helper\Encryptor::encrypt($pass);
+
+            //Obteniendo padre del user
+            $type = new Model\UserType();
+            $type->setId(1);
+            $type->getById();
+
+            //llenamos el objeto con los datos proporcionados
+            $user->setAlias($alias);
+            $user->setEmail($email);
+            $user->setPass($encPass);
+            $user->setUserType($type);
+            $user->setState(1);
+
+            $response = $user->insert(); //Si se hace el insert retornará true. Si no, retornará el código de la excepción mysql
+            if (is_bool($response)) {
+                ob_start();
+                //Obteniendo usuario recien creado y guardandolo en variable de sesion
+                $user->getByEmail();
+                session_start();
+                $_SESSION['logged_in'] = true;
+                $_SESSION['last_activity'] = time();
+                $_SESSION['expire_time'] = 300;
+                $_SESSION["user"] = $user;
+                ob_end_clean();
+                Helper\Component::showMessage(Helper\Component::$SUCCESS, "PRIMERA CUENTA CREADA - ¡Bienvenido a Sttom xD!");
             } else {
                 Helper\Component::showMessage(Helper\Component::$WARNING, $response);
             }
@@ -655,6 +760,44 @@ if(isset($_POST["method"])){
             }else{
                 Helper\Component::showMessage(Helper\Component::$WARNING, "Captcha incorrecto");
             }
+        }
+
+        else if ($_POST["method"] == "firstSignUp") {
+            $_POST = $val->validateForm($_POST);
+            //validando captcha
+            $recaptcha = $_POST["g-recaptcha-response"];
+            //url de google
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
+            //datos a enviar (Incluyendo clave de google de captcha)
+            $data = array(
+                'secret' => '6Lf2ClUUAAAAAHmmt2tBXCMfbiApLghA7FsGsOpk',
+                'response' => $recaptcha
+            );
+            //estableciendo parametros de query
+            $options = array(
+                'http' => array (
+                    'header' => "Content-Type: application/x-www-form-urlencoded\r\n".
+                        "User-Agent:MyAgent/1.0\r\n",
+                    'method' => 'POST',
+                    'content' => http_build_query($data)
+                )
+            );
+            //estableciendo un contexto
+            $context  = stream_context_create($options);
+            //solicitando la data
+            $verify = file_get_contents($url, false, $context);
+            //parse a json
+            $captcha_success = json_decode($verify);
+            //validando
+            if ($captcha_success->success) {
+                (new UserController())->firstSignUp($_POST['alias'], $_POST['email'], $_POST['pass'], $_POST['passConfirm']);
+            }else{
+                Helper\Component::showMessage(Helper\Component::$WARNING, "Captcha incorrecto");
+            }
+        }
+        
+        else if ($_POST["method"] == "hasUsers") {
+            (new UserController())->hasUsers(true);
         }
 
         else if ($_POST["method"] == "logout") {

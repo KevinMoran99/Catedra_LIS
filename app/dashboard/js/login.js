@@ -1,5 +1,19 @@
 $(document).ready(function() {
     $('.modal').modal();
+
+    $.ajax({
+        method: 'POST',
+        data: {'method': 'hasUsers'},
+        url: "../http/controllers/UserController.php",
+        success: function (result) {
+            if (result == 'false') {
+                $('#modalSignUp').modal({
+                    dismissible: false
+                });
+                $('#modalSignUp').modal('open');
+            }
+        }
+    });
 });
 
 //Ajax de login paso 1
@@ -97,6 +111,35 @@ $("#frmPassLost").submit(function( event ) {
             }
             console.log(result);
             swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+        }
+    });
+});
+
+
+//Registrar primer usuario
+$('#frmSignUp').submit(function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    formData.append("method","firstSignUp");
+    $.ajax({
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        url: "../http/controllers/UserController.php",
+        success: function (result) {
+            var output = result.split("|");
+            console.log(result);
+            if (output[0] == "Éxito") {
+                swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+                    .then(function (confirm) {
+                        window.location.replace("index.php");
+                    }
+                );
+            }else {
+                grecaptcha.reset();
+                swal({title: output[0], text: output[1], icon: output[2], button: 'Aceptar', closeOnClickOutside: false, closeOnEsc: false})
+            }
         }
     });
 });

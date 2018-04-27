@@ -231,6 +231,22 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
         $this->setState($user['state']);
     }
 
+    public function getByEmail()
+    {
+        $query ="SELECT * FROM users WHERE email = ?";
+        $params = array($this->getEmail());
+        $user = Model\Connection::selectOne($query,$params);
+        $this->setId($user['id']);
+        $this->setAlias($user['alias']);
+        $this->setEmail($user['email']);
+        $this->setPass($user['pass']);
+            $pUserType = new UserType();
+            $pUserType->setId($user['user_type_id']);
+            $pUserType->getById();
+        $this->setUserType($pUserType);
+        $this->setState($user['state']);
+    }
+
     public function insert()
     {
         $query ="INSERT INTO users (alias, email, pass, user_type_id, state, pass_date) VALUES(?,?,?,?,?,CURDATE())";

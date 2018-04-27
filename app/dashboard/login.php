@@ -89,6 +89,51 @@
             </div>
         </div>
     </div>
+
+    <!--Modal de registro de primer usuario-->
+    <div id="modalSignUp" class="modal">
+        <div class="modal-content">
+            <div class="modal-header row white-text valign-wrapper">
+                <div class="col m2 s3">
+                    <img class="responsive-img" src="../web/img/logo.png"> 
+                </div>
+                <div class="col m10 s9">
+                    <h3 class="">Bienvenido a Stoam xD</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m8 offset-m2 center-align">
+                    <p>Te damos la bienvenida a Sttom, administrador. Por favor, crea tu cuenta ahora:</p>
+                    <form id="frmSignUp" autocomplete="off">
+                        <div class="input-field">
+                            <input id="signUpEmail" name="email" type="email" required>
+                            <label for="signUpEmail">Correo electrónico</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="signUpUser" name="alias" type="text" required>
+                            <label for="signUpUser">Nombre de usuario</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="signUpPass" name="pass" type="password" required>
+                            <label for="signUpPass">Contraseña</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="signUpConfirm" name="passConfirm" type="password" required>
+                            <label for="signUpConfirm">Repetir contraseña</label>
+                        </div>
+                        <div class="row">
+                            <div class="col s6 push-s3 g-recaptcha" data-sitekey="6Lf2ClUUAAAAAA3EZ2c9eC9U_1PwaPkbC4LDWt9T"></div>
+                        </div>
+
+                        <div class="row">
+                            <button type="submit" class="modal-submit btn waves-effect right">Registrarse</button>
+                            <button class="btn waves-effect right modal-close">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
         
     </body>
     <?php include 'templates/scripts.html';?>
