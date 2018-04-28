@@ -107,7 +107,8 @@ CREATE TABLE user_types(
     publishers BOOL DEFAULT 0,
     genres BOOL DEFAULT 0,
     specs BOOL DEFAULT 0,
-    type_specs BOOL DEFAULT 0
+    type_specs BOOL DEFAULT 0,
+    user_types BOOL DEFAULT 0
 ); 
 
 CREATE TABLE users(
@@ -232,7 +233,7 @@ INSERT INTO actions(name) VALUES("Factura generada");
 INSERT INTO actions(name) VALUES("Calificación añadida");
 
 -- user_types
-INSERT INTO user_types(name, games, users, support, stadistics, reviews, esrbs, publishers, genres, specs, type_specs) VALUES("Administrador", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+INSERT INTO user_types(name, games, users, support, stadistics, reviews, esrbs, publishers, genres, specs, type_specs, user_types) VALUES("Administrador", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 INSERT INTO user_types(name) VALUES("Cliente");
 
 -- users

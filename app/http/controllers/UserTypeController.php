@@ -39,7 +39,7 @@ class UserTypeController
 
     //AGREGAR REGISTRO
     public function  addUserType($name,$state,$games, $users, $support, $stadistics, 
-                                $reviews, $esrbs, $publishers, $genres, $specs, $typeSpecs){
+                                $reviews, $esrbs, $publishers, $genres, $specs, $typeSpecs, $userTypes){
         //creamos objetos de validacion y tipo de usuario
         $validator = new Helper\Validator();
         $type = new Model\UserType();
@@ -67,6 +67,7 @@ class UserTypeController
             $type->setGenres($genres);
             $type->setSpecs($specs);
             $type->setTypeSpecs($typeSpecs);
+            $type->setUserTypes($userTypes);
 
             $response = $type->insert(); //Si se hace el insert retornará true. Si no, retornará el código de la excepción mysql
             if (is_bool($response)) {
@@ -98,7 +99,7 @@ class UserTypeController
 
     //ACTUALIZAR REGISTRO
     public function updateUserType($id, $name, $state, $games, $users, $support, $stadistics, 
-                                  $reviews, $esrbs, $publishers, $genres, $specs, $typeSpecs){
+                                  $reviews, $esrbs, $publishers, $genres, $specs, $typeSpecs, $userTypes){
         //objetos de validacion y tipo de usuario
         $validator = new Helper\Validator();
         $type = new Model\UserType();
@@ -127,6 +128,7 @@ class UserTypeController
             $type->setGenres($genres);
             $type->setSpecs($specs);
             $type->setTypeSpecs($typeSpecs);
+            $type->setUserTypes($userTypes);
 
             $response = $type->update();
             if (is_bool($response)) {
@@ -166,7 +168,7 @@ try {
             (new UserTypeController())->addUserType($_POST['name'],$_POST['state'],$_POST['games'], 
                                                     $_POST['users'], $_POST['support'], $_POST['stadistics'], 
                                                     $_POST['reviews'], $_POST['esrbs'], $_POST['publishers'], 
-                                                    $_POST['genres'], $_POST['specs'], $_POST['typeSpecs']);
+                                                    $_POST['genres'], $_POST['specs'], $_POST['typeSpecs'], $_POST['userTypes']);
         }
 
         if ($_POST["method"] == "getUserType") {
@@ -181,7 +183,7 @@ try {
             (new UserTypeController())->updateUserType($_POST['id'],$_POST['name'],$_POST['state'],$_POST['games'], 
                                                         $_POST['users'], $_POST['support'], $_POST['stadistics'], 
                                                         $_POST['reviews'], $_POST['esrbs'], $_POST['publishers'], 
-                                                        $_POST['genres'], $_POST['specs'], $_POST['typeSpecs']);
+                                                        $_POST['genres'], $_POST['specs'], $_POST['typeSpecs'], $_POST['userTypes']);
         }
 
         if($_POST["method"] == "searchUserType"){

@@ -412,7 +412,8 @@ class User implements Interfaces\ModelInterface, \JsonSerializable
                 'publishers' => $this->getUserType()->getPublishers(),
                 'genres' => $this->getUserType()->getGenres(),
                 'specs' => $this->getUserType()->getSpecs(),
-                'typeSpecs' => $this->getUserType()->getTypeSpecs()
+                'typeSpecs' => $this->getUserType()->getTypeSpecs(),
+                'userTypes' => $this->getUserType()->getUserTypes()
             ],
             'state' => $this->getState()
         ];

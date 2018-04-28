@@ -27,6 +27,7 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
     private $genres;
     private $specs;
     private $typeSpecs;
+    private $userTypes;
 
     /**
      * Action constructor.
@@ -35,7 +36,7 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
      * @param int $state
      */
     public function init($id, $name, $state, $games, $users, $support, $stadistics, 
-                        $reviews, $esrbs, $publishers, $genres, $specs, $typeSpecs)
+                        $reviews, $esrbs, $publishers, $genres, $specs, $typeSpecs, $userTypes)
     {
         $this->id = $id;
         $this->name = $name;
@@ -49,6 +50,7 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
         $this->genres = $genres;
         $this->specs = $specs;
         $this->typeSpecs = $typeSpecs;
+        $this->userTypes = $userTypes;
     }
 
     /**
@@ -259,6 +261,22 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
         $this->typeSpecs = $typeSpecs;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUserTypes()
+    {
+        return $this->userTypes;
+    }
+
+    /**
+     * @param mixed $userTypes
+     */
+    public function setUserTypes($userTypes)
+    {
+        $this->userTypes = $userTypes;
+    }
+
 
     //Query methods
 
@@ -293,7 +311,8 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
                 $line["publishers"], 
                 $line["genres"], 
                 $line["specs"], 
-                $line["type_specs"]
+                $line["type_specs"],
+                $line["user_types"]
             );
             array_push($result, $userType);
         }
@@ -317,32 +336,13 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
             $userType["publishers"], 
             $userType["genres"], 
             $userType["specs"], 
-            $userType["type_specs"]
+            $userType["type_specs"],
+            $userType["user_types"]
         );
     }
 
     public function insert(){
-        $query ="INSERT INTO user_types (name,state,games, users, support, stadistics, reviews, esrbs, publishers, genres, specs, type_specs) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-        $params= array(
-            $this->getName(),
-            $this->getState(),
-            $this->getGames(),
-            $this->getUsers(),
-            $this->getSupport(),
-            $this->getStadistics(),
-            $this->getReviews(),
-            $this->getEsrbs(),
-            $this->getPublishers(),
-            $this->getGenres(),
-            $this->getSpecs(),
-            $this->getTypeSpecs()
-        );
-        return Model\Connection::insertOrUpdate($query,$params);
-    }
-
-    public function update(){
-        $query ="UPDATE user_types SET name=?,state=?,games=?,users=?,support=?,stadistics=?,reviews=?,
-        esrbs=?,publishers=?,genres=?,specs=?,type_specs=? WHERE id=?";
+        $query ="INSERT INTO user_types (name,state,games, users, support, stadistics, reviews, esrbs, publishers, genres, specs, type_specs, user_types) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $params= array(
             $this->getName(),
             $this->getState(),
@@ -356,6 +356,28 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
             $this->getGenres(),
             $this->getSpecs(),
             $this->getTypeSpecs(),
+            $this->getUserTypes()
+        );
+        return Model\Connection::insertOrUpdate($query,$params);
+    }
+
+    public function update(){
+        $query ="UPDATE user_types SET name=?,state=?,games=?,users=?,support=?,stadistics=?,reviews=?,
+        esrbs=?,publishers=?,genres=?,specs=?,type_specs=?,user_types=? WHERE id=?";
+        $params= array(
+            $this->getName(),
+            $this->getState(),
+            $this->getGames(),
+            $this->getUsers(),
+            $this->getSupport(),
+            $this->getStadistics(),
+            $this->getReviews(),
+            $this->getEsrbs(),
+            $this->getPublishers(),
+            $this->getGenres(),
+            $this->getSpecs(),
+            $this->getTypeSpecs(),
+            $this->getUserTypes(),
             $this->getId()
         );
         return Model\Connection::insertOrUpdate($query,$params);
@@ -384,7 +406,8 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
                 $line["publishers"], 
                 $line["genres"], 
                 $line["specs"], 
-                $line["type_specs"]
+                $line["type_specs"],
+                $line["user_types"]
             );
             array_push($result, $userType);
         }
@@ -406,7 +429,8 @@ class UserType implements Interfaces\ModelInterface, \JsonSerializable
             'publishers' => $this->getPublishers(),
             'genres' => $this->getGenres(),
             'specs' => $this->getSpecs(),
-            'typeSpecs' => $this->getTypeSpecs()
+            'typeSpecs' => $this->getTypeSpecs(),
+            'userTypes' => $this->getUserTypes()
         ];
     }
 }
