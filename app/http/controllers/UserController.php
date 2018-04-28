@@ -321,29 +321,67 @@ class UserController
         }
     }
 
+    private $MAX_TRIES = 3;
+    //Llamado al fallar el login. Incrementa el contador de fallos, y si este llega a 3, banea la ip actual
+    private function loginError() {
+        session_start();
+        if(!isset($_SESSION['times_failed'])) {
+            $_SESSION['times_failed'] = 1;
+        }
+        else {
+            $_SESSION['times_failed']++;
+        }
+
+        if($_SESSION['times_failed'] >= $this->MAX_TRIES) {
+            //Si la cantidad de intentos fallidos maxima es alcanzada, la ip es baneada
+            Model\Ban::ban();
+            return "Has superado el número máximo de intentos de inicio de sesión.";
+        }
+        else {
+            return "";
+        }
+    }
+
     //METODO DE INICIO DE SESION PASO 1
     public function loginStep1($name, $pass) {
         //$name puede ser el alias o el email
         $user = new Model\User();
         $user->setAlias($name);
         $user->setPass($pass);
-        if ($user->checkName()) {
-            $hash = $user->loginStep1();
-            if (!is_bool($hash)) {
-                //Enviando hash por correo
-                $response = Helper\Mailer::sendMail($user->getEmail(), $hash, Helper\Mailer::$CONFIRMHASH);
+        if(!(Model\Ban::isBanned()))
+        {
+            if ($user->checkName()) {
+                $hash = $user->loginStep1();
+                if (!is_bool($hash)) {
+                    //Reiniciando intentos fallidos
+                    if(isset($_SESSION['times_failed'])) {
+                        $_SESSION['times_failed'] = 0;
+                    }
 
-                if (is_bool($response)) {
-                    Helper\Component::showMessage(Helper\Component::$SUCCESS, "Código de confirmación enviado");
-                } else {
-                    Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+                    //Enviando hash por correo
+                    $response = Helper\Mailer::sendMail($user->getEmail(), $hash, Helper\Mailer::$CONFIRMHASH);
+
+                    if (is_bool($response)) {
+                        Helper\Component::showMessage(Helper\Component::$SUCCESS, "Código de confirmación enviado");
+                    } else {
+                        Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+                    }
+                }
+                else {
+                    $ban = $this->loginError();
+                    Helper\Component::showMessage(3, "La contraseña especificada es incorrecta. " . $ban);
                 }
             }
-            else
-                Helper\Component::showMessage(3, "La contraseña especificada es incorrecta.");
+            else {
+                $ban = $this->loginError();
+                Helper\Component::showMessage(3, "No existe ningún usuario con el alias o email especificado. " . $ban);
+            }
         }
-        else
-            Helper\Component::showMessage(3, "No existe ningún usuario con el alias o email especificado.");
+        else {
+            $this->loginError();
+            Helper\Component::showMessage(3, "Has superado el número máximo de intentos de inicio de sesión.");
+        }
+
 
     }
 
@@ -601,56 +639,62 @@ class UserController
     }
 
     public function resetPass($email) {
-        //creamos objetos de validacion y user
-        $validator = new Helper\Validator();
-        $user = new Model\User();
-        $user->setEmail($email);
-        //variables de validacion
-        $flag = false;
-        $validateError = "";
-        //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
-        if (!$validator->validateEmail($email)) {
-            $validateError = "El email ingresado es inválido";
-            $flag = true;
-        }
-        else if (!$user->checkEmail()) {
-            $validateError = "No existe ninguna cuenta vinculada al email ingresado";
-            $flag = true;
-        }
+        //Validando que no este baneado
+        if(!Model\Ban::isBanned())
+        {
+            //creamos objetos de validacion y user
+            $validator = new Helper\Validator();
+            $user = new Model\User();
+            $user->setEmail($email);
+            //variables de validacion
+            $flag = false;
+            $validateError = "";
+            //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
+            if (!$validator->validateEmail($email)) {
+                $validateError = "El email ingresado es inválido";
+                $flag = true;
+            }
+            else if (!$user->checkEmail()) {
+                $validateError = "No existe ninguna cuenta vinculada al email ingresado";
+                $flag = true;
+            }
 
-        //si el flag sigue siendo falso en este punto, agrega un nuevo registro
-        if (!$flag) {
-            
-            //Generando contraseña aleatoria
-            $pass = Helper\Encryptor::generatePassword();
+            //si el flag sigue siendo falso en este punto, agrega un nuevo registro
+            if (!$flag) {
+                
+                //Generando contraseña aleatoria
+                $pass = Helper\Encryptor::generatePassword();
 
-            //Enviando contraseña por correo
-            $response = Helper\Mailer::sendMail($email, $pass, Helper\Mailer::$RESETPASS);
-
-            if (is_bool($response)) {
-
-                //Encriptando contraseña
-                $encPass = Helper\Encryptor::encrypt($pass);
-                //llenamos el objeto con los datos proporcionados
-                $user->setPass($encPass);
-                //Guardando contraseña
-                $response = $user->resetPass();
+                //Enviando contraseña por correo
+                $response = Helper\Mailer::sendMail($email, $pass, Helper\Mailer::$RESETPASS);
 
                 if (is_bool($response)) {
-                    Helper\Component::showMessage(Helper\Component::$SUCCESS, "El mensaje de reestablecimiento de contraseña ha sido enviado a la cuenta de correo electrónico proporcionada");
+
+                    //Encriptando contraseña
+                    $encPass = Helper\Encryptor::encrypt($pass);
+                    //llenamos el objeto con los datos proporcionados
+                    $user->setPass($encPass);
+                    //Guardando contraseña
+                    $response = $user->resetPass();
+
+                    if (is_bool($response)) {
+                        Helper\Component::showMessage(Helper\Component::$SUCCESS, "El mensaje de reestablecimiento de contraseña ha sido enviado a la cuenta de correo electrónico proporcionada");
+                    } else {
+                        Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+                    }
+                    
                 } else {
                     Helper\Component::showMessage(Helper\Component::$WARNING, $response);
                 }
-                
             } else {
-                Helper\Component::showMessage(Helper\Component::$WARNING, $response);
+                //si el flag es verdadero, muestra el mensaje de error de validacion
+                Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
             }
-        } else {
-            //si el flag es verdadero, muestra el mensaje de error de validacion
-            Helper\Component::showMessage(Helper\Component::$ERROR, $validateError);
+        }
+        else {
+            Helper\Component::showMessage(3, "Has superado el número máximo de intentos de inicio de sesión.");
         }
     }
-
 }
 
 //script ejecutado al llamar al controlador con ajax

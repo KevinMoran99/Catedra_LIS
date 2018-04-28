@@ -188,6 +188,12 @@ CREATE TABLE audits(
 alter table audits add index(action_id);
 alter table audits add index(user_id);
 
+CREATE TABLE bans(
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    ip VARCHAR(20) NOT NULL,
+    ban_date DATETIME NOT NULL
+);
+
 
 -- INSERTS ------------------------------------------------------------------------
 
