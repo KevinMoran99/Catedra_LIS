@@ -166,17 +166,17 @@ try {
             $_POST = $val->validateForm($_POST);
             //creamos un nuevo registro con los datos del array
             (new UserTypeController())->addUserType($_POST['name'],$_POST['state'],
-                                                    is_null($_POST['games']) ? 0 : $_POST['games'], 
-                                                    is_null($_POST['users']) ? 0 : $_POST['users'], 
-                                                    is_null($_POST['support']) ? 0 : $_POST['support'], 
-                                                    is_null($_POST['stadistics']) ? 0 : $_POST['stadistics'], 
-                                                    is_null($_POST['reviews']) ? 0 : $_POST['reviews'], 
-                                                    is_null($_POST['esrbs']) ? 0 : $_POST['esrbs'], 
-                                                    is_null($_POST['publishers']) ? 0 : $_POST['publishers'], 
-                                                    is_null($_POST['genres']) ? 0 : $_POST['genres'], 
-                                                    is_null($_POST['specs']) ? 0 : $_POST['specs'], 
-                                                    is_null($_POST['typeSpecs']) ? 0 : $_POST['typeSpecs'], 
-                                                    is_null($_POST['userTypes']) ? 0 : $_POST['userTypes']);
+                                                    isset($_POST['games']) ? $_POST['games'] : 0, 
+                                                    isset($_POST['users']) ? $_POST['users'] : 0, 
+                                                    isset($_POST['support']) ? $_POST['support'] : 0, 
+                                                    isset($_POST['stadistics']) ? $_POST['stadistics'] : 0, 
+                                                    isset($_POST['reviews']) ? $_POST['reviews'] : 0, 
+                                                    isset($_POST['esrbs']) ? $_POST['esrbs'] : 0, 
+                                                    isset($_POST['publishers']) ? $_POST['publishers'] : 0, 
+                                                    isset($_POST['genres']) ? $_POST['genres'] : 0, 
+                                                    isset($_POST['specs']) ? $_POST['specs'] : 0, 
+                                                    isset($_POST['typeSpecs']) ? $_POST['typeSpecs'] : 0, 
+                                                    isset($_POST['userTypes']) ? $_POST['userTypes'] : 0);
         }
 
         if ($_POST["method"] == "getUserType") {
@@ -189,17 +189,17 @@ try {
             $_POST = $val->validateForm($_POST);
             //actualizamos el registro
             (new UserTypeController())->updateUserType($_POST['id'],$_POST['name'],$_POST['state'],
-                                                    is_null($_POST['games']) ? 0 : $_POST['games'], 
-                                                    is_null($_POST['users']) ? 0 : $_POST['users'], 
-                                                    is_null($_POST['support']) ? 0 : $_POST['support'], 
-                                                    is_null($_POST['stadistics']) ? 0 : $_POST['stadistics'], 
-                                                    is_null($_POST['reviews']) ? 0 : $_POST['reviews'], 
-                                                    is_null($_POST['esrbs']) ? 0 : $_POST['esrbs'], 
-                                                    is_null($_POST['publishers']) ? 0 : $_POST['publishers'], 
-                                                    is_null($_POST['genres']) ? 0 : $_POST['genres'], 
-                                                    is_null($_POST['specs']) ? 0 : $_POST['specs'], 
-                                                    is_null($_POST['typeSpecs']) ? 0 : $_POST['typeSpecs'], 
-                                                    is_null($_POST['userTypes']) ? 0 : $_POST['userTypes']);
+                                                        isset($_POST['games']) ? $_POST['games'] : 0, 
+                                                        isset($_POST['users']) ? $_POST['users'] : 0, 
+                                                        isset($_POST['support']) ? $_POST['support'] : 0, 
+                                                        isset($_POST['stadistics']) ? $_POST['stadistics'] : 0, 
+                                                        isset($_POST['reviews']) ? $_POST['reviews'] : 0, 
+                                                        isset($_POST['esrbs']) ? $_POST['esrbs'] : 0, 
+                                                        isset($_POST['publishers']) ? $_POST['publishers'] : 0, 
+                                                        isset($_POST['genres']) ? $_POST['genres'] : 0, 
+                                                        isset($_POST['specs']) ? $_POST['specs'] : 0, 
+                                                        isset($_POST['typeSpecs']) ? $_POST['typeSpecs'] : 0, 
+                                                        isset($_POST['userTypes']) ? $_POST['userTypes'] : 0);
         }
 
         if($_POST["method"] == "searchUserType"){
