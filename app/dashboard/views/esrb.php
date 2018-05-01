@@ -145,7 +145,7 @@ if(!isset($ajax)){
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="modal-submit btn waves-effect right">Actualizar</button>
+                        <button type="submit" class="modal-submit btn waves-effect right">Ingresar</button>
                         <button type="reset" class="btn waves-effect right modal-close">Cancelar</button>
                     </div>
                 </form>
@@ -167,10 +167,12 @@ if(!isset($ajax)){
             <div class="col s12 m8 offset-m2 center-align">
                 <form id="frmUpdateRegEsrb" autocomplete="off">
                     <input type="hidden" name="id" id="esrbId">
-                    <div class="input-field">
+    
+                     <div class="input-field">
                         <input id="esrbUName" name="name" type="text" minlength="1" maxlength="50" pattern="^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{1,50}$" title="Solo se permiten números y letras" required>
                         <label for="esrbUName" class="active">Nombre de clasificacion</label>
                     </div>
+
 
                     <div class="row">
                         <h6 class="center">Seleccione el estado del clasificacion:</h6>
@@ -181,7 +183,7 @@ if(!isset($ajax)){
                                         <input name="state" id="esrbStateA" value="1" type="radio" checked />
                                         <span>Activo</span>
                                     </label>
-                                </p>
+                                    </p>
                             </div>
                             <div class="col s12 m6 push-m4">
                                 <p>

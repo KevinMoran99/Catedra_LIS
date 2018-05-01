@@ -17,6 +17,7 @@
         }
         if($type->getUsers()){
             echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'user\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Usuarios">account_box</i>Usuarios</a></li>';
+            echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'userType\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Usuarios">person_pin_circle</i>Tipo de usuarios</a></li>';
         }
         if($type->getSupport()){
             echo '<li class="menu-item"><a class="waves-effect" href="#!" onclick="attach(\'support\',1)"><i class="material-icons tooltipped" data-position="right" data-delay="50" data-tooltip="Soporte Técnico">build</i>Soporte Técnico</a></li>';

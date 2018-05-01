@@ -1,6 +1,3 @@
-CREATE DATABASE stoam; 
-USE stoam;
-	 
 SET NAMES 'utf8';
 
 CREATE TABLE publishers(

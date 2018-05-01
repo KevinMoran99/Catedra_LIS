@@ -73,5 +73,10 @@ if($_SESSION['last_activity'] < time()-$_SESSION['expire_time'] ) {
             $page = $_POST["current"];
             include("../dashboard/views/review.php");
             break;
+            case "userType":
+            $ajax='true';
+            $page = $_POST["current"];
+            include("../dashboard/views/userType.php");
+            break;
     }
 }
