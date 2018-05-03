@@ -72,6 +72,12 @@ class UserController
         $flag = false;
         $validateError = "";
         //si no se cumplen las validaciones, setear le flag a true y agregar mensaje de error
+        //Si un no admin intenta crear a un admin
+        session_start();
+        if ($_SESSION["user"]->getUserType()->getId() != 1 && $userType == 1) {
+            $validateError = "No puede crear a usuarios administradores";
+            $flag = true;
+        }
         if (is_null($userType)) {
             $validateError = "Por favor elija un tipo de usuario";
             $flag = true;
@@ -148,6 +154,8 @@ class UserController
         //objetos de validacion y tipo de user
         $validator = new Helper\Validator();
         $user = new Model\User();
+        $user->setId($id);
+        $user->getById();
         //variables de validacion
         $flag = false;
         $validateError="";
@@ -191,6 +199,12 @@ class UserController
 
 
         }
+        //Si un no admin intenta modificar a un admin
+        if ($_SESSION["user"]->getUserType()->getId() != 1 && $user->getUserType()->getId() == 1) {
+            $validateError = "No puede modificar a usuarios administradores";
+            $flag = true;
+        }
+        //Otras validaciones
         if (is_null($userType)) {
             $validateError = "Por favor elija un tipo de usuario";
             $flag = true;

@@ -50,31 +50,34 @@ if(!isset($ajax)){
                                 //mostrando los datos solicitados en base al paginate
                                 $current_page = $page;
                                 $userType = new Control\userTypeController();
-                                $paginate = new Helper\Paginate($userType->getAllUserTypes(),$current_page);
+                                $paginate = new Helper\Paginate($userType->getAllModifiableUserTypes(),$current_page);
 
                                 foreach ($paginate->getData() as $row){
                                     $checked = "";
                                     if($row->getState()==1){
                                         $checked = "checked";
                                     }
-                                    echo "
-                                                <tr>
-                                                    <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
-                                                    <td>".$row->getName()."</td>
-                                                    <td> 
-                                                        <label>
-                                                            <input type=\"checkbox\" disabled ".$checked." />
-                                                            <span></span>
-                                                         </label>
-                                                    </td>
-                                                    <td>
-                                                        <a  href='#actualizarTipoUsuario' class=\"edit modal-trigger\">
-                                                             <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
-                                                         </a>
-                                                     </td>
-                                                </tr>
-                                            
-                                            ";
+                                    //Validando que no se muestre el ripo de usuario de la persona logeada
+                                    if($row->getId() != $_SESSION["user"]->getUserType()->getId()) {
+                                        echo "
+                                                    <tr>
+                                                        <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
+                                                        <td>".$row->getName()."</td>
+                                                        <td> 
+                                                            <label>
+                                                                <input type=\"checkbox\" disabled ".$checked." />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <a  href='#actualizarTipoUsuario' class=\"edit modal-trigger\">
+                                                                <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                ";
+                                    }
                                 }
                                 ?>
                                 <!--FIN DE PAGINATE-->

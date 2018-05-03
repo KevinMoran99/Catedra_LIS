@@ -72,36 +72,39 @@ if(!isset($ajax)){
                                         if($row->getState()==1){
                                             $checked = "checked";
                                         }
-                                        echo "
-                                                        <tr>
-                                                            <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
-                                                            <td class='alias'>".$row->getAlias()."</td>
-                                                            <td>".$row->getEmail()."</td>
-                                                            <td>".$row->getUserType()->getName()."</td>
-                                                            <td>
-                                                                <label>
-                                                                    <input type=\"checkbox\" disabled ".$checked.">
-                                                                    <span></span>
-                                                                </label>
-                                                            </td>
-                                                            <td>
-                                                                <a  href='#actualizarUsuario' class=\"edit modal-trigger\">
-                                                                     <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
-                                                                 </a>
-                                                             </td>
-                                                            <td>
-                                                                <a href='#facturasUsuario' class=\"edit modal-trigger modalBillsTrigger\">
-                                                                     <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">local_atm</i>
-                                                                 </a>
-                                                             </td>
-                                                                 <td>
-                                                                    <a href='views/pdf/GamesOfUser.php?user=".$row->getId()."' target=\"_blank\" class=\"edit modal-trigger modalBillsTrigger\">
-                                                                         <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">picture_as_pdf</i>
-                                                                     </a>
-                                                                 </td>
-                                                        </tr>
-                                                    
-                                                    ";
+                                        //El registro de los admin no se muestra si no lo visualiza otro admin
+                                        if(!($_SESSION["user"]->getUserType()->getId() != 1 && $row->getUserType()->getId() == 1)){
+                                            echo "
+                                                            <tr>
+                                                                <td class='id' style=\"visibility: hidden; display:none;\">".$row->getId()."</td>
+                                                                <td class='alias'>".$row->getAlias()."</td>
+                                                                <td>".$row->getEmail()."</td>
+                                                                <td>".$row->getUserType()->getName()."</td>
+                                                                <td>
+                                                                    <label>
+                                                                        <input type=\"checkbox\" disabled ".$checked.">
+                                                                        <span></span>
+                                                                    </label>
+                                                                </td>
+                                                                <td>
+                                                                    <a  href='#actualizarUsuario' class=\"edit modal-trigger\">
+                                                                        <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">mode_edit</i>
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href='#facturasUsuario' class=\"edit modal-trigger modalBillsTrigger\">
+                                                                        <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">local_atm</i>
+                                                                    </a>
+                                                                </td>
+                                                                    <td>
+                                                                        <a href='views/pdf/GamesOfUser.php?user=".$row->getId()."' target=\"_blank\" class=\"edit modal-trigger modalBillsTrigger\">
+                                                                            <i class=\"material-icons tooltipped editar\" data-position=\"left\" data-delay=\"50\">picture_as_pdf</i>
+                                                                        </a>
+                                                                    </td>
+                                                            </tr>
+                                                        
+                                                        ";
+                                        }
                                     }
                                 ?>
                                 <!--FIN DE PAGINATE-->
@@ -168,7 +171,9 @@ if(!isset($ajax)){
                             <?php
                             $typeSpecs = new Control\UserTypeController();
                             foreach ($typeSpecs->getAllActiveUserTypes() as $type) {
-                                echo "<option value=".$type->getId().">".$type->getName()."</option>";
+                                if(!($_SESSION["user"]->getUserType()->getId() != 1 && $type->getId() == 1)){
+                                    echo "<option value=".$type->getId().">".$type->getName()."</option>";
+                                }
                             }
                             ?>
                         </select>
@@ -239,7 +244,9 @@ if(!isset($ajax)){
                             <?php
                             $typeSpecs = new Control\UserTypeController();
                             foreach ($typeSpecs->getAllActiveUserTypes() as $type) {
-                                echo "<option value=".$type->getId().">".$type->getName()."</option>";
+                                if(!($_SESSION["user"]->getUserType()->getId() != 1 && $type->getId() == 1)){
+                                    echo "<option value=".$type->getId().">".$type->getName()."</option>";
+                                }
                             }
                             ?>
                         </select>

@@ -51,6 +51,12 @@ class UserTypeController
             $validateError = "Solo se permiten numeros y letras en el nombre de tipo de usuario";
             $flag = true;
         }
+        //Si no se ha especificado al menos un permiso
+        if(!($games || $users || $support || $stadistics || $reviews || $esrbs || 
+            $publishers || $genres || $specs || $typeSpecs || $userTypes)){
+            $validateError = "Conceda al menos un permiso al tipo de usuario";
+            $flag = true;
+        }
 
         //si el flag sigue siendo falso en este punto, agrega un nuevo registro
         if(!$flag){
@@ -110,6 +116,18 @@ class UserTypeController
         //si no es alfanumerico setear flag a verdadero y agregar mensaje
         if(!$validator->validateAlphanumeric($name,3,50)){
             $validateError = "Solo se permiten numeros y letras en nombre de genero";
+            $flag = true;
+        }
+        //Si no se ha especificado al menos un permiso
+        if(!($games || $users || $support || $stadistics || $reviews || $esrbs || 
+            $publishers || $genres || $specs || $typeSpecs || $userTypes)){
+            $validateError = "Conceda al menos un permiso al tipo de usuario";
+            $flag = true;
+        }
+        //Si intenta modificar su propio tipo
+        session_start();
+        if ($id == $_SESSION["user"]->getUserType()->getId()) {
+            $validateError = "No puede modificar su propio tipo de usuario";
             $flag = true;
         }
 

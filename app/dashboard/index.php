@@ -17,7 +17,7 @@
                 header("Location:login.php");
                 die();
             }
-            if ($_SESSION['user']->getUserType()->getId() != 1) {
+            if ($_SESSION['user']->getUserType()->getId() == 2) {
                 header("Location:login.php");
                 die();
             }
