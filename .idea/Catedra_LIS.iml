@@ -7,7 +7,12 @@
       <sourceFolder url="file://$MODULE_DIR$/app/http/models" isTestSource="false" packagePrefix="Http\Models\" />
       <sourceFolder url="file://$MODULE_DIR$/app/http/models/interfaces" isTestSource="false" packagePrefix="Http\Models\Interfaces\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ircmaxell/security-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ksubileau/color-thief-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/sodium_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/phpmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/setasign/fpdf" />
     </content>
     <orderEntry type="inheritedJdk" />

@@ -31,7 +31,7 @@ class Mailer {
             $mail->Username = 'b0558e807c64c2';                   // SMTP username
             $mail->Password = '748ca1e246dcf8';                   // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 2525;                                     // TCP port to connect to
+            $mail->Port = 465;                                     // TCP port to connect to
             $mail->CharSet = 'UTF-8';
 
             //Recipients

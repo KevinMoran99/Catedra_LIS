@@ -12,8 +12,8 @@ class Connection{
     //conectar a la base 
     private static function connect(){
         $server="localhost";
-        $user = "root";
-        $pass="";
+        $user = "catedra";
+        $pass="fedora98";
         $database="stoam";
         try{
             self::$connection = new PDO("mysql:host=$server; dbname=$database; charset=utf8",$user,$pass);
